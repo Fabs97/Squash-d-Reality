@@ -57,7 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DummyMoveset.cs" />
     <Compile Include="Assets\Scripts\Managers\ChangeSceneManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerConnectionObject.cs" />
+    <Compile Include="Assets\Scripts\PlayerUnit.cs" />
+    <Compile Include="Assets\Scripts\UI\SwitchCanvas.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
