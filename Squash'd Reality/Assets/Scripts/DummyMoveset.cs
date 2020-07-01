@@ -43,17 +43,9 @@ public class DummyMoveset : MonoBehaviour
 
         if(moveRightStick != Vector3.zero){
             gameObject.transform.forward = moveRightStick;
+        }else if (moveRightStick==Vector3.zero&&move!=Vector3.zero){
+            gameObject.transform.forward = move;
         }
-        if (move != Vector3.zero )
-        {
-            gameObject.transform.forward = move + moveRightStick*4;
-
-        }
-        else if(move != Vector3.zero)
-        {
-            playerSpeed = initSpeed;
-        }
-
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer)
         {
