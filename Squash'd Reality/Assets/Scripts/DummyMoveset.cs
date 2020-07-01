@@ -29,7 +29,7 @@ public class DummyMoveset : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)){
+        if(Input.GetButtonDown("Sprint")){
             playerSpeed = initSpeed*2;
         }
 
