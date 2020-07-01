@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Managers\ChangeSceneManager.cs" />
     <Compile Include="Assets\Scripts\PlayerConnectionObject.cs" />
     <Compile Include="Assets\Scripts\PlayerUnit.cs" />
+    <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\UI\SwitchCanvas.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
