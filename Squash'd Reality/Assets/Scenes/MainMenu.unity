@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 1260990647}
   - component: {fileID: 1260990646}
   m_Layer: 5
-  m_Name: LeaderboardButton (1)
+  m_Name: CollectiblesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
