@@ -904,8 +904,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1112965829}
-        m_MethodName: loadNextScene
-        m_Mode: 5
+        m_MethodName: playButtonClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 1112965830}
   - component: {fileID: 1112965829}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: ButtonManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

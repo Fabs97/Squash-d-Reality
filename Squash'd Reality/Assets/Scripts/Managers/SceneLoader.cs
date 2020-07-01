@@ -6,18 +6,14 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        this.loadNextScene("MainMenu");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void loadNextScene(string sceneName){  
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
+
+    
 }
