@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+ 
 public class SwitchCanvas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject OffCanvas;
+    public GameObject OnCanvas;
+    public GameObject FirstUIElementJoystick;
+ 
+    public void Switch()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        OffCanvas.SetActive(false);
+        OnCanvas.SetActive(true);
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(FirstUIElementJoystick); 
     }
 }
