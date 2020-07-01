@@ -46,7 +46,7 @@ public class DummyMoveset : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (Input.GetButton("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravityValue);
         }
@@ -55,7 +55,7 @@ public class DummyMoveset : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
 
         if(!controller.isGrounded){
-            Debug.Log("DummyMoveset::Update - Airborn!");
+            Debug.Log("DummyMoveset::Move - Airborn!");
         }
     }
 }
