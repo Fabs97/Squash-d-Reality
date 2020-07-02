@@ -1,24 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class NetworkingManager : MonoBehaviour
-{
 
-    public static NetworkingManager instance { get; private set; }
-
-    // Start is called before the first frame update
-    void Start()
+namespace NetworkingManager {
+    public class NetworkingManager : MonoBehaviour
     {
-        if(instance == null){
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+
+        private NetworkManager _networkManager;
+        void Awake() {
+            _networkManager = GetComponent<NetworkManager>();
         }
-    }
+        public void createLobby(){
+            _networkManager.StartHost();
+            Debug.Log("NetworkingManager::createLobby - Creating lobby");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void joinLobby(){
+            _networkManager.StartClient();
+            Debug.Log("NetworkingManager::joinLobby - Joining lobby!");
+        }
     }
 }
