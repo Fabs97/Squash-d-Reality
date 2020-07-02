@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grabbable
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Grabbable
   m_SortingLayers:
   - name: Default
     uniqueID: 0
