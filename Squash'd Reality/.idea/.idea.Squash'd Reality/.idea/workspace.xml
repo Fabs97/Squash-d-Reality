@@ -11,6 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Shoot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerConnectionObject.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -19,6 +20,7 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerConnectionObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Shoot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" />
       </list>
     </option>
   </component>
@@ -61,7 +63,7 @@
       <updated>1593626531252</updated>
       <workItem from="1593626540448" duration="61000" />
       <workItem from="1593626648691" duration="17000" />
-      <workItem from="1593677029486" duration="4719000" />
+      <workItem from="1593677029486" duration="8093000" />
     </task>
     <servers />
   </component>

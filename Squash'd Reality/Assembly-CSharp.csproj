@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DummyMoveset.cs" />
     <Compile Include="Assets\Scripts\Managers\ChangeSceneManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\PlayerConnectionObject.cs" />
     <Compile Include="Assets\Scripts\PlayerUnit.cs" />
     <Compile Include="Assets\Scripts\Shoot.cs" />
