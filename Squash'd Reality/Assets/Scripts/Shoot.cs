@@ -1,39 +1,54 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Shoot : MonoBehaviour
 {
-   
+    //-----------------------OBJECTS-------------------------
     public Transform firePoint;
     public GameObject bulletPrefab;
-
+    
+    //-------------------SHOOTING SETTINGS-------------------
     public float bulletForce = 20f;
-    public float fireTime = .1f;
+    private float fireRatioTime = 0.1f;
+    private float shootingTime = 5f;
+    private float shootingDelay = 0.0f;
     void Start()
     {
-        StartCoroutine("ShootingRoutine");
-
+        
     }
 
-    void Update() {
-        // Shooting();
-        // StartCoroutine("ShootingRoutine");
-
+    //CALL this to start shooting
+    void Shooting()
+    {
+        InvokeRepeating("BulletInstantiation", shootingDelay, fireRatioTime);
+        StartCoroutine("StopShooting");
     }
+    
+    //BULLET instantiation in Shooting function 
+    void BulletInstantiation(){
+         GameObject bullet = Instantiate(bulletPrefab,firePoint.position, bulletPrefab.transform.rotation);
+         Rigidbody rb = bullet.GetComponent<Rigidbody>();
+         rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
+     }
+     
+    //TIME to stop shooting
+     IEnumerator StopShooting()
+     {
+         yield return new WaitForSeconds(shootingTime);
+         CancelInvoke("BulletInstantiation");
+     }
 
-    // void Shooting(){
-    //     GameObject bullet = Instantiate(bulletPrefab,firePoint.position, firePoint.rotation);
-    //     Rigidbody rb = bullet.GetComponent<Rigidbody>();
-    //     rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
-    // }
-
-    IEnumerator ShootingRoutine(){
-        while(true){
-            GameObject bullet = Instantiate(bulletPrefab,firePoint.position, firePoint.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
-            yield return new WaitForSeconds(fireTime*Time.deltaTime);
-        } 
-    }
+     //SET here shooting settings for different weapons
+     void setShootingSettings(float bulletForce,float fireRatioTime, float shootingTime, float shootingDelay)
+     {
+         this.bulletForce = bulletForce;
+         this.fireRatioTime = fireRatioTime;
+         this.shootingTime = shootingTime;
+         this.shootingDelay = shootingDelay;
+     }
+     
 }
