@@ -10,12 +10,17 @@ public class UIManager : MonoBehaviour
     //-------------------------------------UI OBJECTS-------------------------------------------------
 
     public TextMeshProUGUI timerCounter;
+    public RawImage Clock;
     public RawImage PG_Image;
+    public Button PlayerName_Button;
     public TextMeshProUGUI PlayerName_Text;
     public RawImage Weapon_Image;
     public RawImage PowerUp_Image;
     public TextMeshProUGUI PowerUp_Text;
+    public Button PowerUp_Button;
+    public Button IngredientsBox;
     public TextMeshProUGUI IngredientsBox_Text;
+    public Button InfoBox;
     public TextMeshProUGUI InfoBox_Text;
     
     
@@ -26,7 +31,7 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-      
+        
     }
 
     void Update()
@@ -67,6 +72,14 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    //SET gameobject active or not
+    public void setTimerActive(bool value)
+    {
+        timerCounter.gameObject.SetActive(value);
+        Clock.gameObject.SetActive(value);
+    }
+
+    
     //---------------------------------------PLAYER-----------------------------------------------
     //SET player name
     public void setPlayerName(string playerName)
@@ -80,6 +93,13 @@ public class UIManager : MonoBehaviour
         //TODO
     }
     
+    //SET gameobject active or not
+    public void setPlayerElementsActive(bool value)
+    {
+       PlayerName_Button.gameObject.SetActive(value);
+       PG_Image.gameObject.SetActive(value);
+    }
+    
     //---------------------------------------POWER-UP-----------------------------------------------
     //SET power-up name
     public void setPowerUpName(string powerUpName)
@@ -88,15 +108,29 @@ public class UIManager : MonoBehaviour
     }
     
     //SET power-up image
-    public static void setPowerUpImage()
+    public void setPowerUpImage()
     {
         //TODO
     }
+
+    //SET gameobject active or not
+    public void setPowerUpButtonActive(bool value)
+    {
+        PowerUp_Button.gameObject.SetActive(value);
+        PowerUp_Image.gameObject.SetActive(value);
+    }
+    
     //----------------------------------------WEAPON------------------------------------------------
     //SET weapon image
-    public static void setWeaponImage()
+    public void setWeaponImage()
     {
         //TODO
+    }
+    
+    //SET gameobject active or not
+    public void setWeaponActive(bool value)
+    {
+        Weapon_Image.gameObject.SetActive(value);
     }
     
     //---------------------------------------INFO BOX-----------------------------------------------
@@ -106,11 +140,34 @@ public class UIManager : MonoBehaviour
         InfoBox_Text.text = infoBox;
     }
     
+    //SET gameobject active or not
+    public void setInfoBoxActive(bool value)
+    {
+        InfoBox.gameObject.SetActive(value);
+    }
+    
     //--------------------------------------INGREDIENTS----------------------------------------------
     //SET info box text
     public void setIngredientsText(string ingredients)
     {
         IngredientsBox_Text.text = ingredients;
     }
-
+    
+    //SET gameobject active or not
+    public void setIngredientsButtonActive(bool value)
+    {
+        IngredientsBox.gameObject.SetActive(value);
+    }
+    
+    //----------------------------------------ALL UI------------------------------------------------
+    //SET all UI active or not
+    public void setAllElementsActive(bool value)
+    {
+        setTimerActive(value);
+        setPlayerElementsActive(value);
+        setPowerUpButtonActive(value);
+        setWeaponActive(value);
+        setInfoBoxActive(value);
+        setIngredientsButtonActive(value);
+    }
 }

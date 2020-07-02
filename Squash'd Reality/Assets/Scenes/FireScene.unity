@@ -907,13 +907,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerCounter: {fileID: 467703065}
-  PG_Image: {fileID: 0}
-  PlayerName_Text: {fileID: 0}
-  Weapon_Image: {fileID: 0}
-  PowerUp_Image: {fileID: 0}
+  Clock: {fileID: 2043114945}
+  PG_Image: {fileID: 109282146}
+  PlayerName_Button: {fileID: 1232300879}
+  PlayerName_Text: {fileID: 910443854}
+  Weapon_Image: {fileID: 1578097416}
+  PowerUp_Image: {fileID: 469182213}
   PowerUp_Text: {fileID: 1446258429}
-  IngredientsBox_Text: {fileID: 0}
-  InfoBox_Text: {fileID: 0}
+  PowerUp_Button: {fileID: 1123840074}
+  IngredientsBox: {fileID: 1006699120}
+  IngredientsBox_Text: {fileID: 349358087}
+  InfoBox: {fileID: 376533367}
+  InfoBox_Text: {fileID: 1731408824}
   seconds: 0
   minutes: 0
   timeLeft: 0
