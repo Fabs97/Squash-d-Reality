@@ -83,7 +83,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: Lobby
+  m_OfflineScene: LobbySelection
   m_OnlineScene: 
   m_SpawnPrefabs: []
   m_CustomConfig: 0
@@ -141,16 +141,16 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  m_ShowLobbyGUI: 1
+  m_ShowLobbyGUI: 0
   m_MaxPlayers: 4
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 0
-  m_LobbyPlayerPrefab: {fileID: 114665557230253342, guid: 2d6e6c741e53fef48aded18450aac625,
+  m_MinPlayers: 2
+  m_LobbyPlayerPrefab: {fileID: 1722521985026835234, guid: ba400a3dbb7e2aa428c700f50a2703ee,
     type: 3}
-  m_GamePlayerPrefab: {fileID: 5882616875974082368, guid: 2d6e6c741e53fef48aded18450aac625,
+  m_GamePlayerPrefab: {fileID: 2097515508525778769, guid: 868be0f4391c8444a97257bb8203dde6,
     type: 3}
-  m_LobbyScene: Lobby
-  m_PlayScene: PlayScene
+  m_LobbyScene: LobbySelection
+  m_PlayScene: Lobby
   lobbySlots: []
 --- !u!114 &1411353313
 MonoBehaviour:
