@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
-  public Transform player;
-  bool canBeGrabbed = false;
-  bool grabbed = false;
-  public float grabRange = 3.0f;
+    public Transform player;
+    bool canBeGrabbed = false;
+    bool grabbed = false;
+    public float grabRange = 3.0f;
+    private float initY;
+
+    private IEnumerator grabCooldown;
+    bool inCooldown = false;
+
+    private void Start()
+    {
+        initY = transform.position.y;
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,10 +35,21 @@ public class Grabbable : MonoBehaviour
             canBeGrabbed = false;
         }
 
-        if(canBeGrabbed && Input.GetButtonDown("Interact")){
+        if (!grabbed && transform.position.y != initY) {
+            inCooldown = true;
+            initY = transform.position.y;
+            grabCooldown = WaitCooldown(2);
+            StartCoroutine(grabCooldown);
+        }
+
+        if(canBeGrabbed && Input.GetButtonDown("Interact") && !inCooldown){
             GetComponent<Rigidbody>().isKinematic = true;
             transform.parent = player;
             grabbed = true;
+            if (transform.position.y < initY + 0.5f)
+            {
+                transform.position += new Vector3(0, 1f, 0);
+            }
             Debug.Log("Geabbable::Grab - got i down");
         }
 
@@ -39,5 +59,12 @@ public class Grabbable : MonoBehaviour
             grabbed = false;
             Debug.Log("Geabbable::Grab - got i up");
         }
+
+    }
+
+    private IEnumerator WaitCooldown(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        inCooldown = false;
     }
 }
