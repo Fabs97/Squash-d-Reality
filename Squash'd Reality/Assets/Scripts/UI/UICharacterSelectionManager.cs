@@ -15,14 +15,19 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private GameObject CharacterAlreadyChoosen;
 
 
-    private void Start()
-    {
-        showCharacterAlreadyChoosen();
-
-    }
+    //Networking variables
+    [SyncVar] private bool Character1Taken = false;
+    [SyncVar] private bool Character2Taken = false;
+    [SyncVar] private bool Character3Taken = false;
+    [SyncVar] private bool Character4Taken = false;
+    
 
     private void Update()
     {
+        if (Character1Taken)
+        {
+            Debug.LogError("CAMBIATE");
+        }
     }
 
     public void setCharacter1Active(bool value)
@@ -56,4 +61,23 @@ public class UICharacterSelectionManager : NetworkBehaviour
         yield return new WaitForSeconds(2f);
         CharacterAlreadyChoosen.SetActive(false);
     }
+    //SELECT character is ok
+    [Command] //--> the command is sent from client to server
+    void CmdSelectCharacter(string characterName)
+    {
+        if (characterName == "Character1")
+        { 
+            Character1Taken = true;
+        }else if (characterName == "Character2")
+        {
+            Character2Taken = true;
+        }else if (characterName == "Character3")
+        {
+            Character3Taken = true;
+        }else if (characterName == "Character4")
+        {
+            Character4Taken = true;
+        }
+    }
+    
 }

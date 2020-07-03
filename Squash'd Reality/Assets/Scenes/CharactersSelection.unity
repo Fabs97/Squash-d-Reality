@@ -2472,8 +2472,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4764515760360111680, guid: 868be0f4391c8444a97257bb8203dde6,
-          type: 3}
+      - m_Target: {fileID: 1515830559}
         m_MethodName: CallCmdSelectCharacter
         m_Mode: 5
         m_Arguments:
