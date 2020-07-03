@@ -35,14 +35,15 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private bool Character4TakenLocal = false;
 
     private SceneLoader.SceneLoader _sceneLoader;
-    private SpawnManager.SpawnManager _spawnManager;
+  
     private void Start() {
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
-        _spawnManager = FindObjectOfType<SpawnManager.SpawnManager>();
+
     }
     private void Update()
     {
         UpdateNetworkVariables();
+
     }
 
     public void UpdateNetworkVariables()
@@ -50,44 +51,79 @@ public class UICharacterSelectionManager : NetworkBehaviour
         if (Character1TakenLocal != Character1Taken)
         {
             Character1TakenLocal = Character1Taken;
-            setCharacter1Active(!Character1TakenLocal);
+            setCharacter1Active(Character1TakenLocal);
         }
         if (Character2TakenLocal != Character2Taken)
         {
             Character2TakenLocal = Character2Taken;
-            setCharacter2Active(!Character2TakenLocal);
+            setCharacter2Active(Character2TakenLocal);
         }
         if (Character3TakenLocal != Character3Taken)
         {
             Character3TakenLocal = Character3Taken;
-            setCharacter3Active(!Character3TakenLocal);
+            setCharacter3Active(Character3TakenLocal);
         }
         if (Character4TakenLocal != Character4Taken)
         {
             Character4TakenLocal = Character4Taken;
-            setCharacter4Active(!Character4TakenLocal);
+            setCharacter4Active(Character4TakenLocal);
         }
         
     }
     public void setCharacter1Active(bool value)
     {
-    
-        Character1.gameObject.SetActive(value);
+        if (value)
+        {
+            Character1.GetComponent<Image>().color = Color.red;
+            Character1.interactable = !value;
+        }
+        else
+        {
+            Character1.GetComponent<Image>().color = Color.clear;
+            Character1.interactable = value;
+        }
     }
     
     void setCharacter2Active(bool value)
     {
-        Character2.gameObject.SetActive(value); 
+        if (value)
+        {
+            Character2.GetComponent<Image>().color = Color.red;
+            Character2.interactable = !value;
+        }
+        else
+        {
+            Character2.GetComponent<Image>().color = Color.clear;
+            Character2.interactable = value;
+        }
     }
 
     void setCharacter3Active(bool value)
     {
-        Character3.gameObject.SetActive(value);
+        if (value)
+        {
+            Character3.GetComponent<Image>().color = Color.red;
+            Character3.interactable = !value;
+        }
+        else
+        {
+            Character3.GetComponent<Image>().color = Color.clear;
+            Character3.interactable = value;
+        }
     }
 
     void setCharacter4Active(bool value)
     {
-        Character4.gameObject.SetActive(value);
+        if (value)
+        {
+            Character4.GetComponent<Image>().color = Color.red;
+            Character4.interactable = !value;
+        }
+        else
+        {
+            Character4.GetComponent<Image>().color = Color.clear;
+            Character4.interactable = value;
+        }
     }
 
     void showCharacterAlreadyChoosen()
@@ -106,21 +142,31 @@ public class UICharacterSelectionManager : NetworkBehaviour
     {
         if (characterName == "Character1") { 
             Character1Taken = true;
-            loadLobby(Character1Prefab, Character1Transform);
+            //loadLobby(Character1Prefab, Character1Transform);
         } else if (characterName == "Character2") {
             Character2Taken = true;
-            loadLobby(Character2Prefab, Character2Transform);
+           // loadLobby(Character2Prefab, Character2Transform);
         } else if (characterName == "Character3") {
             Character3Taken = true;
-            loadLobby(Character3Prefab, Character3Transform);
+           // loadLobby(Character3Prefab, Character3Transform);
         } else if (characterName == "Character4") {
             Character4Taken = true;
-            loadLobby(Character4Prefab, Character4Transform);
+            //loadLobby(Character4Prefab, Character4Transform);
         }
     }
     
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
-        _spawnManager.CmdSpawnPlayer(c, t);
+        CmdSpawnPlayer(c);
     }
+    
+    
+    [Command]
+    public void CmdSpawnPlayer(GameObject playerPrefab) {
+        GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+        NetworkServer.Spawn(go);
+        Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
+    }
+    
+    
 }

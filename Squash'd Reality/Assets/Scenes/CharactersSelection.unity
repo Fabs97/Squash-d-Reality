@@ -1882,15 +1882,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-        m_MethodName: setClientReady
-        m_Mode: 1
+      - m_Target: {fileID: 1515830559}
+        m_MethodName: CallCmdSelectCharacter
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Character4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1339821049
@@ -2273,6 +2273,14 @@ MonoBehaviour:
   Character3: {fileID: 1294994225}
   Character4: {fileID: 2099550395}
   CharacterAlreadyChoosen: {fileID: 1196536845}
+  Character1Prefab: {fileID: 0}
+  Character2Prefab: {fileID: 0}
+  Character3Prefab: {fileID: 0}
+  Character4Prefab: {fileID: 0}
+  Character1Transform: {fileID: 0}
+  Character2Transform: {fileID: 0}
+  Character3Transform: {fileID: 0}
+  Character4Transform: {fileID: 0}
 --- !u!4 &1515830560
 Transform:
   m_ObjectHideFlags: 0
@@ -2736,15 +2744,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-        m_MethodName: setClientReady
-        m_Mode: 1
+      - m_Target: {fileID: 1515830559}
+        m_MethodName: CallCmdSelectCharacter
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Character3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1679124997
@@ -3318,15 +3326,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-        m_MethodName: setClientReady
-        m_Mode: 1
+      - m_Target: {fileID: 1515830559}
+        m_MethodName: CallCmdSelectCharacter
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Character2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1794512488

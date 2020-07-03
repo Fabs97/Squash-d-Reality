@@ -18,11 +18,5 @@ namespace SpawnManager {
             
         }
 
-        [Command]
-        public void CmdSpawnPlayer(GameObject playerPrefab, Transform spawnPoint) {
-            GameObject go = Instantiate(playerPrefab, spawnPoint);
-            NetworkServer.Spawn(go);
-            Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
-        }
     }
 }

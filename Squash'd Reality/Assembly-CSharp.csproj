@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Managers\MainMenuButtonManager.cs" />
     <Compile Include="Assets\Scripts\Managers\NetworkingManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Managers\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\PlayerConnectionObject.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerUnit.cs" />

@@ -60,6 +60,7 @@ namespace NetworkingManager {
             // _sceneLoader.loadNextScene("CharactersSelection");
             StartClient(responsedata);
         }
+        
     }
 
 	public static class AvailableMatchesList {
@@ -72,4 +73,6 @@ namespace NetworkingManager {
 			OnAvailableMatchesChanged(matches);
 		}
 	}
+    
+    
 }
