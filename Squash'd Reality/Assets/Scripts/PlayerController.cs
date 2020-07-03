@@ -16,27 +16,4 @@ public class PlayerController : NetworkBehaviour
     {
         
     }
-    
-    
-    //SELECT character is ok
-    [Command] //--> the command is sent from client to server
-    void CmdSelectCharacter(string characterName)
-    {
-        if (characterName == "Character1")
-        { 
-            UICharacterSelectionManager.setCharacter1Active(true);
-        }
-        if (characterName == "Character2")
-        {
-            
-        }
-        if (characterName == "Character3")
-        {
-           
-        }
-        if (characterName == "Character4")
-        {
-            
-        }
-    }
 }
