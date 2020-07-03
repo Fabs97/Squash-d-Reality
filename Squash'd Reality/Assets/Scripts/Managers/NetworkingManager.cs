@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.SceneManagement;
 
 namespace NetworkingManager {
     public class NetworkingManager : NetworkManager {
@@ -21,14 +22,15 @@ namespace NetworkingManager {
             matchMaker.CreateMatch("default", 4, true, "", "", "", 0, 0, OnMatchCreated);
         }
 
-        private void OnMatchCreated(bool success, string extendedinfo, MatchInfo responsedata) {
+        private void OnMatchCreated(bool success, string extendedinfo, MatchInfo responsedata)
+        {
             base.StartHost(responsedata);
-            RefreshMatches();
         }
 
-        private void Update() {
-            // TODO: this must be done only when visualizing the correct scene.
-            if (Time.time >= nextRefreshTime) {
+        private void Update()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName=="LobbySelection" && Time.time >= nextRefreshTime) {
                 RefreshMatches();
             }
         }

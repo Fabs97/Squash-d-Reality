@@ -20,6 +20,8 @@
           <e p="PlayerUnit.cs" t="Include" />
           <e p="Preloader.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="JoinButton.cs" t="Include" />
+            <e p="MatchListPanel.cs" t="Include" />
             <e p="SwitchCanvas.cs" t="Include" />
           </e>
         </e>
