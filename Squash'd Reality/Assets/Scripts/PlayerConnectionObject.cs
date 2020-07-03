@@ -15,7 +15,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public GameObject PlayerUnitPrefab;
 	
 	void Update () {
-
+		
         if(!isLocalPlayer) return;
 
         if( Input.GetKeyDown(KeyCode.S) ) {
