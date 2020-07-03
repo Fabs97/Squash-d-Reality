@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 1273571652}
   - component: {fileID: 1273571654}
   - component: {fileID: 1273571653}
+  - component: {fileID: 1273571655}
   m_Layer: 5
   m_Name: MatchListPanel
   m_TagString: Untagged
@@ -423,6 +424,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273571651}
   m_CullTransparentMesh: 0
+--- !u!114 &1273571655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273571651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75811507bda0386408137473c1ed2d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joinButtonPrefab: {fileID: 114767796487146968, guid: 493b90898da16a34c8a9d5cef5307248,
+    type: 3}
 --- !u!1 &1493840202
 GameObject:
   m_ObjectHideFlags: 0

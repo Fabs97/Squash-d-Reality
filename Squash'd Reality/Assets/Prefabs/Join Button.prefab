@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 3213918063801900929}
   - component: {fileID: 3213918063801900930}
   - component: {fileID: 3213918063801900931}
+  - component: {fileID: 114767796487146968}
   m_Layer: 5
   m_Name: Join Button
   m_TagString: Untagged
@@ -280,3 +281,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &114767796487146968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213918063801900933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb85cb19c98fe149ba05b6a8ff5627e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

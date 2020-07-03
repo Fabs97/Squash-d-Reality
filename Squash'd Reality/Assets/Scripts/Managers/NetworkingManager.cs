@@ -16,11 +16,6 @@ namespace NetworkingManager {
             _sceneLoader.loadNextScene("CharactersSelection");
         }
 
-        public void joinLobby(){
-            Debug.Log("NetworkingManager::joinLobby - Joining lobby");
-            base.StartClient();
-        }
-
         public void StartHosting() {
             StartMatchMaker();
             matchMaker.CreateMatch("default", 4, true, "", "", "", 0, 0, OnMatchCreated);
@@ -32,6 +27,7 @@ namespace NetworkingManager {
         }
 
         private void Update() {
+            // TODO: this must be done only when visualizing the correct scene.
             if (Time.time >= nextRefreshTime) {
                 RefreshMatches();
             }
@@ -46,9 +42,7 @@ namespace NetworkingManager {
             matchMaker.ListMatches(0, 10, "", true, 0, 0, HandleListMatchesComplete);
         }
 
-        private void HandleListMatchesComplete(bool success, 
-            string extendedinfo, 
-            List<MatchInfoSnapshot> responsedata) {
+        private void HandleListMatchesComplete(bool success, string extendedinfo, List<MatchInfoSnapshot> responsedata) {
             AvailableMatchesList.HandleNewMatchList(responsedata);
         }
 
@@ -60,6 +54,8 @@ namespace NetworkingManager {
         }
 
         private void HandleJoinedMatch(bool success, string extendedinfo, MatchInfo responsedata) {
+            Debug.Log("NetworkingManager::HandleJoinedMatch - Joined match!");
+            // _sceneLoader.loadNextScene("CharactersSelection");
             StartClient(responsedata);
         }
     }

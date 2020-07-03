@@ -15,10 +15,10 @@ public class MainMenuButtonManager : MonoBehaviour
     }
 
     public void createLobbyButtonClicked(){
-        _networkingManager.createLobby();
+        _networkingManager.StartHosting();
     }
 
     public void joinLobbyButtonClicked(){
-        _networkingManager.joinLobby();
+        // _networkingManager.StartHosting();
     }
 }
