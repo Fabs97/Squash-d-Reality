@@ -17,12 +17,14 @@
             <e p="SceneLoader.cs" t="Include" />
           </e>
           <e p="PlayerConnectionObject.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
           <e p="PlayerUnit.cs" t="Include" />
           <e p="Preloader.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="JoinButton.cs" t="Include" />
             <e p="MatchListPanel.cs" t="Include" />
             <e p="SwitchCanvas.cs" t="Include" />
+            <e p="UICharacterSelectionManager.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
