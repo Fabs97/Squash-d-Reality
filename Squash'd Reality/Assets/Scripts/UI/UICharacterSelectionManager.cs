@@ -38,7 +38,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
   
     private void Start() {
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
-
+       
     }
     private void Update()
     {
@@ -128,6 +128,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
 
     void showCharacterAlreadyChoosen()
     {
+        CharacterAlreadyChoosen.SetActive(true);
         StartCoroutine(countdownDisappereance());
     }
 
@@ -140,19 +141,55 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [Command] //--> the command is sent from client to server
     void CmdSelectCharacter(string characterName)
     {
+        
+        
         if (characterName == "Character1") { 
-            Character1Taken = true;
-            //loadLobby(Character1Prefab, Character1Transform);
+            if(Character1Taken)
+            {
+                showCharacterAlreadyChoosen();
+            }
+            else
+            {
+                Character1Taken = true;
+                //loadLobby(Character1Prefab, Character1Transform);    
+            }
+            
         } else if (characterName == "Character2") {
-            Character2Taken = true;
-           // loadLobby(Character2Prefab, Character2Transform);
+            if (Character2Taken)
+            {
+                showCharacterAlreadyChoosen();
+            }
+            else
+            {
+                Character2Taken = true;
+                // loadLobby(Character2Prefab, Character2Transform); 
+            }
+            
         } else if (characterName == "Character3") {
-            Character3Taken = true;
-           // loadLobby(Character3Prefab, Character3Transform);
+            if(Character3Taken)
+            {
+                showCharacterAlreadyChoosen();
+            }
+            else
+            {
+                Character3Taken = true;
+                // loadLobby(Character3Prefab, Character3Transform);  
+            }
         } else if (characterName == "Character4") {
-            Character4Taken = true;
-            //loadLobby(Character4Prefab, Character4Transform);
+            if (Character4Taken)
+            {
+                showCharacterAlreadyChoosen();
+            }
+            else
+            {
+                Character4Taken = true;
+                //loadLobby(Character4Prefab, Character4Transform);   
+            }
+           
         }
+
+       
+
     }
     
     private void loadLobby(GameObject c, Transform t){
