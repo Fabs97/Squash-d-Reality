@@ -13,7 +13,14 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Button Character3;
     [SerializeField] private Button Character4;
     [SerializeField] private GameObject CharacterAlreadyChoosen;
-
+    [SerializeField] private GameObject Character1Prefab;
+    [SerializeField] private GameObject Character2Prefab;
+    [SerializeField] private GameObject Character3Prefab;
+    [SerializeField] private GameObject Character4Prefab;
+    [SerializeField] private Transform Character1Transform;
+    [SerializeField] private Transform Character2Transform;
+    [SerializeField] private Transform Character3Transform;
+    [SerializeField] private Transform Character4Transform;
 
     //Networking variables
     [SyncVar] private bool Character1Taken = false;
@@ -27,6 +34,12 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private bool Character3TakenLocal = false;
     private bool Character4TakenLocal = false;
 
+    private SceneLoader.SceneLoader _sceneLoader;
+    private SpawnManager.SpawnManager _spawnManager;
+    private void Start() {
+        _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
+        _spawnManager = FindObjectOfType<SpawnManager.SpawnManager>();
+    }
     private void Update()
     {
         UpdateNetworkVariables();
@@ -91,19 +104,23 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [Command] //--> the command is sent from client to server
     void CmdSelectCharacter(string characterName)
     {
-        if (characterName == "Character1")
-        { 
+        if (characterName == "Character1") { 
             Character1Taken = true;
-        }else if (characterName == "Character2")
-        {
+            loadLobby(Character1Prefab, Character1Transform);
+        } else if (characterName == "Character2") {
             Character2Taken = true;
-        }else if (characterName == "Character3")
-        {
+            loadLobby(Character2Prefab, Character2Transform);
+        } else if (characterName == "Character3") {
             Character3Taken = true;
-        }else if (characterName == "Character4")
-        {
+            loadLobby(Character3Prefab, Character3Transform);
+        } else if (characterName == "Character4") {
             Character4Taken = true;
+            loadLobby(Character4Prefab, Character4Transform);
         }
     }
     
+    private void loadLobby(GameObject c, Transform t){
+        _sceneLoader.loadNextScene("Lobby");
+        _spawnManager.CmdSpawnPlayer(c, t);
+    }
 }

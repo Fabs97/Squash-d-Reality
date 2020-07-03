@@ -1,7 +1,7 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using TMPro;
 
 public class JoinButton : MonoBehaviour
 {
