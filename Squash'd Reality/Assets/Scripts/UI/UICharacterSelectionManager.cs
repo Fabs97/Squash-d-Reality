@@ -21,15 +21,41 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SyncVar] private bool Character3Taken = false;
     [SyncVar] private bool Character4Taken = false;
     
+    //local network variables
+    private bool Character1TakenLocal = false;
+    private bool Character2TakenLocal = false;
+    private bool Character3TakenLocal = false;
+    private bool Character4TakenLocal = false;
 
     private void Update()
     {
-        if (Character1Taken)
-        {
-            Debug.LogError("CAMBIATE");
-        }
+        UpdateNetworkVariables();
     }
 
+    public void UpdateNetworkVariables()
+    {
+        if (Character1TakenLocal != Character1Taken)
+        {
+            Character1TakenLocal = Character1Taken;
+            setCharacter1Active(!Character1TakenLocal);
+        }
+        if (Character2TakenLocal != Character2Taken)
+        {
+            Character2TakenLocal = Character2Taken;
+            setCharacter2Active(!Character2TakenLocal);
+        }
+        if (Character3TakenLocal != Character3Taken)
+        {
+            Character3TakenLocal = Character3Taken;
+            setCharacter3Active(!Character3TakenLocal);
+        }
+        if (Character4TakenLocal != Character4Taken)
+        {
+            Character4TakenLocal = Character4Taken;
+            setCharacter4Active(!Character4TakenLocal);
+        }
+        
+    }
     public void setCharacter1Active(bool value)
     {
     

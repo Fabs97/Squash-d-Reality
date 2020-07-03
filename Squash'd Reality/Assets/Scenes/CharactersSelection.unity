@@ -571,9 +571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1043874998}
+  OnCanvas: {fileID: 1784622648}
+  FirstUIElementJoystick: {fileID: 1639817914}
 --- !u!1 &364553339
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,9 +625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1696177380}
+  OnCanvas: {fileID: 1043874998}
+  FirstUIElementJoystick: {fileID: 1294994223}
 --- !u!114 &364553342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,9 +1289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1043874998}
+  OnCanvas: {fileID: 1907197936}
+  FirstUIElementJoystick: {fileID: 1794512485}
 --- !u!1 &1146852396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,9 +1343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1541842235}
+  OnCanvas: {fileID: 1043874998}
+  FirstUIElementJoystick: {fileID: 2099550393}
 --- !u!114 &1146852399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,9 +1801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1043874998}
+  OnCanvas: {fileID: 1696177380}
+  FirstUIElementJoystick: {fileID: 1679124994}
 --- !u!1 &1339821046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,11 +2268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7643679e321749340932bb4db936c54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character1: {fileID: 0}
-  Character2: {fileID: 0}
-  Character3: {fileID: 0}
-  Character4: {fileID: 0}
-  CharacterAlreadyChoosen: {fileID: 0}
+  Character1: {fileID: 270550012}
+  Character2: {fileID: 1091913097}
+  Character3: {fileID: 1294994225}
+  Character4: {fileID: 2099550395}
+  CharacterAlreadyChoosen: {fileID: 1196536845}
 --- !u!4 &1515830560
 Transform:
   m_ObjectHideFlags: 0
@@ -2655,9 +2655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1784622648}
+  OnCanvas: {fileID: 1043874998}
+  FirstUIElementJoystick: {fileID: 270550010}
 --- !u!1 &1679124994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,9 +3839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1907197936}
+  OnCanvas: {fileID: 1043874998}
+  FirstUIElementJoystick: {fileID: 1091913095}
 --- !u!114 &2069074867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4065,6 +4065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59481004ed341429f343a1d1944e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffCanvas: {fileID: 0}
-  OnCanvas: {fileID: 0}
-  FirstUIElementJoystick: {fileID: 0}
+  OffCanvas: {fileID: 1043874998}
+  OnCanvas: {fileID: 1541842235}
+  FirstUIElementJoystick: {fileID: 1339821046}
