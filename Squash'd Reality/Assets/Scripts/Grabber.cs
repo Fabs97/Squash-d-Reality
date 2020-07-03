@@ -9,6 +9,7 @@ public class Grabber : MonoBehaviour
     RaycastHit hit2;
 
     GameObject toGrab;
+    private bool isGrabbing = false;
 
     bool hitDetect;
     bool hitDetect1;
@@ -33,35 +34,27 @@ public class Grabber : MonoBehaviour
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
             if (hitDetect)
-            {
-                if (hit.collider.gameObject.tag == "Grabbable")
-                {
-                    toGrab = hit.collider.gameObject;
-                    toGrab.transform.parent = transform;
-                    toGrab.GetComponent<Rigidbody>().isKinematic = true;
-                }
+            {                
+                toGrab = hit.collider.gameObject;
+                toGrab.transform.parent = transform;
+                toGrab.GetComponent<Rigidbody>().isKinematic = true;       
+                isGrabbing = true;
             }
 
             else if (hitDetect1)
             {
-                if (hit1.collider.gameObject.tag == "Grabbable")
-                {
-                    toGrab = hit1.collider.gameObject;
-                    toGrab.transform.parent = transform;
-                    toGrab.GetComponent<Rigidbody>().isKinematic = true;
-
-                }
+                toGrab = hit1.collider.gameObject;
+                toGrab.transform.parent = transform;
+                toGrab.GetComponent<Rigidbody>().isKinematic = true;
+                isGrabbing = true;
             }
 
             else if (hitDetect2)
-            {
-                if (hit2.collider.gameObject.tag == "Grabbable")
-                {
-                    toGrab = hit2.collider.gameObject;
-                    toGrab.transform.parent = transform;
-                    toGrab.GetComponent<Rigidbody>().isKinematic = true;
-
-                }
+            {                
+                toGrab = hit2.collider.gameObject;
+                toGrab.transform.parent = transform;
+                toGrab.GetComponent<Rigidbody>().isKinematic = true;
+                isGrabbing = true;
             }
         }
 
@@ -70,7 +63,13 @@ public class Grabber : MonoBehaviour
             toGrab.GetComponent<Rigidbody>().isKinematic = false;
             toGrab.transform.parent = null;
             toGrab = null;
+            isGrabbing = false;
         }
+    }
+
+    public bool GetIsGrabbing()
+    {
+        return isGrabbing;
     }
 
     void OnDrawGizmos()
