@@ -16,9 +16,9 @@ public class UICharacterSelectionManager : NetworkBehaviour
 
     //Networking variables
     [SyncVar] public bool Character1Taken = false;
-    [SyncVar] private bool Character2Taken = false;
-    [SyncVar] private bool Character3Taken = false;
-    [SyncVar] private bool Character4Taken = false;
+    [SyncVar] public bool Character2Taken = false;
+    [SyncVar] public bool Character3Taken = false;
+    [SyncVar] public bool Character4Taken = false;
     
     //local network variables
     private bool Character1TakenLocal = false;

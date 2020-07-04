@@ -26,11 +26,12 @@ public class PlayerController : NetworkBehaviour
     public void CmdSelectedCharacter(string characterName)
     {
         gameObject.name = characterName;
-        if (characterName == "Character1")
-        {
-            GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>().Character1Taken =
-                true;
-        }
+
+        UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
+        if (characterName == "Character1") uICharacterSelectionManager.Character1Taken = true;
+        else if (characterName == "Character2") uICharacterSelectionManager.Character2Taken = true;
+        else if (characterName == "Character3") uICharacterSelectionManager.Character3Taken = true;
+        else if (characterName == "Character4") uICharacterSelectionManager.Character4Taken = true;
     }
     
     
