@@ -2281,6 +2281,7 @@ MonoBehaviour:
   Character2Transform: {fileID: 0}
   Character3Transform: {fileID: 0}
   Character4Transform: {fileID: 0}
+  Character1Taken: 0
 --- !u!4 &1515830560
 Transform:
   m_ObjectHideFlags: 0
@@ -2481,7 +2482,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1515830559}
-        m_MethodName: CallCmdSelectCharacter
+        m_MethodName: SelectCharacter
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

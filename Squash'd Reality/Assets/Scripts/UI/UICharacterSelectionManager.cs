@@ -23,7 +23,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Transform Character4Transform;
 
     //Networking variables
-    [SyncVar] private bool Character1Taken = false;
+    [SyncVar] public bool Character1Taken = false;
     [SyncVar] private bool Character2Taken = false;
     [SyncVar] private bool Character3Taken = false;
     [SyncVar] private bool Character4Taken = false;
@@ -137,60 +137,18 @@ public class UICharacterSelectionManager : NetworkBehaviour
         yield return new WaitForSeconds(2f);
         CharacterAlreadyChoosen.SetActive(false);
     }
-    //SELECT character is ok
-    [Command] //--> the command is sent from client to server
-    void CmdSelectCharacter(string characterName)
+
+
+    public void SelectCharacter(string characterName)
     {
-        
-        
-        if (characterName == "Character1") { 
-            if(Character1Taken)
-            {
-                showCharacterAlreadyChoosen();
-            }
-            else
-            {
-                Character1Taken = true;
-                //loadLobby(Character1Prefab, Character1Transform);    
-            }
-            
-        } else if (characterName == "Character2") {
-            if (Character2Taken)
-            {
-                showCharacterAlreadyChoosen();
-            }
-            else
-            {
-                Character2Taken = true;
-                // loadLobby(Character2Prefab, Character2Transform); 
-            }
-            
-        } else if (characterName == "Character3") {
-            if(Character3Taken)
-            {
-                showCharacterAlreadyChoosen();
-            }
-            else
-            {
-                Character3Taken = true;
-                // loadLobby(Character3Prefab, Character3Transform);  
-            }
-        } else if (characterName == "Character4") {
-            if (Character4Taken)
-            {
-                showCharacterAlreadyChoosen();
-            }
-            else
-            {
-                Character4Taken = true;
-                //loadLobby(Character4Prefab, Character4Transform);   
-            }
-           
+        if (isClient && !isServer)
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSelectedCharacter(characterName);
+             
         }
 
-       
-
     }
+   
     
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
@@ -204,6 +162,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
         NetworkServer.Spawn(go);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
     }
+
     
     
 }
