@@ -22,7 +22,8 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SyncVar] public bool Character2Taken = false;
     [SyncVar] public bool Character3Taken = false;
     [SyncVar] public bool Character4Taken = false;
-    
+    [SyncVar] public int numCharactersChoosen = 0;
+    [SyncVar] private bool startMatch = false;
     
     //local network variables
     private bool Character1TakenLocal = false;
@@ -41,9 +42,22 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private void Update()
     {
         UpdateNetworkVariables();
-        Debug.LogError("PLAYER NUMBERS: " + _networkingManager.numPlayers);
+        if (isServer && _networkingManager.numPlayers==numCharactersChoosen)
+        {
+            StartCoroutine(countdownStart());
+        }
+
+        if (startMatch)
+        {
+            loadLobby(playerObject, playerObject.transform );
+        }
     }
 
+    IEnumerator countdownStart()
+    {
+        yield return new WaitForSeconds(2f);
+        startMatch = true;
+    }
     public void UpdateNetworkVariables()
     {
         if (Character1TakenLocal != Character1Taken)
@@ -97,7 +111,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
-        if (isClient)
+       if (isClient)
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
         }

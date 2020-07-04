@@ -32,6 +32,7 @@ public class PlayerController : NetworkBehaviour
         else if (characterName == "Character2") uICharacterSelectionManager.Character2Taken = true;
         else if (characterName == "Character3") uICharacterSelectionManager.Character3Taken = true;
         else if (characterName == "Character4") uICharacterSelectionManager.Character4Taken = true;
+        uICharacterSelectionManager.numCharactersChoosen++;
     }
     
     [Command]

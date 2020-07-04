@@ -48,8 +48,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SpawnManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/NetworkingManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SceneLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UICharacterSelectionManager.cs" />
       </list>
     </option>
@@ -92,7 +93,7 @@
       <updated>1593787485848</updated>
       <workItem from="1593787506503" duration="2216000" />
       <workItem from="1593852343354" duration="2787000" />
-      <workItem from="1593866574349" duration="2377000" />
+      <workItem from="1593866574349" duration="4374000" />
     </task>
     <servers />
   </component>
