@@ -15,6 +15,7 @@ namespace NetworkingManager {
             Debug.Log("NetworkingManager::createLobby - Creating lobby");
             base.StartHost();
             _sceneLoader.loadNextScene("CharactersSelection");
+
         }
 
         public void StartHosting() {
@@ -61,6 +62,10 @@ namespace NetworkingManager {
             StartClient(responsedata);
         }
         
+        public int numberOfPlayers(){
+            return numPlayers;
+        }
+        
     }
 
 	public static class AvailableMatchesList {
@@ -73,6 +78,8 @@ namespace NetworkingManager {
 			OnAvailableMatchesChanged(matches);
 		}
 	}
+    
+    
     
     
 }

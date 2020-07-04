@@ -2268,6 +2268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7643679e321749340932bb4db936c54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 6747986578215050757, guid: bfa83da960ada7f45b026f4f8119460e,
+    type: 3}
   Character1: {fileID: 270550012}
   Character2: {fileID: 1091913097}
   Character3: {fileID: 1294994225}

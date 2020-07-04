@@ -34,6 +34,11 @@ public class PlayerController : NetworkBehaviour
         else if (characterName == "Character4") uICharacterSelectionManager.Character4Taken = true;
     }
     
-    
+    [Command]
+    public void CmdSpawnPlayer(GameObject playerPrefab) {
+        GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+        NetworkServer.Spawn(go);
+        Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
+    }   
     
 }

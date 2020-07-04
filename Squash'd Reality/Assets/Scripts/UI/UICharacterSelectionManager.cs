@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UICharacterSelectionManager : NetworkBehaviour
 {
+    //PLAYER prefab
+    [SerializeField] private GameObject playerObject;
+    
     //UI elements
     [SerializeField] private  Button Character1;
     [SerializeField] private Button Character2;
@@ -20,6 +23,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SyncVar] public bool Character3Taken = false;
     [SyncVar] public bool Character4Taken = false;
     
+    
     //local network variables
     private bool Character1TakenLocal = false;
     private bool Character2TakenLocal = false;
@@ -27,14 +31,17 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private bool Character4TakenLocal = false;
 
     private SceneLoader.SceneLoader _sceneLoader;
-  
+    private NetworkingManager.NetworkingManager _networkingManager;
+    
     private void Start() {
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
+        _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
        
     }
     private void Update()
     {
         UpdateNetworkVariables();
+        Debug.LogError("PLAYER NUMBERS: " + _networkingManager.numPlayers);
     }
 
     public void UpdateNetworkVariables()
@@ -90,14 +97,12 @@ public class UICharacterSelectionManager : NetworkBehaviour
     
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
-        CmdSpawnPlayer(c);
+        if (isClient)
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
+        }
     }
     
-    
-    [Command]
-    public void CmdSpawnPlayer(GameObject playerPrefab) {
-        GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
-        NetworkServer.Spawn(go);
-        Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
-    }   
+
+
 }
