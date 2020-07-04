@@ -35,7 +35,6 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private void Update()
     {
         UpdateNetworkVariables();
-
     }
 
     public void UpdateNetworkVariables()
@@ -43,81 +42,31 @@ public class UICharacterSelectionManager : NetworkBehaviour
         if (Character1TakenLocal != Character1Taken)
         {
             Character1TakenLocal = Character1Taken;
-            setCharacter1Active(Character1TakenLocal);
+            setCharacterActive(Character1, Character4TakenLocal);
         }
         if (Character2TakenLocal != Character2Taken)
         {
             Character2TakenLocal = Character2Taken;
-            setCharacter2Active(Character2TakenLocal);
+            setCharacterActive(Character2, Character4TakenLocal);
         }
         if (Character3TakenLocal != Character3Taken)
         {
             Character3TakenLocal = Character3Taken;
-            setCharacter3Active(Character3TakenLocal);
+            setCharacterActive(Character3, Character4TakenLocal);
         }
         if (Character4TakenLocal != Character4Taken)
         {
-            Character4TakenLocal = Character4Taken;
-            setCharacter4Active(Character4TakenLocal);
+            Character4TakenLocal = Character4Taken;            
+            setCharacterActive(Character4, Character4TakenLocal);
         }
         
     }
-    public void setCharacter1Active(bool value)
-    {
-        if (value)
-        {
-            Character1.GetComponent<Image>().color = Color.red;
-            Character1.interactable = !value;
-        }
-        else
-        {
-            Character1.GetComponent<Image>().color = Color.clear;
-            Character1.interactable = value;
-        }
+
+    private void setCharacterActive(Button button, bool value){
+        button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
+        button.interactable = value ? !value : value;
     }
     
-    void setCharacter2Active(bool value)
-    {
-        if (value)
-        {
-            Character2.GetComponent<Image>().color = Color.red;
-            Character2.interactable = !value;
-        }
-        else
-        {
-            Character2.GetComponent<Image>().color = Color.clear;
-            Character2.interactable = value;
-        }
-    }
-
-    void setCharacter3Active(bool value)
-    {
-        if (value)
-        {
-            Character3.GetComponent<Image>().color = Color.red;
-            Character3.interactable = !value;
-        }
-        else
-        {
-            Character3.GetComponent<Image>().color = Color.clear;
-            Character3.interactable = value;
-        }
-    }
-
-    void setCharacter4Active(bool value)
-    {
-        if (value)
-        {
-            Character4.GetComponent<Image>().color = Color.red;
-            Character4.interactable = !value;
-        }
-        else
-        {
-            Character4.GetComponent<Image>().color = Color.clear;
-            Character4.interactable = value;
-        }
-    }
-
     void showCharacterAlreadyChoosen()
     {
         CharacterAlreadyChoosen.SetActive(true);
