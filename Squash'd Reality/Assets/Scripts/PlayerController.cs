@@ -9,7 +9,7 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         //LOCAL PLAYER OBJECT DEFINITION --> AUTHORITATIVE ON SERVER
-        if (isClient && !isServer && isLocalPlayer)
+        if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
         }

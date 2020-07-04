@@ -13,14 +13,6 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Button Character3;
     [SerializeField] private Button Character4;
     [SerializeField] private GameObject CharacterAlreadyChoosen;
-    [SerializeField] private GameObject Character1Prefab;
-    [SerializeField] private GameObject Character2Prefab;
-    [SerializeField] private GameObject Character3Prefab;
-    [SerializeField] private GameObject Character4Prefab;
-    [SerializeField] private Transform Character1Transform;
-    [SerializeField] private Transform Character2Transform;
-    [SerializeField] private Transform Character3Transform;
-    [SerializeField] private Transform Character4Transform;
 
     //Networking variables
     [SyncVar] public bool Character1Taken = false;
@@ -141,14 +133,11 @@ public class UICharacterSelectionManager : NetworkBehaviour
 
     public void SelectCharacter(string characterName)
     {
-        if (isClient && !isServer)
+        if (isClient)
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSelectedCharacter(characterName);
-             
         }
-
     }
-   
     
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
@@ -161,8 +150,5 @@ public class UICharacterSelectionManager : NetworkBehaviour
         GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
         NetworkServer.Spawn(go);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
-    }
-
-    
-    
+    }   
 }
