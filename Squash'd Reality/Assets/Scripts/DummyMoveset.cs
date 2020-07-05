@@ -17,6 +17,10 @@ public class DummyMoveset : MonoBehaviour
         controller = gameObject.AddComponent<CharacterController>();
     }
 
+    void Update()
+    {
+        
+    }
     void FixedUpdate()
     {
        Move();
@@ -34,20 +38,18 @@ public class DummyMoveset : MonoBehaviour
         }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 moveRightStick = new Vector3(Input.GetAxis("Horizontal-Direction"), 0, -Input.GetAxis("Vertical-Direction"));
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (move != Vector3.zero)
-        {
+        if(moveRightStick != Vector3.zero){
+            gameObject.transform.forward = moveRightStick;
+        }else if (moveRightStick==Vector3.zero&&move!=Vector3.zero){
             gameObject.transform.forward = move;
         }
-        else
-        {
-            playerSpeed = initSpeed;
-        }
-
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (Input.GetButton("Jump") && groundedPlayer)
         {
+            Debug.LogError("SALTO");
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravityValue);
         }
 
