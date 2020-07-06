@@ -43,9 +43,11 @@ public class DummyMoveset : MonoBehaviour
 
         if(moveRightStick != Vector3.zero){
             gameObject.transform.forward = moveRightStick;
-        }else if (moveRightStick==Vector3.zero&&move!=Vector3.zero){
+
+        }else if (moveRightStick == Vector3.zero & move != Vector3.zero){
             gameObject.transform.forward = move;
         }
+
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer)
         {
@@ -57,7 +59,7 @@ public class DummyMoveset : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
 
         if(!controller.isGrounded){
-            Debug.Log("DummyMoveset::Update - Airborn!");
+            Debug.Log("DummyMoveset::Move - Airborn!");
         }
     }
 }
