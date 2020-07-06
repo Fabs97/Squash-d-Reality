@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -15,7 +17,10 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Button Character2;
     [SerializeField] private Button Character3;
     [SerializeField] private Button Character4;
-    [SerializeField] private GameObject CharacterAlreadyChoosen;
+    [SerializeField] private GameObject MessageBox;
+    [SerializeField] private GameObject CharactersDescription;
+    [SerializeField] private GameObject CharactersBackground;
+    
 
     //Networking variables
     [SyncVar] public bool Character1Taken = false;
@@ -24,6 +29,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SyncVar] public bool Character4Taken = false;
     [SyncVar] public int numCharactersChoosen = 0;
     [SyncVar] private bool startMatch = false;
+    [SyncVar] private bool matchIsStarting = false;
     
     //local network variables
     private bool Character1TakenLocal = false;
@@ -35,6 +41,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private NetworkingManager.NetworkingManager _networkingManager;
     
     private void Start() {
+        MessageBox.SetActive(false);
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
        
@@ -45,8 +52,14 @@ public class UICharacterSelectionManager : NetworkBehaviour
         if (isServer && _networkingManager.numPlayers==numCharactersChoosen)
         {
             StartCoroutine(countdownStart());
+            matchIsStarting = true;
         }
 
+        if (matchIsStarting)
+        {
+            MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Starting match!";
+            MessageBox.SetActive(true);
+        }
         if (startMatch)
         {
             loadLobby(playerObject, playerObject.transform );
@@ -90,14 +103,21 @@ public class UICharacterSelectionManager : NetworkBehaviour
     
     void showCharacterAlreadyChoosen()
     {
-        CharacterAlreadyChoosen.SetActive(true);
+        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Character already choosen!";
+        MessageBox.SetActive(true);
         StartCoroutine(countdownDisappereance());
+    }
+
+    void showWaitingPlayers()
+    {
+        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Waiting for other players!";
+        MessageBox.SetActive(true);
     }
 
     IEnumerator countdownDisappereance()
     {
         yield return new WaitForSeconds(2f);
-        CharacterAlreadyChoosen.SetActive(false);
+        MessageBox.SetActive(false);
     }
 
 
@@ -106,6 +126,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
         if (isClient)
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSelectedCharacter(characterName);
+            showWaitingPlayers();
         }
     }
     
