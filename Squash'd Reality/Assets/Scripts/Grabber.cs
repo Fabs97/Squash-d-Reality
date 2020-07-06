@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Grabber : MonoBehaviour
+public class Grabber : NetworkBehaviour
 {
     RaycastHit hit;
     RaycastHit hit1;
@@ -26,6 +27,14 @@ public class Grabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasAuthority)
+        {
+            Grab();
+        }
+    }
+
+    void Grab()
+    {
         if (Input.GetButton("Interact"))
         {
 
@@ -34,10 +43,10 @@ public class Grabber : MonoBehaviour
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
             if (hitDetect)
-            {                
+            {
                 toGrab = hit.collider.gameObject;
                 toGrab.transform.parent = transform;
-                toGrab.GetComponent<Rigidbody>().isKinematic = true;       
+                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
                 isGrabbing = true;
             }
 
@@ -45,25 +54,28 @@ public class Grabber : MonoBehaviour
             {
                 toGrab = hit1.collider.gameObject;
                 toGrab.transform.parent = transform;
-                toGrab.GetComponent<Rigidbody>().isKinematic = true;
+                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
                 isGrabbing = true;
             }
 
             else if (hitDetect2)
-            {                
+            {
                 toGrab = hit2.collider.gameObject;
                 toGrab.transform.parent = transform;
-                toGrab.GetComponent<Rigidbody>().isKinematic = true;
+                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
                 isGrabbing = true;
             }
         }
 
         else
         {
-/*            toGrab.GetComponent<Rigidbody>().isKinematic = false;
-            toGrab.transform.parent = null;
-            toGrab = null;
-            isGrabbing = false;*/
+            if (toGrab != null)
+            {
+                //toGrab.GetComponent<Rigidbody>().isKinematic = false;
+                toGrab.transform.parent = null;
+                toGrab = null;
+                isGrabbing = false;
+            }
         }
     }
 
