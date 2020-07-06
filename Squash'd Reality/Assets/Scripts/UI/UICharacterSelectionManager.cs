@@ -110,6 +110,11 @@ public class UICharacterSelectionManager : NetworkBehaviour
 
     void showWaitingPlayers()
     {
+        GameObject[] arrayDescription = GameObject.FindGameObjectsWithTag("UICharactersDescription");
+        for (int i = 0; i < arrayDescription.Length; i++)
+        {
+            arrayDescription[i].SetActive(false);
+        }
         MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Waiting for other players!";
         MessageBox.SetActive(true);
     }
