@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: ac1059454b388df458dd04e5cae9d372
+guid: 83efa0da55f2d764c8881dfe8cee2f35
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: pannello_pavimento40x65
+    100002: //RootNode
+    400000: pannello_pavimento40x65
+    400002: //RootNode
     2100000: blinn1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pavimento_platform
+    2300000: pannello_pavimento40x65
+    3300000: pannello_pavimento40x65
+    4300000: pannello_pavimento40x65
   externalObjects: {}
   materials:
     importMaterials: 1

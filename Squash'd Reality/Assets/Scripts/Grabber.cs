@@ -56,14 +56,13 @@ public class Grabber : MonoBehaviour
                 toGrab.GetComponent<Rigidbody>().isKinematic = true;
                 isGrabbing = true;
             }
-        }
-
-        else
-        {
-            toGrab.GetComponent<Rigidbody>().isKinematic = false;
-            toGrab.transform.parent = null;
-            toGrab = null;
-            isGrabbing = false;
+        } else {
+            if(toGrab != null){
+                toGrab.GetComponent<Rigidbody>().isKinematic = false;
+                toGrab.transform.parent = null;
+                toGrab = null;
+                isGrabbing = false;
+            }
         }
     }
 

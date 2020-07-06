@@ -1,13 +1,15 @@
 fileFormatVersion: 2
-guid: f939feb368db89448b995b9e14b00991
+guid: ec2581f13b693db4ca67c078c6d5014a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: muretto
+    100002: //RootNode
+    400000: muretto
+    400002: //RootNode
+    2100000: lambert4
+    2300000: muretto
+    3300000: muretto
     4300000: muretto
   externalObjects: {}
   materials:
