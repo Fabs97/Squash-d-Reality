@@ -6,13 +6,24 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     // Start is called before the first frame update
+    private GameObject playerPrefab;
+    private NetworkingManager.NetworkingManager _networkingManager;
     void Start()
     {
+        _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         //LOCAL PLAYER OBJECT DEFINITION --> AUTHORITATIVE ON SERVER
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
         }
+
+        if (isServer)
+        {
+            playerPrefab = _networkingManager.prefabList()[0];
+            Debug.Log("NOME PREFAB: " + playerPrefab);
+        }
+
+
     }
 
     // Update is called once per frame

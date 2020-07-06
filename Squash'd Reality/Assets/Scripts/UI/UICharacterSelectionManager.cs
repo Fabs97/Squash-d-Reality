@@ -63,7 +63,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
         }
         if (startMatch)
         {
-            loadLobby(playerObject, playerObject.transform );
+            loadLobby();
         }
     }
     
@@ -135,11 +135,11 @@ public class UICharacterSelectionManager : NetworkBehaviour
     
     //-------------------------------------------------------SCENE MANAGEMENT-------------------------------------------------------------------------------
     //LOAD lobby scene
-    private void loadLobby(GameObject c, Transform t){
+    private void loadLobby(){
         _sceneLoader.loadNextScene("Lobby");
        if (isClient)
         {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
+         //   GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
         }
     }
     
