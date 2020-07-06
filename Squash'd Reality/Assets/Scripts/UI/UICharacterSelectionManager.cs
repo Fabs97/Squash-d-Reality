@@ -18,9 +18,6 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Button Character3;
     [SerializeField] private Button Character4;
     [SerializeField] private GameObject MessageBox;
-    [SerializeField] private GameObject CharactersDescription;
-    [SerializeField] private GameObject CharactersBackground;
-    
 
     //Networking variables
     [SyncVar] public bool Character1Taken = false;
@@ -31,17 +28,21 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SyncVar] private bool startMatch = false;
     [SyncVar] private bool matchIsStarting = false;
     
-    //local network variables
+    //Local network variables
     private bool Character1TakenLocal = false;
     private bool Character2TakenLocal = false;
     private bool Character3TakenLocal = false;
     private bool Character4TakenLocal = false;
 
+    //Scene management
     private SceneLoader.SceneLoader _sceneLoader;
     private NetworkingManager.NetworkingManager _networkingManager;
     
     private void Start() {
+        //UI SETTINGS
         MessageBox.SetActive(false);
+        
+        //NETWORK and SCENE settings
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
        
@@ -65,12 +66,39 @@ public class UICharacterSelectionManager : NetworkBehaviour
             loadLobby(playerObject, playerObject.transform );
         }
     }
+    
 
-    IEnumerator countdownStart()
-    {
-        yield return new WaitForSeconds(2f);
-        startMatch = true;
+    //----------------------------------------------------------UI VISUALS-----------------------------------------------------------------------------
+    //Make character name not selectable
+    private void setCharacterActive(Button button, bool value){
+        button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
+        button.interactable = value ? !value : value;
     }
+    
+    //SHOW UI box "Character already choosen"
+    void showCharacterAlreadyChoosen()
+    {
+        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Character already choosen!";
+        MessageBox.SetActive(true);
+        StartCoroutine(countdownDisappereance());
+    }
+
+    //SHOW UI box "Waiting for players"
+    void showWaitingPlayers()
+    {
+        GameObject[] arrayDescription = GameObject.FindGameObjectsWithTag("UICharactersDescription");
+        for (int i = 0; i < arrayDescription.Length; i++)
+        {
+            arrayDescription[i].SetActive(false);
+        }
+        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Waiting for other players!";
+        MessageBox.SetActive(true);
+    }
+
+    
+
+    //------------------------------------------------------NETWORK MANAGEMENT-------------------------------------------------------------------------------
+    //Sync local variables with network variables
     public void UpdateNetworkVariables()
     {
         if (Character1TakenLocal != Character1Taken)
@@ -95,37 +123,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
         }
         
     }
-
-    private void setCharacterActive(Button button, bool value){
-        button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
-        button.interactable = value ? !value : value;
-    }
-    
-    void showCharacterAlreadyChoosen()
-    {
-        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Character already choosen!";
-        MessageBox.SetActive(true);
-        StartCoroutine(countdownDisappereance());
-    }
-
-    void showWaitingPlayers()
-    {
-        GameObject[] arrayDescription = GameObject.FindGameObjectsWithTag("UICharactersDescription");
-        for (int i = 0; i < arrayDescription.Length; i++)
-        {
-            arrayDescription[i].SetActive(false);
-        }
-        MessageBox.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Waiting for other players!";
-        MessageBox.SetActive(true);
-    }
-
-    IEnumerator countdownDisappereance()
-    {
-        yield return new WaitForSeconds(2f);
-        MessageBox.SetActive(false);
-    }
-
-
+    //SET character selected on server, called from UI buttons on "ACCEPT" character
     public void SelectCharacter(string characterName)
     {
         if (isClient)
@@ -135,12 +133,28 @@ public class UICharacterSelectionManager : NetworkBehaviour
         }
     }
     
+    //-------------------------------------------------------SCENE MANAGEMENT-------------------------------------------------------------------------------
+    //LOAD lobby scene
     private void loadLobby(GameObject c, Transform t){
         _sceneLoader.loadNextScene("Lobby");
        if (isClient)
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
         }
+    }
+    
+    //-----------------------------------------------------------TIMERS-------------------------------------------------------------------------------------
+    //Timer for UI disappearance
+    IEnumerator countdownDisappereance()
+    {
+        yield return new WaitForSeconds(2f);
+        MessageBox.SetActive(false);
+    }
+    //Timer for match start
+    IEnumerator countdownStart()
+    {
+        yield return new WaitForSeconds(2f);
+        startMatch = true;
     }
     
 
