@@ -10,3 +10,5 @@ Squash'd Reality/Assembly-CSharp.csproj
 Squash'd Reality/Squash'd Reality.sln
 
 Squash'd Reality/obj/
+
+*.csproj
