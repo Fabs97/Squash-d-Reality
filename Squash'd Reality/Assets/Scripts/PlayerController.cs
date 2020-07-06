@@ -37,7 +37,7 @@ public class PlayerController : NetworkBehaviour
     
     [Command]
     public void CmdSpawnPlayer(GameObject playerPrefab) {
-        GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+        GameObject go = Instantiate(playerPrefab, playerPrefab.transform);
         NetworkServer.Spawn(go);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
     }   
