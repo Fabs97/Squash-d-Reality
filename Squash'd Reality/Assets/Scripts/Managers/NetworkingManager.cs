@@ -65,7 +65,21 @@ namespace NetworkingManager {
         public int numberOfPlayers(){
             return numPlayers;
         }
-        
+
+        public List<GameObject> prefabList()
+        {
+            return spawnPrefabs;
+        }
+
+        public void serverChangeScene(string sceneName)
+        {
+            base.ServerChangeScene(sceneName);
+        }
+
+        public override void OnServerSceneChanged(string sceneName)
+        {
+            base.OnServerSceneChanged(sceneName);
+        }
     }
 
 	public static class AvailableMatchesList {

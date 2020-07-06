@@ -1,13 +1,15 @@
 fileFormatVersion: 2
-guid: b2b9f0d1c52be9144afba443f03a4cc5
+guid: 51c3b6c0b7131244f99bed057160150d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: asse
+    100002: //RootNode
+    400000: asse
+    400002: //RootNode
+    2100000: lambert2
+    2300000: asse
+    3300000: asse
     4300000: asse
   externalObjects: {}
   materials:

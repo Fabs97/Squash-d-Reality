@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: 6b668fd025ed6b94b8588c4aa3a09f61
+guid: 97e78827b63fa0b45a1e6843c149c417
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: blinn1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pannello_pavimento40x40
+    100000: character1
+    100002: //RootNode
+    400000: character1
+    400002: //RootNode
+    2100000: lambert1
+    2300000: character1
+    3300000: character1
+    4300000: character1
   externalObjects: {}
   materials:
     importMaterials: 1

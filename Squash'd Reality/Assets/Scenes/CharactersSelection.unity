@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b124b135fc55ff44b730d978d7dc611, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 321ca88e613157046ba8d7d6980b300a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 1043875000}
   m_Layer: 5
   m_Name: CharacterBackground
-  m_TagString: Untagged
+  m_TagString: UICharactersDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 1196536848}
   - component: {fileID: 1196536847}
   m_Layer: 5
-  m_Name: CharacterAlreadyChoosen
+  m_Name: MessageBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2274,11 +2274,14 @@ MonoBehaviour:
   Character2: {fileID: 1091913097}
   Character3: {fileID: 1294994225}
   Character4: {fileID: 2099550395}
-  CharacterAlreadyChoosen: {fileID: 1196536845}
+  MessageBox: {fileID: 1196536845}
+  CharactersDescription: {fileID: 0}
+  CharactersBackground: {fileID: 0}
   Character1Taken: 0
   Character2Taken: 0
   Character3Taken: 0
   Character4Taken: 0
+  numCharactersChoosen: 0
 --- !u!4 &1515830560
 Transform:
   m_ObjectHideFlags: 0
@@ -2339,7 +2342,7 @@ GameObject:
   - component: {fileID: 1541842237}
   m_Layer: 5
   m_Name: Character4 Description
-  m_TagString: Untagged
+  m_TagString: UICharactersDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2801,7 +2804,7 @@ GameObject:
   - component: {fileID: 1696177382}
   m_Layer: 5
   m_Name: Character3 Description
-  m_TagString: Untagged
+  m_TagString: UICharactersDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3030,7 +3033,7 @@ GameObject:
   - component: {fileID: 1784622650}
   m_Layer: 5
   m_Name: Character1 Description
-  m_TagString: Untagged
+  m_TagString: UICharactersDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3465,7 +3468,7 @@ GameObject:
   - component: {fileID: 1907197938}
   m_Layer: 5
   m_Name: Character2 Description
-  m_TagString: Untagged
+  m_TagString: UICharactersDescription
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

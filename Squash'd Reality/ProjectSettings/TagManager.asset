@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NetworkManager
   - LocalPlayer
+  - UICharactersDescription
   layers:
   - Default
   - TransparentFX
