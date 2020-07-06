@@ -15,12 +15,12 @@ public class PlayerController : NetworkBehaviour
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
+            gameObject.transform.SetParent(GameObject.Find("__app").transform); 
         }
 
         if (isServer)
         {
             playerPrefab = _networkingManager.prefabList()[0];
-            Debug.Log("NOME PREFAB: " + playerPrefab);
         }
 
 
@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour
     }
     
     [Command]
-    public void CmdSpawnPlayer(GameObject playerPrefab) {
+    public void CmdSpawnPlayer() {
         GameObject go = Instantiate(playerPrefab, playerPrefab.transform);
         NetworkServer.Spawn(go);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
