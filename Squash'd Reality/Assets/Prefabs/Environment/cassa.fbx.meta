@@ -1,13 +1,15 @@
 fileFormatVersion: 2
-guid: 5ab3f392f78ac9f47a925b542e0432b4
+guid: 487a87d491c4c394c8862881888de357
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: cassa
+    100002: //RootNode
+    400000: cassa
+    400002: //RootNode
+    2100000: lambert3
+    2300000: cassa
+    3300000: cassa
     4300000: cassa
   externalObjects: {}
   materials:

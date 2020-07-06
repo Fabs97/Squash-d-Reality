@@ -14,7 +14,7 @@ public class DummyMoveset : MonoBehaviour
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     void Update()
@@ -27,7 +27,7 @@ public class DummyMoveset : MonoBehaviour
     }
 
     void Move(){
-         groundedPlayer = controller.isGrounded;
+        groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -49,9 +49,7 @@ public class DummyMoveset : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButton("Jump") && groundedPlayer)
-        {
-            Debug.LogError("SALTO");
+        if (Input.GetButton("Jump") && groundedPlayer) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravityValue);
         }
 
