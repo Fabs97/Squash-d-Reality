@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,22 +7,31 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     // Start is called before the first frame update
-    private GameObject playerPrefab;
+    private GameObject dummyPrefab;
     private NetworkingManager.NetworkingManager _networkingManager;
+
+    private void Awake()
+    {
+       
+    }
+
     void Start()
     {
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+        if (isServer)
+        {
+            dummyPrefab = _networkingManager.prefabList()[0];
+        }
         //LOCAL PLAYER OBJECT DEFINITION --> AUTHORITATIVE ON SERVER
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
-            gameObject.transform.SetParent(GameObject.Find("__app").transform); 
-        }
+            //gameObject.transform.SetParent(GameObject.Find("__app").transform); 
+            CmdSpawnPlayer();
 
-        if (isServer)
-        {
-            playerPrefab = _networkingManager.prefabList()[0];
         }
+       
+
 
 
     }
@@ -48,7 +58,7 @@ public class PlayerController : NetworkBehaviour
     
     [Command]
     public void CmdSpawnPlayer() {
-        GameObject go = Instantiate(playerPrefab, playerPrefab.transform);
+        GameObject go = Instantiate(dummyPrefab, dummyPrefab.transform);
         NetworkServer.Spawn(go);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
     }   

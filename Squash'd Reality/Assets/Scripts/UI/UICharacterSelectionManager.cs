@@ -136,11 +136,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     //-------------------------------------------------------SCENE MANAGEMENT-------------------------------------------------------------------------------
     //LOAD lobby scene
     private void loadLobby(){
-        _sceneLoader.loadNextScene("Lobby");
-       if (isClient)
-        {
-         //   GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnPlayer(c);
-        }
+        _networkingManager.serverChangeScene("Lobby");
     }
     
     //-----------------------------------------------------------TIMERS-------------------------------------------------------------------------------------
