@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DummyMoveset : MonoBehaviour
+public class DummyMoveset : NetworkBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -23,7 +24,10 @@ public class DummyMoveset : MonoBehaviour
     }
     void FixedUpdate()
     {
-       Move();
+        if (hasAuthority)
+        {
+            Move();
+        }
     }
 
     void Move(){
