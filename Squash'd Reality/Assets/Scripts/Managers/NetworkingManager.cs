@@ -12,7 +12,6 @@ namespace NetworkingManager {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
         }
         public void createLobby(){
-            Debug.Log("NetworkingManager::createLobby - Creating lobby");
             base.StartHost();
             _sceneLoader.loadNextScene("CharactersSelection");
 
