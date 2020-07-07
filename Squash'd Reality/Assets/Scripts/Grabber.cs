@@ -44,26 +44,18 @@ public class Grabber : NetworkBehaviour
 
             if (hitDetect)
             {
-                toGrab = hit.collider.gameObject;
-                toGrab.transform.parent = transform;
-                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
-                isGrabbing = true;
+                setToGrab(hit.collider.gameObject);
             }
 
             else if (hitDetect1)
             {
-                toGrab = hit1.collider.gameObject;
-                toGrab.transform.parent = transform;
-                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
-                isGrabbing = true;
+                setToGrab(hit1.collider.gameObject);
+
             }
 
             else if (hitDetect2)
             {
-                toGrab = hit2.collider.gameObject;
-                toGrab.transform.parent = transform;
-                //toGrab.GetComponent<Rigidbody>().isKinematic = true;
-                isGrabbing = true;
+                setToGrab(hit2.collider.gameObject);
             }
         }
 
@@ -71,12 +63,24 @@ public class Grabber : NetworkBehaviour
         {
             if (toGrab != null)
             {
-                //toGrab.GetComponent<Rigidbody>().isKinematic = false;
                 toGrab.transform.parent = null;
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
                 toGrab = null;
                 isGrabbing = false;
+                
             }
         }
+    }
+
+    private void setToGrab(GameObject go)
+    {
+        toGrab = go;
+        if (!isGrabbing)
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
+        }
+        toGrab.transform.parent = transform;
+        isGrabbing = true;
     }
 
     public bool GetIsGrabbing()
