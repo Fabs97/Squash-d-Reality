@@ -80,6 +80,18 @@ namespace NetworkingManager {
         {
             base.OnServerSceneChanged(sceneName);
         }
+
+        public override void OnClientDisconnect(NetworkConnection conn) {
+            Debug.Log("NetworkingManager::OnClientDisconnect - I'm the client and I've been disconnected from server: " + conn.connectionId);
+        }
+
+        public override void OnServerDisconnect(NetworkConnection conn) {
+            NetworkServer.DestroyPlayersForConnection(conn);
+            if (conn.lastError != NetworkError.Ok) {
+                if (LogFilter.logError) { Debug.LogError("NetworkingManager::OnServerDisconnect - ServerDisconnected due to error: " + conn.lastError); }
+            }
+            Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
+        }
     }
 
 	public static class AvailableMatchesList {
