@@ -8,8 +8,10 @@ namespace NetworkingManager {
     public class NetworkingManager : NetworkManager {
         private float nextRefreshTime;
         private SceneLoader.SceneLoader _sceneLoader;
+        private LevelManager.LevelManager _levelManager;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
+            _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         }
         public void createLobby(){
             base.StartHost();
@@ -56,8 +58,6 @@ namespace NetworkingManager {
         }
 
         private void HandleJoinedMatch(bool success, string extendedinfo, MatchInfo responsedata) {
-            Debug.Log("NetworkingManager::HandleJoinedMatch - Joined match!");
-            // _sceneLoader.loadNextScene("CharactersSelection");
             StartClient(responsedata);
         }
         
@@ -72,7 +72,8 @@ namespace NetworkingManager {
 
         public void serverChangeScene(string sceneName)
         {
-            base.ServerChangeScene(sceneName);
+            // TODO: having problems with already spawned players? Destroy them here!
+            base.ServerChangeScene(_levelManager.loadNewLevel(sceneName));
         }
 
         public override void OnServerSceneChanged(string sceneName)

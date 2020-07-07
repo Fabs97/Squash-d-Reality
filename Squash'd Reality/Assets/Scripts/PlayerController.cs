@@ -9,6 +9,7 @@ public class PlayerController : NetworkBehaviour
     // Start is called before the first frame update
     private GameObject dummyPrefab;
     private NetworkingManager.NetworkingManager _networkingManager;
+    private LevelManager.LevelManager _levelManager;
 
     private void Awake()
     {
@@ -18,22 +19,16 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
-        if (isServer)
-        {
+        _levelManager = FindObjectOfType<LevelManager.LevelManager>();
+        if (isServer) {
             dummyPrefab = _networkingManager.prefabList()[0];
         }
-        //LOCAL PLAYER OBJECT DEFINITION --> AUTHORITATIVE ON SERVER
+        
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
-            //gameObject.transform.SetParent(GameObject.Find("__app").transform); 
-            CmdSpawnPlayer();
-
+            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer();
         }
-       
-
-
-
     }
 
     // Update is called once per frame

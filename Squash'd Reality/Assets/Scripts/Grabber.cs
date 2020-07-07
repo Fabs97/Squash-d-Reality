@@ -43,31 +43,20 @@ public class Grabber : NetworkBehaviour
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
             if (hitDetect)
-            {
                 setToGrab(hit.collider.gameObject);
-            }
-
             else if (hitDetect1)
-            {
                 setToGrab(hit1.collider.gameObject);
-
-            }
-
             else if (hitDetect2)
-            {
                 setToGrab(hit2.collider.gameObject);
-            }
         }
-
         else
         {
             if (toGrab != null)
             {
-                toGrab.transform.parent = null;
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+                toGrab.transform.parent = null;
                 toGrab = null;
-                isGrabbing = false;
-                
+                isGrabbing = false;  
             }
         }
     }
