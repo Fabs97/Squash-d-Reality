@@ -61,6 +61,18 @@ public class PlayerController : NetworkBehaviour
         GameObject go = Instantiate(dummyPrefab, dummyPrefab.transform);
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
-    }   
+    }
+
+    [Command]
+    public void CmdAssignAuthority(GameObject gameObject)
+    {
+        NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].AssignClientAuthority(connectionToClient);
+    } 
+    
+    [Command]
+    public void CmdRemoveAuthority(GameObject gameObject)
+    {
+        NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].RemoveClientAuthority(connectionToClient);
+    } 
     
 }
