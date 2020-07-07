@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -27,7 +28,10 @@ public class PlayerController : NetworkBehaviour
         {
             gameObject.tag = "LocalPlayer";
             //gameObject.transform.SetParent(GameObject.Find("__app").transform); 
-            CmdSpawnPlayer();
+            if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                CmdSpawnPlayer();
+            }
 
         }
        
@@ -74,5 +78,6 @@ public class PlayerController : NetworkBehaviour
     {
         NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].RemoveClientAuthority(connectionToClient);
     } 
+    
     
 }
