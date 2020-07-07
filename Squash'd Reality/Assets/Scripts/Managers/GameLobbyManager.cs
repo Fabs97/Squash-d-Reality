@@ -9,8 +9,8 @@ public class GameLobbyManager : NetworkBehaviour
     {
         if (isServer)
         {
-            //GameObject go = Instantiate(grabbableObject, grabbableObject.transform);
-            //NetworkServer.Spawn(go);
+            GameObject go = Instantiate(grabbableObject, grabbableObject.transform);
+            NetworkServer.Spawn(go);
         }
 
     }
