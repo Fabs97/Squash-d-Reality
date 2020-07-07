@@ -28,10 +28,10 @@ public class Snap : MonoBehaviour
         {
             float x = Mathf.Round((transform.position.x * roomX) / roomX);
             float y = transform.position.y;
-            Debug.Log("Snap::Update -- y" + y);
             float z = Mathf.Round((transform.position.z * roomZ) / roomZ);
             transform.position = new Vector3(x, y, z);
             transform.rotation = Quaternion.identity;
+            GetComponent<Rigidbody>().isKinematic = true;
             wasGrabbed = false;
         }
 

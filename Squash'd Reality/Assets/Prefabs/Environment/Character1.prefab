@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ea3761251f24c46ad075e3187c239b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDist: 2
+  maxDist: 1
 --- !u!33 &33926136567602216
 MeshFilter:
   m_ObjectHideFlags: 0
