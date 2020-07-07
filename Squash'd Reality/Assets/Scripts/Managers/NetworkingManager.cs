@@ -83,6 +83,7 @@ namespace NetworkingManager {
 
         public override void OnClientDisconnect(NetworkConnection conn) {
             Debug.Log("NetworkingManager::OnClientDisconnect - I'm the client and I've been disconnected from server: " + conn.connectionId);
+            FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
         }
 
         public override void OnServerDisconnect(NetworkConnection conn) {
@@ -90,6 +91,7 @@ namespace NetworkingManager {
             if (conn.lastError != NetworkError.Ok) {
                 if (LogFilter.logError) { Debug.LogError("NetworkingManager::OnServerDisconnect - ServerDisconnected due to error: " + conn.lastError); }
             }
+            FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
             Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
         }
     }

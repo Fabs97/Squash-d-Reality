@@ -10,12 +10,18 @@ public class UIGameManager : MonoBehaviour
     [SerializeField] private GameObject alertBox;
     [SerializeField] private GameObject backgroundPanelPause;
     
+    //Scene management
+    private SceneLoader.SceneLoader _sceneLoader;  
+
     // Start is called before the first frame update
     void Start()
     {
        //Setting elements not visible
         alertBox.SetActive(false);
         backgroundPanelPause.SetActive(false);
+        
+        //Scene management
+        _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
     }
     
     
@@ -25,19 +31,26 @@ public class UIGameManager : MonoBehaviour
     {
         alertBox.GetComponentInChildren<TextMeshProUGUI>().text = characterName + " has been disconnected!";
         alertBox.SetActive(true);
-        StartCoroutine(countdownDisappearance());
+        StartCoroutine(countdownDisappearance(alertBox));
     }
 
-    IEnumerator countdownDisappearance()
+    IEnumerator countdownDisappearance(GameObject disappearObject)
     {
         yield return new WaitForSeconds(3f);
-        alertBox.SetActive(false);
+        disappearObject.SetActive(false);
     }
     
     //Call this function to notify disconnection from server
     public void ShowAlertBoxPlayerDisconnected()
     {
         alertBox.GetComponentInChildren<TextMeshProUGUI>().text = "You have been disconnected!";
-        
+        alertBox.SetActive(true);
+        StartCoroutine(countdownMainMenu());
+    }
+
+    IEnumerator countdownMainMenu()
+    {
+        yield return new WaitForSeconds(3f);
+        _sceneLoader.loadNextScene("MainMenu");
     }
 }
