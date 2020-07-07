@@ -14,13 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Lobby
   spawnPlayers: 1
-  playersNames:
-  - Ken Nolo
-  - Kam Brylla
-  - Markus Nobel
-  - Raphael Nosun
   playersPositions:
   - {x: 3, y: 0.91, z: -5}
   - {x: 11, y: 0.91, z: -5}
   - {x: 3, y: 0.91, z: -11}
   - {x: 11, y: 0.91, z: -11}
+  isDark: 0
