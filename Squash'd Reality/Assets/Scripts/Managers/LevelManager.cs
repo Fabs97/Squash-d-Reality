@@ -28,5 +28,9 @@ namespace LevelManager{
             }
             return null;
         }
+
+        public LevelScriptableObject getCurrentLevel(){
+            return this.currentLevel;
+        }
     }
 }

@@ -11,13 +11,12 @@ namespace SceneLoader {
         void Awake()
         {
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
-
             loadNextScene("MainMenu");
         }
 
         public void loadNextScene(string sceneName){
             string name = _levelManager.loadNewLevel(sceneName);  
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-        }        
+        }
     }
 }

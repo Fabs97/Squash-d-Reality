@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameLobbyManager : MonoBehaviour
+public class GameLobbyManager : NetworkBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject grabbableObject;
     void Start()
     {
-        //StartCoroutine(countdownStart());
-        
+        if (isServer)
+        {
+            GameObject go = Instantiate(grabbableObject, grabbableObject.transform);
+            NetworkServer.Spawn(go);
+        }
+
     }
 
     // Update is called once per frame
