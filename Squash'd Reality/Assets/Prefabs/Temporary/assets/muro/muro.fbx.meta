@@ -10,6 +10,7 @@ ModelImporter:
     2300000: parete3
     3300000: parete3
     4300000: parete3
+    6400000: parete3
     9500000: //RootNode
   externalObjects:
   - first:
@@ -49,7 +50,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
