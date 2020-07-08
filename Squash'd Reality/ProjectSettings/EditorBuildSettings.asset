@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharactersSelection.unity
     guid: 847e9c5af55ad114b873c788d8c3e4bb
+  - enabled: 1
+    path: Assets/Scenes/CookingTime.unity
+    guid: 29d988ad1fd4bba4fa3053181c03b155
   m_configObjects: {}
