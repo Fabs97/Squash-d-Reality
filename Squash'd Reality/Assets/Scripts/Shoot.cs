@@ -16,7 +16,7 @@ public class Shoot : MonoBehaviour
     private float fireRatioTime = 0.1f;
     private float shootingTime = 5f;
     private float shootingDelay = 0.0f;
-
+    private string bulletName;
 
     private bool canShoot = true; //TODO: true only for debugging, must be false
     void Start()
@@ -36,7 +36,7 @@ public class Shoot : MonoBehaviour
     private void StartBulletEmission()
     {
         canShoot = false;
-        BulletInstantiation();
+        BulletInstantiation("Pistol");
         StartCoroutine(fireRatio(fireRatioTime));
     }
     IEnumerator fireRatio(float time)
@@ -45,8 +45,10 @@ public class Shoot : MonoBehaviour
         canShoot = true;
     }
     
-    void BulletInstantiation(){
+    void BulletInstantiation(string weaponType){
+        shootingType(weaponType);
         GameObject bullet = Instantiate(bulletPrefab,firePoint.position, this.transform.rotation);
+        bullet.name = bulletName;
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
         Destroy(bullet,3f);
@@ -73,6 +75,26 @@ public class Shoot : MonoBehaviour
      }
 
      //------------------------------------------------------------SHOOTING SETTINGS------------------------------------------------------------------
+     void shootingType(string weaponName)
+     {
+         if (weaponName == "Pistol")
+         {
+             bulletName = "BulletPistol";
+         }else if (weaponName == "Shotgun")
+         {
+             bulletName = "BulletShotgun";
+         }else if (weaponName == "AssaultRifle")
+         {
+             bulletName = "BulletAssaultRifle";
+         }else if (weaponName == "SniperRifle")
+         {
+             bulletName = "BulletSniperRifle";
+         }else if (weaponName == "SMG")
+         {
+             bulletName = "BulletSMG";
+         }
+         
+     }
      //SET here shooting settings for different weapons
      void setShootingSettings(float bulletForce,float fireRatioTime, float shootingTime, float shootingDelay)
      {
