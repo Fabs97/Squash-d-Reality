@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour {
     [Range(0, 10f)][SerializeField] protected float fireRatioTime = 2f;
     [Range(0, 30f)][SerializeField] protected float bulletForce = 20f;
     [SerializeField] protected GameObject bulletPrefab;
+    public bool canShoot = true; //TODO: only for debug must be false
 
     protected Transform _firePoint;
 

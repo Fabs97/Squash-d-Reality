@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Shoot : MonoBehaviour
+public class Shoot : NetworkBehaviour
 {
     //-------------------SHOOTING SETTINGS-------------------
-    private bool canShoot = true; //TODO: true only for debugging, must be false
 
     private Weapon weapon;
 
@@ -14,15 +14,12 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Fire")!=0 && canShoot)
+        if (Input.GetAxis("Fire")!=0 && weapon.canShoot)
         {
             // StartBulletEmission();
             weapon.shoot();
         }
     }
     
-    public void CanPlayerShoot(bool value)
-    {
-        canShoot = value;
-    }
+   
 }

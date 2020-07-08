@@ -7,13 +7,16 @@ public class Shotgun : Weapon {
         base.Start();
     }
     
-    public override void shoot(){
+    public override void shoot()
+    {
+        canShoot = false;
         BulletInstantiation();
         StartCoroutine(fireRatio());
     }
     IEnumerator fireRatio()
     {
         yield return new WaitForSeconds(fireRatioTime);
+        this.canShoot = true;
     }
 
     void BulletInstantiation(){
