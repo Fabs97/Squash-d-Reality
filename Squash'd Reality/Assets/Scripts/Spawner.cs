@@ -13,7 +13,7 @@ public class Spawner : NetworkBehaviour
     [SerializeField] private Vector3 maxCoordinates;
     [SerializeField] private Vector3 minCoordinates;
     
-    private int _spawningIndex = 0;
+    private int _spawningIndex = -1;
 
     void Start() {
         StartCoroutine(spawningCoroutine());
@@ -24,6 +24,8 @@ public class Spawner : NetworkBehaviour
         while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
             
             if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
+            else _spawningIndex++; 
+            if(_spawningIndex == prefabsToSpawn.Count) break;
 
             float randomX = Random.Range(minCoordinates.x, maxCoordinates.x);
             float randomY = Random.Range(minCoordinates.y, maxCoordinates.y);
