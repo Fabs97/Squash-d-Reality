@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class NetworkGameManager : NetworkBehaviour {
+public class NetworkGameManager : MonoBehaviour {
     
     private LevelManager.LevelManager _levelManager;
     private NetworkingManager.NetworkingManager _networkingManager;
@@ -20,7 +20,7 @@ public class NetworkGameManager : NetworkBehaviour {
     }
 
     private void setupRoom() {
-        numPlayersInGame = _networkingManager.numberOfPlayers();
+        numPlayersInGame = _networkingManager.numPlayers;
     }
 
     public void calcNextDoor(int playersInDoor, string nextSceneName) {
