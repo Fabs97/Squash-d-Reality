@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
             transform.position += transform.forward * moveSpeed * Time.deltaTime;   
         }
-        
     }
 
     private int nearbyPlayerIndex()
