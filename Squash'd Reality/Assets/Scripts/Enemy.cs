@@ -29,10 +29,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (life <= 0f)
-        {
-            Destroy(this.gameObject);
-        }
         players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length != 0)
         {
@@ -67,7 +63,6 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             //TODO: insert animation kill
-            Destroy(other.gameObject);
             if (other.gameObject.name == "BulletPistol")
             {
                 life -= BasicDamage;
@@ -84,6 +79,12 @@ public class Enemy : MonoBehaviour
             {
                 life -= BasicDamage;
             }
+
+            if (life <= 0f)
+            {
+                Destroy(this.gameObject);
+            }
+            Destroy(other.gameObject);
         }
     }
 }

@@ -12,8 +12,8 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     
     //-------------------SHOOTING SETTINGS-------------------
-    public float bulletForce = 20f;
-    private float fireRatioTime = 0.1f;
+    public float bulletForce = 2f;
+    private float fireRatioTime = 2f;
     private float shootingTime = 5f;
     private float shootingDelay = 0.0f;
     private string bulletName;
@@ -36,7 +36,8 @@ public class Shoot : MonoBehaviour
     private void StartBulletEmission()
     {
         canShoot = false;
-        BulletInstantiation("Pistol");
+        ShotgunBulletInstantiation();
+        //BulletInstantiation("Pistol");
         StartCoroutine(fireRatio(fireRatioTime));
     }
     IEnumerator fireRatio(float time)
@@ -58,22 +59,26 @@ public class Shoot : MonoBehaviour
     {
         canShoot = value;
     }
-    
-    //---------------------------------------------------LOGIC FOR SHOOTING WITHOUT CONTROL------------------------------------------------------------
-    //BULLET instantiation in Shooting function 
-    //CALL this to start shooting
-    void ShootingUnstoppable()
-    {
-        InvokeRepeating("BulletInstantiation", shootingDelay, fireRatioTime);
-        StartCoroutine("StopShooting");
-    }
-    //TIME to stop shooting
-     IEnumerator StopShooting()
-     {
-         yield return new WaitForSeconds(shootingTime);
-         CancelInvoke("BulletInstantiation");
-     }
 
+    public void ShotgunBulletInstantiation()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            float strayFactor = 10f;
+            var randomNumberX = UnityEngine.Random.Range(-strayFactor, strayFactor);      
+            var randomNumberY = UnityEngine.Random.Range(-strayFactor, strayFactor);     
+            var randomNumberZ = UnityEngine.Random.Range(-strayFactor, strayFactor);  
+            var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);   
+            bullet.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+            bullet.name = "BulletShotgun";
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletForce, ForceMode.Impulse);
+            Destroy(bullet, 3f);  
+        }
+       
+
+    }
+    
+    
      //------------------------------------------------------------SHOOTING SETTINGS------------------------------------------------------------------
      void shootingType(string weaponName)
      {
