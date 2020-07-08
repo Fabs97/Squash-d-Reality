@@ -5,50 +5,42 @@ using UnityEngine.Networking;
 
 public class Spawner : NetworkBehaviour
 {
-    public List<GameObject> toSpawn;
-    public bool isToShuffle;
-    private IEnumerator coroutine;
-    public float waitTime = 3f;
-    private int number = 0;
+    [SerializeField] private List<GameObject> prefabsToSpawn;
+    [SerializeField] private bool randomizeSpawn;
+    [SerializeField] private bool deleteFromListAfterSpawn;
+    [Range(0, 40)][SerializeField] private float firstSpawnDelay;
+    [Range(0, 10)][SerializeField] private float spawningDelay;
+    [SerializeField] private Vector3 maxCoordinates;
+    [SerializeField] private Vector3 minCoordinates;
+    
+    private int _spawningIndex = 0;
 
-    void Start()
-    {
-        if (isToShuffle)
-        {
-            Shuffle<GameObject>(toSpawn);
-        }
+    void Start() {
+        StartCoroutine(spawningCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(number < toSpawn.Count)
-        {
-            Vector3 randomPos = new Vector3(Random.Range(0, 14), 10, Random.Range(0, 14));
-            GameObject go = Instantiate(toSpawn[number], randomPos, Quaternion.identity);
+    IEnumerator spawningCoroutine(){
+        yield return new WaitForSeconds(firstSpawnDelay);
+        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
+            
+            if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
+
+            float randomX = Random.Range(minCoordinates.x, maxCoordinates.x);
+            float randomY = Random.Range(minCoordinates.y, maxCoordinates.y);
+            float randomZ = Random.Range(minCoordinates.z, maxCoordinates.z);
+
+            Vector3 tr = new Vector3(randomX, randomY, randomZ);
+            Quaternion q = Quaternion.identity;
+            GameObject prefabToSpawn = prefabsToSpawn[_spawningIndex];
+            GameObject go = Instantiate(prefabToSpawn, tr, q);
+
             NetworkServer.Spawn(go);
-            coroutine = WaitToSpawn(waitTime);
-            StartCoroutine(coroutine);
-        }
-        
-    }
 
-    void Shuffle<GameObject>(List<GameObject> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = Random.Range(0, list.Count);
-            GameObject value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+            if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            yield return new WaitForSeconds(spawningDelay);
         }
-    }
 
-    private IEnumerator WaitToSpawn(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        number++;
+        //destroy the spawner when this point is reached
+        Destroy(gameObject);
     }
 }
