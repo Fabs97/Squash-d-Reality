@@ -12,16 +12,19 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     
     //-------------------SHOOTING SETTINGS-------------------
-    public float bulletForce = 2f;
-    private float fireRatioTime = 2f;
-    private float shootingTime = 5f;
-    private float shootingDelay = 0.0f;
+    public float bulletForce;
+    private float fireRatioTime;
+    private float shootingTime;
     private string bulletName;
-
+    private int numberOfBullets;
+    private float spread;
     private bool canShoot = true; //TODO: true only for debugging, must be false
+
     void Start()
     {
-        
+        //TODO: settings per shotgun
+        setShootingSettings(20f, 2f, "Shotgun", 4,10f);
+
     }
 
     private void Update()
@@ -36,48 +39,32 @@ public class Shoot : MonoBehaviour
     private void StartBulletEmission()
     {
         canShoot = false;
-        ShotgunBulletInstantiation();
-        //BulletInstantiation("Pistol");
-        StartCoroutine(fireRatio(fireRatioTime));
+        BulletInstantiation();
+        StartCoroutine(fireRatio());
     }
-    IEnumerator fireRatio(float time)
+    IEnumerator fireRatio()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(fireRatioTime);
         canShoot = true;
     }
-    
-    void BulletInstantiation(string weaponType){
-        shootingType(weaponType);
-        GameObject bullet = Instantiate(bulletPrefab,firePoint.position, this.transform.rotation);
-        bullet.name = bulletName;
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(firePoint.forward * bulletForce, ForceMode.Impulse);
-        Destroy(bullet,3f);
+
+    void BulletInstantiation(){
+        for (int i = 0; i < numberOfBullets; i++)
+        {
+            var randomNumberX = UnityEngine.Random.Range(-spread, spread);      
+            var randomNumberY = UnityEngine.Random.Range(-spread, spread);     
+            var randomNumberZ = UnityEngine.Random.Range(-spread, spread);  
+            var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);   
+            bullet.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletForce, ForceMode.Impulse);
+            Destroy(bullet, 3f);  
+        }
     }
 
     public void CanPlayerShoot(bool value)
     {
         canShoot = value;
     }
-
-    public void ShotgunBulletInstantiation()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            float strayFactor = 10f;
-            var randomNumberX = UnityEngine.Random.Range(-strayFactor, strayFactor);      
-            var randomNumberY = UnityEngine.Random.Range(-strayFactor, strayFactor);     
-            var randomNumberZ = UnityEngine.Random.Range(-strayFactor, strayFactor);  
-            var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);   
-            bullet.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
-            bullet.name = "BulletShotgun";
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * bulletForce, ForceMode.Impulse);
-            Destroy(bullet, 3f);  
-        }
-       
-
-    }
-    
     
      //------------------------------------------------------------SHOOTING SETTINGS------------------------------------------------------------------
      void shootingType(string weaponName)
@@ -101,12 +88,13 @@ public class Shoot : MonoBehaviour
          
      }
      //SET here shooting settings for different weapons
-     void setShootingSettings(float bulletForce,float fireRatioTime, float shootingTime, float shootingDelay)
+     void setShootingSettings(float bulletForce,float fireRatioTime, string weaponName, int bulletsNumber, float spread)
      {
          this.bulletForce = bulletForce;
          this.fireRatioTime = fireRatioTime;
-         this.shootingTime = shootingTime;
-         this.shootingDelay = shootingDelay;
+         this.numberOfBullets = bulletsNumber;
+         this.spread = spread;
+         shootingType(name);
      }
      
 }
