@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DummyMoveset : MonoBehaviour
+public class DummyMoveset : NetworkBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -14,7 +15,7 @@ public class DummyMoveset : MonoBehaviour
 
     private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
 
     void Update()
@@ -23,11 +24,14 @@ public class DummyMoveset : MonoBehaviour
     }
     void FixedUpdate()
     {
-       Move();
+        if (hasAuthority)
+        {
+            Move();
+        }
     }
 
     void Move(){
-         groundedPlayer = controller.isGrounded;
+        groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -43,21 +47,19 @@ public class DummyMoveset : MonoBehaviour
 
         if(moveRightStick != Vector3.zero){
             gameObject.transform.forward = moveRightStick;
-        }else if (moveRightStick==Vector3.zero&&move!=Vector3.zero){
+
+        }else if (moveRightStick == Vector3.zero & move != Vector3.zero){
             gameObject.transform.forward = move;
         }
+
         // Changes the height position of the player..
-        if (Input.GetButton("Jump") && groundedPlayer)
-        {
-            Debug.LogError("SALTO");
+        if (Input.GetButton("Jump") && groundedPlayer) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if(!controller.isGrounded){
-            Debug.Log("DummyMoveset::Update - Airborn!");
-        }
+       
     }
 }

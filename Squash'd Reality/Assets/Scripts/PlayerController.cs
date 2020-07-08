@@ -1,17 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : NetworkBehaviour
 {
     // Start is called before the first frame update
+    private GameObject dummyPrefab;
+    private NetworkingManager.NetworkingManager _networkingManager;
+    private LevelManager.LevelManager _levelManager;
+
+    private void Awake()
+    {
+       
+    }
+
     void Start()
     {
-        //LOCAL PLAYER OBJECT DEFINITION --> AUTHORITATIVE ON SERVER
+        _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+        _levelManager = FindObjectOfType<LevelManager.LevelManager>();
+        if (isServer) {
+            dummyPrefab = _networkingManager.prefabList()[0];
+        }
+        
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
+            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer();
         }
     }
 
@@ -36,10 +53,23 @@ public class PlayerController : NetworkBehaviour
     }
     
     [Command]
-    public void CmdSpawnPlayer(GameObject playerPrefab) {
-        GameObject go = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
-        NetworkServer.Spawn(go);
+    public void CmdSpawnPlayer() {
+        GameObject go = Instantiate(dummyPrefab, dummyPrefab.transform);
+        NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
         Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
-    }   
+    }
+
+    [Command]
+    public void CmdAssignAuthority(GameObject gameObject)
+    {
+        NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].AssignClientAuthority(connectionToClient);
+    } 
+    
+    [Command]
+    public void CmdRemoveAuthority(GameObject gameObject)
+    {
+        NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].RemoveClientAuthority(connectionToClient);
+    } 
+    
     
 }

@@ -8,11 +8,12 @@ namespace NetworkingManager {
     public class NetworkingManager : NetworkManager {
         private float nextRefreshTime;
         private SceneLoader.SceneLoader _sceneLoader;
+        private LevelManager.LevelManager _levelManager;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
+            _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         }
         public void createLobby(){
-            Debug.Log("NetworkingManager::createLobby - Creating lobby");
             base.StartHost();
             _sceneLoader.loadNextScene("CharactersSelection");
 
@@ -57,15 +58,38 @@ namespace NetworkingManager {
         }
 
         private void HandleJoinedMatch(bool success, string extendedinfo, MatchInfo responsedata) {
-            Debug.Log("NetworkingManager::HandleJoinedMatch - Joined match!");
-            // _sceneLoader.loadNextScene("CharactersSelection");
             StartClient(responsedata);
         }
         
-        public int numberOfPlayers(){
-            return numPlayers;
+        public List<GameObject> prefabList()
+        {
+            return spawnPrefabs;
         }
-        
+
+        public void serverChangeScene(string sceneName)
+        {
+            // TODO: having problems with already spawned players? Destroy them here!
+            base.ServerChangeScene(_levelManager.loadNewLevel(sceneName));
+        }
+
+        public override void OnServerSceneChanged(string sceneName)
+        {
+            base.OnServerSceneChanged(sceneName);
+        }
+
+        public override void OnClientDisconnect(NetworkConnection conn) {
+            Debug.Log("NetworkingManager::OnClientDisconnect - I'm the client and I've been disconnected from server: " + conn.connectionId);
+            FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+        }
+
+        public override void OnServerDisconnect(NetworkConnection conn) {
+            NetworkServer.DestroyPlayersForConnection(conn);
+            if (conn.lastError != NetworkError.Ok) {
+                if (LogFilter.logError) { Debug.LogError("NetworkingManager::OnServerDisconnect - ServerDisconnected due to error: " + conn.lastError); }
+            }
+            FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
+            Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
+        }
     }
 
 	public static class AvailableMatchesList {
