@@ -50,7 +50,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private void Update()
     {
         UpdateNetworkVariables();
-        if (isServer && _networkingManager.numPlayers==numCharactersChoosen)
+        if (isServer && _networkingManager.numPlayers == numCharactersChoosen && _networkingManager.numPlayers >= 2)
         {
             StartCoroutine(countdownStart());
             matchIsStarting = true;

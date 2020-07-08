@@ -9,6 +9,8 @@ public class LevelScriptableObject : ScriptableObject {
     private string[] playersNames = new string[] {"Ken Nolo", "Kam Brylla", "Markus Nobel", "Raphael Nosun"};
     [SerializeField] public Vector3[] playersPositions;
 
+    [SerializeField] public bool isDark = false;
+
     public Vector3? getPlayerPosition(string name){
         if(!spawnPlayers) return null;
         

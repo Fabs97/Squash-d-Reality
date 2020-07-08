@@ -61,10 +61,6 @@ namespace NetworkingManager {
             StartClient(responsedata);
         }
         
-        public int numberOfPlayers(){
-            return numPlayers;
-        }
-
         public List<GameObject> prefabList()
         {
             return spawnPrefabs;

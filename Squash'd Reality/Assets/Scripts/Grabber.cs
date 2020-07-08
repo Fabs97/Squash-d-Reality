@@ -8,8 +8,11 @@ public class Grabber : NetworkBehaviour
     RaycastHit hit;
     RaycastHit hit1;
     RaycastHit hit2;
+    LevelManager.LevelManager _levelManager;
 
     GameObject toGrab;
+    private Light light;
+    private float luminosity = 10;
     private bool isGrabbing = false;
 
     bool hitDetect;
@@ -21,7 +24,9 @@ public class Grabber : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
+        light = GetComponent<Light>();
+        light.intensity = _levelManager.getCurrentLevel().isDark ? luminosity : 0;
     }
 
     // Update is called once per frame
@@ -57,7 +62,14 @@ public class Grabber : NetworkBehaviour
                 toGrab.transform.parent = null;
                 toGrab = null;
                 isGrabbing = false;  
+                toggleLight(true);
             }
+        }
+    }
+
+    void toggleLight(bool val){
+        if(_levelManager.getCurrentLevel().isDark){
+            light.intensity = val ? luminosity : 0;
         }
     }
 
@@ -70,11 +82,7 @@ public class Grabber : NetworkBehaviour
         }
         toGrab.transform.parent = transform;
         isGrabbing = true;
-    }
-
-    public bool GetIsGrabbing()
-    {
-        return isGrabbing;
+        toggleLight(false);
     }
 
     void OnDrawGizmos()
