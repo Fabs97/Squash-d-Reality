@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,5 +48,15 @@ public class Enemy : MonoBehaviour
         }
 
         return min_index;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            //TODO: insert animation kill
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
