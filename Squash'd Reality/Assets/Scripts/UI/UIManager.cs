@@ -100,9 +100,10 @@ public class UIManager : MonoBehaviour
     }
     
     //SET player image
-    public static void setPlayerImage()
+    public void setPlayerImage(string playerName)
     {
-        //TODO
+        Texture2D myTexture = Resources.Load("Images/PGImages/" + playerName) as Texture2D;
+        PG_Image.GetComponent<RawImage>().texture = myTexture;
     }
     
     //SET gameobject active or not

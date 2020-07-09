@@ -47,7 +47,7 @@ public class MatchManager : NetworkBehaviour
 
     private void showPlayerUI()
     {
-        Debug.Log("PLAYER NAME: " + GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName);
+        UIManager.GetComponent<UIManager>().setPlayerImage(GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName);
         UIManager.GetComponent<UIManager>().setPlayerName(GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName);
         UIManager.GetComponent<UIManager>().showUIPlayer(true);
         //TODO: insert UI settings
