@@ -11,6 +11,7 @@ public class PlayerController : NetworkBehaviour
     private GameObject dummyPrefab;
     private NetworkingManager.NetworkingManager _networkingManager;
     private LevelManager.LevelManager _levelManager;
+    private GameObject bulletPrefab;
 
     private void Awake()
     {
@@ -29,6 +30,14 @@ public class PlayerController : NetworkBehaviour
         {
             gameObject.tag = "LocalPlayer";
             if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer();
+        }
+
+        for (int i = 0; i < _networkingManager.spawnPrefabs.Count; i++)
+        {
+            if (_networkingManager.spawnPrefabs[i].tag.Equals("Bullet"))
+            {
+                bulletPrefab = _networkingManager.spawnPrefabs[i];
+            }
         }
     }
 
@@ -69,7 +78,19 @@ public class PlayerController : NetworkBehaviour
     public void CmdRemoveAuthority(GameObject gameObject)
     {
         NetworkServer.objects[gameObject.GetComponent<NetworkIdentity>().netId].RemoveClientAuthority(connectionToClient);
-    } 
-    
+    }
+
+    [Command]
+    public void CmdSpawnBullets(Vector3 position, Quaternion rotation, float spread, float bulletForce )
+    {
+        var randomNumberX = UnityEngine.Random.Range(-spread, spread);      
+        var randomNumberY = UnityEngine.Random.Range(-spread, spread);     
+        var randomNumberZ = UnityEngine.Random.Range(-spread, spread);
+        GameObject spawnedGameObject = Instantiate(bulletPrefab, position, rotation);
+        spawnedGameObject.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+        spawnedGameObject.GetComponent<Rigidbody>().AddForce(spawnedGameObject.transform.forward * bulletForce, ForceMode.Impulse);
+        NetworkServer.Spawn(spawnedGameObject);
+        Destroy(spawnedGameObject, 3f);
+    }
     
 }

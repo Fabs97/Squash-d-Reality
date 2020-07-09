@@ -59,7 +59,7 @@ public class DummyMoveset : NetworkBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-
-       
+        
     }
+
 }

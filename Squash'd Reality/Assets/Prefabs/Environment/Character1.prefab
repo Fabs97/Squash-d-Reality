@@ -80,6 +80,7 @@ MonoBehaviour:
   bulletForce: 20
   bulletPrefab: {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df,
     type: 3}
+  canShoot: 1
   numberOfBullets: 4
 --- !u!114 &1912040315233396788
 MonoBehaviour:

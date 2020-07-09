@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class Shoot : NetworkBehaviour
+public class Shoot : MonoBehaviour
 {
     //-------------------SHOOTING SETTINGS-------------------
 
