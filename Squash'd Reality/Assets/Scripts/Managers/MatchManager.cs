@@ -42,5 +42,12 @@ public class MatchManager : NetworkBehaviour
         {
             //START ROOM LOGIC
         }
+        showPlayerUI();
+    }
+
+    private void showPlayerUI()
+    {
+        UIManager.GetComponent<UIManager>().showUIPlayer(true);
+        //TODO: insert UI settings
     }
 }

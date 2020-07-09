@@ -214,4 +214,12 @@ public class UIManager : MonoBehaviour
         setIngredientsButtonActive(value);
         setMatchStartingButtonActive(value);
     }
+
+    public void showUIPlayer(bool value)
+    {
+        setTimerActive(value);
+        setPlayerElementsActive(value);
+        setPowerUpButtonActive(value);
+        setWeaponActive(value);
+    }
 }
