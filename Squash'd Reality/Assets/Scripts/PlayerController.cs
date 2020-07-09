@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +23,7 @@ public class PlayerController : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         if (isServer) {
-            dummyPrefab = _networkingManager.prefabList()[0];
+            dummyPrefab = _networkingManager.spawnPrefabs[0];
         }
         
         if (isClient && isLocalPlayer)
@@ -46,7 +46,6 @@ public class PlayerController : NetworkBehaviour
     {
       
     }
-
 
     [Command]
     public void CmdSelectedCharacter(string characterName)
