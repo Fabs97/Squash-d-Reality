@@ -22,13 +22,16 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI IngredientsBox_Text;
     public Button InfoBox;
     public TextMeshProUGUI InfoBox_Text;
+    public Button MatchStartingBox;
+    public TextMeshProUGUI MatchStartingBox_Text;
     public GameObject UIpanel;
-    
+
     //-----------------------------------TIMER VARIABLES----------------------------------------------
     public float seconds, minutes;
     [SerializeField] private float timeLeft;
     [SerializeField] private bool startTimer = false;
-
+    private bool matchStarting = false;
+    private float timeStarting = 5f;
     private void Awake()
     {
         setAllElementsActive(false);
@@ -48,6 +51,10 @@ public class UIManager : MonoBehaviour
             Countdown();
         }
 
+        if (matchStarting)
+        {
+            StartMatchCountdown();
+        }
     }
 
     
@@ -164,6 +171,37 @@ public class UIManager : MonoBehaviour
         IngredientsBox.gameObject.SetActive(value);
     }
     
+    //--------------------------------------MATCH STARTING---------------------------------------------
+
+    public void StartMatch(float timeStarting)
+    {
+        setMatchStartingButtonActive(true);
+        matchStarting = true;
+    }
+
+    void StartMatchCountdown()
+    {
+        if (timeStarting >= 0f)
+        {
+            timeStarting -= Time.deltaTime; 
+            minutes = (int) (timeStarting/ 60f); 
+            seconds = (int) (timeStarting % 60f); 
+            MatchStartingBox_Text.text = "Match starting in: " + minutes.ToString("00") + ":" + seconds.ToString("00");   
+        }
+        else
+        {
+            timeStarting = 0f;
+            matchStarting = false;
+            setMatchStartingButtonActive(false);
+        }
+    }
+    
+    //SET gameobject active or not
+    public void setMatchStartingButtonActive(bool value)
+    {
+        MatchStartingBox.gameObject.SetActive(value);
+    }
+
     //----------------------------------------ALL UI------------------------------------------------
     //SET all UI active or not
     public void setAllElementsActive(bool value)
@@ -174,5 +212,6 @@ public class UIManager : MonoBehaviour
         setWeaponActive(value);
         setInfoBoxActive(value);
         setIngredientsButtonActive(value);
+        setMatchStartingButtonActive(value);
     }
 }
