@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour {
     [Range(0, 10f)][SerializeField] protected float fireRatioTime = 2f;
     [Range(0, 30f)][SerializeField] protected float bulletForce = 20f;
     [Range(0, 10)][SerializeField] protected int numberOfBullets = 1;
-    public bool canShoot = true; //TODO: only for debug must be false
+    public bool canShoot; 
     protected string bulletName;
 
     protected Transform _firePoint;
@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour {
     
     public virtual void shoot()
     {
-        if (GetComponentInParent<DummyMoveset>().hasAuthority)
+        if (GetComponentInParent<DummyMoveset>().hasAuthority && canShoot)
         {
             canShoot = false;
             BulletInstantiation();

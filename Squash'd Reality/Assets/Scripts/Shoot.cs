@@ -14,11 +14,19 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("CAN SHOOT: " + weapon.canShoot);
         if (Input.GetAxis("Fire")!=0 && weapon.canShoot)
         {
             // StartBulletEmission();
             weapon.shoot();
         }
+    }
+
+    public void updateWeapon(Weapon weaponToUpdate)
+    {
+        weapon = weaponToUpdate;
+        Debug.Log("WEAPON: " + weapon);
+        weapon.canShoot = true;
     }
     
    

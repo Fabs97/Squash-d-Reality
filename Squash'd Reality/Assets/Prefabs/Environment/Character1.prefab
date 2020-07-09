@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1912040315233396788}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,10 +78,8 @@ MonoBehaviour:
   spread: 10
   fireRatioTime: 2
   bulletForce: 20
-  bulletPrefab: {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df,
-    type: 3}
-  canShoot: 1
   numberOfBullets: 4
+  canShoot: 1
 --- !u!114 &1912040315233396788
 MonoBehaviour:
   m_ObjectHideFlags: 0
