@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class Pistol : Weapon {
-    public override void shoot(){
-        base.shoot();
+    public override void Start(){
+        base.Start();
+        bulletName = "BulletPistol";
     }
 }
