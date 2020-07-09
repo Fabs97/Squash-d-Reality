@@ -9,6 +9,7 @@ TagManager:
   - UICharactersDescription
   - Bullet
   - Weapon
+  - UIManager
   layers:
   - Default
   - TransparentFX

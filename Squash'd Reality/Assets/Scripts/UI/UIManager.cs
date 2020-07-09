@@ -22,16 +22,21 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI IngredientsBox_Text;
     public Button InfoBox;
     public TextMeshProUGUI InfoBox_Text;
-    
+    public GameObject UIpanel;
     
     //-----------------------------------TIMER VARIABLES----------------------------------------------
     public float seconds, minutes;
     [SerializeField] private float timeLeft;
     [SerializeField] private bool startTimer = false;
-    
+
+    private void Awake()
+    {
+        setAllElementsActive(false);
+
+    }
+
     void Start()
     {
-        
     }
 
     void Update()
