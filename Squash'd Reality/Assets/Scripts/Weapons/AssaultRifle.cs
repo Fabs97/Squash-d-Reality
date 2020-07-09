@@ -7,5 +7,6 @@ public class AssaultRifle : Weapon
     public override void Start(){
         base.Start();
         bulletName = "BulletAssaultRifle";
+        setUIImage("AssaultRifle");
     }
 }

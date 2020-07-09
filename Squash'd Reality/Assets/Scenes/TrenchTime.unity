@@ -315,6 +315,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1175341265545091634, guid: 1e9f059244f7dd54081d40134b9d7be1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1175341265545091638, guid: 1e9f059244f7dd54081d40134b9d7be1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,6 +501,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1268918078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 532149041426857506, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284839667110833069, guid: cf277a7e169b8914f873fa1a1f568708,
+        type: 3}
+      propertyPath: m_Name
+      value: PistolPowerUP
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
 --- !u!1 &1330611851
 GameObject:
   m_ObjectHideFlags: 0

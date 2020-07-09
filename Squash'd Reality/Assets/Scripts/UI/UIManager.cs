@@ -149,9 +149,10 @@ public class UIManager : MonoBehaviour
     
     //----------------------------------------WEAPON------------------------------------------------
     //SET weapon image
-    public void setWeaponImage()
+    public void setWeaponImage(string weaponImage)
     {
-        //TODO
+        Texture2D myTexture = Resources.Load("Images/WeaponImages/" + weaponImage) as Texture2D;
+        Weapon_Image.GetComponent<RawImage>().texture = myTexture;
     }
     
     //SET gameobject active or not
@@ -234,7 +235,6 @@ public class UIManager : MonoBehaviour
     {
         setTimerActive(value);
         setPlayerElementsActive(value);
-        setPowerUpButtonActive(value);
-        setWeaponActive(value);
+        
     }
 }
