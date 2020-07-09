@@ -8,6 +8,7 @@ TagManager:
   - LocalPlayer
   - UICharactersDescription
   - Bullet
+  - Weapon
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class Shoot : NetworkBehaviour
+public class Shoot : MonoBehaviour
 {
     //-------------------SHOOTING SETTINGS-------------------
 
@@ -19,6 +19,12 @@ public class Shoot : NetworkBehaviour
             // StartBulletEmission();
             weapon.shoot();
         }
+    }
+
+    public void updateWeapon(Weapon weaponToUpdate)
+    {
+        weapon = weaponToUpdate;
+        weapon.canShoot = true;
     }
     
    
