@@ -96,7 +96,21 @@ public class UIManager : MonoBehaviour
     //SET player name
     public void setPlayerName(string playerName)
     {
-        PlayerName_Text.text = playerName;
+        if (playerName == "Character1")
+        {
+            PlayerName_Text.text = "Markus Nobel";
+        }else if (playerName == "Character2")
+        {
+            PlayerName_Text.text = "Ken Nolo";
+        }else if (playerName == "Character3")
+        {
+            PlayerName_Text.text = "Kam Brylla";
+        }else if (playerName == "Character4")
+        {
+            PlayerName_Text.text = "Raphael Nosun";
+        }
+        
+        
     }
     
     //SET player image
