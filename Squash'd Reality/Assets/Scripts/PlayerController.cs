@@ -44,13 +44,13 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+     
     }
 
     [Command]
     public void CmdSelectedCharacter(string characterName)
     {
-        gameObject.name = characterName;
+        dummyPrefab.name = characterName;
 
         UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
         if (characterName == "Character1") uICharacterSelectionManager.Character1Taken = true;
