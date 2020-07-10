@@ -1567,7 +1567,7 @@ GameObject:
   - component: {fileID: 1175341265545091637}
   - component: {fileID: 1175341265545091636}
   - component: {fileID: 1175341265545091635}
-  - component: {fileID: 1867126403}
+  - component: {fileID: 6565841147829245886}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: UIManager
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1867126403
+--- !u!114 &6565841147829245886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1175341265545091634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6beb8521f5f5066439deb9c0a1c8046f, type: 3}
+  m_Script: {fileID: 11500000, guid: 78c9a55334fe499489561e977c090393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerCounter: {fileID: 1175341264852080269}
@@ -1677,9 +1677,11 @@ MonoBehaviour:
   PowerUp_Text: {fileID: 1175341264852080262}
   PowerUp_Button: {fileID: 1175341264852080261}
   IngredientsBox: {fileID: 1175341264852080260}
-  IngredientsBox_Text: {fileID: 1175341264852080259}
+  IngredientsBox_Text: {fileID: 1175341264852080257}
   InfoBox: {fileID: 1175341264852080258}
   InfoBox_Text: {fileID: 1175341264852080257}
+  MatchStartingBox: {fileID: 995338018}
+  MatchStartingBox_Text: {fileID: 399946798}
   UIpanel: {fileID: 1175341266043329298}
   seconds: 0
   minutes: 0
@@ -1719,7 +1721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.016692309, y: 0.017}
   m_AnchorMax: {x: 0.11931449, y: 0.2}
-  m_AnchoredPosition: {x: 0.54067993, y: -0.07699585}
+  m_AnchoredPosition: {x: 0.54071045, y: -0.07699585}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1175341265958689387

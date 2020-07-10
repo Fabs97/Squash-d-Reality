@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8235770975612453246}
   - component: {fileID: 406453635}
   - component: {fileID: 5796313923350617283}
-  - component: {fileID: 5702095421046428333}
+  - component: {fileID: 8587032974217575462}
   m_Layer: 0
   m_Name: __app
   m_TagString: DDOL
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fea4e8ce8338e49b21ab6ac03e3f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: default
 --- !u!114 &406453635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a534d81f4769a6438b271591c1f84ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5702095421046428333
+--- !u!114 &8587032974217575462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,6 +167,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2299359058814777245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602b6589450630343bfd2bd8d95573fa, type: 3}
+  m_Script: {fileID: 11500000, guid: f20a426016b24c60a189c508d4b79ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

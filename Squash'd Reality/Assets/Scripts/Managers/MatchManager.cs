@@ -52,4 +52,5 @@ public class MatchManager : NetworkBehaviour
         UIManager.GetComponent<UIManager>().showUIPlayer(true);
         //TODO: insert UI settings
     }
+   
 }

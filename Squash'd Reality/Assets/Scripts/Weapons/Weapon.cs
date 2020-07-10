@@ -44,9 +44,5 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    public void setUIImage(string weaponName)
-    {
-        GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setWeaponImage(weaponName);
-        GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setWeaponActive(true);
-    }
+    
 }

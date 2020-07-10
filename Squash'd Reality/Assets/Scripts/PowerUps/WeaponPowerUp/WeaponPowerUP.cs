@@ -4,7 +4,9 @@ using UnityEngine;
 public class WeaponPowerUP : PowerUP {
     protected Type weaponType;
 
-    public override void triggerEnter(Collider other){
+    public override void triggerEnter(Collider other)
+    {
+        UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if (other.tag == "Player")
         {
             for (int i = 0; i < other.transform.childCount; i++)
@@ -15,6 +17,11 @@ public class WeaponPowerUP : PowerUP {
                     Destroy(oldWeapon.GetComponent<Weapon>());
                     Weapon newWeapon = (Weapon) oldWeapon.AddComponent(weaponType);
                     oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
+                    if (other.gameObject.GetComponent<DummyMoveset>().hasAuthority)
+                    {
+                        uiManager.setWeaponImage(weaponType.ToString());
+                        uiManager.setWeaponActive(true);
+                    }
                     Destroy(gameObject);
                     break;
                 }

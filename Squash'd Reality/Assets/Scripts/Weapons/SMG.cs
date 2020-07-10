@@ -7,6 +7,5 @@ public class SMG : Weapon
     public override void Start(){
         base.Start();
         bulletName = "BulletSMG";
-        setUIImage("SMG");
     }
 }

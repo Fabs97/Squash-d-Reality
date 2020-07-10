@@ -7,7 +7,6 @@ public class Shotgun : Weapon {
         base.Start();
         numberOfBullets = 4;
         bulletName = "BulletShotgun";
-        setUIImage("Shotgun");
 
     }
     
