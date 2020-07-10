@@ -8,20 +8,27 @@ public class Spawner : NetworkBehaviour
     [SerializeField] private List<GameObject> prefabsToSpawn;
     [SerializeField] private bool randomizeSpawn;
     [SerializeField] private bool deleteFromListAfterSpawn;
+    [SerializeField] private bool startSpawningFromTheBeginning; 
     [Range(0, 40)][SerializeField] private float firstSpawnDelay;
     [Range(0, 10)][SerializeField] private float spawningDelay;
     [SerializeField] private Vector3 maxCoordinates;
     [SerializeField] private Vector3 minCoordinates;
+    public int objectsToSpawnCount = 999;
     
     private int _spawningIndex = -1;
 
     void Start() {
+        if(startSpawningFromTheBeginning) startSpawning();
+    }
+
+    public void startSpawning(){
         if(isServer){
             StartCoroutine(spawningCoroutine());
         }
     }
 
     IEnumerator spawningCoroutine(){
+        int objectsSpawnedCount = 0;
         yield return new WaitForSeconds(firstSpawnDelay);
         while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
             
@@ -39,8 +46,11 @@ public class Spawner : NetworkBehaviour
             GameObject go = Instantiate(prefabToSpawn, tr, q);
 
             NetworkServer.Spawn(go);
-
             if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            
+            
+            objectsSpawnedCount ++;
+            if(objectsSpawnedCount == objectsToSpawnCount) break;
             yield return new WaitForSeconds(spawningDelay);
         }
 

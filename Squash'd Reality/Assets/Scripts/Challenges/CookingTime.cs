@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingTime : MonoBehaviour {
+public class CookingTime : Challenge {
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
 
@@ -39,5 +38,12 @@ public class CookingTime : MonoBehaviour {
     private void removeIngredient(Ingredient ingredient){
         activeIngredients.Remove(ingredient);
         spawnedIngredients.Remove(ingredient);
+    }
+
+    protected override void setDifficulty() {
+        Spawner spawner = Object.FindObjectOfType<Spawner>();
+        spawner.objectsToSpawnCount = difficulty * 8;
+        spawner.startSpawning();
+        base.setDifficulty();
     }
 }
