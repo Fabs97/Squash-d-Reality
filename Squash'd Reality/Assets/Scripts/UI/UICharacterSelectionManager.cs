@@ -137,6 +137,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
             }
             else
             {
+                GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName = characterName;
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSelectedCharacter(characterName);
                 showWaitingPlayers(); 
             }

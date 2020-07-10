@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +23,7 @@ public class PlayerController : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         if (isServer) {
-            dummyPrefab = _networkingManager.prefabList()[0];
+            dummyPrefab = _networkingManager.spawnPrefabs[0];
         }
         
         if (isClient && isLocalPlayer)
@@ -44,14 +44,13 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+     
     }
-
 
     [Command]
     public void CmdSelectedCharacter(string characterName)
     {
-        gameObject.name = characterName;
+        dummyPrefab.name = characterName;
 
         UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
         if (characterName == "Character1") uICharacterSelectionManager.Character1Taken = true;
@@ -93,5 +92,6 @@ public class PlayerController : NetworkBehaviour
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);
     }
+    
     
 }

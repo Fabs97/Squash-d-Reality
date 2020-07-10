@@ -9,6 +9,8 @@ TagManager:
   - UICharactersDescription
   - Bullet
   - Weapon
+  - UIManager
+  - DDOL
   - Cauldron
   layers:
   - Default

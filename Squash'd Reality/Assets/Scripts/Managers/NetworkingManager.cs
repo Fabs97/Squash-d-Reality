@@ -60,11 +60,6 @@ namespace NetworkingManager {
         private void HandleJoinedMatch(bool success, string extendedinfo, MatchInfo responsedata) {
             StartClient(responsedata);
         }
-        
-        public List<GameObject> prefabList()
-        {
-            return spawnPrefabs;
-        }
 
         public void serverChangeScene(string sceneName)
         {
@@ -102,8 +97,4 @@ namespace NetworkingManager {
 			OnAvailableMatchesChanged(matches);
 		}
 	}
-    
-    
-    
-    
 }
