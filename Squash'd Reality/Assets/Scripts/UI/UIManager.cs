@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     public RawImage PowerUp_Image;
     public TextMeshProUGUI PowerUp_Text;
     public Button PowerUp_Button;
-    public Button IngredientsBox;
-    public TextMeshProUGUI IngredientsBox_Text;
     public Button InfoBox;
     public TextMeshProUGUI InfoBox_Text;
     public Button MatchStartingBox;
@@ -174,19 +172,6 @@ public class UIManager : MonoBehaviour
         InfoBox.gameObject.SetActive(value);
     }
     
-    //--------------------------------------INGREDIENTS----------------------------------------------
-    //SET info box text
-    public void setIngredientsText(string ingredients)
-    {
-        IngredientsBox_Text.text = ingredients;
-    }
-    
-    //SET gameobject active or not
-    public void setIngredientsButtonActive(bool value)
-    {
-        IngredientsBox.gameObject.SetActive(value);
-    }
-    
     //--------------------------------------MATCH STARTING---------------------------------------------
 
     public void StartMatch(float timeStarting)
@@ -227,7 +212,6 @@ public class UIManager : MonoBehaviour
         setPowerUpButtonActive(value);
         setWeaponActive(value);
         setInfoBoxActive(value);
-        setIngredientsButtonActive(value);
         setMatchStartingButtonActive(value);
     }
 
