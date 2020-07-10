@@ -16,7 +16,9 @@ public class Spawner : NetworkBehaviour
     private int _spawningIndex = -1;
 
     void Start() {
-        StartCoroutine(spawningCoroutine());
+        if(isServer){
+            StartCoroutine(spawningCoroutine());
+        }
     }
 
     IEnumerator spawningCoroutine(){
