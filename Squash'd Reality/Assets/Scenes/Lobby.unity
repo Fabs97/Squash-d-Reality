@@ -628,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: nextSceneName
-      value: TrenchTime
+      value: CookingTime
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}

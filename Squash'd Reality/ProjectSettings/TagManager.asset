@@ -12,6 +12,7 @@ TagManager:
   - UIManager
   - DDOL
   - Cauldron
+  - UICookingTime
   layers:
   - Default
   - TransparentFX

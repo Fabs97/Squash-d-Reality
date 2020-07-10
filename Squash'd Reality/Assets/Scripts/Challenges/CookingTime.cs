@@ -21,7 +21,7 @@ public class CookingTime : MonoBehaviour {
         } else {
             addToActiveList(ingredient);
         }
-        // TODO update UI
+        GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
     }
 
     private void addToActiveList(Ingredient ingredient){

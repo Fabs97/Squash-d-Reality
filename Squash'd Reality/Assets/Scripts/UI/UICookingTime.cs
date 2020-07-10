@@ -21,12 +21,12 @@ public class UICookingTime : MonoBehaviour
         
     }
 
-    public void setImages(Texture2D[] ingredientsImages)
+    public void setImages(List<Ingredient> ingredientsImages)
     {
         int i = 0;
-        for (i = 0; i < ingredientsImages.Length; i++)
+        for (i = 0; i < ingredientsImages.Count; i++)
         {
-            Ingredients[i].texture = ingredientsImages[i];
+            Ingredients[i].texture = ingredientsImages[i].image;
             Ingredients[i].gameObject.SetActive(true);
         }
 

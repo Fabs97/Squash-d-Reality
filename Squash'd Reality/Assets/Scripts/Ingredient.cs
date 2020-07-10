@@ -3,7 +3,7 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour {
 
     private CookingTime _cookingTimeManager;
-    [SerializeField] private Texture2D image; 
+    public Texture2D image; 
     private void Start() {
         _cookingTimeManager = Object.FindObjectOfType<CookingTime>();
         _cookingTimeManager.addToSpawnedList(this);
@@ -12,6 +12,7 @@ public class Ingredient : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Cauldron") {
             _cookingTimeManager.insertedIngredientInCauldron(this);
+            Destroy(gameObject);
         }
     }
 }
