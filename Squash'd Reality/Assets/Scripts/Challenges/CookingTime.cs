@@ -24,7 +24,8 @@ public class CookingTime : MonoBehaviour {
     private void changeActiveIngredientList(Ingredient ingredient){
         if(activeIngredients.Contains(ingredient)){
             removeIngredient(ingredient);
-            activeIngredients = spawnedIngredients.GetRange(0, 4);
+            int count = spawnedIngredients.Count < 4 ? spawnedIngredients.Count : 4;
+            activeIngredients = spawnedIngredients.GetRange(0, count);
         } else {
             addToActiveList(ingredient);
         }
