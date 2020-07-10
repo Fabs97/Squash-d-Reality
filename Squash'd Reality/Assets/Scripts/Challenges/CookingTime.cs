@@ -1,9 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CookingTime : MonoBehaviour {
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
+
+    private void Start()
+    {
+        spawnedIngredients = new List<Ingredient>();
+        activeIngredients = new List<Ingredient>();
+    }
 
     public void addToSpawnedList(Ingredient ingredient){
         spawnedIngredients.Add(ingredient);
