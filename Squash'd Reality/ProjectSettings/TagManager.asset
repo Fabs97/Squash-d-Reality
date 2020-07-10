@@ -8,6 +8,8 @@ TagManager:
   - LocalPlayer
   - UICharactersDescription
   - Hole
+  - Pipe
+  - Start
   layers:
   - Default
   - TransparentFX
@@ -39,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hole
   - Grabbable
   m_SortingLayers:
   - name: Default

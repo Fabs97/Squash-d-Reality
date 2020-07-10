@@ -53,6 +53,10 @@ public class Grabber : NetworkBehaviour
         {
             if (toGrab != null)
             {
+                if(toGrab.tag == "Pipe")
+                {
+                    toGrab.GetComponent<Pipe>().PipeCheck();
+                }
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
                 toGrab.transform.parent = null;
                 toGrab = null;
