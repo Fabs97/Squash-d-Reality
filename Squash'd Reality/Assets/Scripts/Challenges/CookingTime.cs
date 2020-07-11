@@ -7,13 +7,12 @@ public class CookingTime : Challenge {
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
 
-    private LevelManager.LevelManager _levelManager;
     private int insertedIngredients = 0;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         spawnedIngredients = new List<Ingredient>();
         activeIngredients = new List<Ingredient>();
-        _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         difficulty = _levelManager.getChallengeDifficulty();
         setDifficulty();
     }
@@ -23,7 +22,8 @@ public class CookingTime : Challenge {
         changeActiveIngredientList(ingredient);
     }
 
-    public void insertedIngredientInCauldron(Ingredient ingredient){
+    public void insertedIngredientInCauldron(Ingredient ingredient) {
+        Debug.Log(activeIngredients.Count);
         if(!ingredient.name.Equals(activeIngredients[0].name)) {
             endChallenge(false);
         }
