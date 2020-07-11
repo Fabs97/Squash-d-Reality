@@ -29,7 +29,7 @@ public class PlayerController : NetworkBehaviour
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
-            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer();
+            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer(GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName);
         }
 
         for (int i = 0; i < _networkingManager.spawnPrefabs.Count; i++)
@@ -59,8 +59,7 @@ public class PlayerController : NetworkBehaviour
     }
     
     [Command]
-    public void CmdSpawnPlayer() {
-        string playerName = GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName;
+    public void CmdSpawnPlayer(String playerName) {
         GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
     }
