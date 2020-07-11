@@ -46,7 +46,7 @@ public class MatchManager : NetworkBehaviour
             //START ROOM LOGIC
         }
         showPlayerUI();
-        UIManager.GetComponent<UIManager>().StartCountdown(60f);
+        UIManager.GetComponent<UIManager>().StartCountdown(15f);
         
     }
 
@@ -57,6 +57,26 @@ public class MatchManager : NetworkBehaviour
         UIManager.GetComponent<UIManager>().setPlayerName(playerName);
         UIManager.GetComponent<UIManager>().showUIPlayer(true);
         //TODO: insert UI settings
+    }
+
+    public void timeEnded()
+    {
+        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
+        _uiManager.setInfoBoxActive(true);
+        if (isServer)
+        {
+            StartCoroutine(resetChallenge());
+        }
+        
+
+    }
+
+    IEnumerator resetChallenge()
+    {
+        yield return new WaitForSeconds(2f);
+        GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
+
     }
    
 }

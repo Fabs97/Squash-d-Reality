@@ -8,6 +8,7 @@ public class CookingTime : Challenge {
     private List<Ingredient> activeIngredients;
 
     private int insertedIngredients = 0;
+    
     protected override void Start()
     {
         base.Start();

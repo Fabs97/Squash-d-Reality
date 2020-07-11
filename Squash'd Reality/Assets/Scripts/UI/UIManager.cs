@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         {
             timeLeft = 0f;
             startTimer = false;
-            //TODO: settare tempo finito
+            GameObject.FindObjectOfType<MatchManager>().timeEnded();
         }
     }
     
