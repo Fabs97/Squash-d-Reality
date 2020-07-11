@@ -24,7 +24,7 @@ public class CookingTime : Challenge {
     }
 
     public void insertedIngredientInCauldron(Ingredient ingredient){
-        if(!ingredient.Equals(activeIngredients[0])) {
+        if(!ingredient.name.Equals(activeIngredients[0].name)) {
             endChallenge(false);
         }
         changeActiveIngredientList(ingredient);

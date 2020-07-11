@@ -178,4 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91da9d80ce981a4ead2bc3e4a8c6e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Cioccolato
   image: {fileID: 2800000, guid: ec87380873b9c4f439734ae2a16f3bc8, type: 3}

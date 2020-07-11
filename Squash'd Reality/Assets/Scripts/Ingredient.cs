@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour {
 
+    [SerializeField] public string name;
     private CookingTime _cookingTimeManager;
     public Texture2D image; 
     private void Start() {
