@@ -13,6 +13,8 @@ public class DummyMoveset : NetworkBehaviour
     [SerializeField] private float jumpHeight = 0.5f;
     private float gravityValue = -9.81f;
 
+    [SyncVar] public string playerName;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -71,11 +73,18 @@ public class DummyMoveset : NetworkBehaviour
         
     }
 
-    public void Die() {
+    public void Die(string playerDead) {
+        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if (hasAuthority)
         {
-            
+            _uiManager.setInfoBoxText("YOU DIED"); 
         }
+        else
+        {
+            _uiManager.setInfoBoxText(playerDead + " DIED");
+        }
+        _uiManager.setInfoBoxActive(true);
+
     }
 
 }
