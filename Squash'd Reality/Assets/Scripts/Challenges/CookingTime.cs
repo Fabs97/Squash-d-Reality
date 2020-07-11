@@ -2,11 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CookingTime : Challenge {
+
+    private const int difficultyMultiplier = 8;
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
 
     private LevelManager.LevelManager _levelManager;
     private int difficulty;
+
+    private int insertedIngredients = 0;
     private void Start()
     {
         spawnedIngredients = new List<Ingredient>();
@@ -24,8 +28,9 @@ public class CookingTime : Challenge {
         if(!ingredient.Equals(activeIngredients[0])) {
             endChallenge(false);
         }
-        
         changeActiveIngredientList(ingredient);
+        insertedIngredients++;
+        if(insertedIngredients == difficulty * difficultyMultiplier) endChallenge(true);
     }
 
     private void changeActiveIngredientList(Ingredient ingredient){
@@ -50,7 +55,7 @@ public class CookingTime : Challenge {
 
     protected override void setDifficulty() {
         Spawner spawner = Object.FindObjectOfType<Spawner>();
-        spawner.objectsToSpawnCount = difficulty * 8;
+        spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
         spawner.startSpawning();
         base.setDifficulty();
     }
