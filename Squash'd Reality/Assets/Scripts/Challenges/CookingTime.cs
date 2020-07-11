@@ -8,8 +8,6 @@ public class CookingTime : Challenge {
     private List<Ingredient> activeIngredients;
 
     private LevelManager.LevelManager _levelManager;
-    private int difficulty;
-
     private int insertedIngredients = 0;
     private void Start()
     {
@@ -17,6 +15,7 @@ public class CookingTime : Challenge {
         activeIngredients = new List<Ingredient>();
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         difficulty = _levelManager.getChallengeDifficulty();
+        setDifficulty();
     }
 
     public void addToSpawnedList(Ingredient ingredient){
