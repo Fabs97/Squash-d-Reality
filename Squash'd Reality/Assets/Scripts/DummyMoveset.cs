@@ -71,4 +71,8 @@ public class DummyMoveset : NetworkBehaviour
         
     }
 
+    public void Die() {
+        Debug.Log("DummyMoveset::Die - Oh no, I'm dead!");
+    }
+
 }
