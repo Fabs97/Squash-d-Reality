@@ -10,7 +10,7 @@ public class DummyMoveset : NetworkBehaviour
     private bool groundedPlayer;
     private static float initSpeed= 3.0f;
     private float playerSpeed = initSpeed;
-    private float jumpHeight = 1.0f;
+    [SerializeField] private float jumpHeight = 0.5f;
     private float gravityValue = -9.81f;
 
     private void Start()
@@ -55,6 +55,15 @@ public class DummyMoveset : NetworkBehaviour
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -4.0f * gravityValue);
+        }
+
+        if (!groundedPlayer)
+        {
+            controller.slopeLimit = 90f;
+        }
+        else
+        {
+            controller.slopeLimit = 45f;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;

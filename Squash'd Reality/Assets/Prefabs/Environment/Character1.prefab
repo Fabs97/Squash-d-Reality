@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0500150653290ea45b7b475ef75b681c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 0.5
 --- !u!114 &7305371141220752975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ea3761251f24c46ad075e3187c239b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDist: 2
+  maxDist: 0.5
 --- !u!33 &33926136567602216
 MeshFilter:
   m_ObjectHideFlags: 0

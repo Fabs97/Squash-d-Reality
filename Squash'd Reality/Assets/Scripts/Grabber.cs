@@ -18,7 +18,7 @@ public class Grabber : NetworkBehaviour
     bool hitDetect;
     bool hitDetect1;
     bool hitDetect2;
-    public float maxDist = 2f;
+    [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
 
     // Start is called before the first frame update
