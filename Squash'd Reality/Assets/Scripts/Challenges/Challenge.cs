@@ -12,7 +12,7 @@ public class Challenge : MonoBehaviour {
 
     protected virtual void setDifficulty() { }
 
-    protected virtual void endChallenge(bool successful){ 
+    public virtual void endChallenge(bool successful){ 
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if(successful){
             uiManager.setInfoBoxText("YOU WIN!");

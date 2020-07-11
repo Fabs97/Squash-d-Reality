@@ -58,7 +58,7 @@ public class CookingTime : Challenge {
         base.setDifficulty();
     }
 
-    protected override void endChallenge(bool successful){
+    public override void endChallenge(bool successful){
         base.endChallenge(successful);
     }
 }
