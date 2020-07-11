@@ -50,8 +50,6 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdSelectedCharacter(string characterName)
     {
-        dummyPrefab.name = characterName;
-
         UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
         if (characterName == "Character1") uICharacterSelectionManager.Character1Taken = true;
         else if (characterName == "Character2") uICharacterSelectionManager.Character2Taken = true;
@@ -62,9 +60,9 @@ public class PlayerController : NetworkBehaviour
     
     [Command]
     public void CmdSpawnPlayer() {
-        GameObject go = Instantiate(dummyPrefab, dummyPrefab.transform);
+        string playerName = GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName;
+        GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
-        Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
     }
 
     [Command]
