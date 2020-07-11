@@ -54,6 +54,27 @@ public class CookingTime : Challenge {
     protected override void setDifficulty() {
         Spawner spawner = Object.FindObjectOfType<Spawner>();
         spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
+        string playerName = GameObject.FindGameObjectWithTag("Player").GetComponent<DummyMoveset>().playerName;
+        switch (playerName)
+        {
+            case "Markus Nobel":{
+                spawner.removeZone(0);
+                break;
+            }
+            case "Ken Nolo":{
+                spawner.removeZone(1);
+                break;
+            }
+            case "Kam Brylla":{
+                spawner.removeZone(2);
+                break;
+            }
+            case "Raphael Nosun":{
+                spawner.removeZone(3);
+                break;
+            }
+            default: break;
+        }
         spawner.startSpawning();
         base.setDifficulty();
     }

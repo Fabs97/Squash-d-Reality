@@ -15,9 +15,9 @@ MonoBehaviour:
   sceneName: CookingTime
   spawnPlayers: 1
   playersPositions:
-  - {x: 7.51, y: 0.7, z: -12}
-  - {x: 2, y: 0.7, z: -7}
-  - {x: 13, y: 0.7, z: -7}
-  - {x: 7.51, y: 0.7, z: -3.34}
+  - {x: 1, y: 0.7, z: -11}
+  - {x: 1, y: 0.7, z: -3}
+  - {x: 13, y: 0.7, z: -3}
+  - {x: 13, y: 0.7, z: -11}
   isDark: 0
   isChallenge: 1

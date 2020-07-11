@@ -11,8 +11,8 @@ public class Spawner : NetworkBehaviour
     [SerializeField] private bool startSpawningFromTheBeginning; 
     [Range(0, 40)][SerializeField] private float firstSpawnDelay;
     [Range(0, 10)][SerializeField] private float spawningDelay;
-    [SerializeField] private Vector3 maxCoordinates;
-    [SerializeField] private Vector3 minCoordinates;
+    [SerializeField] private List<Vector3> maxCoordinates;
+    [SerializeField] private List<Vector3> minCoordinates;
     public int objectsToSpawnCount = 999;
     
     private int _spawningIndex = -1;
@@ -27,6 +27,11 @@ public class Spawner : NetworkBehaviour
         }
     }
 
+    public void removeZone(int index){
+        maxCoordinates.RemoveAt(index);
+        minCoordinates.RemoveAt(index);
+    }
+
     IEnumerator spawningCoroutine(){
         int objectsSpawnedCount = 0;
         yield return new WaitForSeconds(firstSpawnDelay);
@@ -36,9 +41,10 @@ public class Spawner : NetworkBehaviour
             else _spawningIndex++; 
             if(_spawningIndex == prefabsToSpawn.Count) break;
 
-            float randomX = Random.Range(minCoordinates.x, maxCoordinates.x);
-            float randomY = Random.Range(minCoordinates.y, maxCoordinates.y);
-            float randomZ = Random.Range(minCoordinates.z, maxCoordinates.z);
+            int randomZoneIndex = Random.Range(0, maxCoordinates.Count);
+            float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
+            float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
+            float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
 
             Vector3 tr = new Vector3(randomX, randomY, randomZ);
             Quaternion q = Quaternion.identity;
