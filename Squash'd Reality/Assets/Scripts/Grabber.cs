@@ -26,7 +26,7 @@ public class Grabber : NetworkBehaviour
     {
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         light = GetComponent<Light>();
-        light.intensity = _levelManager.getCurrentLevel().isDark ? luminosity : 0;
+        if(light != null) light.intensity = _levelManager.getCurrentLevel().isDark ? luminosity : 0;
     }
 
     // Update is called once per frame

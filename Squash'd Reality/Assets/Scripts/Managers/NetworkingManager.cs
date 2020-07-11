@@ -61,10 +61,17 @@ namespace NetworkingManager {
             StartClient(responsedata);
         }
 
-        public void serverChangeScene(string sceneName)
+        public void serverChangeScene(string sceneName, int difficulty)
         {
             // TODO: having problems with already spawned players? Destroy them here!
-            base.ServerChangeScene(_levelManager.loadNewLevel(sceneName));
+            LevelScriptableObject nextLevel; 
+            if(difficulty > 0) nextLevel = _levelManager.loadNewChallenge(sceneName, difficulty);
+            else nextLevel = _levelManager.loadNewLevel(sceneName);
+            base.ServerChangeScene(nextLevel.sceneName);
+        }
+
+        public void serverChangeScene(string sceneName){
+            serverChangeScene(sceneName, 0);
         }
 
         public override void OnServerSceneChanged(string sceneName)

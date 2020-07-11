@@ -20,3 +20,4 @@ MonoBehaviour:
   - {x: 1.85, y: 0.77, z: -5.25}
   - {x: -3.88, y: 0.77, z: -1.99}
   isDark: 0
+  isChallenge: 1
