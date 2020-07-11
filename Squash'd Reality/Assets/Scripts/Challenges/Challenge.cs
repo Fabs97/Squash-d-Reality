@@ -7,12 +7,13 @@ public class Challenge : MonoBehaviour {
     protected virtual void setDifficulty() { }
 
     protected virtual void endChallenge(bool successful){ 
+        UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if(successful){
-            GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxText("YOU WIN!");
+            uiManager.setInfoBoxText("YOU WIN!");
         } else {
-            GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxText("YOU LOSE!");
+            uiManager.setInfoBoxText("YOU LOSE!");
         }
-        GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxActive(true);
+        uiManager.setInfoBoxActive(true);
     }
     
 }
