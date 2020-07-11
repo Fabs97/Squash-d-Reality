@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     
     //--------------------------------------TIMER----------------------------------------------------
     //CALL this function to start timer
-    void StartCountdown(float countDowntime)
+    public void StartCountdown(float countDowntime)
     {
         timeLeft = countDowntime;
         startTimer = true;

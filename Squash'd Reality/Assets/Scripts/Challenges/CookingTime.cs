@@ -23,7 +23,6 @@ public class CookingTime : Challenge {
     }
 
     public void insertedIngredientInCauldron(Ingredient ingredient) {
-        Debug.Log(activeIngredients.Count);
         if(!ingredient.name.Equals(activeIngredients[0].name)) {
             endChallenge(false);
         }

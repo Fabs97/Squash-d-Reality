@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772e65f57f604a99bfa8c8b17148fc67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openingString: Cook the elements in order!
 --- !u!114 &654606002
 MonoBehaviour:
   m_ObjectHideFlags: 0

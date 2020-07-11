@@ -10,12 +10,14 @@ public class MatchManager : NetworkBehaviour
     private bool matchStarting = false;
     private NetworkingManager.NetworkingManager _networkingManager;
 
+    [SerializeField] private string openingString;
+
     // Start is called before the first frame update
     void Start()
     {
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         UIManager = GameObject.FindWithTag("UIManager");
-        UIManager.GetComponent<UIManager>().setInfoBoxText("Survive the enemies!");
+        UIManager.GetComponent<UIManager>().setInfoBoxText(openingString);
         UIManager.GetComponent<UIManager>().setInfoBoxActive(true);
     }
 
@@ -32,6 +34,7 @@ public class MatchManager : NetworkBehaviour
             UIManager.GetComponent<UIManager>().StartMatch(4f);
             StartCoroutine(matchStart());
         }
+        
     }
 
     IEnumerator matchStart()
@@ -43,6 +46,8 @@ public class MatchManager : NetworkBehaviour
             //START ROOM LOGIC
         }
         showPlayerUI();
+        UIManager.GetComponent<UIManager>().StartCountdown(60f);
+        
     }
 
     private void showPlayerUI()
