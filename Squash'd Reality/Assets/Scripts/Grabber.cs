@@ -58,13 +58,18 @@ public class Grabber : NetworkBehaviour
         {
             if (toGrab != null)
             {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
-                toGrab.transform.parent = null;
-                toGrab = null;
-                isGrabbing = false;  
-                toggleLight(true);
+                removeGrab();
             }
         }
+    }
+
+    public void removeGrab(){
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+        toGrab.GetComponent<Rigidbody>().isKinematic = true;
+        toGrab.transform.parent = null;
+        toGrab = null;
+        isGrabbing = false;  
+        toggleLight(true);
     }
 
     void toggleLight(bool val){
@@ -80,6 +85,7 @@ public class Grabber : NetworkBehaviour
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
         }
+        toGrab.GetComponent<Rigidbody>().isKinematic = false;
         toGrab.transform.parent = transform;
         isGrabbing = true;
         toggleLight(false);
