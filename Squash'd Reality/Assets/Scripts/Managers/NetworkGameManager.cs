@@ -24,7 +24,7 @@ public class NetworkGameManager : MonoBehaviour {
     }
 
     public void calcNextDoor(int playersInDoor, string nextSceneName, int difficulty) {
-        if(playersInDoor >= 2) _networkingManager.serverChangeScene(nextSceneName);
+        if(playersInDoor >= 2) _networkingManager.serverChangeScene(nextSceneName, difficulty);
     }
 
 }
