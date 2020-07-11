@@ -1890,7 +1890,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character4
+          m_StringArgument: Raphael Nosun
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1339821049
@@ -2275,8 +2275,6 @@ MonoBehaviour:
   Character3: {fileID: 1294994225}
   Character4: {fileID: 2099550395}
   MessageBox: {fileID: 1196536845}
-  CharactersDescription: {fileID: 0}
-  CharactersBackground: {fileID: 0}
   Character1Taken: 0
   Character2Taken: 0
   Character3Taken: 0
@@ -2489,7 +2487,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character1
+          m_StringArgument: Markus Nobel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1639817917
@@ -2753,7 +2751,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character3
+          m_StringArgument: Kam Brylla
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1679124997
@@ -3335,7 +3333,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character2
+          m_StringArgument: Ken Nolo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1794512488

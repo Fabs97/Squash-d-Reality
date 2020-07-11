@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class LevelScriptableObject : ScriptableObject {
     [SerializeField] public string sceneName;
     [SerializeField] public bool spawnPlayers;
-    private string[] playersNames = new string[] {"Character1", "Character2", "Character3", "Character4"};
+    private string[] playersNames = new string[] {"Markus Nobel", "Ken Nolo", "Kam Brylla", "Raphael Nosun"};
     [SerializeField] public Vector3[] playersPositions;
 
     [SerializeField] public bool isDark = false;
@@ -15,6 +15,7 @@ public class LevelScriptableObject : ScriptableObject {
 
     public Vector3 getPlayerPosition(string name){
         if(!spawnPlayers) return Vector3.one;
+        Debug.Log("LevelScriptableObject::getPlayerPosition - playerName: " + name);
         
         for(int i = 0; i < playersNames.Length; i++) {
             if(playersNames[i] == name) return playersPositions[i];
