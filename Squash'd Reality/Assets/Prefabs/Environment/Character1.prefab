@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -4.96}
+  m_FollowOffset: {x: 0, y: 5.77, z: -10.1}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -4.96}
+  m_FollowOffset: {x: 0, y: 5.77, z: -10.1}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 2.5, z: -4.96}
+  m_FollowOffset: {x: 0, y: 5.77, z: -10.1}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -402,7 +402,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104041198643323785}
-  m_LocalRotation: {x: 0.21643643, y: -0.00000003839868, z: 0.000000008512651, w: 0.9762967}
+  m_LocalRotation: {x: 0.22133848, y: -0.000000018760172, z: 0.000000004257958, w: 0.9751971}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -492,6 +492,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5951757461624433065}
   - component: {fileID: 8926729412653520339}
+  - component: {fileID: 8057428368405141435}
+  - component: {fileID: 5037694298037125481}
   m_Layer: 0
   m_Name: ThirdPersonCamera
   m_TagString: Untagged
@@ -507,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5989856675136716762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -4.4800005}
+  m_LocalPosition: {x: 0, y: 5.77, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2619205237959166943}
@@ -608,8 +610,8 @@ MonoBehaviour:
   m_Orbits:
   - m_Height: 4.5
     m_Radius: 3.54
-  - m_Height: 2.5
-    m_Radius: 4.96
+  - m_Height: 5.77
+    m_Radius: 10.1
   - m_Height: 0.4
     m_Radius: 2.73
   m_LegacyHeadingBias: 3.4028235e+38
@@ -617,6 +619,52 @@ MonoBehaviour:
   - {fileID: 8061029759488216394}
   - {fileID: 7915332379966281762}
   - {fileID: 6727879223762968267}
+--- !u!114 &8057428368405141435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989856675136716762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &5037694298037125481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989856675136716762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c803e9648a238f84db5022924a433bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!1 &6186288873064378691
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +689,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6186288873064378691}
-  m_LocalRotation: {x: 0.25175747, y: 0.000000034909117, z: -0.000000029620658, w: 0.96779037}
+  m_LocalRotation: {x: 0.2566164, y: 0.000000014402173, z: -0.000000003823883, w: 0.96651334}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1021,7 +1069,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7988071399097445079}
-  m_LocalRotation: {x: 0.23411226, y: -0.0000000038574512, z: 9.2889124e-10, w: 0.9722096}
+  m_LocalRotation: {x: 0.23899354, y: -0.000000018679842, z: 0.0000000045975947, w: 0.9710212}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

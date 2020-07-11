@@ -22,7 +22,7 @@ public class DummyMoveset : NetworkBehaviour
 
     void Update()
     {
-        
+       
     }
     void FixedUpdate()
     {
