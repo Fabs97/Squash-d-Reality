@@ -8,10 +8,11 @@ public class Challenge : MonoBehaviour {
 
     protected virtual void endChallenge(bool successful){ 
         if(successful){
-            Debug.Log("You win!");
+            GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxText("YOU WIN!");
         } else {
-            Debug.Log("You lose!");
+            GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxText("YOU LOSE!");
         }
+        GameObject.FindWithTag("UIManager").GetComponent<UIManager>().setInfoBoxActive(true);
     }
     
 }
