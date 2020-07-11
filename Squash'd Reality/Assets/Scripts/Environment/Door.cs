@@ -6,8 +6,8 @@ public class Door : MonoBehaviour {
     private NetworkGameManager _networkGameManager;
     
     [SerializeField] private string nextSceneName;
+    [Range(1, 3)] [SerializeField] private int difficulty = 1; 
     private int playersInMe;
-    // [Range(1, 3)] [SerializeField] private int difficulty = 1; 
 
     private void Start() {
         _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
@@ -28,6 +28,6 @@ public class Door : MonoBehaviour {
 
     private void updatePeopleInDoor(bool entered){
         playersInMe = playersInMe + (entered ? 1 : -1);
-        _networkGameManager.calcNextDoor(playersInMe, nextSceneName);
+        _networkGameManager.calcNextDoor(playersInMe, nextSceneName, difficulty);
     }
 }

@@ -11,6 +11,8 @@ public class LevelScriptableObject : ScriptableObject {
 
     [SerializeField] public bool isDark = false;
 
+    [SerializeField] public bool isChallenge = false;
+
     public Vector3? getPlayerPosition(string name){
         if(!spawnPlayers) return null;
         
