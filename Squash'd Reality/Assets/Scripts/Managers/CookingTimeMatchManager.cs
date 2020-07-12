@@ -26,7 +26,14 @@ public class CookingTimeMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
+        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
+        _uiManager.setInfoBoxActive(true);
+        if (isServer)
+        {
+            StartCoroutine(resetChallenge());
+        }
+
     }
 
     protected override IEnumerator resetChallenge()

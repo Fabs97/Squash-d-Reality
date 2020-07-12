@@ -62,13 +62,6 @@ public class MatchManager : NetworkBehaviour
 
     public virtual void timeEnded()
     {
-        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
-        _uiManager.setInfoBoxActive(true);
-        if (isServer)
-        {
-            StartCoroutine(resetChallenge());
-        }
         
 
     }
@@ -76,7 +69,6 @@ public class MatchManager : NetworkBehaviour
     protected virtual IEnumerator resetChallenge()
     {
         yield return new WaitForSeconds(2f);
-        //GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
 
     }
    

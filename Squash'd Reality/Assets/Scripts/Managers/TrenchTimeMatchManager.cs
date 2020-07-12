@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class TrenchTimeMatchManager : MatchManager
 {
-    [SyncVar] public bool matchTimeEnded = false;
+    public bool matchTimeEnded = false;
     protected override void Start()
     {
         base.Start();
@@ -25,6 +25,17 @@ public class TrenchTimeMatchManager : MatchManager
             UIManager.GetComponent<UIManager>().StartMatch(4f);
             StartCoroutine(matchStart());
         }
+
+        if (matchTimeEnded)
+        {
+            GameObject.FindObjectOfType<TrenchTime>().timeEnded = true;
+            if (isServer)
+            {
+                matchTimeEnded = false;
+ 
+            }
+        }
+        
     }
 
     protected override IEnumerator matchStart()
@@ -43,8 +54,9 @@ public class TrenchTimeMatchManager : MatchManager
         if (isServer)
         {
             GameObject.FindObjectOfType<Spawner>().StopSpawning();
-            setMatchTimeEnded(true);
         }
+        matchTimeEnded = true;
+
     }
 
     protected override IEnumerator resetChallenge()
@@ -53,11 +65,5 @@ public class TrenchTimeMatchManager : MatchManager
         GameObject.FindObjectOfType<TrenchTime>().endChallenge(false);
     }
 
-    protected void setMatchTimeEnded(bool value)
-    {
-        if (isServer)
-        {
-            matchTimeEnded = value;
-        }
-    }
+    
 }
