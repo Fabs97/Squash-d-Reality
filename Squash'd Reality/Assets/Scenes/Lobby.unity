@@ -178,6 +178,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &955941873
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: nextSceneName
+      value: TrenchTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: difficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6103926
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorTrenchTime
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
 --- !u!1 &966092405
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_Name
-      value: Door
+      value: DoorCookingTime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
