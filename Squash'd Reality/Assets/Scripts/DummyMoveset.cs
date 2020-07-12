@@ -19,7 +19,8 @@ public class DummyMoveset : NetworkBehaviour
 
     [SyncVar] public string playerName;
     public int life;
-    
+
+    private Coroutine durationPowerup;
 
     private void Start()
     {
@@ -127,19 +128,36 @@ public class DummyMoveset : NetworkBehaviour
     {
         resetPowerUpValues();
         playerSpeedMultiplier = hoverboardMultiplier;
+        durationPowerup = StartCoroutine(powerUpDuration());
     }
 
     public void setPogoStickActive()
     {
         resetPowerUpValues();
         jumpHeightMultiplier = pogoStickMultiplier;
+        durationPowerup = StartCoroutine(powerUpDuration());
     }
     public void resetPowerUpValues()
     {
+        if (durationPowerup != null)
+        {
+            StopCoroutine(durationPowerup);
+
+        }
         life = 1;
         playerSpeedMultiplier = 1f;
         jumpHeightMultiplier = 1.3f;
     }
 
+    IEnumerator powerUpDuration()
+    {
+        yield return new WaitForSeconds(10f);
+        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        resetPowerUpValues();
+        if (hasAuthority)
+        {
+         _uiManager.setPowerUpButtonActive(false);   
+        }
+    }
 
 }
