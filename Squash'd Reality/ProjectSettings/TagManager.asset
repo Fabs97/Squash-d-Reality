@@ -14,6 +14,7 @@ TagManager:
   - Cauldron
   - UICookingTime
   - Enemy
+  - SpawnDirection
   layers:
   - Default
   - TransparentFX

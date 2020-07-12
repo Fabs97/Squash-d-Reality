@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 
 
     private GameObject[] players;
+    private GameObject[] spawnPositions;
 
     private float rotationSpeed = 3f;
     private float moveSpeed = 3f;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     private float distanceToKill = 1f;
     private bool isExploding = false;
+    private bool canFollowPlayer = false;
     
     
     // Start is called before the first frame update
@@ -27,28 +29,44 @@ public class Enemy : MonoBehaviour
     {
         life = 20f;
         players = GameObject.FindGameObjectsWithTag("Player");
+        spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
+        StartCoroutine(canFollowSet());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length!= 0)
+        if (canFollowPlayer)
         {
-            int playerIndex = nearbyPlayerIndex();
-            float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
-            if (!isExploding && distance <= distanceToKill)
+            players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length!= 0)
             {
-                isExploding = true;
-                StartCoroutine(killNearbyPlayers(1f));
-            }
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;   
+                int playerIndex = nearbyPlayerIndex();
+                float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
+                if (!isExploding && distance <= distanceToKill)
+                {
+                    isExploding = true;
+                    StartCoroutine(killNearbyPlayers(1f));
+                }
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                transform.position += transform.forward * moveSpeed * Time.deltaTime;   
+            }   
         }
-            
+        else
+        {
+            int spawnIndex = nearbySpawnIndex();
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;   
+
+        }
     }
 
+    IEnumerator canFollowSet()
+    {
+        yield return new WaitForSeconds(1.5f);
+        canFollowPlayer = true;
+    }
     private int nearbyPlayerIndex()
     {
         int min_index = 0;
@@ -57,6 +75,24 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < players.Length; i++)
         {
             float distance = Vector3.Distance(transform.position, players[i].transform.position);
+            if (distance < min_distance)
+            {
+                min_distance = distance;
+                min_index = i;
+            }
+        }
+
+        return min_index;
+    }
+
+    private int nearbySpawnIndex()
+    {
+        int min_index = 0;
+        float min_distance = 0f;
+        min_distance = Vector3.Distance(transform.position, spawnPositions[0].transform.position);
+        for (int i = 0; i < spawnPositions.Length; i++)
+        {
+            float distance = Vector3.Distance(transform.position, spawnPositions[i].transform.position);
             if (distance < min_distance)
             {
                 min_distance = distance;
