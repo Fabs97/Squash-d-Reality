@@ -9,6 +9,7 @@ namespace NetworkingManager {
         private float nextRefreshTime;
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
+        private List<string> _playersNames;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
@@ -91,6 +92,15 @@ namespace NetworkingManager {
             }
             FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
             Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
+        }
+
+        public void addSelectedPlayer(string name){
+            if(_playersNames == null) _playersNames = new List<string>();
+            _playersNames.Add(name);
+        }
+
+        public List<string> getPlayersNames(){
+            return this._playersNames;
         }
     }
 

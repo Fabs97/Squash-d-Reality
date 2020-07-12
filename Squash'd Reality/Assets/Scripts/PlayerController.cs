@@ -51,6 +51,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdSelectedCharacter(string characterName)
     {
         UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
+        FindObjectOfType<NetworkingManager.NetworkingManager>().addSelectedPlayer(characterName);
         if (characterName == "Markus Nobel") uICharacterSelectionManager.Character1Taken = true;
         else if (characterName == "Ken Nolo") uICharacterSelectionManager.Character2Taken = true;
         else if (characterName == "Kam Brylla") uICharacterSelectionManager.Character3Taken = true;
