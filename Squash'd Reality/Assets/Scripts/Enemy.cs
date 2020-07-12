@@ -23,20 +23,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         life = 20f;
-
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length != 0)
-        {
+        
             int playerIndex = nearbyPlayerIndex();
             float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;   
-        }
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
     }
 
     private int nearbyPlayerIndex()
@@ -56,6 +53,7 @@ public class Enemy : MonoBehaviour
 
         return min_index;
     }
+
 
     private void OnCollisionEnter(Collision other)
     {
