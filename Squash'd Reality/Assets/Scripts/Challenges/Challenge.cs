@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class Challenge : MonoBehaviour {
     protected int difficulty;
@@ -7,8 +8,8 @@ public class Challenge : MonoBehaviour {
     protected LevelManager.LevelManager _levelManager;
 
     protected virtual void Start() {
-        _networkingManager = Object.FindObjectOfType<NetworkingManager.NetworkingManager>();
-        _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
+        _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+        _levelManager = FindObjectOfType<LevelManager.LevelManager>();
     }
 
     protected virtual void setDifficulty() { }

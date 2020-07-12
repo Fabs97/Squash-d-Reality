@@ -20,16 +20,18 @@ public class Spawner : NetworkBehaviour
     private Coroutine spawnRoutine;
 
     void Start() {
-        if(startSpawningFromTheBeginning) startSpawning();
+        if(startSpawningFromTheBeginning) CmdStartSpawning();
     }
 
-    public void startSpawning(){
+    [Command]
+    public void CmdStartSpawning(){
         if(isServer){
             spawnRoutine = StartCoroutine(spawningCoroutine());
         }
     }
 
     public void removeZone(int index){
+        
         maxCoordinates.RemoveAt(index);
         minCoordinates.RemoveAt(index);
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,31 +54,36 @@ public class CookingTime : Challenge {
     }
 
     protected override void setDifficulty() {
-        Spawner spawner = Object.FindObjectOfType<Spawner>();
-        spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
-        string playerName = GameObject.FindGameObjectWithTag("Player").GetComponent<DummyMoveset>().playerName;
-        switch (playerName)
+        try
         {
-            case "Markus Nobel":{
-                spawner.removeZone(0);
-                break;
-            }
-            case "Ken Nolo":{
-                spawner.removeZone(1);
-                break;
-            }
-            case "Kam Brylla":{
-                spawner.removeZone(2);
-                break;
-            }
-            case "Raphael Nosun":{
+            Spawner spawner = FindObjectOfType<Spawner>();
+            spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
+            List<string> playersNames = _networkingManager.getPlayersNames();
+            if(!playersNames.Contains("Raphael Nosun")) {
+                Debug.Log("CookingTime::setDifficulty - Removing zone of Raphael Nosun!");
                 spawner.removeZone(3);
-                break;
             }
-            default: break;
+            if(!playersNames.Contains("Kam Brylla")) {
+                Debug.Log("CookingTime::setDifficulty - Removing zone of Kam Brylla!");
+                spawner.removeZone(2);
+            }
+            if(!playersNames.Contains("Ken Nolo")) {
+                Debug.Log("CookingTime::setDifficulty - Removing zone of Ken Nolo!");
+                spawner.removeZone(1);
+            }
+            if(!playersNames.Contains("Markus Nobel")) {
+                Debug.Log("CookingTime::setDifficulty - Removing zone of Markus Nobel!");
+                spawner.removeZone(0);
+            }
+            spawner.CmdStartSpawning();
+            
+        } catch (Exception e){
+            Debug.LogError("CookingTime::setDifficulty - Catched Exception: " + e.StackTrace);
         }
-        spawner.startSpawning();
-        base.setDifficulty();
+        finally
+        {
+            base.setDifficulty();
+        }
     }
 
     public override void endChallenge(bool successful){
