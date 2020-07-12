@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
+
+    private float distanceToKill = 1f;
+    private bool isExploding = false;
     
     
     // Start is called before the first frame update
@@ -30,10 +33,20 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length!= 0)
+        {
             int playerIndex = nearbyPlayerIndex();
             float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
+            if (!isExploding && distance <= distanceToKill)
+            {
+                isExploding = true;
+                StartCoroutine(killNearbyPlayers(1f));
+            }
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;   
+        }
+            
     }
 
     private int nearbyPlayerIndex()
@@ -54,6 +67,20 @@ public class Enemy : MonoBehaviour
         return min_index;
     }
 
+    IEnumerator killNearbyPlayers(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        for (int i = 0; i < players.Length; i++)
+        {
+            float distance = Vector3.Distance(transform.position, players[i].transform.position);
+            if (distance <= distanceToKill)
+            {
+                players[i].GetComponent<DummyMoveset>().TakeDamage(1);
+            }
+        }
+        Destroy(this.gameObject);
+
+    }
 
     private void OnCollisionEnter(Collision other)
     {

@@ -14,10 +14,12 @@ public class DummyMoveset : NetworkBehaviour
     private float gravityValue = -9.81f;
 
     [SyncVar] public string playerName;
+    private int life;
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        life = 1;
     }
 
     void Update()
@@ -85,6 +87,19 @@ public class DummyMoveset : NetworkBehaviour
         }
         _uiManager.setInfoBoxActive(true);
 
+    }
+
+    //Use this for trench time
+    public void TakeDamage(int damage)
+    {
+        UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        life = life - damage;
+        if (life <= 0)
+        {
+            _uiManager.setInfoBoxText("YOU DIED");
+            Destroy(this.gameObject);
+        }   
+        
     }
 
 }
