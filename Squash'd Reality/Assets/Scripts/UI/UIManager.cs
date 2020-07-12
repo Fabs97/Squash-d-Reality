@@ -119,9 +119,10 @@ public class UIManager : MonoBehaviour
     }
     
     //SET power-up image
-    public void setPowerUpImage()
+    public void setPowerUpImage(string abilityName)
     {
-        //TODO
+        Texture2D myTexture = Resources.Load("Images/AbilityImages/" + abilityName) as Texture2D;
+        PowerUp_Image.GetComponent<RawImage>().texture = myTexture;
     }
 
     //SET gameobject active or not
