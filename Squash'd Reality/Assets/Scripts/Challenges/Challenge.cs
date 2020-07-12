@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Challenge : MonoBehaviour {
@@ -18,9 +19,16 @@ public class Challenge : MonoBehaviour {
             uiManager.setInfoBoxText("YOU WIN!");
         } else {
             uiManager.setInfoBoxText("YOU LOSE!");
-            _networkingManager.serverChangeScene(_levelManager.getCurrentLevel().sceneName, difficulty);
+            StartCoroutine(waitToReset());
         }
         uiManager.setInfoBoxActive(true);
+    }
+
+    IEnumerator waitToReset()
+    {
+        yield return new WaitForSeconds(2f);
+        _networkingManager.serverChangeScene(_levelManager.getCurrentLevel().sceneName, difficulty);
+
     }
     
 }

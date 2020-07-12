@@ -5,15 +5,15 @@ using UnityEngine.Networking;
 
 public class MatchManager : NetworkBehaviour
 {
-    private GameObject UIManager; 
-    [SyncVar] bool gameReady;
-    private bool matchStarting = false;
-    private NetworkingManager.NetworkingManager _networkingManager;
+    protected GameObject UIManager; 
+    [SyncVar] protected bool gameReady;
+    protected bool matchStarting = false;
+    protected NetworkingManager.NetworkingManager _networkingManager;
 
     [SerializeField] private string openingString;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         UIManager = GameObject.FindWithTag("UIManager");
@@ -22,7 +22,7 @@ public class MatchManager : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (isServer && _networkingManager.numPlayers == GameObject.FindGameObjectsWithTag("Player").Length)
         {
@@ -37,7 +37,7 @@ public class MatchManager : NetworkBehaviour
         
     }
 
-    IEnumerator matchStart()
+    protected virtual IEnumerator matchStart()
     {
         yield return new WaitForSeconds(5f);
         UIManager.GetComponent<UIManager>().setInfoBoxActive(false);
@@ -50,7 +50,7 @@ public class MatchManager : NetworkBehaviour
         
     }
 
-    private void showPlayerUI()
+    protected virtual void showPlayerUI()
     {
         string playerName = GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName;
         UIManager.GetComponent<UIManager>().setPlayerImage(playerName);
@@ -59,7 +59,7 @@ public class MatchManager : NetworkBehaviour
         //TODO: insert UI settings
     }
 
-    public void timeEnded()
+    public virtual void timeEnded()
     {
         UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
@@ -72,10 +72,10 @@ public class MatchManager : NetworkBehaviour
 
     }
 
-    IEnumerator resetChallenge()
+    protected virtual IEnumerator resetChallenge()
     {
         yield return new WaitForSeconds(2f);
-        GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
+        //GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
 
     }
    

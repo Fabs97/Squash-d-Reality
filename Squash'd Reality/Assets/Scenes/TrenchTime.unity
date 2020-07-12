@@ -151,9 +151,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 522856169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 772e65f57f604a99bfa8c8b17148fc67, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dc400495a9513c469b43e3f0d4e168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
+  gameReady: 0
+  matchStarting: 0
+  _networkingManager: {fileID: 0}
   openingString: Survive the enemies!
 --- !u!4 &522856171
 Transform:
@@ -866,6 +870,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1984300547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1984300548}
+  - component: {fileID: 1984300549}
+  m_Layer: 0
+  m_Name: TrenchTimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1984300548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984300547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.703973, y: -6.8121796, z: 17.462639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1984300549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984300547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346996828931fed42a9d1688a4cda9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &831785466816502924
 PrefabInstance:
   m_ObjectHideFlags: 0

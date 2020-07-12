@@ -101,7 +101,7 @@ public class DummyMoveset : NetworkBehaviour
                 _uiManager.setInfoBoxText("YOU DIED");        
                 _uiManager.setInfoBoxActive(true);   
             }
-            
+            GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
             Destroy(this.gameObject);
         }   
         
