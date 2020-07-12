@@ -96,7 +96,12 @@ public class DummyMoveset : NetworkBehaviour
         life = life - damage;
         if (life <= 0)
         {
-            _uiManager.setInfoBoxText("YOU DIED");
+            if (hasAuthority)
+            {
+                _uiManager.setInfoBoxText("YOU DIED");        
+                _uiManager.setInfoBoxActive(true);   
+            }
+            
             Destroy(this.gameObject);
         }   
         

@@ -651,7 +651,7 @@ MonoBehaviour:
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 1
-  firstSpawnDelay: 6.3
+  firstSpawnDelay: 10.7
   spawningDelay: 2.4
   maxCoordinates:
   - {x: 22.85, y: 1, z: 4.89}
