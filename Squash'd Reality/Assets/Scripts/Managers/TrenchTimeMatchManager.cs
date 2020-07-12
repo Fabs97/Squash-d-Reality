@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
+using UnityEngine.Networking;
 
 public class TrenchTimeMatchManager : MatchManager
 {
+    [SyncVar] public bool matchTimeEnded = false;
     protected override void Start()
     {
         base.Start();
@@ -38,12 +40,24 @@ public class TrenchTimeMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
+        if (isServer)
+        {
+            GameObject.FindObjectOfType<Spawner>().StopSpawning();
+            setMatchTimeEnded(true);
+        }
     }
 
     protected override IEnumerator resetChallenge()
     {
         yield return new WaitForSeconds(2f);
-        GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
+        GameObject.FindObjectOfType<TrenchTime>().endChallenge(false);
+    }
+
+    protected void setMatchTimeEnded(bool value)
+    {
+        if (isServer)
+        {
+            matchTimeEnded = value;
+        }
     }
 }

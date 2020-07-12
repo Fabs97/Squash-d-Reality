@@ -17,13 +17,15 @@ public class Spawner : NetworkBehaviour
     
     private int _spawningIndex = -1;
 
+    private Coroutine spawnRoutine;
+
     void Start() {
         if(startSpawningFromTheBeginning) startSpawning();
     }
 
     public void startSpawning(){
         if(isServer){
-            StartCoroutine(spawningCoroutine());
+            spawnRoutine = StartCoroutine(spawningCoroutine());
         }
     }
 
@@ -62,5 +64,11 @@ public class Spawner : NetworkBehaviour
 
         //destroy the spawner when this point is reached
         Destroy(gameObject);
+    }
+
+    public void StopSpawning()
+    {
+        StopCoroutine(spawnRoutine);
+
     }
 }

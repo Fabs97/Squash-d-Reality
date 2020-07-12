@@ -9,6 +9,7 @@ public class MatchManager : NetworkBehaviour
     [SyncVar] protected bool gameReady;
     protected bool matchStarting = false;
     protected NetworkingManager.NetworkingManager _networkingManager;
+    
 
     [SerializeField] private string openingString;
 
@@ -46,7 +47,7 @@ public class MatchManager : NetworkBehaviour
             //START ROOM LOGIC
         }
         showPlayerUI();
-        UIManager.GetComponent<UIManager>().StartCountdown(90f);
+        UIManager.GetComponent<UIManager>().StartCountdown(15f);
         
     }
 

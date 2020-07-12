@@ -8,6 +8,7 @@ public class TrenchTime : Challenge
     private bool matchStarted = false;
 
     private int playersAlive;
+    
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -20,8 +21,12 @@ public class TrenchTime : Challenge
     {
         if (matchStarted && (playersAlive == 0) )
         {
-            Debug.Log("ENTRO QUI");
             endChallenge(false);
+        }
+
+        if (playersAlive>=0 && GameObject.FindObjectOfType<TrenchTimeMatchManager>().matchTimeEnded && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            endChallenge(true);
         }
         
         
@@ -30,7 +35,6 @@ public class TrenchTime : Challenge
     public void setPlayersConnected(int num)
     {
         playersAlive = num;
-        Debug.Log("PLAYER VIVI: " + playersAlive);
         matchStarted = true;
     }
 

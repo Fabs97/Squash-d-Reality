@@ -19,7 +19,7 @@ public class DummyMoveset : NetworkBehaviour
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        life = 1;
+        life = 1000000;
     }
 
     void Update()

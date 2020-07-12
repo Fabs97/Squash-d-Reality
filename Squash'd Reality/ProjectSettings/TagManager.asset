@@ -13,6 +13,7 @@ TagManager:
   - DDOL
   - Cauldron
   - UICookingTime
+  - Enemy
   layers:
   - Default
   - TransparentFX
