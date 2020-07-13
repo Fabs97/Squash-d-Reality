@@ -2,7 +2,11 @@ using System;
 using UnityEngine;
 
 public class PistolPowerUp : WeaponPowerUP {
-    private void Start() {
+    protected override void Start()
+    {
+        base.Start();
         base.weaponType = Type.GetType("Pistol");
+
     }
+
 }

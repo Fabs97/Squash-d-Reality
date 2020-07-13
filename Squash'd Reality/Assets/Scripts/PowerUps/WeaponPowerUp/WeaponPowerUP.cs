@@ -4,6 +4,11 @@ using UnityEngine;
 public class WeaponPowerUP : PowerUP {
     protected Type weaponType;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public override void triggerEnter(Collider other)
     {
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HoverboardPowerUp : PowerUP
 {
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public override void triggerEnter(Collider other)
     {
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();

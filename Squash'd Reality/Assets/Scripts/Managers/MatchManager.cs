@@ -47,7 +47,7 @@ public class MatchManager : NetworkBehaviour
             //START ROOM LOGIC
         }
         showPlayerUI();
-        UIManager.GetComponent<UIManager>().StartCountdown(15f);
+        UIManager.GetComponent<UIManager>().StartCountdown(90f);
         
     }
 
