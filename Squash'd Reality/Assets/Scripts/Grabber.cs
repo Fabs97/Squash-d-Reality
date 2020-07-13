@@ -25,7 +25,16 @@ public class Grabber : NetworkBehaviour
     void Start()
     {
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
-        light = GetComponent<Light>();
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (transform.GetChild(i).name == "PlayerLight")
+            {
+                light = transform.GetChild(i).gameObject.GetComponent<Light>();
+            }
+        }
+        {
+            
+        }
         if(light != null) light.intensity = _levelManager.getCurrentLevel().isDark ? luminosity : 0;
     }
 
