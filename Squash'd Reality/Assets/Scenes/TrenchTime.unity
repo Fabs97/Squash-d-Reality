@@ -154,6 +154,7 @@ MonoBehaviour:
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 1
+  spawnDoubleObject: 0
   firstSpawnDelay: 13
   spawningDelay: 4.05
   maxCoordinates:
@@ -341,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingString: Survive the enemies!
+  challengeTimer: 90
   matchTimeEnded: 0
 --- !u!4 &522856171
 Transform:
@@ -1018,6 +1020,7 @@ MonoBehaviour:
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 1
+  spawnDoubleObject: 0
   firstSpawnDelay: 10.7
   spawningDelay: 2.4
   maxCoordinates:

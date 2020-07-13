@@ -22,6 +22,8 @@ public class DummyMoveset : NetworkBehaviour
 
     private Coroutine durationPowerup;
 
+    private bool pogoStickActive;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -63,8 +65,14 @@ public class DummyMoveset : NetworkBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButton("Jump") && groundedPlayer) {
+        if (Input.GetButton("Jump") && groundedPlayer && !pogoStickActive) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
+        }
+
+        if (pogoStickActive && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
+
         }
 
         if (!groundedPlayer)
@@ -134,6 +142,7 @@ public class DummyMoveset : NetworkBehaviour
     public void setPogoStickActive()
     {
         resetPowerUpValues();
+        pogoStickActive = true;
         jumpHeightMultiplier = pogoStickMultiplier;
         durationPowerup = StartCoroutine(powerUpDuration());
     }
@@ -147,6 +156,7 @@ public class DummyMoveset : NetworkBehaviour
         life = 1;
         playerSpeedMultiplier = 1f;
         jumpHeightMultiplier = 1.3f;
+        pogoStickActive = false;
     }
 
     IEnumerator powerUpDuration()
