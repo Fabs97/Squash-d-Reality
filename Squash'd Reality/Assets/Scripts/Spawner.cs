@@ -6,16 +6,19 @@ using UnityEngine.Networking;
 public class Spawner : NetworkBehaviour
 {
     [SerializeField] private List<GameObject> prefabsToSpawn;
-    [SerializeField] private bool randomizeSpawn;
-    [SerializeField] private bool deleteFromListAfterSpawn;
-    [SerializeField] private bool startSpawningFromTheBeginning; 
-    [Range(0, 40)][SerializeField] private float firstSpawnDelay;
-    [Range(0, 10)][SerializeField] private float spawningDelay;
+    [SerializeField] private bool randomizeSpawn = false;
+    [SerializeField] private bool deleteFromListAfterSpawn = false;
+    [SerializeField] private bool startSpawningFromTheBeginning = false;
+    [SerializeField] private bool spawnDoubleObject = false;
+    [Range(0, 40)][SerializeField] public float firstSpawnDelay = 0f;
+    [Range(0, 10)][SerializeField] public float spawningDelay = 0f;
     [SerializeField] private List<Vector3> maxCoordinates;
     [SerializeField] private List<Vector3> minCoordinates;
     public int objectsToSpawnCount = 999;
     
     private int _spawningIndex = -1;
+    private int objectsSpawnedCount = 0;
+
 
     private Coroutine spawnRoutine;
 
@@ -37,29 +40,14 @@ public class Spawner : NetworkBehaviour
     }
 
     IEnumerator spawningCoroutine(){
-        int objectsSpawnedCount = 0;
         yield return new WaitForSeconds(firstSpawnDelay);
-        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
-            
-            if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
-            else _spawningIndex++; 
+        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
             if(_spawningIndex == prefabsToSpawn.Count) break;
 
-            int randomZoneIndex = Random.Range(0, maxCoordinates.Count);
-            float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
-            float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
-            float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
-
-            Vector3 tr = new Vector3(randomX, randomY, randomZ);
-            Quaternion q = Quaternion.identity;
-            GameObject prefabToSpawn = prefabsToSpawn[_spawningIndex];
-            GameObject go = Instantiate(prefabToSpawn, tr, q);
-
-            NetworkServer.Spawn(go);
-            if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            spawnObject();
+            yield return new WaitForSeconds(.5f);
+            if(spawnDoubleObject) spawnObject();            
             
-            
-            objectsSpawnedCount ++;
             if(objectsSpawnedCount == objectsToSpawnCount) break;
             yield return new WaitForSeconds(spawningDelay);
         }
@@ -68,9 +56,31 @@ public class Spawner : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    public void StopSpawning()
-    {
-        StopCoroutine(spawnRoutine);
+    private void spawnObject(){
+        if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
+        else _spawningIndex++; 
 
+        GameObject prefabToSpawn = prefabsToSpawn[_spawningIndex];
+        
+        int randomZoneIndex = Random.Range(0, maxCoordinates.Count);
+        float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
+        float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
+        float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
+
+        Vector3 tr = new Vector3(randomX, randomY, randomZ);
+        Quaternion q = Quaternion.identity;
+        GameObject go = Instantiate(prefabToSpawn, tr, q);
+
+        NetworkServer.Spawn(go);
+        if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+        objectsSpawnedCount ++;
+    }
+
+    public void StopSpawning() {
+        StopCoroutine(spawnRoutine);
+    }
+
+    public void setSpawningDelay(float delay){
+        spawningDelay = delay;
     }
 }
