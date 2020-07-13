@@ -10,6 +10,7 @@ public class TrenchTime : Challenge
     private int playersAlive;
 
     public bool timeEnded = false;
+    private bool matchEnded = false;
     
     // Start is called before the first frame update
     protected override void Start()
@@ -26,9 +27,10 @@ public class TrenchTime : Challenge
             endChallenge(false);
         }
 
-        if (playersAlive>=0 && timeEnded && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (!matchEnded && playersAlive>=0 && timeEnded && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             endChallenge(true);
+            matchEnded = true;
         }
         
         

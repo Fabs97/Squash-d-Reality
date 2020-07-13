@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - SpawnDirection
   - Spawner
+  - Door
   layers:
   - Default
   - TransparentFX
