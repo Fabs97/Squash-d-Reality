@@ -20,11 +20,10 @@ public class TrenchTimeMatchManager : MatchManager
         }
         if (gameReady && !matchStarting)
         {
-            UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             GameObject.FindObjectOfType<TrenchTime>().setPlayersConnected(GameObject.FindGameObjectsWithTag("Player").Length);
             matchStarting = true;
-            UIManager.GetComponent<UIManager>().StartMatch(4f);
+            _uiManager.StartMatch(4f);
             for (int i = 0; i < players.Length; i++)
             {
                 for (int j = 0; j < players[i].transform.childCount; j++)
@@ -36,8 +35,8 @@ public class TrenchTimeMatchManager : MatchManager
                         oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
                         if (players[i].gameObject.GetComponent<DummyMoveset>().hasAuthority)
                         {
-                            uiManager.setWeaponImage("Pistol");
-                            uiManager.setWeaponActive(true);
+                            _uiManager.setWeaponImage("Pistol");
+                            _uiManager.setWeaponActive(true);
                         }
 
                     }
@@ -49,10 +48,8 @@ public class TrenchTimeMatchManager : MatchManager
         if (matchTimeEnded)
         {
             GameObject.FindObjectOfType<TrenchTime>().timeEnded = true;
-            if (isServer)
-            {
+            if (isServer) {
                 matchTimeEnded = false;
- 
             }
         }
         

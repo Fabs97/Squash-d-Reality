@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CookingTime : Challenge {
-
     private const int difficultyMultiplier = 8;
     private const int maxActiveIngredients = 2;
+    private const float minTotalTime = 120f;
+    private const float minMoreTime = 30f;
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
+    private Spawner _spawner;
 
     private int insertedIngredients = 0;
     
     protected override void Start()
     {
         base.Start();
+        _spawner = FindObjectOfType<Spawner>();
         spawnedIngredients = new List<Ingredient>();
         activeIngredients = new List<Ingredient>();
         difficulty = _levelManager.getChallengeDifficulty();
@@ -57,25 +60,36 @@ public class CookingTime : Challenge {
     protected override void setDifficulty() {
         try
         {
-            Spawner spawner = FindObjectOfType<Spawner>();
-            spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
+            setMatch();
+
             List<string> playersNames = _networkingManager.getPlayersNames();
-            if(!playersNames.Contains("Raphael Nosun")) spawner.removeZone(3);
-            if(!playersNames.Contains("Kam Brylla")) spawner.removeZone(2);
-            if(!playersNames.Contains("Ken Nolo")) spawner.removeZone(1);
-            if(!playersNames.Contains("Markus Nobel")) spawner.removeZone(0);
-            spawner.CmdStartSpawning();
+            if(!playersNames.Contains("Raphael Nosun")) _spawner.removeZone(3);
+            if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
+            if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
+            if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
+            _spawner.CmdStartSpawning();
             
         } catch (Exception e){
             Debug.LogError("CookingTime::setDifficulty - Catched Exception: " + e.StackTrace);
         }
-        finally
-        {
+        finally {
             base.setDifficulty();
         }
     }
 
+    private void setMatch(){
+        int objectsToSpawn = difficulty * difficultyMultiplier;
+        float totalTime = minTotalTime/difficulty;
+        float moreTime = minMoreTime/difficulty;
+
+        _spawner.objectsToSpawnCount = objectsToSpawn;
+        _spawner.setSpawningDelay(totalTime / objectsToSpawn); 
+
+        base._matchManager.setTimer(totalTime + moreTime);
+    }
+
     public override void endChallenge(bool successful){
+        _spawner.StopSpawning();
         base.endChallenge(successful);
     }
 }

@@ -6,11 +6,13 @@ public class Challenge : MonoBehaviour {
     protected int difficulty;
     protected NetworkingManager.NetworkingManager _networkingManager;
     protected LevelManager.LevelManager _levelManager;
+    protected MatchManager _matchManager;
     [SerializeField] private GameObject[] doors;
 
     protected virtual void Start() {
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
+        _matchManager = FindObjectOfType<MatchManager>();
     }
 
     protected virtual void setDifficulty() { }

@@ -10,8 +10,8 @@ public class Spawner : NetworkBehaviour
     [SerializeField] private bool deleteFromListAfterSpawn = false;
     [SerializeField] private bool startSpawningFromTheBeginning = false;
     [SerializeField] private bool spawnDoubleObject = false;
-    [Range(0, 40)][SerializeField] private float firstSpawnDelay = 0f;
-    [Range(0, 10)][SerializeField] private float spawningDelay = 0f;
+    [Range(0, 40)][SerializeField] public float firstSpawnDelay = 0f;
+    [Range(0, 10)][SerializeField] public float spawningDelay = 0f;
     [SerializeField] private List<Vector3> maxCoordinates;
     [SerializeField] private List<Vector3> minCoordinates;
     public int objectsToSpawnCount = 999;
@@ -78,5 +78,9 @@ public class Spawner : NetworkBehaviour
 
     public void StopSpawning() {
         StopCoroutine(spawnRoutine);
+    }
+
+    public void setSpawningDelay(float delay){
+        spawningDelay = delay;
     }
 }
