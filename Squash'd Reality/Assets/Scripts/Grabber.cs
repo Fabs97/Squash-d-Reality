@@ -128,22 +128,26 @@ public class Grabber : NetworkBehaviour
 
     public void askToggleLight(bool value)
     {
-        if (GetComponentInParent<DummyMoveset>().playerName == "Markus Nobel")
+        if (GameObject.FindGameObjectWithTag("LocalPlayer") != null)
         {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
-        }
-        if (GetComponentInParent<DummyMoveset>().playerName == "Ken Nolo")
-        {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
-        }
-        if (GetComponentInParent<DummyMoveset>().playerName == "Kam Brylla")
-        {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
-        }
-        if (GetComponentInParent<DummyMoveset>().playerName == "Raphael Nosun")
-        {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
+            if (GetComponentInParent<DummyMoveset>().playerName == "Markus Nobel")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Ken Nolo")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Kam Brylla")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Raphael Nosun")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
 
+            }
         }
+        
     }
 }
