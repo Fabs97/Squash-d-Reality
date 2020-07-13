@@ -32,10 +32,16 @@ public class Grabber : NetworkBehaviour
                 light = transform.GetChild(i).gameObject.GetComponent<Light>();
             }
         }
+
+        if (_levelManager.getCurrentLevel().isDark)
         {
-            
+            askToggleLight(true);
         }
-        if(light != null) light.intensity = _levelManager.getCurrentLevel().isDark ? luminosity : 0;
+        else
+        {
+            light.intensity = 0f;
+        }
+            
     }
 
     // Update is called once per frame
@@ -78,10 +84,10 @@ public class Grabber : NetworkBehaviour
         toGrab.transform.parent = null;
         toGrab = null;
         isGrabbing = false;  
-        toggleLight(true);
+        askToggleLight(true);
     }
 
-    void toggleLight(bool val){
+    public void toggleLight(bool val){
         if(_levelManager.getCurrentLevel().isDark){
             light.intensity = val ? luminosity : 0;
         }
@@ -97,7 +103,7 @@ public class Grabber : NetworkBehaviour
         toGrab.GetComponent<Rigidbody>().useGravity = false;
         toGrab.transform.parent = transform;
         isGrabbing = true;
-        toggleLight(false);
+        askToggleLight(false);
     }
 
     void OnDrawGizmos()
@@ -117,6 +123,27 @@ public class Grabber : NetworkBehaviour
             Gizmos.DrawRay(transform.position, transform.forward * maxDist);
             Gizmos.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.forward * maxDist);
             Gizmos.DrawRay(transform.position + new Vector3(0, -0.5f, 0), transform.forward * maxDist);
+        }
+    }
+
+    public void askToggleLight(bool value)
+    {
+        if (GetComponentInParent<DummyMoveset>().playerName == "Markus Nobel")
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
+        }
+        if (GetComponentInParent<DummyMoveset>().playerName == "Ken Nolo")
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
+        }
+        if (GetComponentInParent<DummyMoveset>().playerName == "Kam Brylla")
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
+        }
+        if (GetComponentInParent<DummyMoveset>().playerName == "Raphael Nosun")
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
+
         }
     }
 }

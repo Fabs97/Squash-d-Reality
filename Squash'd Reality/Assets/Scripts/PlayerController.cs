@@ -91,6 +91,35 @@ public class PlayerController : NetworkBehaviour
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);
     }
+
+    [Command]
+
+    public void CmdsetLight1(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light1On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight2(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light2On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight3(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light3On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight4(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light4On =
+            value;
+    }
     
     
 }

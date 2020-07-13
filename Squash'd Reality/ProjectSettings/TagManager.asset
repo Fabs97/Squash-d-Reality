@@ -17,6 +17,7 @@ TagManager:
   - SpawnDirection
   - Spawner
   - Door
+  - DarkPuzzleMatchManager
   layers:
   - Default
   - TransparentFX
