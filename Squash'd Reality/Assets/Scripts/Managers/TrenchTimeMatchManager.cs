@@ -53,7 +53,11 @@ public class TrenchTimeMatchManager : MatchManager
     {
         if (isServer)
         {
-            GameObject.FindObjectOfType<Spawner>().StopSpawning();
+            GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+            for (int i = 0; i < spawners.Length; i++)
+            {
+                spawners[i].GetComponent<Spawner>().StopSpawning();
+            }
         }
         matchTimeEnded = true;
 

@@ -14,7 +14,7 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Fire")!=0 && weapon.canShoot)
+        if (weapon !=null && Input.GetAxis("Fire")!=0 && weapon.canShoot)
         {
             // StartBulletEmission();
             weapon.shoot();

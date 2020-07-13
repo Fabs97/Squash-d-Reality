@@ -15,9 +15,9 @@ MonoBehaviour:
   sceneName: TrenchTime
   spawnPlayers: 1
   playersPositions:
-  - {x: -2.35, y: 0.77, z: -5.5}
-  - {x: 1.7, y: 0.77, z: -2.29}
-  - {x: 1.85, y: 0.77, z: -5.25}
-  - {x: -3.88, y: 0.77, z: -1.99}
+  - {x: -3, y: 1, z: -4.75}
+  - {x: 4.52, y: 1, z: -4.75}
+  - {x: 11.22, y: 1, z: -4.75}
+  - {x: 15.24, y: 1, z: -4.75}
   isDark: 0
   isChallenge: 1

@@ -15,6 +15,7 @@ TagManager:
   - UICookingTime
   - Enemy
   - SpawnDirection
+  - Spawner
   layers:
   - Default
   - TransparentFX
