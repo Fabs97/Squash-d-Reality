@@ -91,7 +91,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.25
+  m_fontSize: 20.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.87700003, y: 0.2}
   m_AnchorMax: {x: 0.9834571, y: 0.291}
-  m_AnchoredPosition: {x: 1.0999756, y: 0.19999695}
+  m_AnchoredPosition: {x: 1.0999756, y: 0.2000122}
   m_SizeDelta: {x: 3.7999268, y: 0.67355347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1175341264164642639
@@ -489,7 +489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3088974, y: 0.21966743}
   m_AnchorMax: {x: 0.6922821, y: 0.78683376}
-  m_AnchoredPosition: {x: -0.5, y: -1.5000153}
+  m_AnchoredPosition: {x: -0.5, y: -1.5}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1175341264599525538
@@ -842,7 +842,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.35
+  m_fontSize: 18.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -940,7 +940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.880718, y: 0.012633191}
   m_AnchorMax: {x: 0.9834571, y: 0.1948166}
-  m_AnchoredPosition: {x: 0, y: 0.1000061}
+  m_AnchoredPosition: {x: 0, y: 0.10003662}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1175341265162960534
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18.3
+  m_fontSize: 18.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 36.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1407,8 +1407,6 @@ MonoBehaviour:
   PowerUp_Image: {fileID: 1175341264852080263}
   PowerUp_Text: {fileID: 1175341264852080262}
   PowerUp_Button: {fileID: 1175341264852080261}
-  IngredientsBox: {fileID: 0}
-  IngredientsBox_Text: {fileID: 1175341264852080257}
   InfoBox: {fileID: 1175341264852080258}
   InfoBox_Text: {fileID: 1175341264852080257}
   MatchStartingBox: {fileID: 995338018}
@@ -1452,7 +1450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.016692309, y: 0.017}
   m_AnchorMax: {x: 0.11931449, y: 0.2}
-  m_AnchoredPosition: {x: 0.54071045, y: -0.07699585}
+  m_AnchoredPosition: {x: 0.54071045, y: -0.07696533}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1175341265958689387
@@ -1710,13 +1708,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1de190cc6d333954680798b12652ebc3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

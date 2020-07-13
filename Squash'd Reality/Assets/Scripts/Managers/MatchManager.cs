@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class MatchManager : NetworkBehaviour
 {
@@ -42,6 +43,7 @@ public class MatchManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(5f);
         _uiManager.setInfoBoxActive(false);
+        _uiManager.UIpanel.GetComponent<Image>().enabled = false;
         if (isServer)
         {
             //START ROOM LOGIC
