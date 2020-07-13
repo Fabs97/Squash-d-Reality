@@ -463,6 +463,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+--- !u!1001 &1531052206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: nextSceneName
+      value: DarkPuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: difficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6103926
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorDarkPuzzle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
 --- !u!1 &1540075823
 GameObject:
   m_ObjectHideFlags: 0
