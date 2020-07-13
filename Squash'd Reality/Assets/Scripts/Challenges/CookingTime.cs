@@ -5,12 +5,11 @@ using UnityEngine;
 public class CookingTime : Challenge {
     private const int difficultyMultiplier = 8;
     private const int maxActiveIngredients = 2;
-    private const float minTotalTime = 120f;
-    private const float minMoreTime = 30f;
+    [SerializeField] private const float minTotalTime = 120f;
+    [SerializeField] private const float minMoreTime = 30f;
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
     private Spawner _spawner;
-
     private int insertedIngredients = 0;
     
     protected override void Start()
