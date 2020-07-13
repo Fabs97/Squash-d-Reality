@@ -21,6 +21,7 @@ public class Grabber : NetworkBehaviour
     [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
 
+    private float throwForce = 400f;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +82,9 @@ public class Grabber : NetworkBehaviour
     public void removeGrab(){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         toGrab.GetComponent<Rigidbody>().useGravity = true;
+        toGrab.GetComponent<Rigidbody>().isKinematic = false;
         toGrab.transform.parent = null;
+        toGrab.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
         toGrab = null;
         isGrabbing = false;  
         askToggleLight(true);
