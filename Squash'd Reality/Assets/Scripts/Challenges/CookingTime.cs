@@ -5,6 +5,7 @@ using UnityEngine;
 public class CookingTime : Challenge {
 
     private const int difficultyMultiplier = 8;
+    private const int maxActiveIngredients = 2;
     private List<Ingredient> spawnedIngredients;
     private List<Ingredient> activeIngredients;
 
@@ -36,7 +37,7 @@ public class CookingTime : Challenge {
     private void changeActiveIngredientList(Ingredient ingredient){
         if(activeIngredients.Contains(ingredient)){
             removeIngredient(ingredient);
-            int count = spawnedIngredients.Count < 4 ? spawnedIngredients.Count : 4;
+            int count = spawnedIngredients.Count < maxActiveIngredients ? spawnedIngredients.Count : maxActiveIngredients;
             activeIngredients = spawnedIngredients.GetRange(0, count);
         } else {
             addToActiveList(ingredient);
@@ -45,7 +46,7 @@ public class CookingTime : Challenge {
     }
 
     private void addToActiveList(Ingredient ingredient){
-        if(activeIngredients.Count < 4) activeIngredients.Add(ingredient);
+        if(activeIngredients.Count < maxActiveIngredients) activeIngredients.Add(ingredient);
     }
 
     private void removeIngredient(Ingredient ingredient){

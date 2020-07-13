@@ -15,12 +15,6 @@ public class UICookingTime : MonoBehaviour
         setImageActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void setImages(List<Ingredient> ingredientsImages)
     {
         int i = 0;

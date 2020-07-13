@@ -18,7 +18,6 @@ public class Challenge : MonoBehaviour {
     public virtual void endChallenge(bool successful){ 
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if(successful){
-            Debug.Log("ENTRO NEL WIN");
             uiManager.setInfoBoxText("YOU WIN!");
             StartCoroutine(waitToSpawnDoors());
         } else {
@@ -32,7 +31,6 @@ public class Challenge : MonoBehaviour {
     {
         yield return new WaitForSeconds(2f);
         _networkingManager.serverChangeScene(_levelManager.getCurrentLevel().sceneName, difficulty);
-
     }
 
     IEnumerator waitToSpawnDoors()
