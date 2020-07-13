@@ -7,5 +7,8 @@ public class SMG : Weapon
     public override void Start(){
         base.Start();
         bulletName = "BulletSMG";
+        spread = 25f;
+        fireRatioTime = 0.4f;
+
     }
 }

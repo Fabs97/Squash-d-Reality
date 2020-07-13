@@ -7,7 +7,7 @@ public class Shotgun : Weapon {
         base.Start();
         numberOfBullets = 4;
         bulletName = "BulletShotgun";
-
+        fireRatioTime = 1.5f;
     }
     
     
