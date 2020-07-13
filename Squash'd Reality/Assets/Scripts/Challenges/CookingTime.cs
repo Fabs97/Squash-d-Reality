@@ -60,22 +60,10 @@ public class CookingTime : Challenge {
             Spawner spawner = FindObjectOfType<Spawner>();
             spawner.objectsToSpawnCount = difficulty * difficultyMultiplier;
             List<string> playersNames = _networkingManager.getPlayersNames();
-            if(!playersNames.Contains("Raphael Nosun")) {
-                Debug.Log("CookingTime::setDifficulty - Removing zone of Raphael Nosun!");
-                spawner.removeZone(3);
-            }
-            if(!playersNames.Contains("Kam Brylla")) {
-                Debug.Log("CookingTime::setDifficulty - Removing zone of Kam Brylla!");
-                spawner.removeZone(2);
-            }
-            if(!playersNames.Contains("Ken Nolo")) {
-                Debug.Log("CookingTime::setDifficulty - Removing zone of Ken Nolo!");
-                spawner.removeZone(1);
-            }
-            if(!playersNames.Contains("Markus Nobel")) {
-                Debug.Log("CookingTime::setDifficulty - Removing zone of Markus Nobel!");
-                spawner.removeZone(0);
-            }
+            if(!playersNames.Contains("Raphael Nosun")) spawner.removeZone(3);
+            if(!playersNames.Contains("Kam Brylla")) spawner.removeZone(2);
+            if(!playersNames.Contains("Ken Nolo")) spawner.removeZone(1);
+            if(!playersNames.Contains("Markus Nobel")) spawner.removeZone(0);
             spawner.CmdStartSpawning();
             
         } catch (Exception e){
