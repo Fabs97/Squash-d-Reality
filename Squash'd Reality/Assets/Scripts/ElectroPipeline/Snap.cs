@@ -34,6 +34,5 @@ public class Snap : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             wasGrabbed = false;
         }
-
     }
 }
