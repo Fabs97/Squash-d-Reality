@@ -17,6 +17,7 @@ public class CollectibleManager : MonoBehaviour
     private void Start()
     {
         ShowCollectibleButton.SetActive(false);
+        //PlayerPrefs.DeleteAll();
     }
 
     public void showText(string index)

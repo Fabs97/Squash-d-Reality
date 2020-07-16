@@ -18,6 +18,7 @@ TagManager:
   - Spawner
   - Door
   - DarkPuzzleMatchManager
+  - UICollectibleManager
   layers:
   - Default
   - TransparentFX
