@@ -17,8 +17,12 @@ public class Collectibles : MonoBehaviour
       {
          triggerActivated = true;
          firstEntered = other;
-         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(true);
-         intelAcquisition = StartCoroutine(waitIntel());
+         if (other.GetComponent<DummyMoveset>().hasAuthority)
+         {
+            GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(true);
+
+         }
+         intelAcquisition = StartCoroutine(waitIntel(other));
       }
       
    }
@@ -29,17 +33,21 @@ public class Collectibles : MonoBehaviour
       {
          StopCoroutine(intelAcquisition);
          triggerActivated = false;
+         
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
       }
    }
 
-   IEnumerator waitIntel()
+   IEnumerator waitIntel(Collider other)
    {
       Debug.Log("ENTRO ROUTINE");
       yield return new WaitForSeconds(3f);
-      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
-      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(true);
+      if (other.GetComponent<DummyMoveset>().hasAuthority)
+      {
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(true); 
+      }
       PlayerPrefs.SetString(gameObject.name, "true");
       Destroy(this.gameObject);
    }
