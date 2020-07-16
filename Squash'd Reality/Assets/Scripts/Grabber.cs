@@ -8,20 +8,41 @@ public class Grabber : NetworkBehaviour
     RaycastHit hit;
     RaycastHit hit1;
     RaycastHit hit2;
+    LevelManager.LevelManager _levelManager;
 
     GameObject toGrab;
+    private Light light;
+    private float luminosity = 10;
     private bool isGrabbing = false;
 
     bool hitDetect;
     bool hitDetect1;
     bool hitDetect2;
-    public float maxDist = 2f;
+    [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
 
+    private float throwForce = 400f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (transform.GetChild(i).name == "PlayerLight")
+            {
+                light = transform.GetChild(i).gameObject.GetComponent<Light>();
+            }
+        }
+
+        if (_levelManager.getCurrentLevel().isDark)
+        {
+            askToggleLight(true);
+        }
+        else
+        {
+            light.intensity = 0f;
+        }
+            
     }
 
     // Update is called once per frame
@@ -53,15 +74,29 @@ public class Grabber : NetworkBehaviour
         {
             if (toGrab != null)
             {
+                removeGrab();
                 if(toGrab.tag == "Pipe")
                 {
                     toGrab.GetComponent<Pipe>().PipeCheck();
                 }
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
-                toGrab.transform.parent = null;
-                toGrab = null;
-                isGrabbing = false;  
             }
+        }
+    }
+
+    public void removeGrab(){
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+        toGrab.GetComponent<Rigidbody>().useGravity = true;
+        toGrab.GetComponent<Rigidbody>().isKinematic = false;
+        toGrab.transform.parent = null;
+        toGrab.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
+        toGrab = null;
+        isGrabbing = false;  
+        askToggleLight(true);
+    }
+
+    public void toggleLight(bool val){
+        if(_levelManager.getCurrentLevel().isDark){
+            light.intensity = val ? luminosity : 0;
         }
     }
 
@@ -72,13 +107,10 @@ public class Grabber : NetworkBehaviour
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
         }
+        toGrab.GetComponent<Rigidbody>().useGravity = false;
         toGrab.transform.parent = transform;
         isGrabbing = true;
-    }
-
-    public bool GetIsGrabbing()
-    {
-        return isGrabbing;
+        askToggleLight(false);
     }
 
     void OnDrawGizmos()
@@ -99,5 +131,30 @@ public class Grabber : NetworkBehaviour
             Gizmos.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.forward * maxDist);
             Gizmos.DrawRay(transform.position + new Vector3(0, -0.5f, 0), transform.forward * maxDist);
         }
+    }
+
+    public void askToggleLight(bool value)
+    {
+        if (GameObject.FindGameObjectWithTag("LocalPlayer") != null)
+        {
+            if (GetComponentInParent<DummyMoveset>().playerName == "Markus Nobel")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Ken Nolo")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Kam Brylla")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
+            }
+            if (GetComponentInParent<DummyMoveset>().playerName == "Raphael Nosun")
+            {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
+
+            }
+        }
+        
     }
 }

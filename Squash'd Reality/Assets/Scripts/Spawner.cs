@@ -5,50 +5,82 @@ using UnityEngine.Networking;
 
 public class Spawner : NetworkBehaviour
 {
-    public List<GameObject> toSpawn;
-    public bool isToShuffle;
-    private IEnumerator coroutine;
-    public float waitTime = 3f;
-    private int number = 0;
+    [SerializeField] private List<GameObject> prefabsToSpawn;
+    [SerializeField] private bool randomizeSpawn = false;
+    [SerializeField] private bool deleteFromListAfterSpawn = false;
+    [SerializeField] private bool startSpawningFromTheBeginning = false;
+    [SerializeField] private bool spawnDoubleObject = false;
+    [Range(0, 40)][SerializeField] public float firstSpawnDelay = 0f;
+    [Range(0, 10)][SerializeField] public float spawningDelay = 0f;
+    [SerializeField] private List<Vector3> maxCoordinates;
+    [SerializeField] private List<Vector3> minCoordinates;
+    public int objectsToSpawnCount = 999;
+    
+    private int _spawningIndex = -1;
+    private int objectsSpawnedCount = 0;
 
-    void Start()
-    {
-        if (isToShuffle)
-        {
-            Shuffle<GameObject>(toSpawn);
+
+    private Coroutine spawnRoutine;
+
+    void Start() {
+        if(startSpawningFromTheBeginning) CmdStartSpawning();
+    }
+
+    [Command]
+    public void CmdStartSpawning(){
+        if(isServer){
+            spawnRoutine = StartCoroutine(spawningCoroutine());
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(number < toSpawn.Count)
-        {
-            Vector3 randomPos = new Vector3(Random.Range(0, 14), 10, Random.Range(0, 14));
-            GameObject go = Instantiate(toSpawn[number], randomPos, Quaternion.identity);
-            NetworkServer.Spawn(go);
-            coroutine = WaitToSpawn(waitTime);
-            StartCoroutine(coroutine);
-        }
+    public void removeZone(int index){
         
+        maxCoordinates.RemoveAt(index);
+        minCoordinates.RemoveAt(index);
     }
 
-    void Shuffle<GameObject>(List<GameObject> list)
-    {
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = Random.Range(0, list.Count);
-            GameObject value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+    IEnumerator spawningCoroutine(){
+        yield return new WaitForSeconds(firstSpawnDelay);
+        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
+            if(_spawningIndex == prefabsToSpawn.Count) break;
+
+            spawnObject();
+            yield return new WaitForSeconds(.5f);
+            if(spawnDoubleObject) spawnObject();            
+            
+            if(objectsSpawnedCount == objectsToSpawnCount) break;
+            yield return new WaitForSeconds(spawningDelay);
         }
+
+        //destroy the spawner when this point is reached
+        Destroy(gameObject);
     }
 
-    private IEnumerator WaitToSpawn(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        number++;
+    private void spawnObject(){
+        if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
+        else _spawningIndex++; 
+
+        GameObject prefabToSpawn = prefabsToSpawn[_spawningIndex];
+        
+        int randomZoneIndex = Random.Range(0, maxCoordinates.Count);
+        float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
+        float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
+        float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
+
+        Vector3 tr = new Vector3(randomX, randomY, randomZ);
+        Quaternion q = Quaternion.identity;
+        GameObject go = Instantiate(prefabToSpawn, tr, q);
+
+        NetworkServer.Spawn(go);
+        if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+        objectsSpawnedCount ++;
+    }
+
+    public void StopSpawning() {
+        StopCoroutine(spawnRoutine);
+    }
+
+    public void setSpawningDelay(float delay){
+        spawningDelay = delay;
     }
 }

@@ -15,7 +15,7 @@ namespace SceneLoader {
         }
 
         public void loadNextScene(string sceneName){
-            string name = _levelManager.loadNewLevel(sceneName);  
+            string name = _levelManager.loadNewLevel(sceneName).sceneName;  
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
     }

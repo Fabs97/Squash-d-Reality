@@ -7,6 +7,17 @@ TagManager:
   - NetworkManager
   - LocalPlayer
   - UICharactersDescription
+  - Bullet
+  - Weapon
+  - UIManager
+  - DDOL
+  - Cauldron
+  - UICookingTime
+  - Enemy
+  - SpawnDirection
+  - Spawner
+  - Door
+  - DarkPuzzleMatchManager
   - Hole
   - Pipe
   - Start
