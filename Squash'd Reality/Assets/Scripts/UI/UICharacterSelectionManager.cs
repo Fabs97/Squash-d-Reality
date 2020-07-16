@@ -128,15 +128,16 @@ public class UICharacterSelectionManager : NetworkBehaviour
     {
         if (isClient)
         {
-            if ((Character1TakenLocal && characterName == "Character1") ||
-                (Character2TakenLocal && characterName == "Character2") ||
-                (Character3TakenLocal && characterName == "Character3") ||
-                (Character4TakenLocal && characterName == "Character4"))
+            if ((Character1TakenLocal && characterName == "Markus Nobel") ||
+                (Character2TakenLocal && characterName == "Ken Nolo") ||
+                (Character3TakenLocal && characterName == "Kam Brylla") ||
+                (Character4TakenLocal && characterName == "Raphael Nosun"))
             {
                 showCharacterAlreadyChoosen();
             }
             else
             {
+                GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName = characterName;
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSelectedCharacter(characterName);
                 showWaitingPlayers(); 
             }

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: CookingTime
   m_EditorClassIdentifier: 
   sceneName: CookingTime
-  spawnPlayers: 0
+  spawnPlayers: 1
   playersPositions:
-  - {x: -3, y: 0.87, z: -1}
-  - {x: 1, y: 0.87, z: -1}
-  - {x: 1, y: 0.87, z: -5}
-  - {x: -3, y: 0.87, z: -5}
+  - {x: 1, y: 0.7, z: -11}
+  - {x: 1, y: 0.7, z: -3}
+  - {x: 13, y: 0.7, z: -3}
+  - {x: 13, y: 0.7, z: -11}
   isDark: 0
+  isChallenge: 1

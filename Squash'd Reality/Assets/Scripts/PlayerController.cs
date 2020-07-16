@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,13 +23,13 @@ public class PlayerController : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         if (isServer) {
-            dummyPrefab = _networkingManager.prefabList()[0];
+            dummyPrefab = _networkingManager.spawnPrefabs[0];
         }
         
         if (isClient && isLocalPlayer)
         {
             gameObject.tag = "LocalPlayer";
-            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer();
+            if(_levelManager.getCurrentLevel().spawnPlayers) CmdSpawnPlayer(GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName);
         }
 
         for (int i = 0; i < _networkingManager.spawnPrefabs.Count; i++)
@@ -44,28 +44,26 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+     
     }
-
 
     [Command]
     public void CmdSelectedCharacter(string characterName)
     {
-        gameObject.name = characterName;
-
         UICharacterSelectionManager uICharacterSelectionManager = GameObject.Find("UICharacterSelectionManager").GetComponent<UICharacterSelectionManager>();
-        if (characterName == "Character1") uICharacterSelectionManager.Character1Taken = true;
-        else if (characterName == "Character2") uICharacterSelectionManager.Character2Taken = true;
-        else if (characterName == "Character3") uICharacterSelectionManager.Character3Taken = true;
-        else if (characterName == "Character4") uICharacterSelectionManager.Character4Taken = true;
+        FindObjectOfType<NetworkingManager.NetworkingManager>().addSelectedPlayer(characterName);
+        if (characterName == "Markus Nobel") uICharacterSelectionManager.Character1Taken = true;
+        else if (characterName == "Ken Nolo") uICharacterSelectionManager.Character2Taken = true;
+        else if (characterName == "Kam Brylla") uICharacterSelectionManager.Character3Taken = true;
+        else if (characterName == "Raphael Nosun") uICharacterSelectionManager.Character4Taken = true;
         uICharacterSelectionManager.numCharactersChoosen++;
     }
     
     [Command]
-    public void CmdSpawnPlayer() {
-        GameObject go = Instantiate(dummyPrefab, dummyPrefab.transform);
+    public void CmdSpawnPlayer(String playerName) {
+        GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        go.GetComponent<DummyMoveset>().playerName = playerName;
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
-        Debug.Log("SpawnManager::CmdSpawnPlayer - Spawned my player!");
     }
 
     [Command]
@@ -93,5 +91,35 @@ public class PlayerController : NetworkBehaviour
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);
     }
+
+    [Command]
+
+    public void CmdsetLight1(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light1On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight2(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light2On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight3(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light3On =
+            value;
+    }
+    [Command]
+
+    public void CmdsetLight4(bool value)
+    {
+        GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light4On =
+            value;
+    }
+    
     
 }

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\DevPreload.cs" />
     <Compile Include="Assets\Scripts\DummyMoveset.cs" />
     <Compile Include="Assets\Scripts\ElectroPipeline\FaceForward.cs" />
+    <Compile Include="Assets\Scripts\ElectroPipeline\Pipe.cs" />
     <Compile Include="Assets\Scripts\ElectroPipeline\Snap.cs" />
     <Compile Include="Assets\Scripts\Grabber.cs" />
     <Compile Include="Assets\Scripts\LightOnOff.cs" />

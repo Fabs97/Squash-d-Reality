@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class AssaultRiflePowerUP : WeaponPowerUP
 {
-    private void Start() {
+    protected override void Start()
+    {
+        base.Start();
         base.weaponType = Type.GetType("AssaultRifle");
+
     }
+    
 }

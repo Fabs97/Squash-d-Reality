@@ -610,7 +610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.075558916, y: 0.062524796}
   m_AnchorMax: {x: 0.14419398, y: 0.13700001}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.96640015}
+  m_AnchoredPosition: {x: -0.30000305, y: 0.96640015}
   m_SizeDelta: {x: 2.513855, y: 1.9328079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364553341
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 321ca88e613157046ba8d7d6980b300a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1de190cc6d333954680798b12652ebc3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1328,7 +1328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.075558916, y: 0.062524796}
   m_AnchorMax: {x: 0.14419398, y: 0.13700001}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.96640015}
+  m_AnchoredPosition: {x: -0.30000305, y: 0.96640015}
   m_SizeDelta: {x: 2.513855, y: 1.9328079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146852398
@@ -1890,7 +1890,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character4
+          m_StringArgument: Raphael Nosun
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1339821049
@@ -2275,8 +2275,6 @@ MonoBehaviour:
   Character3: {fileID: 1294994225}
   Character4: {fileID: 2099550395}
   MessageBox: {fileID: 1196536845}
-  CharactersDescription: {fileID: 0}
-  CharactersBackground: {fileID: 0}
   Character1Taken: 0
   Character2Taken: 0
   Character3Taken: 0
@@ -2489,7 +2487,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character1
+          m_StringArgument: Markus Nobel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1639817917
@@ -2563,7 +2561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.075558916, y: 0.062524796}
   m_AnchorMax: {x: 0.14419398, y: 0.13700001}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.96640015}
+  m_AnchoredPosition: {x: -0.30000305, y: 0.96640015}
   m_SizeDelta: {x: 2.513855, y: 1.9328079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1663467377
@@ -2753,7 +2751,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character3
+          m_StringArgument: Kam Brylla
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1679124997
@@ -3335,7 +3333,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Character2
+          m_StringArgument: Ken Nolo
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1794512488
@@ -3833,7 +3831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.075558916, y: 0.062524796}
   m_AnchorMax: {x: 0.14419398, y: 0.13700001}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.96640015}
+  m_AnchoredPosition: {x: -0.30000305, y: 0.96640015}
   m_SizeDelta: {x: 2.513855, y: 1.9328079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2069074866

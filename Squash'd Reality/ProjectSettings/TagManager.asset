@@ -9,6 +9,18 @@ TagManager:
   - UICharactersDescription
   - Bullet
   - Weapon
+  - UIManager
+  - DDOL
+  - Cauldron
+  - UICookingTime
+  - Enemy
+  - SpawnDirection
+  - Spawner
+  - Door
+  - DarkPuzzleMatchManager
+  - Hole
+  - Pipe
+  - Start
   layers:
   - Default
   - TransparentFX
@@ -40,7 +52,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hole
   - Grabbable
   m_SortingLayers:
   - name: Default

@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CookingTime.unity
     guid: 29d988ad1fd4bba4fa3053181c03b155
+  - enabled: 1
+    path: Assets/Scenes/TrenchTime.unity
+    guid: c8e8aba2dea00454381572dbacd7dd9e
+  - enabled: 1
+    path: Assets/Scenes/DarkPuzzle.unity
+    guid: e80adef480a5ddc4b993d53e2bfb146e
   m_configObjects: {}

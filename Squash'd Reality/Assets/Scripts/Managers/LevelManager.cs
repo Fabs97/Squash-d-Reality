@@ -7,6 +7,8 @@ namespace LevelManager{
         private LevelScriptableObject currentLevel;
         private LevelScriptableObject[] levels;
 
+        private int nextChallengeDifficulty;
+
         private void Awake() {
             loadLevels();
 
@@ -17,9 +19,18 @@ namespace LevelManager{
             levels = Resources.LoadAll<LevelScriptableObject>("Levels");
         }
 
-        public string loadNewLevel(string name) {
+        public LevelScriptableObject loadNewLevel(string name) {
             currentLevel = getLevel(name);
-            return currentLevel.sceneName;
+            return currentLevel;
+        }
+
+        public int getChallengeDifficulty(){
+            return nextChallengeDifficulty;
+        }
+
+        public LevelScriptableObject loadNewChallenge(string name, int difficulty){
+            nextChallengeDifficulty = difficulty;
+            return loadNewLevel(name);
         }
 
         public LevelScriptableObject getLevel(string name) {

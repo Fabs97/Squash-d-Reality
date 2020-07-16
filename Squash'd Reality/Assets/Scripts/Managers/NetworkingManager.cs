@@ -9,6 +9,7 @@ namespace NetworkingManager {
         private float nextRefreshTime;
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
+        private List<string> _playersNames;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
@@ -60,16 +61,18 @@ namespace NetworkingManager {
         private void HandleJoinedMatch(bool success, string extendedinfo, MatchInfo responsedata) {
             StartClient(responsedata);
         }
-        
-        public List<GameObject> prefabList()
-        {
-            return spawnPrefabs;
-        }
 
-        public void serverChangeScene(string sceneName)
+        public void serverChangeScene(string sceneName, int difficulty)
         {
             // TODO: having problems with already spawned players? Destroy them here!
-            base.ServerChangeScene(_levelManager.loadNewLevel(sceneName));
+            LevelScriptableObject nextLevel; 
+            if(difficulty > 0) nextLevel = _levelManager.loadNewChallenge(sceneName, difficulty);
+            else nextLevel = _levelManager.loadNewLevel(sceneName);
+            base.ServerChangeScene(nextLevel.sceneName);
+        }
+
+        public void serverChangeScene(string sceneName){
+            serverChangeScene(sceneName, 0);
         }
 
         public override void OnServerSceneChanged(string sceneName)
@@ -90,6 +93,15 @@ namespace NetworkingManager {
             FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
             Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
         }
+
+        public void addSelectedPlayer(string name){
+            if(_playersNames == null) _playersNames = new List<string>();
+            _playersNames.Add(name);
+        }
+
+        public List<string> getPlayersNames(){
+            return this._playersNames;
+        }
     }
 
 	public static class AvailableMatchesList {
@@ -102,8 +114,4 @@ namespace NetworkingManager {
 			OnAvailableMatchesChanged(matches);
 		}
 	}
-    
-    
-    
-    
 }

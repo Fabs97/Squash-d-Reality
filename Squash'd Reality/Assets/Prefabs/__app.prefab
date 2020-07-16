@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8235770975612453246}
   - component: {fileID: 406453635}
   - component: {fileID: 5796313923350617283}
-  - component: {fileID: 5702095421046428333}
+  - component: {fileID: 8587032974217575462}
   m_Layer: 0
   m_Name: __app
-  m_TagString: Untagged
+  m_TagString: DDOL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fea4e8ce8338e49b21ab6ac03e3f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: default
 --- !u!114 &406453635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +91,10 @@ MonoBehaviour:
   - {fileID: 7305371141220752972, guid: 295c21d6742c8654a8f00b4eb3309152, type: 3}
   - {fileID: 2602254875386243460, guid: 077d9cf944a556143821bdafd9b0d486, type: 3}
   - {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df, type: 3}
+  - {fileID: 5989013081210674111, guid: 6a6d08e755c336644b6f24fdfe7c2eff, type: 3}
+  - {fileID: 7525169537711163744, guid: 3d197e73a09e1514a9e7a33a097a8c6e, type: 3}
+  - {fileID: 7654812327059685579, guid: a43fdfc03aa029e49b64c59dda45a41f, type: 3}
+  - {fileID: 0}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -157,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a534d81f4769a6438b271591c1f84ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5702095421046428333
+--- !u!114 &8587032974217575462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,6 +171,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2299359058814777245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 602b6589450630343bfd2bd8d95573fa, type: 3}
+  m_Script: {fileID: 11500000, guid: f20a426016b24c60a189c508d4b79ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
