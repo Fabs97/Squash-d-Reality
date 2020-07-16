@@ -2,19 +2,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CollectibleManager : MonoBehaviour
 {
+    [SerializeField] private GameObject ShowCollectibleButton;
+    [SerializeField] private TextMeshProUGUI ShowCollectibleText;
+    [SerializeField] private GameObject ShowCollectibleEsc;
+    [SerializeField] private GameObject CollectiblesPage;
+    private GameObject collectibleSelected = null;
+    private void Start()
+    {
+        ShowCollectibleButton.SetActive(false);
+        PlayerPrefs.DeleteAll();
+    }
+
     public void showText(string index)
     {
         if(PlayerPrefs.GetString("Collectible_"+index, "false") == "true")
         {
             string collectibleText = getCollectible(Int32.Parse(index));
-       
+            ShowCollectibleText.text = collectibleText;
+            ShowCollectibleButton.SetActive(true);
+            ShowCollectibleEsc.SetActive(true);
+            CollectiblesPage.SetActive(false);
+            GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(ShowCollectibleEsc);
         }
     }
-    
+
+    public void setSelected(GameObject selected)
+    {
+        collectibleSelected = selected;
+    }
+    public void esc()
+    {
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(collectibleSelected);
+    }
     //GET COLLECTIBLE TEXT
     public string getCollectible(int collectibleID)
     {

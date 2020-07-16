@@ -21,4 +21,9 @@ public class MainMenuButtonManager : MonoBehaviour
     public void joinLobbyButtonClicked(){
         // _networkingManager.StartHosting();
     }
+
+    public void CollectiblesButtonClicked()
+    {
+        _sceneLoader.loadNextScene("CollectiblesMenu");
+    }
 }

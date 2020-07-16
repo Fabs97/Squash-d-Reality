@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <collctibles>
-    <collectible id = "0">
-      <collectibleSentence>"Ken Nolo collection"</collectibleSentence>
-    </collectible>
     <collectible id = "1">
-        <collectibleSentence>""</collectibleSentence>
+        <collectibleSentence>"Markus Nobel collection"</collectibleSentence>
     </collectible>
-    <collectible id = "2"> <collectibleSentence>""</collectibleSentence>
+    <collectible id = "2"> <collectibleSentence></collectibleSentence>
     </collectible>
     <collectible id = "3">
-        <collectibleSentence>""</collectibleSentence>
+        <collectibleSentence></collectibleSentence>
     </collectible>
 </collctibles>
