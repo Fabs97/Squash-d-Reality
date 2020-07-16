@@ -4,9 +4,18 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class LoadXmlFile : MonoBehaviour
+public class CollectibleManager : MonoBehaviour
 {
-    //CALL THIS FROM UI
+    public void showText(string index)
+    {
+        if(PlayerPrefs.GetString("Collectible_"+index, "false") == "true")
+        {
+            string collectibleText = getCollectible(Int32.Parse(index));
+       
+        }
+    }
+    
+    //GET COLLECTIBLE TEXT
     public string getCollectible(int collectibleID)
     {
         try
@@ -46,6 +55,4 @@ public class LoadXmlFile : MonoBehaviour
         return selectedNode;
     }
 
-   
-    
 }
