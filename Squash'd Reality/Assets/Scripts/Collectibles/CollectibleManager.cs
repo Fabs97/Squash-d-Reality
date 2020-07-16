@@ -5,6 +5,7 @@ using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CollectibleManager : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class CollectibleManager : MonoBehaviour
     private void Start()
     {
         ShowCollectibleButton.SetActive(false);
-        PlayerPrefs.DeleteAll();
     }
 
     public void showText(string index)
@@ -80,4 +80,8 @@ public class CollectibleManager : MonoBehaviour
         return selectedNode;
     }
 
+    public void Exit()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using NetworkingManager;
 using SceneLoader;
+using UnityEngine.SceneManagement;
+
 public class MainMenuButtonManager : MonoBehaviour
 {
     private SceneLoader.SceneLoader _sceneLoader;
@@ -11,7 +13,12 @@ public class MainMenuButtonManager : MonoBehaviour
     }
  
     public void playButtonClicked(){
+        if (_sceneLoader == null)
+        {
+            Debug.LogError("PROBLEMA");
+        }
         _sceneLoader.loadNextScene("LobbySelection");
+
     }
 
     public void createLobbyButtonClicked(){
@@ -22,8 +29,10 @@ public class MainMenuButtonManager : MonoBehaviour
         // _networkingManager.StartHosting();
     }
 
-    public void CollectiblesButtonClicked()
+    public void CollectiblesMenuClicked()
     {
-        _sceneLoader.loadNextScene("CollectiblesMenu");
+        SceneManager.LoadScene("CollectiblesMenu", LoadSceneMode.Single);
     }
+    
+
 }
