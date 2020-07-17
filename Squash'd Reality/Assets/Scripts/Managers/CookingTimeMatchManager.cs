@@ -26,6 +26,7 @@ public class CookingTimeMatchManager : MatchManager
 
     public override void timeEnded()
     {
+        base.timeEnded();
         _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
         _uiManager.setInfoBoxActive(true);
         if (isServer)

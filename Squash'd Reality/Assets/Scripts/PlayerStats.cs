@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
    //GENERAL MALUSES
-   public int death;
-   public int timeOut;
+   public int death; //OK
+   public int timeOut; //OK
    public int friendlyKill;
    
    //GENERAL BONUSES
-   public int powerUp;
-   public int collectible;
+   public int powerUp; //OK
+   public int collectible; //OK
    
    //PIPELINE
    public int electrocution;
@@ -64,6 +64,10 @@ public class PlayerStats : MonoBehaviour
    {
       //TODO: aggiungere conti bonus prize
    }
-   
-   
+
+   private void Update()
+   {
+     
+
+   }
 }

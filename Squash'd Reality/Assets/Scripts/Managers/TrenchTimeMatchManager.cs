@@ -68,6 +68,7 @@ public class TrenchTimeMatchManager : MatchManager
 
     public override void timeEnded()
     {
+        base.timeEnded();
         if (isServer)
         {
             GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
