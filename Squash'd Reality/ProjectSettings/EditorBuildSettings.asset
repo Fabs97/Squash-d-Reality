@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CollectiblesMenu.unity
     guid: 83e83bce42a73c443a363d9da7d07fb1
+  - enabled: 1
+    path: Assets/Scenes/LeaderboardScene.unity
+    guid: d933668ded15bde4693aab76ceb885be
   m_configObjects: {}
