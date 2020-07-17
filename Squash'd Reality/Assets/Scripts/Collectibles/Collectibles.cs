@@ -41,7 +41,6 @@ public class Collectibles : MonoBehaviour
 
    IEnumerator waitIntel(Collider other)
    {
-      Debug.Log("ENTRO ROUTINE");
       yield return new WaitForSeconds(3f);
       if (other.GetComponent<DummyMoveset>().hasAuthority)
       {
