@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -120,6 +121,45 @@ public class PlayerController : NetworkBehaviour
         GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light4On =
             value;
     }
+
+    [Command]
+    public void CmdSetMarkusNobleStats(int points, int deaths, string bonusPrize)
+    {
+        UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
+        uiLeaderboard.MarkusNobelEnabled = true;
+        uiLeaderboard.MarkusNoblePoints = points;
+        uiLeaderboard.MarkusNobleDeaths = deaths;
+        uiLeaderboard.MarkusNobleBonusPrize = bonusPrize;
+    }
     
+    [Command]
+    public void CmdSetKenNoloStats(int points, int deaths, string bonusPrize)
+    {
+        UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
+        uiLeaderboard.KenNoloEnabled = true;
+        uiLeaderboard.KenNoloPoints = points;
+        uiLeaderboard.KenNoloDeaths = deaths;
+        uiLeaderboard.KenNoloBonusPrize = bonusPrize;
+    }
+    
+    [Command]
+    public void CmdSetKamBryllaStats(int points, int deaths, string bonusPrize)
+    {
+        UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
+        uiLeaderboard.KamBryllaEnabled = true;
+        uiLeaderboard.KamBryllaPoints = points;
+        uiLeaderboard.KamBryllaDeaths = deaths;
+        uiLeaderboard.KamBryllaBonusPrize = bonusPrize;
+    }
+    
+    [Command]
+    public void CmdSetRaphaelNosunStats(int points, int deaths, string bonusPrize)
+    {
+        UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
+        uiLeaderboard.RaphaelNosunEnabled = true;
+        uiLeaderboard.RaphaelNosunPoints = points;
+        uiLeaderboard.RaphaelNosunDeaths = deaths;
+        uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
+    }
     
 }
