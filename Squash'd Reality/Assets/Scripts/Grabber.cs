@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -81,10 +81,15 @@ public class Grabber : NetworkBehaviour
 
     public void removeGrab(){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
-        toGrab.GetComponent<Rigidbody>().useGravity = true;
-        toGrab.GetComponent<Rigidbody>().isKinematic = false;
+        Rigidbody grabbedRb = toGrab.GetComponent<Rigidbody>();
+        grabbedRb.useGravity = true;
+        grabbedRb.isKinematic = false;
+        grabbedRb.AddForce(transform.forward * throwForce);
+        if(toGrab.tag == "Pipe"){
+            toGrab.GetComponent<Pipe>().PipeCheck();
+        }
+        
         toGrab.transform.parent = null;
-        toGrab.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce);
         toGrab = null;
         isGrabbing = false;  
         askToggleLight(true);
@@ -133,19 +138,20 @@ public class Grabber : NetworkBehaviour
     {
         if (GameObject.FindGameObjectWithTag("LocalPlayer") != null)
         {
-            if (GetComponentInParent<DummyMoveset>().playerName == "Markus Nobel")
+            string playerName = GetComponentInParent<DummyMoveset>().playerName;
+            if ( playerName == "Markus Nobel")
             {
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
             }
-            if (GetComponentInParent<DummyMoveset>().playerName == "Ken Nolo")
+            else if (playerName == "Ken Nolo")
             {
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
             }
-            if (GetComponentInParent<DummyMoveset>().playerName == "Kam Brylla")
+            else if (playerName == "Kam Brylla")
             {
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
             }
-            if (GetComponentInParent<DummyMoveset>().playerName == "Raphael Nosun")
+            else if (playerName == "Raphael Nosun")
             {
                 GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
 

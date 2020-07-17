@@ -18,6 +18,9 @@ TagManager:
   - Spawner
   - Door
   - DarkPuzzleMatchManager
+  - Hole
+  - Pipe
+  - Start
   - UICollectibleManager
   layers:
   - Default
@@ -50,7 +53,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hole
   - Grabbable
   m_SortingLayers:
   - name: Default
