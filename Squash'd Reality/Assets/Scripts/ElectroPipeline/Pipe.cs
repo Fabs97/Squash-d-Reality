@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 { 
-    
     public GameObject hole1;
     public GameObject hole2;
-
     RaycastHit ray1;
     RaycastHit ray2;
     int layerMask = 1 << 30;
-
     bool is1Hitting;
     bool is2Hitting;
-
     float maxDist = 0.15f;
+
+    [SerializeField] private float snapValue = 1.0f;
 
     [HideInInspector]
     public bool isConnected = false;
@@ -23,7 +21,7 @@ public class Pipe : MonoBehaviour
 
     private void Start()
     {
-        if (gameObject.tag == "Start") isConnected = true;
+
     }
 
     void Update()
@@ -31,39 +29,17 @@ public class Pipe : MonoBehaviour
         
     }
 
-    public void PipeCheck()
-    {
-        is1Hitting = Physics.Raycast(hole1.transform.position, -hole1.transform.right, out ray1, maxDist, layerMask);
-        is2Hitting = Physics.Raycast(hole2.transform.position, -hole2.transform.right, out ray2, maxDist, layerMask);
-
-        if (is1Hitting)
-        {
-            Debug.Log("Pipe::Update -- hole1 hit, I am" + gameObject.name);
-            ConnectionCheck(ray1.collider);
-        }
-
-        if (is2Hitting)
-        {
-            Debug.Log("Pipe::Update -- hole2 hit, I am" + gameObject.name);
-            ConnectionCheck(ray2.collider);
-        }
-    }
-
-    void ConnectionCheck(Collider collider)
-    {
-        if (collider.GetComponent<Pipe>().isConnected)
-        {
-            isConnected = true;
-            GetComponent<MeshRenderer>().material = mat;
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(hole1.transform.position, -hole1.transform.right * maxDist);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(hole2.transform.position, -hole2.transform.right * maxDist);       
+    public void releasedPipe(){
+        float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+        float y = gameObject.transform.position.y;
+        float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z), Quaternion.identity);
+        // gameObject.transform.position = new Vector3(x, y, z);
+        // gameObject.transform.rotation = Quaternion.identity;
+        // foreach (Transform child in transform) {
+        //     if(child.gameObject.tag == "Hole") {
+        //         child.gameObject.GetComponent<Hole>().checkHoleConnection();
+        //     }
+        // }
     }
 }

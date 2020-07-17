@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 
 public class Grabber : NetworkBehaviour
@@ -8,12 +6,13 @@ public class Grabber : NetworkBehaviour
     RaycastHit hit;
     RaycastHit hit1;
     RaycastHit hit2;
-    LevelManager.LevelManager _levelManager;
+    private LevelManager.LevelManager _levelManager;
 
     GameObject toGrab;
     private Light light;
     private float luminosity = 10;
     private bool isGrabbing = false;
+    private bool needToToggleLight = false;
 
     bool hitDetect;
     bool hitDetect1;
@@ -21,7 +20,7 @@ public class Grabber : NetworkBehaviour
     [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
 
-    private float throwForce = 400f;
+    // private float throwForce = 400f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,30 +33,26 @@ public class Grabber : NetworkBehaviour
             }
         }
 
-        if (_levelManager.getCurrentLevel().isDark)
-        {
+        needToToggleLight = _levelManager.getCurrentLevel().isDark;
+        Debug.Log("Grabber::Start - needToToggleLight? " + needToToggleLight);
+        if (needToToggleLight) {
             askToggleLight(true);
         }
-        else
-        {
+        else {
             light.intensity = 0f;
         }
-            
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (hasAuthority)
-        {
+    void Update() {
+        if (hasAuthority) {
             Grab();
         }
     }
 
     void Grab()
     {
-        if (Input.GetButton("Interact"))
-        {
+        if (Input.GetButton("Interact")) {
 
             hitDetect = Physics.Raycast(transform.position, transform.forward, out hit, maxDist, layerMask);
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
@@ -70,10 +65,8 @@ public class Grabber : NetworkBehaviour
             else if (hitDetect2)
                 setToGrab(hit2.collider.gameObject);
         }
-        else
-        {
-            if (toGrab != null)
-            {
+        else {
+            if (toGrab != null) {
                 removeGrab();
             }
         }
@@ -81,18 +74,21 @@ public class Grabber : NetworkBehaviour
 
     public void removeGrab(){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+        // toGrab.GetComponent<BoxCollider>().enabled = true;
         Rigidbody grabbedRb = toGrab.GetComponent<Rigidbody>();
-        grabbedRb.useGravity = true;
-        grabbedRb.isKinematic = false;
-        grabbedRb.AddForce(transform.forward * throwForce);
+        grabbedRb.mass = 1.0f;
+        // grabbedRb.isKinematic = false;
+        // grabbedRb.useGravity = true;
+        // grabbedRb.AddForce(transform.forward * throwForce);
         if(toGrab.tag == "Pipe"){
-            toGrab.GetComponent<Pipe>().PipeCheck();
+            // TODO: dynamic x and z values
+            toGrab.GetComponent<Pipe>().releasedPipe();
         }
         
         toGrab.transform.parent = null;
         toGrab = null;
         isGrabbing = false;  
-        askToggleLight(true);
+        if(needToToggleLight) askToggleLight(true);
     }
 
     public void toggleLight(bool val){
@@ -106,12 +102,14 @@ public class Grabber : NetworkBehaviour
         toGrab = go;
         if (!isGrabbing)
         {
+            Debug.Log("Grabber::setToGrab - assigning authority");
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
         }
-        toGrab.GetComponent<Rigidbody>().useGravity = false;
+        // toGrab.GetComponent<BoxCollider>().enabled = false;
+        toGrab.GetComponent<Rigidbody>().mass = 0;
         toGrab.transform.parent = transform;
         isGrabbing = true;
-        askToggleLight(false);
+        if(needToToggleLight) askToggleLight(false);
     }
 
     void OnDrawGizmos()
@@ -136,27 +134,14 @@ public class Grabber : NetworkBehaviour
 
     public void askToggleLight(bool value)
     {
-        if (GameObject.FindGameObjectWithTag("LocalPlayer") != null)
-        {
-            string playerName = GetComponentInParent<DummyMoveset>().playerName;
-            if ( playerName == "Markus Nobel")
-            {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight1(value);
-            }
-            else if (playerName == "Ken Nolo")
-            {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight2(value);
-            }
-            else if (playerName == "Kam Brylla")
-            {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight3(value);
-            }
-            else if (playerName == "Raphael Nosun")
-            {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdsetLight4(value);
+        GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        if (localPlayer != null) {
 
-            }
+            string playerName = GetComponentInParent<DummyMoveset>().playerName;
+            if ( playerName == "Markus Nobel") localPlayer.GetComponent<PlayerController>().CmdsetLight1(value);
+            else if (playerName == "Ken Nolo") localPlayer.GetComponent<PlayerController>().CmdsetLight2(value);
+            else if (playerName == "Kam Brylla") localPlayer.GetComponent<PlayerController>().CmdsetLight3(value);
+            else if (playerName == "Raphael Nosun") localPlayer.GetComponent<PlayerController>().CmdsetLight4(value);
         }
-        
     }
 }

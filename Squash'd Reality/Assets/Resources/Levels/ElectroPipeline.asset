@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: ElectroPipeline
   m_EditorClassIdentifier: 
   sceneName: ElectroPipeline
-  spawnPlayers: 0
-  playersPositions: []
+  spawnPlayers: 1
+  playersPositions:
+  - {x: -4, y: 0.74, z: -3}
+  - {x: 0, y: 0.74, z: -3}
+  - {x: -4, y: 0.74, z: -6}
+  - {x: 0, y: 0.74, z: -6}
   isDark: 0
   isChallenge: 1

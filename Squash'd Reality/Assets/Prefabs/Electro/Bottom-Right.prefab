@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4421913547913940524}
   - component: {fileID: 5002092363349356003}
   - component: {fileID: 4645664451281327545}
-  - component: {fileID: 8735565666870379137}
   - component: {fileID: 6930063596578221310}
   m_Layer: 31
   m_Name: Bottom-Right
@@ -144,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -170,20 +169,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8735565666870379137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294994795895646463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7293f73225cb943bab73ee95a8158d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomX: 14
-  roomZ: 14
 --- !u!114 &6930063596578221310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hole1: {fileID: 7725446097968031020}
   hole2: {fileID: 4445533945316012581}
+  snapValue: 1
   isConnected: 0
   mat: {fileID: 2100000, guid: 63c4ed88a6d310844b927b5da35d8227, type: 2}
 --- !u!1 &2950791610900512703
@@ -303,6 +289,7 @@ GameObject:
   - component: {fileID: 3968557722560785317}
   - component: {fileID: 7858538869245193531}
   - component: {fileID: 3781170716446211282}
+  - component: {fileID: 6589007745359049873}
   m_Layer: 30
   m_Name: HoleBottom
   m_TagString: Hole
@@ -382,6 +369,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6589007745359049873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445533945316012581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e6ac4b304ff2446bcde6e1f6f49ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4923901026153659060
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +484,7 @@ GameObject:
   - component: {fileID: 6691587733854630821}
   - component: {fileID: 1982015429220993921}
   - component: {fileID: 2934370190477213069}
+  - component: {fileID: 1916337685326601306}
   m_Layer: 30
   m_Name: HoleRight
   m_TagString: Hole
@@ -499,13 +499,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7725446097968031020}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.45, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 8334268912004045736}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6691587733854630821
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -564,6 +564,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1916337685326601306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7725446097968031020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e6ac4b304ff2446bcde6e1f6f49ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7982855901693572663
 GameObject:
   m_ObjectHideFlags: 0

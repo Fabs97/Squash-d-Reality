@@ -16,16 +16,12 @@ public class Snap : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(transform.parent != null)
-        {
+    void Update() {
+        if(transform.parent != null) {
             Debug.Log("Snap::Update -- parent" + transform.parent.name);
             wasGrabbed = true;
-        }
-
-        if(transform.parent == null && wasGrabbed)
-        {
+        } 
+        else if(wasGrabbed) {
             float x = Mathf.Round((transform.position.x * roomX) / roomX);
             float y = transform.position.y;
             float z = Mathf.Round((transform.position.z * roomZ) / roomZ);

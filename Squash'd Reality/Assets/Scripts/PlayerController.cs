@@ -161,5 +161,11 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.RaphaelNosunDeaths = deaths;
         uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
     }
+
+    [Command]
+    public void CmdSetTransformTo(GameObject go, Vector3 position, Quaternion rotation){
+        go.transform.position = position;
+        go.transform.rotation = rotation;
+    }
     
 }
