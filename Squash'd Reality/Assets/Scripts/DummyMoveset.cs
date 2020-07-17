@@ -208,7 +208,20 @@ public class DummyMoveset : NetworkBehaviour
             if (allyLife <= 0f)
             {
                 TakeDamage(1);
-                allyLife = 0;
+                allyLife = 20f;
+                if (life == 0)
+                {
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var player in players)
+                    {
+                        if (player.GetComponent<DummyMoveset>().playerName ==
+                            other.gameObject.GetComponent<Bullet>().shooterName)
+                        {
+                            player.GetComponent<DummyMoveset>().friendlyKilled(); 
+                        }
+                    }                  
+
+                }
             }
         }
         
@@ -221,6 +234,22 @@ public class DummyMoveset : NetworkBehaviour
         {
             GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().collectible++;
 
+        }
+    }
+
+    public void enemyKilled()
+    {
+        if (hasAuthority)
+        {
+            GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().antivirusKilled++;
+        }
+    }
+
+    public void friendlyKilled()
+    {
+        if (hasAuthority)
+        {
+            GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().friendlyKill++;
         }
     }
     

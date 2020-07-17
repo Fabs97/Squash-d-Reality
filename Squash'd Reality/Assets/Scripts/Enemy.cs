@@ -143,6 +143,15 @@ public class Enemy : MonoBehaviour
 
             if (life <= 0f)
             {
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in players)
+                {
+                    if (player.GetComponent<DummyMoveset>().playerName ==
+                        other.gameObject.GetComponent<Bullet>().shooterName)
+                    {
+                        player.GetComponent<DummyMoveset>().enemyKilled(); 
+                    }
+                }
                 Destroy(this.gameObject);
             }
             Destroy(other.gameObject);

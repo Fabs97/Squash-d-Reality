@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
    //GENERAL MALUSES
    public int death; //OK
    public int timeOut; //OK
-   public int friendlyKill;
+   public int friendlyKill; //Ok
    
    //GENERAL BONUSES
    public int powerUp; //OK
@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
 
    //TRENCH TIME
    public int trenchTimeFriendlyKill;
-   public int antivirusKilled;
+   public int antivirusKilled; //OK
    public int professionalSniper;
 
    
