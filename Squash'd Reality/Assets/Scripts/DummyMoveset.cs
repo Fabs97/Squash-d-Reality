@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -24,6 +25,12 @@ public class DummyMoveset : NetworkBehaviour
 
     private bool pogoStickActive;
 
+    
+    //ALLY DAMAMGE
+    private float BasicDamage = 6.7f;
+    private float MediumDamage = 13.4f;
+    private float HighDamage = 20f;
+    private float allyLife = 20f;
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -176,6 +183,38 @@ public class DummyMoveset : NetworkBehaviour
          _uiManager.setPowerUpButtonActive(false);   
         }
     }
+    //----------------------------------------------------TRIGGER BULLET------------------------------------------------------------------------
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            Debug.Log("HA FUNZIONATO");
+            if (other.gameObject.name == "BulletPistol")
+            {
+                allyLife -= BasicDamage;
+            }else if (other.gameObject.name == "BulletShotgun")
+            {
+                allyLife -= BasicDamage;
+            } else if (other.gameObject.name == "BulletAssaultRifle")
+            {
+                allyLife -= MediumDamage;
+            }else if (other.gameObject.name == "BulletSniperRifle")
+            {
+                allyLife -= HighDamage;
+            }else if (other.gameObject.name == "BulletSMG")
+            {
+                allyLife -= BasicDamage;
+            }
+
+            if (allyLife <= 0f)
+            {
+                TakeDamage(1);
+                allyLife = 0;
+            }
+        }
+        
+    }
+
     //----------------------------------------------------SET OTHER STATS----------------------------------------------------------------------
     public void setCollectibleStats()
     {
