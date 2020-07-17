@@ -22,6 +22,7 @@ TagManager:
   - Pipe
   - Start
   - UICollectibleManager
+  - UILeaderboard
   layers:
   - Default
   - TransparentFX

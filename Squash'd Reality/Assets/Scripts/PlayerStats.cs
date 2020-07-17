@@ -27,6 +27,11 @@ public class PlayerStats : MonoBehaviour
    public int antivirusKilled;
    public int professionalSniper;
 
+   
+   //TOTAL
+   public int totalPoints;
+   public string bonusPrize;
+   
    private void Start()
    {
       resetValues();
@@ -46,5 +51,19 @@ public class PlayerStats : MonoBehaviour
       trenchTimeFriendlyKill = 0;
       antivirusKilled = 0;
       professionalSniper = 0;
+      totalPoints = 0;
+      bonusPrize = "default";
    }
+
+   private void setTotalPoints()
+   {
+      //TODO: aggiungere conti total points
+   }
+
+   private void setBonusPrize()
+   {
+      //TODO: aggiungere conti bonus prize
+   }
+   
+   
 }
