@@ -186,9 +186,8 @@ public class DummyMoveset : NetworkBehaviour
     //----------------------------------------------------TRIGGER BULLET------------------------------------------------------------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Bullet")
+        if (other.tag == "Bullet" && other.GetComponent<Bullet>().shooterName!=playerName)
         {
-            Debug.Log("HA FUNZIONATO");
             if (other.gameObject.name == "BulletPistol")
             {
                 allyLife -= BasicDamage;

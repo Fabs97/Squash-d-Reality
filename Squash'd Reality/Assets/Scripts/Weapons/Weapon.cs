@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour {
         if (GetComponentInParent<DummyMoveset>().hasAuthority && canShoot)
         {
             canShoot = false;
-            BulletInstantiation();
+            BulletInstantiation(GetComponentInParent<DummyMoveset>().playerName);
             StartCoroutine(fireRatio());   
         }
       
@@ -35,11 +35,11 @@ public class Weapon : MonoBehaviour {
     }
 
    
-    private void BulletInstantiation(){
+    private void BulletInstantiation(string shooterName){
         for (int i = 0; i < numberOfBullets; i++)
         {
           
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnBullets(_firePoint.position, _firePoint.rotation, spread, bulletForce, bulletName);
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSpawnBullets(_firePoint.position, _firePoint.rotation, spread, bulletForce, bulletName, shooterName);
             
         }
     }

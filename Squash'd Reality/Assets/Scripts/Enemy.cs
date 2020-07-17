@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private GameObject[] spawnPositions;
 
     private float rotationSpeed = 3f;
-    private float moveSpeed = 3f;
+    private float moveSpeed = 0.5f;
 
     private float life;
 
@@ -118,10 +118,11 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
+            Debug.LogError(other.gameObject.GetComponent<Bullet>().shooterName);
             //TODO: insert animation kill
             if (other.gameObject.name == "BulletPistol")
             {
