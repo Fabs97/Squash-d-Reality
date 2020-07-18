@@ -18,6 +18,7 @@ public class Grabber : NetworkBehaviour
     bool hitDetect1;
     bool hitDetect2;
     [SerializeField] private float maxDist = 0.5f;
+    [SerializeField] private GameObject grabbedPosObj;
     int layerMask = 1 << 31;
 
     // private float throwForce = 400f;
@@ -77,15 +78,15 @@ public class Grabber : NetworkBehaviour
     public void removeGrab(){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         // toGrab.GetComponent<BoxCollider>().enabled = true;
-        handleGrabbedRb(toGrab, true);
+      //  handleGrabbedRb(toGrab, true);
 
         // grabbedRb.AddForce(transform.forward * throwForce);
         if(toGrab.tag == "Pipe"){
             // TODO: dynamic x and z values
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
-        
-        toGrab.transform.parent = null;
+
+        toGrab.GetComponent<Grabbed>().grabPos = null;
         toGrab = null;
         isGrabbing = false;  
         if(needToToggleLight) askToggleLight(true);
@@ -107,10 +108,11 @@ public class Grabber : NetworkBehaviour
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
         }
         // toGrab.GetComponent<BoxCollider>().enabled = false;
-        handleGrabbedRb(toGrab, false);
+       // handleGrabbedRb(toGrab, false);
 
 
-        toGrab.transform.parent = transform;
+        //toGrab.transform.parent = transform;
+        toGrab.GetComponent<Grabbed>().grabPos = grabbedPosObj;
         isGrabbing = true;
         if(needToToggleLight) askToggleLight(false);
     }
