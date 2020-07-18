@@ -34,12 +34,10 @@ public class Pipe : MonoBehaviour
         float y = gameObject.transform.position.y;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z), Quaternion.identity);
-        // gameObject.transform.position = new Vector3(x, y, z);
-        // gameObject.transform.rotation = Quaternion.identity;
-        // foreach (Transform child in transform) {
-        //     if(child.gameObject.tag == "Hole") {
-        //         child.gameObject.GetComponent<Hole>().checkHoleConnection();
-        //     }
-        // }
+        foreach (Transform child in transform) {
+            if(child.gameObject.tag == "Hole") {
+                child.gameObject.GetComponent<Hole>().checkHoleConnection();
+            }
+        }
     }
 }

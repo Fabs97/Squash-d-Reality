@@ -95,28 +95,27 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-
     public void CmdsetLight1(bool value)
     {
         GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light1On =
             value;
     }
-    [Command]
 
+    [Command]
     public void CmdsetLight2(bool value)
     {
         GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light2On =
             value;
     }
+    
     [Command]
-
     public void CmdsetLight3(bool value)
     {
         GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light3On =
             value;
     }
-    [Command]
 
+    [Command]
     public void CmdsetLight4(bool value)
     {
         GameObject.FindGameObjectWithTag("DarkPuzzleMatchManager").GetComponent<DarkPuzzleMatchManager>().light4On =
@@ -168,5 +167,12 @@ public class PlayerController : NetworkBehaviour
         go.transform.position = position;
         go.transform.rotation = rotation;
     }
-    
+
+    [Command]
+    public void CmdSetGrabbedRigidBody(GameObject go, bool release){
+        Grabbable gb = go.GetComponent<Grabbable>();
+        gb.detectCollisions = release;
+        gb.useGravity = release;
+        // gb.setRigidBody();
+    }
 }

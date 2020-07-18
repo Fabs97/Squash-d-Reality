@@ -75,10 +75,8 @@ public class Grabber : NetworkBehaviour
     public void removeGrab(){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         // toGrab.GetComponent<BoxCollider>().enabled = true;
-        Rigidbody grabbedRb = toGrab.GetComponent<Rigidbody>();
-        grabbedRb.mass = 1.0f;
-        // grabbedRb.isKinematic = false;
-        // grabbedRb.useGravity = true;
+        handleGrabbedRb(toGrab, true);
+
         // grabbedRb.AddForce(transform.forward * throwForce);
         if(toGrab.tag == "Pipe"){
             // TODO: dynamic x and z values
@@ -106,10 +104,16 @@ public class Grabber : NetworkBehaviour
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
         }
         // toGrab.GetComponent<BoxCollider>().enabled = false;
-        toGrab.GetComponent<Rigidbody>().mass = 0;
+        handleGrabbedRb(toGrab, false);
+
+
         toGrab.transform.parent = transform;
         isGrabbing = true;
         if(needToToggleLight) askToggleLight(false);
+    }
+
+    private void handleGrabbedRb(GameObject go, bool release){
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbedRigidBody(go, release);
     }
 
     void OnDrawGizmos()
