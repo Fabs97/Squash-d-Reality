@@ -43,14 +43,13 @@ public class Grabbed : NetworkBehaviour
         }else if (isClient && hasAuthority && grabPos!=null)
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPos(this.gameObject, grabPos.transform.position, Quaternion.identity);
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position,position, interpolationRatio);
-            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, interpolationRatio);   
+            
         }
 
         if (!hasAuthority)
         {
-            gameObject.transform.position = position;
-            gameObject.transform.rotation = rotation;   
+           gameObject.transform.position = Vector3.Lerp(gameObject.transform.position,position, 0.1f);
+           gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 0.1f);   
         }
         
     }
