@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -42,14 +43,7 @@ public class UILeaderboard : NetworkBehaviour
     {
         StartCoroutine(wait());
     }
-
-    private void showPlayers()
-    {
-        Player1.SetActive(MarkusNobelEnabled);
-        Player2.SetActive(KenNoloEnabled);
-        Player3.SetActive(KamBryllaEnabled);
-        Player4.SetActive(RaphaelNosunEnabled);
-    }
+    
 
     IEnumerator wait()
     {
@@ -95,6 +89,93 @@ public class UILeaderboard : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
         showPlayers();
+    }
+    
+     private void showPlayers()
+    {
+        if (MarkusNobelEnabled)
+        {
+            for (int i = 0; i < Player1.transform.childCount; i++)
+            {
+                if (Player1.transform.GetChild(i).name == "PlayerPointsButton")
+                {
+                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + MarkusNoblePoints;
+                }
+
+                if (Player1.transform.GetChild(i).name == "PlayerDeathsButton")
+                {
+                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + MarkusNobleDeaths;
+                }
+                if (Player1.transform.GetChild(i).name == "PlayerBonusPrize")
+                {
+                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + MarkusNobleBonusPrize;
+                }
+            }
+        }
+        Player1.SetActive(MarkusNobelEnabled);
+
+        if (KenNoloEnabled)
+        {
+            for (int i = 0; i < Player2.transform.childCount; i++)
+            {
+                if (Player2.transform.GetChild(i).name == "PlayerPointsButton")
+                {
+                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KenNoloPoints;
+                }
+
+                if (Player2.transform.GetChild(i).name == "PlayerDeathsButton")
+                {
+                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KenNoloDeaths;
+                }
+                if (Player2.transform.GetChild(i).name == "PlayerBonusPrize")
+                {
+                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KenNoloBonusPrize;
+                }
+            }
+        }
+        Player2.SetActive(KenNoloEnabled);
+
+        if (KamBryllaEnabled)
+        {
+            for (int i = 0; i < Player3.transform.childCount; i++)
+            {
+                if (Player3.transform.GetChild(i).name == "PlayerPointsButton")
+                {
+                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KamBryllaPoints;
+                }
+
+                if (Player3.transform.GetChild(i).name == "PlayerDeathsButton")
+                {
+                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KamBryllaDeaths;
+                }
+                if (Player3.transform.GetChild(i).name == "PlayerBonusPrize")
+                {
+                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KamBryllaBonusPrize;
+                }
+            }
+        }
+        Player3.SetActive(KamBryllaEnabled);
+
+        if (RaphaelNosunEnabled)
+        {
+            for (int i = 0; i < Player4.transform.childCount; i++)
+            {
+                if (Player4.transform.GetChild(i).name == "PlayerPointsButton")
+                {
+                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + RaphaelNosunPoints;
+                }
+
+                if (Player4.transform.GetChild(i).name == "PlayerDeathsButton")
+                {
+                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + RaphaelNosunDeaths;
+                }
+                if (Player4.transform.GetChild(i).name == "PlayerBonusPrize")
+                {
+                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + RaphaelNosunBonusPrize;
+                }
+            }
+        }
+        Player4.SetActive(RaphaelNosunEnabled);
     }
 }
 

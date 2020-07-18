@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -24,6 +25,12 @@ public class DummyMoveset : NetworkBehaviour
 
     private bool pogoStickActive;
 
+    
+    //ALLY DAMAMGE
+    private float BasicDamage = 6.7f;
+    private float MediumDamage = 13.4f;
+    private float HighDamage = 20f;
+    private float allyLife = 20f;
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -91,9 +98,11 @@ public class DummyMoveset : NetworkBehaviour
 
     public void Die(string playerDead) {
         UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        PlayerStats playerStats = GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>();
         if (hasAuthority)
         {
-            _uiManager.setInfoBoxText("YOU DIED"); 
+            _uiManager.setInfoBoxText("YOU DIED");
+            playerStats.death++;
         }
         else
         {
@@ -117,6 +126,8 @@ public class DummyMoveset : NetworkBehaviour
         {
             if (hasAuthority)
             {
+                PlayerStats playerStats = GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>();
+                playerStats.death++;
                 _uiManager.setInfoBoxText("YOU DIED");        
                 _uiManager.setInfoBoxActive(true);   
             }
@@ -128,12 +139,14 @@ public class DummyMoveset : NetworkBehaviour
     //-------------------------------------------POWER UPs SETTINGS---------------------------------------
     public void setSpartanArmorActive()
     {
+        GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().powerUp++;
         resetPowerUpValues();
         life = 2;
     }
 
     public void setHoverboardActive()
     {
+        GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().powerUp++;
         resetPowerUpValues();
         playerSpeedMultiplier = hoverboardMultiplier;
         durationPowerup = StartCoroutine(powerUpDuration());
@@ -141,6 +154,7 @@ public class DummyMoveset : NetworkBehaviour
 
     public void setPogoStickActive()
     {
+        GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().powerUp++;
         resetPowerUpValues();
         pogoStickActive = true;
         jumpHeightMultiplier = pogoStickMultiplier;
@@ -169,5 +183,74 @@ public class DummyMoveset : NetworkBehaviour
          _uiManager.setPowerUpButtonActive(false);   
         }
     }
+    //----------------------------------------------------TRIGGER BULLET------------------------------------------------------------------------
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet" && other.GetComponent<Bullet>().shooterName!=playerName)
+        {
+            if (other.gameObject.name == "BulletPistol")
+            {
+                allyLife -= BasicDamage;
+            }else if (other.gameObject.name == "BulletShotgun")
+            {
+                allyLife -= BasicDamage;
+            } else if (other.gameObject.name == "BulletAssaultRifle")
+            {
+                allyLife -= MediumDamage;
+            }else if (other.gameObject.name == "BulletSniperRifle")
+            {
+                allyLife -= HighDamage;
+            }else if (other.gameObject.name == "BulletSMG")
+            {
+                allyLife -= BasicDamage;
+            }
 
+            if (allyLife <= 0f)
+            {
+                TakeDamage(1);
+                allyLife = 20f;
+                if (life == 0)
+                {
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var player in players)
+                    {
+                        if (player.GetComponent<DummyMoveset>().playerName ==
+                            other.gameObject.GetComponent<Bullet>().shooterName)
+                        {
+                            player.GetComponent<DummyMoveset>().friendlyKilled(); 
+                        }
+                    }                  
+
+                }
+            }
+        }
+        
+    }
+
+    //----------------------------------------------------SET OTHER STATS----------------------------------------------------------------------
+    public void setCollectibleStats()
+    {
+        if (hasAuthority)
+        {
+            GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().collectible++;
+
+        }
+    }
+
+    public void enemyKilled()
+    {
+        if (hasAuthority)
+        {
+            GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().antivirusKilled++;
+        }
+    }
+
+    public void friendlyKilled()
+    {
+        if (hasAuthority)
+        {
+            GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().friendlyKill++;
+        }
+    }
+    
 }

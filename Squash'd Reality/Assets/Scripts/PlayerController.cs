@@ -80,7 +80,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSpawnBullets(Vector3 position, Quaternion rotation, float spread, float bulletForce, string bulletName)
+    public void CmdSpawnBullets(Vector3 position, Quaternion rotation, float spread, float bulletForce, string bulletName, string shooterName)
     {
         var randomNumberX = UnityEngine.Random.Range(-spread, spread);      
         var randomNumberY = UnityEngine.Random.Range(-spread, spread);     
@@ -89,6 +89,7 @@ public class PlayerController : NetworkBehaviour
         spawnedGameObject.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
         spawnedGameObject.GetComponent<Rigidbody>().AddForce(spawnedGameObject.transform.forward * bulletForce, ForceMode.Impulse);
         spawnedGameObject.name = bulletName;
+        spawnedGameObject.GetComponent<Bullet>().shooterName = shooterName;
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);
     }

@@ -63,7 +63,10 @@ public class MatchManager : NetworkBehaviour
     }
 
 
-    public virtual void timeEnded(){ }
+    public virtual void timeEnded()
+    {
+        GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>().timeOut++;
+    }
     
     public void setTimer(float timer){
         challengeTimer = timer;

@@ -47,6 +47,7 @@ public class Collectibles : MonoBehaviour
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(true); 
       }
+      other.GetComponent<DummyMoveset>().setCollectibleStats();
       PlayerPrefs.SetString(gameObject.name, "true");
       Destroy(this.gameObject);
    }
