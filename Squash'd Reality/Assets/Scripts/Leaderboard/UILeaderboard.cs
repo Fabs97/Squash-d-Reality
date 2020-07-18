@@ -95,7 +95,7 @@ public class UILeaderboard : NetworkBehaviour
     {
         if (MarkusNobelEnabled)
         {
-            for (int i = 0; i < Player1.transform.GetChildCount(); i++)
+            for (int i = 0; i < Player1.transform.childCount; i++)
             {
                 if (Player1.transform.GetChild(i).name == "PlayerPointsButton")
                 {
@@ -116,7 +116,7 @@ public class UILeaderboard : NetworkBehaviour
 
         if (KenNoloEnabled)
         {
-            for (int i = 0; i < Player2.transform.GetChildCount(); i++)
+            for (int i = 0; i < Player2.transform.childCount; i++)
             {
                 if (Player2.transform.GetChild(i).name == "PlayerPointsButton")
                 {
@@ -137,7 +137,7 @@ public class UILeaderboard : NetworkBehaviour
 
         if (KamBryllaEnabled)
         {
-            for (int i = 0; i < Player3.transform.GetChildCount(); i++)
+            for (int i = 0; i < Player3.transform.childCount; i++)
             {
                 if (Player3.transform.GetChild(i).name == "PlayerPointsButton")
                 {
@@ -158,7 +158,7 @@ public class UILeaderboard : NetworkBehaviour
 
         if (RaphaelNosunEnabled)
         {
-            for (int i = 0; i < Player4.transform.GetChildCount(); i++)
+            for (int i = 0; i < Player4.transform.childCount; i++)
             {
                 if (Player4.transform.GetChild(i).name == "PlayerPointsButton")
                 {
