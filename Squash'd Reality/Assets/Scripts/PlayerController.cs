@@ -175,4 +175,11 @@ public class PlayerController : NetworkBehaviour
         gb.useGravity = release;
         // gb.setRigidBody();
     }
+
+    [Command]
+    public void CmdSetPos(GameObject go, Vector3 position, Quaternion rotation)
+    {
+        go.GetComponent<Grabbed>().position = position;
+        go.GetComponent<Grabbed>().rotation = rotation;
+    }
 }
