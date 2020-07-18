@@ -2,12 +2,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Grabbable : NetworkBehaviour {
-    [SyncVar] public bool detectCollisions = true;
-    [SyncVar] public bool useGravity = true;
+    [SyncVar] public bool detectCollisions;
+    [SyncVar] public bool useGravity;
 
     private Rigidbody _rb;
 
-    private void Awake() {
+    private void Start() {
+        if (isServer)
+        {
+            detectCollisions = true;
+            useGravity = true;
+        }
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -16,9 +21,4 @@ public class Grabbable : NetworkBehaviour {
         _rb.useGravity = useGravity;
     }
     
-    public void setRigidBody(){
-        Debug.Log("Diocane vediamo se vengo chiamato ovunque.");
-        _rb.detectCollisions = detectCollisions;
-        _rb.useGravity = useGravity;
-    }
 }
