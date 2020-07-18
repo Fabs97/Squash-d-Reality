@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Networking;
 
 public class Grabber : NetworkBehaviour
@@ -52,8 +52,8 @@ public class Grabber : NetworkBehaviour
 
     void Grab()
     {
-        if (Input.GetButton("Interact"))
-        {
+        bool interacting = Input.GetButton("Interact");
+        if (interacting && !isGrabbing) {
             Debug.Log("Interact");
             hitDetect = Physics.Raycast(transform.position, transform.forward, out hit, maxDist, layerMask);
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
@@ -67,10 +67,9 @@ public class Grabber : NetworkBehaviour
             else if (hitDetect2)
                 setToGrab(hit2.collider.gameObject);
         }
-        else {
-            if (toGrab != null) {
-                removeGrab();
-            }
+
+        if (!interacting && toGrab != null) {
+            removeGrab();
         }
     }
 
