@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
+  m_TransformSyncMode: 4
   m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
@@ -477,8 +477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b43c7a2afa7984091ccadce02b3c27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hole1: {fileID: 0}
-  hole2: {fileID: 0}
   snapValue: 1
   isConnected: 0
   mat: {fileID: 0}
