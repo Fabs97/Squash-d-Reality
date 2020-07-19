@@ -82,26 +82,29 @@ public class Grabber : NetworkBehaviour
             // TODO: dynamic x and z values
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
-        /*GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
-        // toGrab.GetComponent<BoxCollider>().enabled = true;
-      //  handleGrabbedRb(toGrab, true);
-
-        // grabbedRb.AddForce(transform.forward * throwForce);
-        if(toGrab.tag == "Pipe"){
-            // TODO: dynamic x and z values
-            toGrab.GetComponent<Pipe>().releasedPipe();
-        }
-        else
-        {
-            
-        }
-
-        toGrab.GetComponent<Grabbed>().grabPos = null;
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, false);
-
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         toGrab = null;
-        isGrabbing = false;  
-        if(needToToggleLight) askToggleLight(true);*/
+        isGrabbing = false;
+/*GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+// toGrab.GetComponent<BoxCollider>().enabled = true;
+//  handleGrabbedRb(toGrab, true);
+
+// grabbedRb.AddForce(transform.forward * throwForce);
+if(toGrab.tag == "Pipe"){
+    // TODO: dynamic x and z values
+    toGrab.GetComponent<Pipe>().releasedPipe();
+}
+else
+{
+    
+}
+
+toGrab.GetComponent<Grabbed>().grabPos = null;
+GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, false);
+
+toGrab = null;
+isGrabbing = false;  
+if(needToToggleLight) askToggleLight(true);*/
     }
 
     public void toggleLight(bool val){
@@ -114,6 +117,7 @@ public class Grabber : NetworkBehaviour
     {
         toGrab = go;
         toGrab.GetComponent<CubeMovement>().cubeMovement = true;
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         /* Debug.Log("SET to grab");
          toGrab = go;
          if (!isGrabbing)
