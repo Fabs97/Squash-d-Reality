@@ -52,5 +52,6 @@ public class Grabbed : NetworkBehaviour
            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 0.1f);   
         }
         
+        
     }
 }
