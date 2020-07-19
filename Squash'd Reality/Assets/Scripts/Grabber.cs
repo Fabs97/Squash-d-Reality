@@ -85,8 +85,14 @@ public class Grabber : NetworkBehaviour
             // TODO: dynamic x and z values
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
+        else
+        {
+            
+        }
 
         toGrab.GetComponent<Grabbed>().grabPos = null;
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, false);
+
         toGrab = null;
         isGrabbing = false;  
         if(needToToggleLight) askToggleLight(true);
@@ -106,6 +112,7 @@ public class Grabber : NetworkBehaviour
         {
             Debug.Log("Grabber::setToGrab - assigning authority");
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, true);
         }
         // toGrab.GetComponent<BoxCollider>().enabled = false;
        // handleGrabbedRb(toGrab, false);

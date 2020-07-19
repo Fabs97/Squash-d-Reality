@@ -182,4 +182,11 @@ public class PlayerController : NetworkBehaviour
         go.GetComponent<Grabbed>().position = position;
         go.GetComponent<Grabbed>().rotation = rotation;
     }
+
+    [Command]
+    public void CmdSetGrabbed(GameObject go, bool value)
+    {
+        Debug.LogError("SET GRABBED: " + value);
+        go.GetComponent<Grabbed>().objectGrabbed = value;
+    }
 }

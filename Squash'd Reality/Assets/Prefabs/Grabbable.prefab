@@ -146,6 +146,7 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   interpolationFramesCount: 45
+  objectGrabbed: 0
 --- !u!64 &281514388575642025
 MeshCollider:
   m_ObjectHideFlags: 0
