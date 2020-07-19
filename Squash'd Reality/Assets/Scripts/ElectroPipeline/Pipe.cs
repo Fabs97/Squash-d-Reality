@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 { 
-    public GameObject hole1;
-    public GameObject hole2;
     RaycastHit ray1;
     RaycastHit ray2;
     int layerMask = 1 << 30;
@@ -35,10 +33,10 @@ public class Pipe : MonoBehaviour
         float y = gameObject.transform.position.y;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z), Quaternion.identity);
-        foreach (Transform child in transform) {
+      /*  foreach (Transform child in transform) {
             if(child.gameObject.tag == "Hole") {
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
             }
-        }
+        }*/
     }
 }

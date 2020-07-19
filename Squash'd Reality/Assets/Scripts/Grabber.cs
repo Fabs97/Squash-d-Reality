@@ -75,8 +75,14 @@ public class Grabber : NetworkBehaviour
         }
     }
 
-    public void removeGrab(){
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+    public void removeGrab()
+    {
+        toGrab.GetComponent<CubeMovement>().cubeMovement = false;
+        if(toGrab.tag == "Pipe"){
+            // TODO: dynamic x and z values
+            toGrab.GetComponent<Pipe>().releasedPipe();
+        }
+        /*GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         // toGrab.GetComponent<BoxCollider>().enabled = true;
       //  handleGrabbedRb(toGrab, true);
 
@@ -95,7 +101,7 @@ public class Grabber : NetworkBehaviour
 
         toGrab = null;
         isGrabbing = false;  
-        if(needToToggleLight) askToggleLight(true);
+        if(needToToggleLight) askToggleLight(true);*/
     }
 
     public void toggleLight(bool val){
@@ -106,22 +112,24 @@ public class Grabber : NetworkBehaviour
 
     private void setToGrab(GameObject go)
     {
-        Debug.Log("SET to grab");
         toGrab = go;
-        if (!isGrabbing)
-        {
-            Debug.Log("Grabber::setToGrab - assigning authority");
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, true);
-        }
-        // toGrab.GetComponent<BoxCollider>().enabled = false;
-       // handleGrabbedRb(toGrab, false);
-
-
-        //toGrab.transform.parent = transform;
-        toGrab.GetComponent<Grabbed>().grabPos = grabbedPosObj;
-        isGrabbing = true;
-        if(needToToggleLight) askToggleLight(false);
+        toGrab.GetComponent<CubeMovement>().cubeMovement = true;
+        /* Debug.Log("SET to grab");
+         toGrab = go;
+         if (!isGrabbing)
+         {
+             Debug.Log("Grabber::setToGrab - assigning authority");
+             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(go);
+           //  GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbed(toGrab, true);
+         }
+         // toGrab.GetComponent<BoxCollider>().enabled = false;
+        // handleGrabbedRb(toGrab, false);
+ 
+ 
+         //toGrab.transform.parent = transform;
+        // toGrab.GetComponent<Grabbed>().grabPos = grabbedPosObj;
+         isGrabbing = true;
+         if(needToToggleLight) askToggleLight(false); */
     }
 
     private void handleGrabbedRb(GameObject go, bool release){
