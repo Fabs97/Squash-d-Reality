@@ -206,3 +206,5 @@ MonoBehaviour:
   trenchTimeFriendlyKill: 0
   antivirusKilled: 0
   professionalSniper: 0
+  totalPoints: 0
+  bonusPrize: 

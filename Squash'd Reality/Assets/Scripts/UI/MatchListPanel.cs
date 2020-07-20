@@ -30,4 +30,5 @@ public class MatchListPanel : MonoBehaviour
 			button.Initialize(match, transform);
 		}
 	}
+	
 }
