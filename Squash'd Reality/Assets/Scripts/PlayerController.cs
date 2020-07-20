@@ -163,9 +163,8 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetTransformTo(GameObject go, Vector3 position, Quaternion rotation){
+    public void CmdSetTransformTo(GameObject go, Vector3 position){
         go.transform.position = position;
-        go.transform.rotation = rotation;
     }
     
 
@@ -173,5 +172,10 @@ public class PlayerController : NetworkBehaviour
     public void CmdSetMesh(GameObject go, bool value)
     {
         go.GetComponent<PlayerMoveset>().meshActive = value;
+    }
+
+    [Command]
+    public void CmdSetPipeConnected(GameObject go, bool value){
+        go.GetComponent<Pipe>().isConnected = value;
     }
 }
