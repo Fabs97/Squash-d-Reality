@@ -70,7 +70,7 @@ public class Grabber : NetworkBehaviour
 
     public void removeGrab()
     {
-        toGrab.GetComponent<CubeMovement>().cubeMovement = false;
+        toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
         if(toGrab.tag == "Pipe"){
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
@@ -89,7 +89,7 @@ public class Grabber : NetworkBehaviour
     private void setToGrab(GameObject go)
     {
         toGrab = go;
-        toGrab.GetComponent<CubeMovement>().cubeMovement = true;
+        toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         if(needToToggleLight) askToggleLight(false); 
     }
