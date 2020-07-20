@@ -20,34 +20,15 @@ public class TrenchTimeMatchManager : MatchManager
         }
         if (gameReady && !matchStarting)
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            GameObject.FindObjectOfType<TrenchTime>().setPlayersConnected(GameObject.FindGameObjectsWithTag("Player").Length);
+            FindObjectOfType<TrenchTime>().setPlayersConnected(GameObject.FindGameObjectsWithTag("Player").Length);
             matchStarting = true;
             _uiManager.StartMatch(4f);
-            for (int i = 0; i < players.Length; i++)
-            {
-                for (int j = 0; j < players[i].transform.childCount; j++)
-                {
-                    if (players[i].transform.GetChild(j).tag.Equals("Weapon"))
-                    {
-                        GameObject oldWeapon = players[i].transform.GetChild(j).gameObject;
-                        Weapon newWeapon = (Weapon) oldWeapon.AddComponent(typeof(Pistol));
-                        oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
-                        if (players[i].gameObject.GetComponent<PlayerMoveset>().hasAuthority)
-                        {
-                            _uiManager.setWeaponImage("Pistol");
-                            _uiManager.setWeaponActive(true);
-                        }
-
-                    }
-                }
-            }
             StartCoroutine(matchStart());
         }
 
         if (matchTimeEnded)
         {
-            GameObject.FindObjectOfType<TrenchTime>().timeEnded = true;
+            FindObjectOfType<TrenchTime>().timeEnded = true;
             if (isServer) {
                 matchTimeEnded = false;
             }
@@ -63,7 +44,26 @@ public class TrenchTimeMatchManager : MatchManager
     protected override void showPlayerUI()
     {
         base.showPlayerUI();
-        
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            for (int j = 0; j < players[i].transform.childCount; j++)
+            {
+                if (players[i].transform.GetChild(j).tag.Equals("Weapon"))
+                {
+                    GameObject oldWeapon = players[i].transform.GetChild(j).gameObject;
+                    Weapon newWeapon = (Weapon) oldWeapon.AddComponent(typeof(Pistol));
+                    oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
+                    if (players[i].gameObject.GetComponent<PlayerMoveset>().hasAuthority)
+                    {
+                        _uiManager.setWeaponImage("Pistol");
+                        _uiManager.setWeaponActive(true);
+                    }
+
+                }
+            }
+        }
+
     }
 
     public override void timeEnded()
