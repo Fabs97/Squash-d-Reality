@@ -23,6 +23,7 @@ TagManager:
   - Start
   - UICollectibleManager
   - UILeaderboard
+  - HoleStart
   layers:
   - Default
   - TransparentFX
