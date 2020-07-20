@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour {
     int layerMask = 1 << 30;
-    private const float raycastDistance = 0.2f;
+    private const float raycastDistance = 0.4f;
 
     private Dictionary<GameObject, Vector3> connectedTo;
     private Pipe parent;
@@ -13,15 +13,17 @@ public class Hole : MonoBehaviour {
 
     public void checkHoleConnection(){
         RaycastHit raycastHit;
+        Debug.Log("cast ray from: " + gameObject.name);
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             Debug.Log("Hole::checkHoleConnection - hit gameObject with name: " + raycastHit.collider.gameObject.name);
-            
+            GameObject otherHole = raycastHit.collider.gameObject;
+            Hole otherHoleScript = otherHole.GetComponent<Hole>();
             // TODO: can start and end be the same? if so, put it in OR
-            if(raycastHit.collider.gameObject.tag == "HoleStart"){
+            if(otherHole.tag == "HoleStart"){
                 // Connected to the starting hole, defaults to true
                 parent.setPipeConnected(true);
             }
-            else if(raycastHit.collider.gameObject.tag == "HoleEnd"){
+            else if(otherHole.tag == "HoleEnd"){
                 // Connected to the ending hole, defaults to true
                 parent.setPipeConnected(true);
 
@@ -29,9 +31,17 @@ public class Hole : MonoBehaviour {
             else{
                 // Connected to an intermediate hole
                 parent.ensureConnection();
+                otherHoleScript.isPipeConnected();
             }
-
+        } 
+        else{
+            // released and did not hit anything, so this dies.
+            parent.setPipeConnected(false);
         }
+    }
+
+    public bool isPipeConnected(){
+        return this.parent.isConnected;
     }
 
     public RaycastHit fireHoleRaycast(){

@@ -19,7 +19,7 @@ public class PlayerMoveset : NetworkBehaviour
     private float gravityValue = -9.81f;
 
     [SyncVar] public string playerName;
-    [SyncVar] public bool meshActive;
+    [SyncVar(hook="_meshActiveChanged")] public bool meshActive;
     public int life;
 
     private Coroutine durationPowerup;
@@ -43,13 +43,15 @@ public class PlayerMoveset : NetworkBehaviour
     }
 
     void FixedUpdate() {
-        gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
-        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = meshActive;
         if (hasAuthority) {
             Move();
         }
     }
 
+    private void _meshActiveChanged(bool meshActive){
+        gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
+        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = meshActive;
+    }
     void Move(){
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)

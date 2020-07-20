@@ -19,6 +19,9 @@ public class Pipe : NetworkBehaviour
 
     [SerializeField] private Material connectedMaterial;
     private Material unconnectedMaterial;
+    private int holesOnMe = 0;
+    private List<bool> holesAnswers;
+    private bool considerHoleAnswers = true;
     private MeshRenderer meshRenderer;
 
     private void Start()
@@ -26,6 +29,11 @@ public class Pipe : NetworkBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         unconnectedMaterial = meshRenderer.material;
         setPipeConnected(false);
+        
+        holesAnswers = new List<bool>();
+        foreach(Transform child in transform){
+            if(child.gameObject.tag == "Hole") holesOnMe ++;
+        }
     }
 
     void Update()
@@ -37,8 +45,21 @@ public class Pipe : NetworkBehaviour
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
-    public void setPipeConnected(bool value){
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, value);
+    public void setPipeConnected(bool connected){
+        if(considerHoleAnswers){
+            if(connected) {
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
+                considerHoleAnswers = false;
+            }
+        } else {
+            holesAnswers.Add(connected);
+            if(holesAnswers.Count == holesOnMe){
+                // all hits go to false
+                considerHoleAnswers = true;
+                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, false);
+                holesAnswers = new List<bool>();
+            } 
+        }
     }
 
     public void ensureConnection(){
