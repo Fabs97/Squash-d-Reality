@@ -652,6 +652,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HoleEnd
       objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080376, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ccbe2378b9234aa4a9c929ac1b089ad3, type: 2}
     - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -781,5 +786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipeLineStart
       objectReference: {fileID: 0}
+    - target: {fileID: 7534076275761413502, guid: eacb2782568c52044bb31254595c3e87,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b46aa61108d56c243b8c0b60a2b32d1f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eacb2782568c52044bb31254595c3e87, type: 3}
