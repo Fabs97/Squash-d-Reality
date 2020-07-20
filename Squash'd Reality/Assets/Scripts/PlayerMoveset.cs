@@ -19,6 +19,7 @@ public class PlayerMoveset : NetworkBehaviour
     private float gravityValue = -9.81f;
 
     [SyncVar] public string playerName;
+    [SyncVar] public bool meshActive;
     public int life;
 
     private Coroutine durationPowerup;
@@ -33,11 +34,17 @@ public class PlayerMoveset : NetworkBehaviour
     private float allyLife = 20f;
     private void Start()
     {
+        if (isServer)
+        {
+            meshActive = true;
+        }
         controller = gameObject.GetComponent<CharacterController>();
         life = 100000;
     }
 
     void FixedUpdate() {
+        gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
+        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = meshActive;
         if (hasAuthority) {
             Move();
         }

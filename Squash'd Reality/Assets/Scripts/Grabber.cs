@@ -22,6 +22,7 @@ public class Grabber : NetworkBehaviour
     
     void Start()
     {
+    
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -73,6 +74,7 @@ public class Grabber : NetworkBehaviour
         toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
         if(toGrab.tag == "Pipe"){
             toGrab.GetComponent<Pipe>().releasedPipe();
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
         }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         toGrab = null;
@@ -89,15 +91,15 @@ public class Grabber : NetworkBehaviour
     private void setToGrab(GameObject go)
     {
         toGrab = go;
+        if (toGrab.tag == "Pipe")
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, false);
+        }
         toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         if(needToToggleLight) askToggleLight(false); 
     }
-
-    private void handleGrabbedRb(GameObject go, bool release){
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbedRigidBody(go, release);
-    }
-
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
