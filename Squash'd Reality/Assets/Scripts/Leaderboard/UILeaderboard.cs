@@ -14,7 +14,7 @@ public class UILeaderboard : NetworkBehaviour
     [SerializeField] private GameObject Player4;
     
     
-    DummyMoveset dummyMoveset;
+    PlayerMoveset playerMoveset;
 
     
     //SYNCVAR
@@ -60,24 +60,24 @@ public class UILeaderboard : NetworkBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var player in players)
         {
-            if (player.GetComponent<DummyMoveset>().hasAuthority)
+            if (player.GetComponent<PlayerMoveset>().hasAuthority)
             {
-                dummyMoveset = player.GetComponent<DummyMoveset>();
+                playerMoveset = player.GetComponent<PlayerMoveset>();
 
             }
         }
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         
-        if (isClient && dummyMoveset.playerName == "Markus Nobel" && dummyMoveset.hasAuthority)
+        if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
             playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
-        }else if (isClient && dummyMoveset.playerName == "Ken Nolo" && dummyMoveset.hasAuthority)
+        }else if (isClient && playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
         {
             playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
-        }else if (isClient && dummyMoveset.playerName == "Kam Brylla" && dummyMoveset.hasAuthority)
+        }else if (isClient && playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
         {
             playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
-        }else if (isClient && dummyMoveset.playerName == "Raphael Nosun" && dummyMoveset.hasAuthority)
+        }else if (isClient && playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
         {
             playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
         }

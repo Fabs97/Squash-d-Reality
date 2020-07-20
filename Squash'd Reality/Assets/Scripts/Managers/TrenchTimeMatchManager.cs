@@ -33,7 +33,7 @@ public class TrenchTimeMatchManager : MatchManager
                         GameObject oldWeapon = players[i].transform.GetChild(j).gameObject;
                         Weapon newWeapon = (Weapon) oldWeapon.AddComponent(typeof(Pistol));
                         oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
-                        if (players[i].gameObject.GetComponent<DummyMoveset>().hasAuthority)
+                        if (players[i].gameObject.GetComponent<PlayerMoveset>().hasAuthority)
                         {
                             _uiManager.setWeaponImage("Pistol");
                             _uiManager.setWeaponActive(true);

@@ -17,7 +17,7 @@ public class Collectibles : MonoBehaviour
       {
          triggerActivated = true;
          firstEntered = other;
-         if (other.GetComponent<DummyMoveset>().hasAuthority)
+         if (other.GetComponent<PlayerMoveset>().hasAuthority)
          {
             GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(true);
 
@@ -42,12 +42,13 @@ public class Collectibles : MonoBehaviour
    IEnumerator waitIntel(Collider other)
    {
       yield return new WaitForSeconds(3f);
-      if (other.GetComponent<DummyMoveset>().hasAuthority)
+      PlayerMoveset playerMoveset = other.GetComponent<PlayerMoveset>();
+      if (playerMoveset.hasAuthority)
       {
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
          GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(true); 
       }
-      other.GetComponent<DummyMoveset>().setCollectibleStats();
+      playerMoveset.setCollectibleStats();
       PlayerPrefs.SetString(gameObject.name, "true");
       Destroy(this.gameObject);
    }

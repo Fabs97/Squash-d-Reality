@@ -123,7 +123,7 @@ public class Grabber : NetworkBehaviour
         GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
         if (localPlayer != null) {
 
-            string playerName = GetComponentInParent<DummyMoveset>().playerName;
+            string playerName = GetComponentInParent<PlayerMoveset>().playerName;
             if ( playerName == "Markus Nobel") localPlayer.GetComponent<PlayerController>().CmdsetLight1(value);
             else if (playerName == "Ken Nolo") localPlayer.GetComponent<PlayerController>().CmdsetLight2(value);
             else if (playerName == "Kam Brylla") localPlayer.GetComponent<PlayerController>().CmdsetLight3(value);
