@@ -14,7 +14,7 @@ public class HoverboardPowerUp : PowerUP
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if (other.tag == "Player")
         {
-            DummyMoveset dm =  other.gameObject.GetComponent<DummyMoveset>();
+            PlayerMoveset dm =  other.gameObject.GetComponent<PlayerMoveset>();
             dm.setHoverboardActive();
             if (dm.hasAuthority)
             {

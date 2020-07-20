@@ -63,7 +63,7 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdSpawnPlayer(String playerName) {
         GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
-        go.GetComponent<DummyMoveset>().playerName = playerName;
+        go.GetComponent<PlayerMoveset>().playerName = playerName;
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
     }
 

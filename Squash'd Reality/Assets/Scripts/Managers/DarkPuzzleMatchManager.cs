@@ -23,22 +23,12 @@ public class DarkPuzzleMatchManager : MatchManager
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var player in players)
         {
-            if (player.GetComponent<DummyMoveset>().playerName == "Markus Nobel")
-            {
-                player.GetComponent<Grabber>().toggleLight(light1On);
-            }
-            if (player.GetComponent<DummyMoveset>().playerName == "Ken Nolo")
-            {
-                player.GetComponent<Grabber>().toggleLight(light2On);
-            }
-            if (player.GetComponent<DummyMoveset>().playerName == "Kam Brylla")
-            {
-                player.GetComponent<Grabber>().toggleLight(light3On);
-            }
-            if (player.GetComponent<DummyMoveset>().playerName == "Raphael Nosun")
-            {
-                player.GetComponent<Grabber>().toggleLight(light4On);
-            }
+            string playerName = player.GetComponent<PlayerMoveset>().playerName;
+            
+            if (playerName == "Markus Nobel") player.GetComponent<Grabber>().toggleLight(light1On);
+            else if (playerName == "Ken Nolo") player.GetComponent<Grabber>().toggleLight(light2On);
+            else if (playerName == "Kam Brylla") player.GetComponent<Grabber>().toggleLight(light3On);
+            else if (playerName == "Raphael Nosun") player.GetComponent<Grabber>().toggleLight(light4On);
         }
        
     }

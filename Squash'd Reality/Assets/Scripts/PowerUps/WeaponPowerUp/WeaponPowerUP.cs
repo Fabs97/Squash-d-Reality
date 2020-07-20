@@ -22,7 +22,7 @@ public class WeaponPowerUP : PowerUP {
                     Destroy(oldWeapon.GetComponent<Weapon>());
                     Weapon newWeapon = (Weapon) oldWeapon.AddComponent(weaponType);
                     oldWeapon.GetComponent<Shoot>().updateWeapon(newWeapon);
-                    if (other.gameObject.GetComponent<DummyMoveset>().hasAuthority)
+                    if (other.gameObject.GetComponent<PlayerMoveset>().hasAuthority)
                     {
                         uiManager.setWeaponImage(weaponType.ToString());
                         uiManager.setWeaponActive(true);

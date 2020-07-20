@@ -28,7 +28,6 @@ public class Pipe : MonoBehaviour
     }
 
     public void releasedPipe(){
-        Debug.LogError("RELEASED PIPE");
         float x = Mathf.Round(gameObject.transform.position.x / snapValue);
         float y = gameObject.transform.position.y;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);

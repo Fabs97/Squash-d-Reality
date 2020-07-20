@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
             float distance = Vector3.Distance(transform.position, players[i].transform.position);
             if (distance <= distanceToKill)
             {
-                players[i].GetComponent<DummyMoveset>().TakeDamage(1);
+                players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
             }
         }
         Destroy(this.gameObject);
@@ -146,10 +146,11 @@ public class Enemy : MonoBehaviour
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                 foreach (var player in players)
                 {
-                    if (player.GetComponent<DummyMoveset>().playerName ==
+                    PlayerMoveset playerMoveset = player.GetComponent<PlayerMoveset>();
+                    if (playerMoveset.playerName ==
                         other.gameObject.GetComponent<Bullet>().shooterName)
                     {
-                        player.GetComponent<DummyMoveset>().enemyKilled(); 
+                        playerMoveset.enemyKilled(); 
                     }
                 }
                 Destroy(this.gameObject);

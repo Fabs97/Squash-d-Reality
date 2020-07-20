@@ -7,7 +7,8 @@ public class DeathZone : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag.Equals("Player"))
         {
-            other.gameObject.GetComponent<DummyMoveset>().Die(other.gameObject.GetComponent<DummyMoveset>().playerName);
+            PlayerMoveset playerMoveset = other.gameObject.GetComponent<PlayerMoveset>();
+            playerMoveset.Die(playerMoveset.playerName);
             StartCoroutine(resetChallenge());
         }
     }

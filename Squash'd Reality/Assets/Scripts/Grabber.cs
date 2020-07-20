@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 
 public class Grabber : NetworkBehaviour
@@ -32,7 +32,6 @@ public class Grabber : NetworkBehaviour
         }
 
         needToToggleLight = _levelManager.getCurrentLevel().isDark;
-        Debug.Log("Grabber::Start - needToToggleLight? " + needToToggleLight);
         if (needToToggleLight) {
             askToggleLight(true);
         }
@@ -52,12 +51,10 @@ public class Grabber : NetworkBehaviour
     {
         bool interacting = Input.GetButton("Interact");
         if (interacting && !isGrabbing) {
-            Debug.Log("Interact");
             hitDetect = Physics.Raycast(transform.position, transform.forward, out hit, maxDist, layerMask);
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
-            Debug.Log(""+hitDetect + hitDetect1 + hitDetect1);
             if (hitDetect)
                 setToGrab(hit.collider.gameObject);
             else if (hitDetect1)
@@ -73,9 +70,8 @@ public class Grabber : NetworkBehaviour
 
     public void removeGrab()
     {
-        toGrab.GetComponent<CubeMovement>().cubeMovement = false;
+        toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
         if(toGrab.tag == "Pipe"){
-            // TODO: dynamic x and z values
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
@@ -93,7 +89,7 @@ public class Grabber : NetworkBehaviour
     private void setToGrab(GameObject go)
     {
         toGrab = go;
-        toGrab.GetComponent<CubeMovement>().cubeMovement = true;
+        toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         if(needToToggleLight) askToggleLight(false); 
     }
@@ -127,7 +123,7 @@ public class Grabber : NetworkBehaviour
         GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
         if (localPlayer != null) {
 
-            string playerName = GetComponentInParent<DummyMoveset>().playerName;
+            string playerName = GetComponentInParent<PlayerMoveset>().playerName;
             if ( playerName == "Markus Nobel") localPlayer.GetComponent<PlayerController>().CmdsetLight1(value);
             else if (playerName == "Ken Nolo") localPlayer.GetComponent<PlayerController>().CmdsetLight2(value);
             else if (playerName == "Kam Brylla") localPlayer.GetComponent<PlayerController>().CmdsetLight3(value);

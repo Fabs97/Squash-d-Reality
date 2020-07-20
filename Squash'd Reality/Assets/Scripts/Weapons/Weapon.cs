@@ -19,10 +19,11 @@ public class Weapon : MonoBehaviour {
     
     public virtual void shoot()
     {
-        if (GetComponentInParent<DummyMoveset>().hasAuthority && canShoot)
+        PlayerMoveset parentMoveset = GetComponentInParent<PlayerMoveset>();
+        if (parentMoveset.hasAuthority && canShoot)
         {
             canShoot = false;
-            BulletInstantiation(GetComponentInParent<DummyMoveset>().playerName);
+            BulletInstantiation(parentMoveset.playerName);
             StartCoroutine(fireRatio());   
         }
       
