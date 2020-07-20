@@ -37,15 +37,8 @@ public class PlayerMoveset : NetworkBehaviour
         life = 100000;
     }
 
-    void Update()
-    {
-        
-    }
-    void FixedUpdate()
-    {
-        if (hasAuthority)
-        {
-            Debug.Log("PLAYER NAME: " + playerName);
+    void FixedUpdate() {
+        if (hasAuthority) {
             Move();
         }
     }
