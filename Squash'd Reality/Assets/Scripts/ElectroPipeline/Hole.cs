@@ -15,8 +15,29 @@ public class Hole : MonoBehaviour {
         RaycastHit raycastHit;
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             Debug.Log("Hole::checkHoleConnection - hit gameObject with name: " + raycastHit.collider.gameObject.name);
-            parent.setPipeConnected(true);
+            
+            // TODO: can start and end be the same? if so, put it in OR
+            if(raycastHit.collider.gameObject.tag == "HoleStart"){
+                // Connected to the starting hole, defaults to true
+                parent.setPipeConnected(true);
+            }
+            else if(raycastHit.collider.gameObject.tag == "HoleEnd"){
+                // Connected to the ending hole, defaults to true
+                parent.setPipeConnected(true);
+
+            }
+            else{
+                // Connected to an intermediate hole
+                parent.ensureConnection();
+            }
+
         }
+    }
+
+    public RaycastHit fireHoleRaycast(){
+        RaycastHit hit;
+        Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask);
+        return hit;
     }
 
     private void OnDrawGizmos() {

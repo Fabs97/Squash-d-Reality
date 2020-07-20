@@ -41,6 +41,20 @@ public class Pipe : NetworkBehaviour
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, value);
     }
 
+    public void ensureConnection(){
+        bool atLeastOneConnection = false;
+        foreach(Transform child in transform){
+            if(child.gameObject.tag == "Hole"){
+                Hole hole = child.gameObject.GetComponent<Hole>();
+                RaycastHit hit = hole.fireHoleRaycast();
+                if(hit.collider != null){
+                    atLeastOneConnection = true;
+                }
+            }
+        }
+        setPipeConnected(atLeastOneConnection);
+    }
+
     public void releasedPipe(){
         float x = Mathf.Round(gameObject.transform.position.x / snapValue);
         float y = gameObject.transform.position.y;
