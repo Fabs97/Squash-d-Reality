@@ -11,7 +11,8 @@ namespace NetworkingManager {
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
         private List<string> _playersNames;
-        private List<MatchInfoSnapshot> matches;
+        public List<MatchInfoSnapshot> matches;
+        public string currentMatchName;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
@@ -24,16 +25,16 @@ namespace NetworkingManager {
 
         public void StartHosting() {
             StartMatchMaker();
-            string matchName = "Match: " + Random.Range(0, 1000);
+            currentMatchName = "Match: " + Random.Range(0, 1000);
             for (int i = 0; i < matches.Count; i++)
             {
-                if (matches[i].name == matchName)
+                if (matches[i].name == currentMatchName)
                 {
-                    matchName = "Match: " + Random.Range(0, 1000);
+                    currentMatchName = "Match: " + Random.Range(0, 1000);
                     i = -1;
                 }
             }
-            matchMaker.CreateMatch(matchName, 4, true, "", "", "", 0, 0, OnMatchCreated);
+            matchMaker.CreateMatch(currentMatchName, 4, true, "", "", "", 0, 0, OnMatchCreated);
         }
 
         private void OnMatchCreated(bool success, string extendedinfo, MatchInfo responsedata)
