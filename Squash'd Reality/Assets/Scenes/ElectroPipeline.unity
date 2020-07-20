@@ -635,6 +635,85 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca92dcf41134e3e4b8ebb70fad6ba7fb, type: 3}
+--- !u!1001 &4837760431685516341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 96619586724439408, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_Name
+      value: HoleEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 96619586724439408, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_TagString
+      value: HoleEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080378, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837760432400080382, guid: 270e870d604b38a4284a019ed18f4053,
+        type: 3}
+      propertyPath: m_Name
+      value: PipeLineEnd
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 270e870d604b38a4284a019ed18f4053, type: 3}
 --- !u!1001 &8046053561440508765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,21 +783,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eacb2782568c52044bb31254595c3e87, type: 3}
---- !u!1 &8046053561440508766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6223977429979022345, guid: eacb2782568c52044bb31254595c3e87,
-    type: 3}
-  m_PrefabInstance: {fileID: 8046053561440508765}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8046053561440508767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046053561440508766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7743f55bfc11cc941ad17cd3f5bee572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
