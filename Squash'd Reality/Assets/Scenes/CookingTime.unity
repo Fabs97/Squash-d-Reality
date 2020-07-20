@@ -170,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429072359
 GameObject:
@@ -297,7 +297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &597639151
 MonoBehaviour:
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingString: Cook the elements in order!
+  challengeTimer: 90
 --- !u!114 &654606002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 4152696002327917912, guid: 1b96cbb03e0b2d741a22e71a6fe815bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4152696002327917912, guid: 1b96cbb03e0b2d741a22e71a6fe815bd,
         type: 3}
@@ -705,7 +706,7 @@ PrefabInstance:
     - target: {fileID: 6627489695016615598, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6627489695016615598, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
         type: 3}
@@ -1169,7 +1170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2991579504508952375
 PrefabInstance:
@@ -1216,7 +1217,7 @@ PrefabInstance:
     - target: {fileID: 2730913481227014026, guid: d4d34f1ecb4447c458e25debbeef6ff8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2730913481227014026, guid: d4d34f1ecb4447c458e25debbeef6ff8,
         type: 3}

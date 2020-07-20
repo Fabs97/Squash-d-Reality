@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class Grabber : NetworkBehaviour
 {
@@ -19,10 +20,11 @@ public class Grabber : NetworkBehaviour
     bool hitDetect2;
     [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
+    private Scene scene;
     
     void Start()
     {
-    
+        scene = SceneManager.GetActiveScene();
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -71,7 +73,14 @@ public class Grabber : NetworkBehaviour
 
     public void removeGrab()
     {
-        toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
+        if (scene.name == "CookingTime")
+        {
+            toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = false;
+        }
+        else
+        {
+            toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
+        }
         if(toGrab.tag == "Pipe"){
             toGrab.GetComponent<Pipe>().releasedPipe();
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
@@ -95,7 +104,15 @@ public class Grabber : NetworkBehaviour
         {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, false);
         }
-        toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+
+        if (scene.name == "CookingTime")
+        {
+            toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = true;
+        }
+        else
+        {
+            toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+        }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         if(needToToggleLight) askToggleLight(false); 
     }
