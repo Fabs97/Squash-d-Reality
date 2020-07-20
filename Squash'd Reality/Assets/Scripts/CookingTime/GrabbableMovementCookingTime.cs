@@ -18,7 +18,7 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
 
 
     public bool cubeMovement = false;
-    
+    private bool dropped = false;
   
     private void Start()
     {
@@ -33,9 +33,10 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
         {
             Move();
         }
-
-        if (transform.position.y<=0.56f)
+        
+        if (!dropped && transform.position.y<=0.56f)
         {
+            dropped = true;
             controller.enabled = true;
             GetComponent<Collider>().isTrigger = false;
             GetComponent<Rigidbody>().useGravity = false;
