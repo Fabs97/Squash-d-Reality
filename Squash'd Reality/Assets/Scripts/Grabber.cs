@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 
 public class Grabber : NetworkBehaviour
@@ -32,7 +32,6 @@ public class Grabber : NetworkBehaviour
         }
 
         needToToggleLight = _levelManager.getCurrentLevel().isDark;
-        Debug.Log("Grabber::Start - needToToggleLight? " + needToToggleLight);
         if (needToToggleLight) {
             askToggleLight(true);
         }
@@ -52,12 +51,10 @@ public class Grabber : NetworkBehaviour
     {
         bool interacting = Input.GetButton("Interact");
         if (interacting && !isGrabbing) {
-            Debug.Log("Interact");
             hitDetect = Physics.Raycast(transform.position, transform.forward, out hit, maxDist, layerMask);
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
-            Debug.Log(""+hitDetect + hitDetect1 + hitDetect1);
             if (hitDetect)
                 setToGrab(hit.collider.gameObject);
             else if (hitDetect1)
@@ -75,7 +72,6 @@ public class Grabber : NetworkBehaviour
     {
         toGrab.GetComponent<CubeMovement>().cubeMovement = false;
         if(toGrab.tag == "Pipe"){
-            // TODO: dynamic x and z values
             toGrab.GetComponent<Pipe>().releasedPipe();
         }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
