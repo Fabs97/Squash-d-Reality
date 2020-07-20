@@ -45,6 +45,7 @@ public class DummyMoveset : NetworkBehaviour
     {
         if (hasAuthority)
         {
+            Debug.Log("PLAYER NAME: " + playerName);
             Move();
         }
     }
