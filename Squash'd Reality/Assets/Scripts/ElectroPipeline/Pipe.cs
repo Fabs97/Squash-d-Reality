@@ -78,7 +78,7 @@ public class Pipe : NetworkBehaviour
 
     public void releasedPipe(){
         float x = Mathf.Round(gameObject.transform.position.x / snapValue);
-        float y = gameObject.transform.position.y;
+        float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z));
         foreach (Transform child in transform) {

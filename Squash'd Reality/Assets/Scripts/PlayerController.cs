@@ -177,4 +177,10 @@ public class PlayerController : NetworkBehaviour
     public void CmdSetPipeConnected(GameObject go, bool value){
         go.GetComponent<Pipe>().isConnected = value;
     }
+
+    [Command]
+    public void CmdSetGrabebd(GameObject go, bool value)
+    {
+        go.GetComponent<GrabbableMovement>().cubeMovement = value;
+    }
 }
