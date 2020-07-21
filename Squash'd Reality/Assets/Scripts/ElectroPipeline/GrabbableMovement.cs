@@ -17,13 +17,18 @@ public class GrabbableMovement :  NetworkBehaviour
   
 
 
-    public bool cubeMovement = false;
+    [SyncVar] public bool cubeMovement = false;
     
-  
+    [SerializeField] private float snapValue = 1.0f;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        cubeMovement = false;
+        if (isServer)
+        {
+            cubeMovement = false;
+ 
+        }
     }
     
     void FixedUpdate()
@@ -31,6 +36,12 @@ public class GrabbableMovement :  NetworkBehaviour
         if (hasAuthority && cubeMovement)
         {
             Move();
+        }else if (!cubeMovement)
+        {
+            float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+            float y = 0.55f;
+            float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+            this.transform.position = new Vector3(x,y,z);
         }
     }
 
