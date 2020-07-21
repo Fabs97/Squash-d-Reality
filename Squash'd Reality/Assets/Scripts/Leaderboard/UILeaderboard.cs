@@ -97,18 +97,19 @@ public class UILeaderboard : NetworkBehaviour
         {
             for (int i = 0; i < Player1.transform.childCount; i++)
             {
-                if (Player1.transform.GetChild(i).name == "PlayerPointsButton")
+                Transform button1 = Player1.transform.GetChild(i);
+                if (button1.name == "PlayerPointsButton")
                 {
-                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + MarkusNoblePoints;
+                    button1.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + MarkusNoblePoints;
                 }
 
-                if (Player1.transform.GetChild(i).name == "PlayerDeathsButton")
+                if (button1.name == "PlayerDeathsButton")
                 {
-                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + MarkusNobleDeaths;
+                    button1.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + MarkusNobleDeaths;
                 }
-                if (Player1.transform.GetChild(i).name == "PlayerBonusPrize")
+                if (button1.name == "PlayerBonusPrize")
                 {
-                    Player1.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + MarkusNobleBonusPrize;
+                    button1.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + MarkusNobleBonusPrize;
                 }
             }
         }
@@ -118,18 +119,15 @@ public class UILeaderboard : NetworkBehaviour
         {
             for (int i = 0; i < Player2.transform.childCount; i++)
             {
-                if (Player2.transform.GetChild(i).name == "PlayerPointsButton")
-                {
-                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KenNoloPoints;
+                Transform button2 = Player2.transform.GetChild(i);
+                if (button2.name == "PlayerPointsButton") {
+                    button2.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KenNoloPoints;
                 }
-
-                if (Player2.transform.GetChild(i).name == "PlayerDeathsButton")
-                {
-                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KenNoloDeaths;
+                else if (button2.name == "PlayerDeathsButton") {
+                    button2.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KenNoloDeaths;
                 }
-                if (Player2.transform.GetChild(i).name == "PlayerBonusPrize")
-                {
-                    Player2.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KenNoloBonusPrize;
+                else if (button2.name == "PlayerBonusPrize"){
+                    button2.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KenNoloBonusPrize;
                 }
             }
         }
@@ -139,18 +137,15 @@ public class UILeaderboard : NetworkBehaviour
         {
             for (int i = 0; i < Player3.transform.childCount; i++)
             {
-                if (Player3.transform.GetChild(i).name == "PlayerPointsButton")
-                {
-                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KamBryllaPoints;
+                Transform button3 = Player3.transform.GetChild(i);
+                if (button3.name == "PlayerPointsButton") {
+                    button3.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + KamBryllaPoints;
                 }
-
-                if (Player3.transform.GetChild(i).name == "PlayerDeathsButton")
-                {
-                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KamBryllaDeaths;
+                else if (button3.name == "PlayerDeathsButton") {
+                    button3.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + KamBryllaDeaths;
                 }
-                if (Player3.transform.GetChild(i).name == "PlayerBonusPrize")
-                {
-                    Player3.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KamBryllaBonusPrize;
+                else if (button3.name == "PlayerBonusPrize") {
+                    button3.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + KamBryllaBonusPrize;
                 }
             }
         }
@@ -160,18 +155,15 @@ public class UILeaderboard : NetworkBehaviour
         {
             for (int i = 0; i < Player4.transform.childCount; i++)
             {
-                if (Player4.transform.GetChild(i).name == "PlayerPointsButton")
-                {
-                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + RaphaelNosunPoints;
+                Transform button4 = Player4.transform.GetChild(i);
+                if (button4.name == "PlayerPointsButton") {
+                    button4.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Points: " + RaphaelNosunPoints;
                 }
-
-                if (Player4.transform.GetChild(i).name == "PlayerDeathsButton")
-                {
-                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + RaphaelNosunDeaths;
+                else if (button4.name == "PlayerDeathsButton") {
+                    button4.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Deaths: " + RaphaelNosunDeaths;
                 }
-                if (Player4.transform.GetChild(i).name == "PlayerBonusPrize")
-                {
-                    Player4.transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + RaphaelNosunBonusPrize;
+                else if (button4.name == "PlayerBonusPrize") {
+                    button4.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Bonus prize: " + RaphaelNosunBonusPrize;
                 }
             }
         }

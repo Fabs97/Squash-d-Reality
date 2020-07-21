@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking.Match;
 using NetworkingManager;
+using UnityEngine.EventSystems;
 
 public class MatchListPanel : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class MatchListPanel : MonoBehaviour
 		foreach (var match in matches) {
 			var button = Instantiate(joinButtonPrefab);
 			button.Initialize(match, transform);
+			GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(button.gameObject);
 		}
 	}
+	
 }

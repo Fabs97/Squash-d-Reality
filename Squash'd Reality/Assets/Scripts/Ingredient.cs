@@ -13,7 +13,7 @@ public class Ingredient : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Cauldron") {
             _cookingTimeManager.insertedIngredientInCauldron(this);
-            Destroy(gameObject,3f);
+            Destroy(gameObject);
         }
     }
 }

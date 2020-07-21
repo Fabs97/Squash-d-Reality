@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDist: 0.5
-  grabbedPosObj: {fileID: 365459277376355976}
 --- !u!33 &33926136567602216
 MeshFilter:
   m_ObjectHideFlags: 0

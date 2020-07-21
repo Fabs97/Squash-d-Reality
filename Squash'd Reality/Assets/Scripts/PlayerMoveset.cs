@@ -19,6 +19,7 @@ public class PlayerMoveset : NetworkBehaviour
     private float gravityValue = -9.81f;
 
     [SyncVar] public string playerName;
+    [SyncVar(hook="_meshActiveChanged")] public bool meshActive;
     public int life;
 
     private Coroutine durationPowerup;
@@ -33,7 +34,12 @@ public class PlayerMoveset : NetworkBehaviour
     private float allyLife = 20f;
     private void Start()
     {
+        if (isServer)
+        {
+            meshActive = true;
+        }
         controller = gameObject.GetComponent<CharacterController>();
+        controller.detectCollisions = false;
         life = 100000;
     }
 
@@ -43,6 +49,10 @@ public class PlayerMoveset : NetworkBehaviour
         }
     }
 
+    private void _meshActiveChanged(bool meshActive){
+        gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
+        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = meshActive;
+    }
     void Move(){
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
