@@ -39,6 +39,7 @@ public class PlayerMoveset : NetworkBehaviour
             meshActive = true;
         }
         controller = gameObject.GetComponent<CharacterController>();
+        controller.detectCollisions = false;
         life = 100000;
     }
 
