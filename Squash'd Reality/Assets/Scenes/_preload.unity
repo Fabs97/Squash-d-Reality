@@ -183,6 +183,11 @@ PrefabInstance:
       propertyPath: m_Channels.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3442541650306356147, guid: ca92dcf41134e3e4b8ebb70fad6ba7fb,
+        type: 3}
     - target: {fileID: 2299359058814777245, guid: 036f13cf165798d4cba098ce0ef79d33,
         type: 3}
       propertyPath: m_Name
