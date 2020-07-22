@@ -77,7 +77,12 @@ public class Spawner : NetworkBehaviour
     }
 
     public void StopSpawning() {
-        StopCoroutine(spawnRoutine);
+        try {
+            StopCoroutine(spawnRoutine);
+        }
+        catch (System.Exception) {
+            Debug.LogWarning("Spawner::StopSpawning -- Spawning routine had already stopped");
+        }
     }
 
     public void setSpawningDelay(float delay){
