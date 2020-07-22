@@ -59,7 +59,6 @@ public class MatchManager : NetworkBehaviour
         _uiManager.setPlayerImage(playerName);
         _uiManager.setPlayerName(playerName);
         _uiManager.showUIPlayer(true);
-        //TODO: insert UI settings
     }
 
 

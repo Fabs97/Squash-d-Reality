@@ -121,7 +121,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
       propertyPath: m_SpawnPrefabs.Array.size
-      value: 16
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
+      propertyPath: m_Channels.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
       propertyPath: m_SpawnPrefabs.Array.data[6]
@@ -166,12 +170,23 @@ PrefabInstance:
     - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
       propertyPath: m_SpawnPrefabs.Array.data[14]
       value: 
-      objectReference: {fileID: 251978241442589496, guid: 163c64925fbe9a4479c0d534a8957c4a,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
       propertyPath: m_SpawnPrefabs.Array.data[15]
       value: 
-      objectReference: {fileID: 294994795895646463, guid: e04807e255effe744a76d707c16c6519,
+      objectReference: {fileID: 0}
+    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
+      propertyPath: m_CustomConfig
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
+      propertyPath: m_Channels.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3442541650306356147, guid: ca92dcf41134e3e4b8ebb70fad6ba7fb,
         type: 3}
     - target: {fileID: 2299359058814777245, guid: 036f13cf165798d4cba098ce0ef79d33,
         type: 3}
