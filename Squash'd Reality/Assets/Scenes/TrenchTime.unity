@@ -143,14 +143,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsToSpawn:
-  - {fileID: 5375478565415419623, guid: 4cfd51a35726e984eb1d74fcc3a31b7d, type: 3}
-  - {fileID: 6284839667110833069, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
-  - {fileID: 81293123762129072, guid: 6452dbd69f69533469f257af1ed7bef9, type: 3}
-  - {fileID: 9063685142785128773, guid: 1e3676ccf1ea21b4c8c475e46a65ed32, type: 3}
-  - {fileID: 6593311805898570650, guid: c0d6fd1c8400d34408bcc83eb80e8692, type: 3}
-  - {fileID: 814851492195617800, guid: 7c68063352147f84e8c3ada722c76453, type: 3}
-  - {fileID: 4961564024603290759, guid: 547e994365edb5e4e8b52652613c0475, type: 3}
-  - {fileID: 6589331394811796986, guid: 3763c07f8eb72d54e859c97423167a91, type: 3}
+  - {fileID: 703715901408156865, guid: 3763c07f8eb72d54e859c97423167a91, type: 3}
+  - {fileID: 7094928543578004485, guid: 547e994365edb5e4e8b52652613c0475, type: 3}
+  - {fileID: 6369489923620507366, guid: 7c68063352147f84e8c3ada722c76453, type: 3}
+  - {fileID: 43995494078055252, guid: c0d6fd1c8400d34408bcc83eb80e8692, type: 3}
+  - {fileID: 8228183232051715108, guid: 1e3676ccf1ea21b4c8c475e46a65ed32, type: 3}
+  - {fileID: 1687170864414574681, guid: 6452dbd69f69533469f257af1ed7bef9, type: 3}
+  - {fileID: 4776446343470284764, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
+  - {fileID: 3091254071494591038, guid: 4cfd51a35726e984eb1d74fcc3a31b7d, type: 3}
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 1
