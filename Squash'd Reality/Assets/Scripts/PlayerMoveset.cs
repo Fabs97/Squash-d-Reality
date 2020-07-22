@@ -32,10 +32,8 @@ public class PlayerMoveset : NetworkBehaviour
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
     private float allyLife = 20f;
-    private void Start()
-    {
-        if (isServer)
-        {
+    private void Start() {
+        if (isServer) {
             meshActive = true;
         }
         controller = gameObject.GetComponent<CharacterController>();

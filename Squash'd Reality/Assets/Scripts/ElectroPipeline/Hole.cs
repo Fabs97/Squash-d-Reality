@@ -13,25 +13,27 @@ public class Hole : MonoBehaviour {
 
     public void checkHoleConnection(){
         RaycastHit raycastHit;
-        Debug.Log("cast ray from: " + gameObject.name);
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
-            Debug.Log("Hole::checkHoleConnection - hit gameObject with name: " + raycastHit.collider.gameObject.name);
             GameObject otherHole = raycastHit.collider.gameObject;
             Hole otherHoleScript = otherHole.GetComponent<Hole>();
             // TODO: can start and end be the same? if so, put it in OR
-            if(otherHole.tag == "HoleStart"){
+            if(otherHole.tag == "HoleStart" || otherHole.tag =="HoleEnd"){
                 // Connected to the starting hole, defaults to true
-                parent.setPipeConnected(true);
-            }
-            else if(otherHole.tag == "HoleEnd"){
                 // Connected to the ending hole, defaults to true
                 parent.setPipeConnected(true);
-
             }
+            // else if(otherHole.tag == "HoleEnd"){
+            //     parent.setPipeConnected(true);
+            // }
             else{
                 // Connected to an intermediate hole
                 parent.ensureConnection();
-                otherHoleScript.isPipeConnected();
+                Debug.Log("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
+                if(otherHoleScript.isPipeConnected()){
+                    parent.checkLine();
+                } else {
+                    // TODO: something to do???
+                }
             }
         } 
         else{
@@ -43,10 +45,11 @@ public class Hole : MonoBehaviour {
     public bool isPipeConnected(){
         return this.parent.isConnected;
     }
-
+    
+    //* Returns the raycast or null 
     public RaycastHit fireHoleRaycast(){
         RaycastHit hit;
-        Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask);
+        Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask); 
         return hit;
     }
 
@@ -55,12 +58,12 @@ public class Hole : MonoBehaviour {
         Gizmos.DrawRay(transform.position, transform.right * raycastDistance);
     }
 
-    private void recheckConnections(){
-        foreach (var connection in connectedTo) {
-            RaycastHit hit;
-            if(!Physics.Raycast(transform.position, connection.Value, out hit, raycastDistance, layerMask)){
-                connectedTo.Remove(connection.Key);
-            }
-        }
-    }
+    // private void recheckConnections(){
+    //     foreach (var connection in connectedTo) {
+    //         RaycastHit hit;
+    //         if(!Physics.Raycast(transform.position, connection.Value, out hit, raycastDistance, layerMask)){
+    //             connectedTo.Remove(connection.Key);
+    //         }
+    //     }
+    // }
 }
