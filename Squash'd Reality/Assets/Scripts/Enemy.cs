@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
         life = 20f;
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
-        StartCoroutine(canFollowSet());
 
     }
 
@@ -56,17 +55,20 @@ public class Enemy : MonoBehaviour
         else
         {
             int spawnIndex = nearbySpawnIndex();
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;   
+            if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                transform.position += transform.forward * moveSpeed * Time.deltaTime;    
+            }
+            else
+            {
+                canFollowPlayer = true;
+            }
+            
 
         }
     }
-
-    IEnumerator canFollowSet()
-    {
-        yield return new WaitForSeconds(1.5f);
-        canFollowPlayer = true;
-    }
+    
     private int nearbyPlayerIndex()
     {
         int min_index = 0;
