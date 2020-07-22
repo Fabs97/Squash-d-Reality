@@ -23,10 +23,12 @@ public class Pipe : NetworkBehaviour
     private List<bool> holesAnswers;
     private bool considerHoleAnswers = true;
     private MeshRenderer meshRenderer;
+    private ElectroPipeline pipelineChallengeScript;
 
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        pipelineChallengeScript = Object.FindObjectOfType<ElectroPipeline>();
         unconnectedMaterial = meshRenderer.material;
         setPipeConnected(false);
         
@@ -42,6 +44,7 @@ public class Pipe : NetworkBehaviour
     }
 
     public void _isConnectedChanged(bool connected){
+        isConnected = connected;
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
@@ -84,6 +87,35 @@ public class Pipe : NetworkBehaviour
         foreach (Transform child in transform) {
             if(child.gameObject.tag == "Hole") {
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
+            }
+        }
+    }
+
+    public void checkLine(){
+        pipelineChallengeScript.checkLine();
+    }
+
+    public void checkNextStep(){
+        foreach(Transform child in transform){
+            if(child.gameObject.tag == "Hole") {
+                RaycastHit nextHit = child.gameObject.GetComponent<Hole>().fireHoleRaycast();
+                if(nextHit.collider != null){ // if != null, then it is a Raycast
+                    GameObject nextGO = nextHit.collider.gameObject;
+                    if(!pipelineChallengeScript.alreadyChecked(nextGO.transform.parent.gameObject)){
+                        if(nextGO != null && nextGO.tag == "HoleEnd") {
+                        Debug.Log("light up path");
+                            pipelineChallengeScript.lightUpPath();
+                        } else if(nextGO != null && nextGO.tag != "HoleEnd") {
+                            // I've hit the END!!! YEEE
+                            pipelineChallengeScript.addToFinalPath(gameObject);
+                            nextHit.collider.gameObject.GetComponentInParent<Pipe>().checkNextStep();
+                        }
+                    }
+                } else {
+                    // the raycast did not hit anything, it is failing. 
+                    // TODO: handle the case where all raycasts fail
+
+                }
             }
         }
     }
