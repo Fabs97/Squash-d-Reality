@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,11 +6,23 @@ public class ElectroPipeline : Challenge {
     
     private GameObject start;
     private List<GameObject> pathToTheEnd;
+    
+    public bool timeEnded = false;
+    private bool matchEnded = false;
+    
     protected override void Start(){
         base.Start();
         start = GameObject.Find("PipeLineStart");
         pathToTheEnd = new List<GameObject>();
         pathToTheEnd.Add(start);
+    }
+
+    private void Update()
+    {
+        if (!matchEnded && timeEnded)
+        {
+            endChallenge(false);
+        }
     }
 
     public void checkLine(){
@@ -34,5 +47,8 @@ public class ElectroPipeline : Challenge {
             Debug.Log("ElectroPipeline::lightUpPath -- " + obj.name);
         }
         Debug.Log("ElectroPipeline::lightUpPath -- I've completed to print the chain");
+    }
+    public override void endChallenge(bool successful){
+        base.endChallenge(successful);
     }
 }
