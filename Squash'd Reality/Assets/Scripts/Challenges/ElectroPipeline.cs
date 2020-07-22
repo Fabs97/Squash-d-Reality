@@ -28,6 +28,7 @@ public class ElectroPipeline : Challenge {
     }
 
     public void lightUpPath(){
+        // If I'm here, it means that the whole path is correct (?)
         Debug.Log("ElectroPipeline::lightUpPath -- I've hit the end by following the chain. This is the chain:");
         foreach(var obj in pathToTheEnd){
             Debug.Log("ElectroPipeline::lightUpPath -- " + obj.name);
