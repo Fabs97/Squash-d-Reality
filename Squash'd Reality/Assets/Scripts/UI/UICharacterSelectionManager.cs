@@ -18,7 +18,8 @@ public class UICharacterSelectionManager : NetworkBehaviour
     [SerializeField] private Button Character3;
     [SerializeField] private Button Character4;
     [SerializeField] private GameObject MessageBox;
-
+    [SerializeField] private TextMeshProUGUI matchNameText;
+    
     //Networking variables
     [SyncVar] public bool Character1Taken = false;
     [SyncVar] public bool Character2Taken = false;
@@ -45,7 +46,8 @@ public class UICharacterSelectionManager : NetworkBehaviour
         //NETWORK and SCENE settings
         _sceneLoader = FindObjectOfType<SceneLoader.SceneLoader>();
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
-       
+
+        matchNameText.text = _networkingManager.currentMatchName;
     }
     private void Update()
     {

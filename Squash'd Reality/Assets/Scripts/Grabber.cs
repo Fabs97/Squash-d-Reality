@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class Grabber : NetworkBehaviour
 {
@@ -19,9 +20,11 @@ public class Grabber : NetworkBehaviour
     bool hitDetect2;
     [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
+    private Scene scene;
     
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -55,12 +58,9 @@ public class Grabber : NetworkBehaviour
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
-            if (hitDetect)
-                setToGrab(hit.collider.gameObject);
-            else if (hitDetect1)
-                setToGrab(hit1.collider.gameObject);
-            else if (hitDetect2)
-                setToGrab(hit2.collider.gameObject);
+            if (hitDetect) setToGrab(hit.collider.gameObject);
+            else if (hitDetect1) setToGrab(hit1.collider.gameObject);
+            else if (hitDetect2) setToGrab(hit2.collider.gameObject);
         }
 
         if (!interacting && toGrab != null) {
@@ -68,11 +68,17 @@ public class Grabber : NetworkBehaviour
         }
     }
 
-    public void removeGrab()
-    {
-        toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
-        if(toGrab.tag == "Pipe"){
+    public void removeGrab() {
+        if (scene.name == "CookingTime") {
+            toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = false;
+        }
+        else {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, false);
+            //toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
+        }
+        if(toGrab.tag == "Pipe") {
             toGrab.GetComponent<Pipe>().releasedPipe();
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
         }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         toGrab = null;
@@ -80,37 +86,40 @@ public class Grabber : NetworkBehaviour
         if(needToToggleLight) askToggleLight(true);
     }
 
-    public void toggleLight(bool val){
-        if(_levelManager.getCurrentLevel().isDark){
+    public void toggleLight(bool val) {
+        if(_levelManager.getCurrentLevel().isDark) {
             light.intensity = val ? luminosity : 0;
         }
     }
 
-    private void setToGrab(GameObject go)
-    {
+    private void setToGrab(GameObject go) {
         toGrab = go;
-        toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+        if (toGrab.tag == "Pipe") {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, false);
+        }
+
+        if (scene.name == "CookingTime") {
+            toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = true;
+        }
+        else {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, true);
+            //toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+        }
+        isGrabbing = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);
         if(needToToggleLight) askToggleLight(false); 
     }
-
-    private void handleGrabbedRb(GameObject go, bool release){
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabbedRigidBody(go, release);
-    }
-
-    void OnDrawGizmos()
-    {
+    
+    void OnDrawGizmos() {
         Gizmos.color = Color.red;
 
         //Check if there has been a hit yet
-        if (hitDetect)
-        {
+        if (hitDetect) {
             //Draw a Ray forward from GameObject toward the hit
             Gizmos.DrawRay(transform.position, transform.forward * hit.distance);            
         }
         //If there hasn't been a hit yet, draw the ray at the maximum distance
-        else
-        {
+        else {
             //Draw a Ray forward from GameObject toward the maximum distance
             Gizmos.DrawRay(transform.position, transform.forward * maxDist);
             Gizmos.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.forward * maxDist);
@@ -118,8 +127,7 @@ public class Grabber : NetworkBehaviour
         }
     }
 
-    public void askToggleLight(bool value)
-    {
+    public void askToggleLight(bool value) {
         GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
         if (localPlayer != null) {
 

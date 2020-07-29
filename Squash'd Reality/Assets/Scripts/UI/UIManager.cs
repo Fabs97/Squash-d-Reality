@@ -37,7 +37,9 @@ public class UIManager : MonoBehaviour
     }
 
     void Start()
-    {
+    {        
+        setAllElementsActive(false);
+
     }
 
     void Update()
@@ -206,6 +208,5 @@ public class UIManager : MonoBehaviour
     {
         setTimerActive(value);
         setPlayerElementsActive(value);
-        
     }
 }

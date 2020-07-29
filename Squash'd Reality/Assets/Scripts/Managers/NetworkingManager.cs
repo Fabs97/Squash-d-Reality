@@ -4,12 +4,16 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.SceneManagement;
 
+
 namespace NetworkingManager {
     public class NetworkingManager : NetworkManager {
         private float nextRefreshTime;
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
         private List<string> _playersNames;
+        private List<string> _playedRoomsNames;
+        public List<MatchInfoSnapshot> matches;
+        public string currentMatchName;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
@@ -22,7 +26,16 @@ namespace NetworkingManager {
 
         public void StartHosting() {
             StartMatchMaker();
-            matchMaker.CreateMatch("default", 4, true, "", "", "", 0, 0, OnMatchCreated);
+            currentMatchName = "Match: " + Random.Range(0, 1000);
+            for (int i = 0; i < matches.Count; i++)
+            {
+                if (matches[i].name == currentMatchName)
+                {
+                    currentMatchName = "Match: " + Random.Range(0, 1000);
+                    i = -1;
+                }
+            }
+            matchMaker.CreateMatch(currentMatchName, 4, true, "", "", "", 0, 0, OnMatchCreated);
         }
 
         private void OnMatchCreated(bool success, string extendedinfo, MatchInfo responsedata)
@@ -49,6 +62,7 @@ namespace NetworkingManager {
 
         private void HandleListMatchesComplete(bool success, string extendedinfo, List<MatchInfoSnapshot> responsedata) {
             AvailableMatchesList.HandleNewMatchList(responsedata);
+            matches = responsedata;
         }
 
         public void JoinMatch(MatchInfoSnapshot match) {
@@ -101,6 +115,15 @@ namespace NetworkingManager {
 
         public List<string> getPlayersNames(){
             return this._playersNames;
+        }
+
+        public void addPlayedRoom(string room){
+            if(_playedRoomsNames == null) _playedRoomsNames = new List<string>();
+            if(!_playedRoomsNames.Contains(room)) _playedRoomsNames.Add(room);
+        }
+
+        public List<string> getPlayedRooms(){
+            return _playedRoomsNames;
         }
     }
 

@@ -82,11 +82,10 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdSpawnBullets(Vector3 position, Quaternion rotation, float spread, float bulletForce, string bulletName, string shooterName)
     {
-        var randomNumberX = UnityEngine.Random.Range(-spread, spread);      
-        var randomNumberY = UnityEngine.Random.Range(-spread, spread);     
+        var randomNumberX = UnityEngine.Random.Range(-spread, spread);
         var randomNumberZ = UnityEngine.Random.Range(-spread, spread);
         GameObject spawnedGameObject = Instantiate(bulletPrefab, position, rotation);
-        spawnedGameObject.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ);
+        spawnedGameObject.transform.Rotate(randomNumberX, 0f, randomNumberZ);
         spawnedGameObject.GetComponent<Rigidbody>().AddForce(spawnedGameObject.transform.forward * bulletForce, ForceMode.Impulse);
         spawnedGameObject.name = bulletName;
         spawnedGameObject.GetComponent<Bullet>().shooterName = shooterName;
@@ -163,30 +162,25 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetTransformTo(GameObject go, Vector3 position, Quaternion rotation){
+    public void CmdSetTransformTo(GameObject go, Vector3 position){
         go.transform.position = position;
-        go.transform.rotation = rotation;
     }
+    
 
     [Command]
-    public void CmdSetGrabbedRigidBody(GameObject go, bool release){
-        Grabbable gb = go.GetComponent<Grabbable>();
-        gb.detectCollisions = release;
-        gb.useGravity = release;
-        // gb.setRigidBody();
-    }
-
-    [Command]
-    public void CmdSetPos(GameObject go, Vector3 position, Quaternion rotation)
+    public void CmdSetMesh(GameObject go, bool value)
     {
-        go.GetComponent<Grabbed>().position = position;
-        go.GetComponent<Grabbed>().rotation = rotation;
+        go.GetComponent<PlayerMoveset>().meshActive = value;
     }
 
     [Command]
-    public void CmdSetGrabbed(GameObject go, bool value)
+    public void CmdSetPipeConnected(GameObject go, bool value){
+        go.GetComponent<Pipe>().isConnected = value;
+    }
+
+    [Command]
+    public void CmdSetGrabebd(GameObject go, bool value)
     {
-        Debug.LogError("SET GRABBED: " + value);
-        go.GetComponent<Grabbed>().objectGrabbed = value;
+        go.GetComponent<GrabbableMovement>().cubeMovement = value;
     }
 }
