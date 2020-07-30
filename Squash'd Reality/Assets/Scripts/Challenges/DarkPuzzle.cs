@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class DarkPuzzle : Challenge
 {
+    [SerializeField] private Platform[] platforms;
+
    protected override void Start()
    {
       base.Start();
    }
 
-   protected override void setDifficulty()
+    private void Update()
+    {
+        if (IsAllPressed())
+            endChallenge(IsAllPressed());
+    }
+
+    protected override void setDifficulty()
    {
       base.setDifficulty();
    }
@@ -18,4 +26,16 @@ public class DarkPuzzle : Challenge
    {
       base.endChallenge(successful);
    }
+
+    private bool IsAllPressed()
+    {
+        for(int i= 0; i < platforms.Length; i++)
+        {
+            if(platforms[i].isPressed == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
