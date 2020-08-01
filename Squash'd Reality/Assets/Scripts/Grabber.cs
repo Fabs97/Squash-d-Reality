@@ -66,6 +66,11 @@ public class Grabber : NetworkBehaviour
         if (!interacting && toGrab != null) {
             removeGrab();
         }
+
+        if (!interacting && isGrabbing)
+        {
+            isGrabbing = false;
+        }
     }
 
     public void removeGrab() {

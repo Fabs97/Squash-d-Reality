@@ -156,7 +156,7 @@ MonoBehaviour:
   startSpawningFromTheBeginning: 1
   spawnDoubleObject: 0
   firstSpawnDelay: 13
-  spawningDelay: 4.05
+  spawningDelay: 6
   maxCoordinates:
   - {x: 18.01, y: 0.69, z: 19.33}
   minCoordinates:
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346996828931fed42a9d1688a4cda9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyDoor: {fileID: 0}
+  doors: []
   timeEnded: 0
 --- !u!1001 &831785466816502924
 PrefabInstance:
