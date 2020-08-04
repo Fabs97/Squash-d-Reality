@@ -5,7 +5,7 @@ using UnityEngine;
 public class DarkPuzzle : Challenge
 {
     [SerializeField] private Platform[] platforms;
-
+    [SerializeField] private bool gameEnded = false;
    protected override void Start()
    {
       base.Start();
@@ -13,8 +13,11 @@ public class DarkPuzzle : Challenge
 
     private void Update()
     {
-        if (IsAllPressed())
+        if (!gameEnded && IsAllPressed())
+        {
+            gameEnded = true;
             endChallenge(IsAllPressed());
+        }
     }
 
     protected override void setDifficulty()
