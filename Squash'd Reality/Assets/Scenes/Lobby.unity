@@ -400,10 +400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979f6eb58609f4145989278cc8d559d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  challengeDoor1: {fileID: 1919873729}
-  challengeDoor2: {fileID: 955941874}
-  challengeDoor3: {fileID: 362069999}
-  challengeDoor4: {fileID: 1531052207}
+  challengeDoors:
+  - {fileID: 955941874}
+  - {fileID: 362069999}
+  - {fileID: 1531052207}
+  - {fileID: 1919873729}
   leaderboardDoor: {fileID: 1927783554}
 --- !u!1001 &955941873
 PrefabInstance:
