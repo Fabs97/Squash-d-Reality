@@ -90,7 +90,7 @@ MonoBehaviour:
   m_OnlineScene: CharactersSelection
   m_SpawnPrefabs:
   - {fileID: 7305371141220752972, guid: 295c21d6742c8654a8f00b4eb3309152, type: 3}
-  - {fileID: 3442541650306356147, guid: 077d9cf944a556143821bdafd9b0d486, type: 3}
+  - {fileID: 3442541650306356147, guid: ca92dcf41134e3e4b8ebb70fad6ba7fb, type: 3}
   - {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df, type: 3}
   - {fileID: 5989013081210674111, guid: 6a6d08e755c336644b6f24fdfe7c2eff, type: 3}
   - {fileID: 7525169537711163744, guid: 3d197e73a09e1514a9e7a33a097a8c6e, type: 3}
