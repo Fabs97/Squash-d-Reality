@@ -9,6 +9,7 @@ public class SMG : Weapon
         bulletName = "BulletSMG";
         spread = 25f;
         fireRatioTime = 0.4f;
+        magazine = 50;
 
     }
 }

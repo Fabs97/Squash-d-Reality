@@ -9,5 +9,6 @@ public class AssaultRifle : Weapon
         bulletName = "BulletAssaultRifle";
         spread = 3f;
         fireRatioTime = 0.6f;
+        magazine = 40;
     }
 }

@@ -6,6 +6,7 @@ public class Pistol : Weapon {
         bulletName = "BulletPistol";
         spread = 0.2f;
         fireRatioTime = 0.5f;
+        magazine = 100;
 
     }
 }
