@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 5050887906779148757}
   - component: {fileID: 5050887906779148756}
   - component: {fileID: 5050887906779148759}
-  m_Layer: 0
+  - component: {fileID: 5050887905966430448}
+  m_Layer: 31
   m_Name: GrabbableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +163,7 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &5050887906779148756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +201,15 @@ MonoBehaviour:
   jumpHeight: 0.5
   cubeMovement: 0
   snapValue: 1
+--- !u!114 &5050887905966430448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050887906779148764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7e4c500dd38ef499b47134ee742824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
