@@ -18,10 +18,12 @@ public class UIGameManager : MonoBehaviour
     {
        //Setting elements not visible
         alertBox.SetActive(false);
+        
         backgroundPanelPause.SetActive(false);
         
         //Scene management
         _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
+        
     }
     
     
