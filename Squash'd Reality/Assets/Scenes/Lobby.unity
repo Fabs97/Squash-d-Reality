@@ -263,20 +263,90 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
-      propertyPath: nextSceneName
-      value: ElectroPipeline
+      propertyPath: m_AssetId.i0
+      value: 114
       objectReference: {fileID: 0}
-    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
-      propertyPath: difficulty
-      value: 2
+      propertyPath: m_AssetId.i1
+      value: 189
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i2
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i3
+      value: 249
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i4
+      value: 138
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i5
+      value: 221
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i6
+      value: 231
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i7
+      value: 148
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i8
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i9
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i10
+      value: 76
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i11
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i12
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i13
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i14
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962085956062850, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_AssetId.i15
+      value: 227
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.05
+      value: 12.34
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
@@ -328,20 +398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.6103926
-      objectReference: {fileID: 0}
     - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_Name
       value: DoorElectroPipeline
-      objectReference: {fileID: 0}
-    - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
@@ -803,7 +863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1407139015
 MonoBehaviour:
   m_ObjectHideFlags: 0
