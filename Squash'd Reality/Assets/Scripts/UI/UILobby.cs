@@ -39,7 +39,7 @@ public class UILobby : NetworkBehaviour
 
     IEnumerator waitingTime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         lobbyPanel.SetActive(false);
     }
 }
