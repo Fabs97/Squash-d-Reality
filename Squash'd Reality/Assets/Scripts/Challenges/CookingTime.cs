@@ -11,6 +11,11 @@ public class CookingTime : Challenge {
     private List<Ingredient> activeIngredients;
     private Spawner _spawner;
     private int insertedIngredients = 0;
+
+    [SerializeField] private GameObject deathzone;
+    [SerializeField] private GameObject cauldron;
+    [SerializeField] private GameObject DoorPlatform;
+    
     
     protected override void Start()
     {
@@ -93,5 +98,11 @@ public class CookingTime : Challenge {
     public override void endChallenge(bool successful){
         _spawner.StopSpawning();
         base.endChallenge(successful);
+        if (successful)
+        {
+            deathzone.SetActive(false);
+            cauldron.SetActive(false);
+            DoorPlatform.SetActive(true);
+        }
     }
 }
