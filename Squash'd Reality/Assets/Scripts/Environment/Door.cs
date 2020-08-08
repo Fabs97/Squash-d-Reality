@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Door : MonoBehaviour {
+public class Door : NetworkBehaviour {
     private SceneLoader.SceneLoader _sceneLoader;
     private NetworkGameManager _networkGameManager;
     
@@ -28,6 +29,19 @@ public class Door : MonoBehaviour {
 
     private void updatePeopleInDoor(bool entered){
         playersInMe = playersInMe + (entered ? 1 : -1);
+        if (isServer)
+        {
+            StartCoroutine(waitDelay());
+        }
+        else
+        {
+            _networkGameManager.calcNextDoor(playersInMe, nextSceneName, difficulty);
+        }
+    }
+
+    IEnumerator waitDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
         _networkGameManager.calcNextDoor(playersInMe, nextSceneName, difficulty);
     }
 }
