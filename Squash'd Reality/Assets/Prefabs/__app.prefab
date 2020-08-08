@@ -90,20 +90,26 @@ MonoBehaviour:
   m_OnlineScene: CharactersSelection
   m_SpawnPrefabs:
   - {fileID: 7305371141220752972, guid: 295c21d6742c8654a8f00b4eb3309152, type: 3}
-  - {fileID: 2602254875386243460, guid: 077d9cf944a556143821bdafd9b0d486, type: 3}
   - {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df, type: 3}
   - {fileID: 5989013081210674111, guid: 6a6d08e755c336644b6f24fdfe7c2eff, type: 3}
   - {fileID: 7525169537711163744, guid: 3d197e73a09e1514a9e7a33a097a8c6e, type: 3}
   - {fileID: 7654812327059685579, guid: a43fdfc03aa029e49b64c59dda45a41f, type: 3}
-  - {fileID: 5375478565415419623, guid: 4cfd51a35726e984eb1d74fcc3a31b7d, type: 3}
-  - {fileID: 6284839667110833069, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
-  - {fileID: 81293123762129072, guid: 6452dbd69f69533469f257af1ed7bef9, type: 3}
-  - {fileID: 9063685142785128773, guid: 1e3676ccf1ea21b4c8c475e46a65ed32, type: 3}
-  - {fileID: 6593311805898570650, guid: c0d6fd1c8400d34408bcc83eb80e8692, type: 3}
-  - {fileID: 814851492195617800, guid: 7c68063352147f84e8c3ada722c76453, type: 3}
-  - {fileID: 4961564024603290759, guid: 547e994365edb5e4e8b52652613c0475, type: 3}
-  - {fileID: 6589331394811796986, guid: 3763c07f8eb72d54e859c97423167a91, type: 3}
-  m_CustomConfig: 0
+  - {fileID: 8228183232051715108, guid: 1e3676ccf1ea21b4c8c475e46a65ed32, type: 3}
+  - {fileID: 1687170864414574681, guid: 6452dbd69f69533469f257af1ed7bef9, type: 3}
+  - {fileID: 4776446343470284764, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
+  - {fileID: 3091254071494591038, guid: 4cfd51a35726e984eb1d74fcc3a31b7d, type: 3}
+  - {fileID: 43995494078055252, guid: c0d6fd1c8400d34408bcc83eb80e8692, type: 3}
+  - {fileID: 703715901408156865, guid: 3763c07f8eb72d54e859c97423167a91, type: 3}
+  - {fileID: 7094928543578004485, guid: 547e994365edb5e4e8b52652613c0475, type: 3}
+  - {fileID: 6369489923620507366, guid: 7c68063352147f84e8c3ada722c76453, type: 3}
+  - {fileID: 5895599644858448643, guid: 8c83124c48f3cc548a9e0e40e7202682, type: 3}
+  - {fileID: 1819960591697537550, guid: 7b927f4329836524e954add13d875779, type: 3}
+  - {fileID: 3373123959034513379, guid: 37fc6cd928c2e1141837a3bd105dc28e, type: 3}
+  - {fileID: 1716523833992150381, guid: 7c994a938b4e6b340ba0abc062dc764b, type: 3}
+  - {fileID: 5956423040410268216, guid: c39fe713ec1f2944ebd167f851a24226, type: 3}
+  - {fileID: 6360388637714772420, guid: 484d60e11712cb44a83811cf7ca17f49, type: 3}
+  - {fileID: 5050887906779148764, guid: 0f1b474019efcf649a368828e515e2e2, type: 3}
+  m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
     m_PacketSize: 1440
@@ -145,7 +151,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -158,6 +164,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  currentMatchName: 
 --- !u!114 &5796313923350617283
 MonoBehaviour:
   m_ObjectHideFlags: 0

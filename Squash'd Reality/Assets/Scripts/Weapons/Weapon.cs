@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     [Range(0, 10f)][SerializeField] protected float fireRatioTime = 1f;
     [Range(0, 30f)][SerializeField] protected float bulletForce = 20f;
     [Range(0, 10)][SerializeField] protected int numberOfBullets = 1;
+    [Range(0, Mathf.Infinity)] [SerializeField] protected int magazine = 30;
     public bool canShoot; 
     protected string bulletName;
 
@@ -24,9 +25,28 @@ public class Weapon : MonoBehaviour {
         {
             canShoot = false;
             BulletInstantiation(parentMoveset.playerName);
+            magazine--;
             StartCoroutine(fireRatio());   
         }
-      
+        if(magazine == 0)
+        {
+            //instantiate pistol
+            UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+            GameObject oldWeapon = this.gameObject;
+            Destroy(oldWeapon.GetComponent<Weapon>());
+            Weapon newWeapon = gameObject.AddComponent<Pistol>();
+            transform.GetComponent<Shoot>().updateWeapon(newWeapon);
+            //update UI
+            if (transform.parent.gameObject.GetComponent<PlayerMoveset>().hasAuthority)
+            {
+                uiManager.setWeaponImage("Pistol");
+                uiManager.setWeaponActive(true);
+            }
+
+
+        }
+
+
     }
     
     private IEnumerator fireRatio()

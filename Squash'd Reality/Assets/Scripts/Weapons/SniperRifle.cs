@@ -9,5 +9,6 @@ public class SniperRifle : Weapon
         bulletName = "BulletSniperRifle";
         spread = 0f;
         fireRatioTime = 1.2f;
+        magazine = 5;
     }
 }

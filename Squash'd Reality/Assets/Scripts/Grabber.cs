@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -66,6 +66,11 @@ public class Grabber : NetworkBehaviour
         if (!interacting && toGrab != null) {
             removeGrab();
         }
+
+        if (!interacting && isGrabbing)
+        {
+            isGrabbing = false;
+        }
     }
 
     public void removeGrab() {
@@ -73,7 +78,8 @@ public class Grabber : NetworkBehaviour
             toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = false;
         }
         else {
-            toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, false);
+            //toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
         }
         if(toGrab.tag == "Pipe") {
             toGrab.GetComponent<Pipe>().releasedPipe();
@@ -101,7 +107,8 @@ public class Grabber : NetworkBehaviour
             toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = true;
         }
         else {
-            toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, true);
+            //toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
         }
         isGrabbing = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);

@@ -8,6 +8,7 @@ public class Shotgun : Weapon {
         numberOfBullets = 4;
         bulletName = "BulletShotgun";
         fireRatioTime = 1.5f;
+        magazine = 10;
     }
     
     

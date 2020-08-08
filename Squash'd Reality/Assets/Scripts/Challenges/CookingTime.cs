@@ -11,6 +11,11 @@ public class CookingTime : Challenge {
     private List<Ingredient> activeIngredients;
     private Spawner _spawner;
     private int insertedIngredients = 0;
+
+    [SerializeField] private GameObject deathzone;
+    [SerializeField] private GameObject cauldron;
+    [SerializeField] private GameObject DoorPlatform;
+    
     
     protected override void Start()
     {
@@ -57,19 +62,22 @@ public class CookingTime : Challenge {
     }
 
     protected override void setDifficulty() {
-        try
-        {
+        try {
             setMatch();
-
             List<string> playersNames = _networkingManager.getPlayersNames();
+            
             if(!playersNames.Contains("Raphael Nosun")) _spawner.removeZone(3);
-            if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
-            if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
-            if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
+            else if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
+            else if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
+            else if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
             _spawner.CmdStartSpawning();
             
-        } catch (Exception e){
-            Debug.LogError("CookingTime::setDifficulty - Catched Exception: " + e.StackTrace);
+        } catch (Exception e) {
+            // This try catch has been done because this setting must be done
+            // server only, but this object does not need a Network Identity!
+            // The thrown exception regarding the playersNames is correct as it
+            // is only something required server-side
+            Debug.LogWarning("CookingTime::setDifficulty - Catched Exception: " + e.StackTrace);
         }
         finally {
             base.setDifficulty();
@@ -90,5 +98,11 @@ public class CookingTime : Challenge {
     public override void endChallenge(bool successful){
         _spawner.StopSpawning();
         base.endChallenge(successful);
+        if (successful)
+        {
+            deathzone.SetActive(false);
+            cauldron.SetActive(false);
+            DoorPlatform.SetActive(true);
+        }
     }
 }

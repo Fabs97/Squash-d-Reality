@@ -17,13 +17,18 @@ public class GrabbableMovement :  NetworkBehaviour
   
 
 
-    public bool cubeMovement = false;
+    [SyncVar] public bool cubeMovement = false;
     
-  
+    [SerializeField] private float snapValue = 1.0f;
+
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        cubeMovement = false;
+        if (isServer)
+        {
+            cubeMovement = false;
+ 
+        }
     }
     
     void FixedUpdate()
@@ -31,6 +36,13 @@ public class GrabbableMovement :  NetworkBehaviour
         if (hasAuthority && cubeMovement)
         {
             Move();
+        }else if (!cubeMovement)
+        {
+            float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+            float y = transform.position.y;   //0.55f;
+            float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+            this.transform.position = new Vector3(x,y,z);
+            Fall();
         }
     }
 
@@ -48,7 +60,18 @@ public class GrabbableMovement :  NetworkBehaviour
         if (Input.GetButton("Jump") && groundedPlayer) {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
-        
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    void Fall()
+    {
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }

@@ -11,6 +11,7 @@ namespace NetworkingManager {
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
         private List<string> _playersNames;
+        private List<string> _playedRoomsNames;
         public List<MatchInfoSnapshot> matches;
         public string currentMatchName;
         void Awake() {
@@ -114,6 +115,15 @@ namespace NetworkingManager {
 
         public List<string> getPlayersNames(){
             return this._playersNames;
+        }
+
+        public void addPlayedRoom(string room){
+            if(_playedRoomsNames == null) _playedRoomsNames = new List<string>();
+            if(!_playedRoomsNames.Contains(room)) _playedRoomsNames.Add(room);
+        }
+
+        public List<string> getPlayedRooms(){
+            return _playedRoomsNames;
         }
     }
 
