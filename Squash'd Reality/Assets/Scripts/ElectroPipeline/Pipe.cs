@@ -14,7 +14,7 @@ public class Pipe : NetworkBehaviour
 
     [SerializeField] private float snapValue = 1.0f;
 
-    [HideInInspector]
+    //[HideInInspector]
     [SyncVar(hook="_isConnectedChanged")] public bool isConnected;
 
     [SerializeField] private Material connectedMaterial;
@@ -40,9 +40,24 @@ public class Pipe : NetworkBehaviour
 
     void Update()
     {
+        if (!isConnected)
+        {
+            foreach (Transform child in transform) {
+                if(child.gameObject.tag == "Hole") {
+                    child.gameObject.GetComponent<Hole>().checkHoleConnection2();
+                }
+            }
+        }
+        
     }
 
-    public void _isConnectedChanged(bool connected){
+    public void _isConnectedChanged(bool connected)
+    {
+        if (isServer)
+        {
+            isConnected = connected;
+  
+        }
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
