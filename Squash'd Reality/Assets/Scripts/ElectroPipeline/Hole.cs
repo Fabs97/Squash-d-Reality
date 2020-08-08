@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour {
     int layerMask = 1 << 30;
-    private const float raycastDistance = 0.4f;
+    private const float raycastDistance = 0.3f;
 
     private Dictionary<GameObject, Vector3> connectedTo;
     private Pipe parent;
@@ -28,7 +28,7 @@ public class Hole : MonoBehaviour {
             else{
                 // Connected to an intermediate hole
                 parent.ensureConnection();
-                Debug.Log("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
+                // Debug.Log("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
                 if(otherHoleScript.isPipeConnected()){
                     parent.checkLine();
                 } else {
