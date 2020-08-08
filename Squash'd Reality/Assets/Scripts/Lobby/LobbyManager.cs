@@ -9,7 +9,7 @@ public class LobbyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        setChallengeDoorsActive(true);
     }
 
     // Update is called once per frame
