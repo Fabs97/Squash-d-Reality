@@ -28,7 +28,7 @@ public class ElectroPipeline : Challenge {
     public void checkLine(){
         RaycastHit firstStepHit = start.transform.GetComponentInChildren<Hole>().fireHoleRaycast();
         //colpisco il figlio
-        firstStepHit.collider.gameObject.transform.parent.gameObject.GetComponent<Pipe>().checkNextStep();
+        if(firstStepHit.collider != null) firstStepHit.collider.gameObject.transform.parent.gameObject.GetComponent<Pipe>().checkNextStep();
     }
 
     public void addToFinalPath(GameObject node){
