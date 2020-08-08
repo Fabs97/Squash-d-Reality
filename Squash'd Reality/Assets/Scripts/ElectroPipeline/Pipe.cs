@@ -40,11 +40,9 @@ public class Pipe : NetworkBehaviour
 
     void Update()
     {
-        
     }
 
     public void _isConnectedChanged(bool connected){
-        isConnected = connected;
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
@@ -71,12 +69,14 @@ public class Pipe : NetworkBehaviour
             if(child.gameObject.tag == "Hole"){
                 Hole hole = child.gameObject.GetComponent<Hole>();
                 RaycastHit hit = hole.fireHoleRaycast();
+                Debug.LogError("HIT COLLIDER GAMEOBJECT: " + hit.collider.gameObject);
                 if(hit.collider != null){
                     atLeastOneConnection = true;
                 }
             }
         }
-        setPipeConnected(atLeastOneConnection);
+        Debug.LogError("LO SETTO: "+ atLeastOneConnection);
+        setPipeConnected(atLeastOneConnection);  
     }
 
     public void releasedPipe(){

@@ -27,9 +27,10 @@ public class Hole : MonoBehaviour {
             // }
             else{
                 // Connected to an intermediate hole
-                parent.ensureConnection();
-                // Debug.Log("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
+                //parent.ensureConnection();
+                 Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
                 if(otherHoleScript.isPipeConnected()){
+                    parent.setPipeConnected(true);
                     parent.checkLine();
                 } else {
                     // TODO: something to do???
@@ -50,6 +51,7 @@ public class Hole : MonoBehaviour {
     public RaycastHit fireHoleRaycast(){
         RaycastHit hit;
         Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask); 
+        Debug.LogError("HIT COLLIDER: " + hit);
         return hit;
     }
 
