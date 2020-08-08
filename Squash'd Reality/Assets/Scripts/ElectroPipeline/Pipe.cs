@@ -53,11 +53,8 @@ public class Pipe : NetworkBehaviour
 
     public void _isConnectedChanged(bool connected)
     {
-        if (isServer)
-        {
-            isConnected = connected;
-  
-        }
+        isConnected = connected;
+        Debug.LogError("isConnected: " + connected);
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
