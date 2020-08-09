@@ -46,20 +46,12 @@ public class Pipe : NetworkBehaviour
 
     void Update()
     {
-        /*if (!isConnected)
-        {
-            foreach (Transform child in transform) {
-                if(child.gameObject.tag == "Hole") {
-                    child.gameObject.GetComponent<Hole>().checkHoleConnection2();
-                }
-            }
-        }*/
+       
     }
 
     public void _isConnectedChanged(bool connected)
     {
         isConnected = connected;
-       // Debug.LogError("isConnected: " + connected);
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
