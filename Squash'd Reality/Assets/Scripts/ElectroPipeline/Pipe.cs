@@ -96,7 +96,6 @@ public class Pipe : NetworkBehaviour
     }
 
     public void releasedPipe(){
-        bool previousFirstOrEnd = firstOrEnd;
         float x = Mathf.Round(gameObject.transform.position.x / snapValue);
         float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
@@ -106,21 +105,7 @@ public class Pipe : NetworkBehaviour
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
             }
         }
-
-        bool latestFirstOrEnd = firstOrEnd;
-        if (previousFirstOrEnd && !latestFirstOrEnd)
-        {
-            GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
-            foreach (GameObject pipe in pipes)
-            {
-                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
-                {
-                    GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(pipe.gameObject, false);
- 
-                }
-           
-            }
-        }
+        
 
         StartCoroutine(pipeReleasedCoroutine());
 
@@ -130,25 +115,21 @@ public class Pipe : NetworkBehaviour
 
     IEnumerator pipeReleasedCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
-        foreach (GameObject pipe in pipes)
+        for (int i = 0; i < pipes.Length; i++)
         {
-            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            yield return new WaitForSeconds(0.2f);
+            foreach (GameObject pipe in pipes)
             {
-                pipe.GetComponent<Pipe>().allPipeReleased();  
-            }
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    pipe.GetComponent<Pipe>().allPipeReleased();  
+                }
            
+            }  
         }
-        yield return new WaitForSeconds(0.2f);
-        foreach (GameObject pipe in pipes)
-        {
-            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
-            {
-                pipe.GetComponent<Pipe>().allPipeReleased();  
-            }
-           
-        }
+        
+        
 
     }
 
