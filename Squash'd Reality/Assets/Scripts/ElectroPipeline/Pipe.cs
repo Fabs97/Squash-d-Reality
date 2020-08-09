@@ -101,6 +101,30 @@ public class Pipe : NetworkBehaviour
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
             }
         }
+
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        Debug.LogError("PIPES: " + pipes);
+        foreach (GameObject pipe in pipes)
+        {
+            Debug.LogError("PIPE NAME: " + pipe.transform.name);
+            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            {
+                pipe.GetComponent<Pipe>().allPipeReleased();  
+            }
+           
+        }
+    }
+
+    public void allPipeReleased()
+    {
+        Debug.LogError("NAME: " + gameObject.transform.name);
+        Debug.LogError("ALL PIPE RELEASED");
+        foreach (Transform child in transform) {
+            if(child.gameObject.tag == "Hole") {
+                Debug.LogError("CHECH HOLE");
+                child.gameObject.GetComponent<Hole>().checkHoleConnection();
+            }
+        }
     }
 
     public void checkLine(){
