@@ -183,4 +183,10 @@ public class PlayerController : NetworkBehaviour
     {
         go.GetComponent<GrabbableMovement>().cubeMovement = value;
     }
+
+    [Command]
+    public void CmdSetFirstOrEndElectroPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().firstOrEnd = value;
+    }
 }

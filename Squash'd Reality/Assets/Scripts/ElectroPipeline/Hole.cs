@@ -54,6 +54,7 @@ public class Hole : MonoBehaviour {
                 // Connected to the starting hole, defaults to true
                 // Connected to the ending hole, defaults to true
                 parent.setPipeConnected(true);
+                parent.setFirstOrEnd(true);
             }
             // else if(otherHole.tag == "HoleEnd"){
             //     parent.setPipeConnected(true);
@@ -64,6 +65,7 @@ public class Hole : MonoBehaviour {
                // Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
                 if(otherHoleScript.isPipeConnected()){
                     parent.setPipeConnected(true);
+                    parent.setFirstOrEnd(false);
                     parent.checkLine();
                 } else {
                     // TODO: something to do???
@@ -73,6 +75,7 @@ public class Hole : MonoBehaviour {
         else{
             // released and did not hit anything, so this dies.
             parent.setPipeConnected(false);
+            parent.setFirstOrEnd(false);
         }
     }
 

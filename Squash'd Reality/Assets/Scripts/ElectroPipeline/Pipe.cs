@@ -14,6 +14,7 @@ public class Pipe : NetworkBehaviour
 
     [SerializeField] private float snapValue = 1.0f;
 
+    [SyncVar] public bool firstOrEnd;
     //[HideInInspector]
     [SyncVar(hook="_isConnectedChanged")] public bool isConnected;
 
@@ -35,6 +36,11 @@ public class Pipe : NetworkBehaviour
         holesAnswers = new List<bool>();
         foreach(Transform child in transform){
             if(child.gameObject.tag == "Hole") holesOnMe ++;
+        }
+
+        if (isServer)
+        {
+            firstOrEnd = false;
         }
     }
 
@@ -90,6 +96,7 @@ public class Pipe : NetworkBehaviour
     }
 
     public void releasedPipe(){
+        bool previousFirstOrEnd = firstOrEnd;
         float x = Mathf.Round(gameObject.transform.position.x / snapValue);
         float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
@@ -100,9 +107,26 @@ public class Pipe : NetworkBehaviour
             }
         }
 
+        bool latestFirstOrEnd = firstOrEnd;
+        if (previousFirstOrEnd && !latestFirstOrEnd)
+        {
+            GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(pipe.gameObject, false);
+ 
+                }
+           
+            }
+        }
+
         StartCoroutine(pipeReleasedCoroutine());
 
     }
+    
+    
 
     IEnumerator pipeReleasedCoroutine()
     {
@@ -178,5 +202,11 @@ public class Pipe : NetworkBehaviour
                 }
             }
         }
+    }
+
+    public void setFirstOrEnd(bool value)
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdSetFirstOrEndElectroPipeline(gameObject,value);
     }
 }
