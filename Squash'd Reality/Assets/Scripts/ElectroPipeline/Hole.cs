@@ -11,35 +11,27 @@ public class Hole : MonoBehaviour {
         parent = GetComponentInParent<Pipe>();
     }
 
-    public void checkHoleConnection2(){
+    public int checkIntHoleConnection(){
         RaycastHit raycastHit;
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             GameObject otherHole = raycastHit.collider.gameObject;
             Hole otherHoleScript = otherHole.GetComponent<Hole>();
-            // TODO: can start and end be the same? if so, put it in OR
             if(otherHole.tag == "HoleStart" || otherHole.tag =="HoleEnd"){
-                // Connected to the starting hole, defaults to true
-                // Connected to the ending hole, defaults to true
-                parent.setPipeConnected(true);
+                return 1;
             }
-            // else if(otherHole.tag == "HoleEnd"){
-            //     parent.setPipeConnected(true);
-            // }
             else{
-                // Connected to an intermediate hole
-                //parent.ensureConnection();
-                Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
-                if(otherHoleScript.isPipeConnected()){
-                    parent.setPipeConnected(true);
-                    parent.checkLine();
-                } else {
-                    // TODO: something to do???
-                }
+                if(otherHoleScript.isPipeConnected())
+                {
+                    return 1;
+                } 
             }
         } 
         else{
-           
+            
+            return 0;
         }
+
+        return 0;
     }
     public void checkHoleConnection(){
         RaycastHit raycastHit;
@@ -51,6 +43,8 @@ public class Hole : MonoBehaviour {
                 // Connected to the starting hole, defaults to true
                 // Connected to the ending hole, defaults to true
                 parent.setPipeConnected(true);
+                
+                parent.setFirstOrEnd(true);
             }
             // else if(otherHole.tag == "HoleEnd"){
             //     parent.setPipeConnected(true);
@@ -58,10 +52,9 @@ public class Hole : MonoBehaviour {
             else{
                 // Connected to an intermediate hole
                 //parent.ensureConnection();
-                 Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
+               // Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
                 if(otherHoleScript.isPipeConnected()){
                     parent.setPipeConnected(true);
-                    parent.checkLine();
                 } else {
                     // TODO: something to do???
                 }
@@ -70,6 +63,7 @@ public class Hole : MonoBehaviour {
         else{
             // released and did not hit anything, so this dies.
             parent.setPipeConnected(false);
+            parent.setFirstOrEnd(false);
         }
     }
 
@@ -80,8 +74,7 @@ public class Hole : MonoBehaviour {
     //* Returns the raycast or null 
     public RaycastHit fireHoleRaycast(){
         RaycastHit hit;
-        Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask); 
-        Debug.LogError("HIT COLLIDER: " + hit);
+        Physics.Raycast(transform.position, transform.right, out hit, raycastDistance, layerMask);
         return hit;
     }
 

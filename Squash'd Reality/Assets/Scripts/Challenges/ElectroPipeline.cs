@@ -9,6 +9,8 @@ public class ElectroPipeline : Challenge {
     
     public bool timeEnded = false;
     private bool matchEnded = false;
+
+    private bool matchWon = false;
     
     protected override void Start(){
         base.Start();
@@ -23,8 +25,41 @@ public class ElectroPipeline : Challenge {
         {
             endChallenge(false);
         }
+
+        if (!matchWon)
+        {
+            checkWin();
+        }
     }
 
+    public void checkWin()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        int startEnd = 0;
+        int connected = 0;
+        foreach (GameObject pipe in pipes)
+        {
+            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            {
+                if (pipe.GetComponent<Pipe>().firstOrEnd)
+                {
+                    startEnd++;
+                }
+
+                if (pipe.GetComponent<Pipe>().isConnected)
+                {
+                    connected++;
+                }
+            }
+            
+        }
+
+        if (startEnd == 2 && connected == 3)
+        {
+            matchWon = true;
+            endChallenge(true);
+        }
+    }
     public void checkLine(){
         RaycastHit firstStepHit = start.transform.GetComponentInChildren<Hole>().fireHoleRaycast();
         //colpisco il figlio
