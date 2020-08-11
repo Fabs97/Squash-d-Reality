@@ -95,6 +95,18 @@ public class Pipe : NetworkBehaviour
         float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z));
+
+
+        StartCoroutine(pipeStartEnd());
+        StartCoroutine(pipeReleasedCoroutine());
+
+    }
+
+
+
+    IEnumerator pipeStartEnd()
+    {
+        yield return new WaitForSeconds(0.2f);
         int start = 0;
         int end = 0;
         foreach (Transform child in transform) {
@@ -110,20 +122,53 @@ public class Pipe : NetworkBehaviour
         {
             setFirstOrEnd(false);
         }
+        if (start == 1)
+        {
+            setFirstOrEnd(true);
+        }
 
         Debug.LogError("END: " + end);
         if (end == 0)
         {
             setEnd(false);
         }
-
+        if (end == 1)
+        {
+            setEnd(true);
+        }
         
-        StartCoroutine(pipeReleasedCoroutine());
+        //-------------
+        yield return new WaitForSeconds(0.2f);
+         start = 0;
+         end = 0;
+        foreach (Transform child in transform) {
+            if(child.gameObject.tag == "Hole") {
+                child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
+            }
+        }
 
+        Debug.LogError("START: " + start);
+        if (start == 0)
+        {
+            setFirstOrEnd(false);
+        }
+        if (start == 1)
+        {
+            setFirstOrEnd(true);
+        }
+
+        Debug.LogError("END: " + end);
+        if (end == 0)
+        {
+            setEnd(false);
+        }
+        if (end == 1)
+        {
+            setEnd(true);
+        }
     }
-    
-    
-
     IEnumerator pipeReleasedCoroutine()
     {
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");

@@ -17,6 +17,16 @@ public class ElectroPipeline : Challenge {
         start = GameObject.Find("PipeLineStart");
         pathToTheEnd = new List<GameObject>();
         pathToTheEnd.Add(start);
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        foreach (GameObject pipe in pipes)
+        {
+            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            {
+                pipe.GetComponent<Pipe>().releasedPipe();
+            }
+            
+        }
+
     }
 
     private void Update()

@@ -17,6 +17,7 @@ public class Hole : MonoBehaviour {
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             GameObject otherHole = raycastHit.collider.gameObject;
             Hole otherHoleScript = otherHole.GetComponent<Hole>();
+
             if (otherHole.tag == "HoleStart")
             {
                 return 1;
