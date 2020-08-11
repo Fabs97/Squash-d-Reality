@@ -18,4 +18,6 @@ public class DarkFall : MonoBehaviour
             _puzzle.endChallenge(false);
         }
     }
+
+    
 }

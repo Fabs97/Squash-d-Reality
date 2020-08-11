@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GrabbableMovement :  NetworkBehaviour
 {
@@ -14,6 +16,10 @@ public class GrabbableMovement :  NetworkBehaviour
     [SerializeField] private float jumpHeight = 0.5f;
     private float jumpHeightMultiplier = 1f;
     private float gravityValue = -9.81f;
+    
+    private Scene scene;
+    private bool darkPuzzle = false;
+
   
 
 
@@ -29,6 +35,13 @@ public class GrabbableMovement :  NetworkBehaviour
             cubeMovement = false;
  
         }
+        
+        scene = SceneManager.GetActiveScene();
+        if (scene.name == "DarkPuzzle")
+        {
+            darkPuzzle = true;
+        }
+
     }
     
     void FixedUpdate()
@@ -36,13 +49,15 @@ public class GrabbableMovement :  NetworkBehaviour
         if (hasAuthority && cubeMovement)
         {
             Move();
-        }else if (!cubeMovement)
+        }else if (!cubeMovement && !darkPuzzle)
         {
             float x = Mathf.Round(gameObject.transform.position.x / snapValue);
             float y = 0.55f;
             float z = Mathf.Round(gameObject.transform.position.z / snapValue);
             this.transform.position = new Vector3(x,y,z);
-            // Fall();
+        }else if (!cubeMovement && darkPuzzle)
+        {
+            Fall();
         }
     }
 
@@ -65,14 +80,16 @@ public class GrabbableMovement :  NetworkBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    // void Fall()
-    // {
-    //     groundedPlayer = controller.isGrounded;
-    //     if (groundedPlayer && playerVelocity.y < 0)
-    //     {
-    //         playerVelocity.y = 0f;
-    //     }
-    //     playerVelocity.y += gravityValue * Time.deltaTime;
-    //     controller.Move(playerVelocity * Time.deltaTime);
-    // }
+     void Fall()
+     {
+         groundedPlayer = controller.isGrounded;
+         if (groundedPlayer && playerVelocity.y < 0)
+         {
+             playerVelocity.y = 0f;
+         }
+         playerVelocity.y += gravityValue * Time.deltaTime;
+         controller.Move(playerVelocity * Time.deltaTime);
+    }
+     
+    
 }
