@@ -32,7 +32,7 @@ public class Pipe : NetworkBehaviour
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        pipelineChallengeScript = Object.FindObjectOfType<ElectroPipeline>();
+        pipelineChallengeScript = FindObjectOfType<ElectroPipeline>();
         unconnectedMaterial = meshRenderer.material;
         setPipeConnected(false);
         
@@ -46,20 +46,22 @@ public class Pipe : NetworkBehaviour
             isFirst = false;
         }
     }
-
-    void Update()
-    {
-       
-    }
-
+    
     public void _isConnectedChanged(bool connected)
     {
         isConnected = connected;
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
-    public void setPipeConnected(bool connected){
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
+    public void setPipeConnected(bool connected)
+    {
+        GameObject localPlayer;
+        localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        if (localPlayer != null)
+        {
+            localPlayer.GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
+
+        }
     }
 
     public void ensureConnection(){
