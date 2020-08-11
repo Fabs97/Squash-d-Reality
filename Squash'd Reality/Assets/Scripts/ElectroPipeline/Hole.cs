@@ -90,41 +90,30 @@ public class Hole : MonoBehaviour {
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             GameObject otherHole = raycastHit.collider.gameObject;
             Hole otherHoleScript = otherHole.GetComponent<Hole>();
-            // TODO: can start and end be the same? if so, put it in OR
             if(otherHole.tag == "HoleStart" || otherHole.tag =="HoleEnd"){
-                // Connected to the starting hole, defaults to true
-                // Connected to the ending hole, defaults to true
-
                 if (otherHole.tag == "HoleStart")
                 {
                     parent.setPipeConnected(true);
-                    parent.setFirstOrEnd(true);
+                    parent.setFirst(true);
                     parent.setEnd(false);
 
                 }else if (otherHole.tag == "HoleEnd")
                 {
                     parent.setEnd(true);
-                    parent.setFirstOrEnd(false);
+                    parent.setFirst(false);
                 }
             }
-            // else if(otherHole.tag == "HoleEnd"){
-            //     parent.setPipeConnected(true);
-            // }
             else{
-                // Connected to an intermediate hole
-                //parent.ensureConnection();
-               // Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
-                if(otherHoleScript.isPipeConnected()){
+               if(otherHoleScript.isPipeConnected()){
                     parent.setPipeConnected(true);
                     
-                } else {
+               } else {
                     // TODO: something to do???
                   
-                }
+               }
             }
         } 
         else{
-            // released and did not hit anything, so this dies.
             parent.setPipeConnected(false);
         }
     }
@@ -144,13 +133,5 @@ public class Hole : MonoBehaviour {
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position, transform.right * raycastDistance);
     }
-
-    // private void recheckConnections(){
-    //     foreach (var connection in connectedTo) {
-    //         RaycastHit hit;
-    //         if(!Physics.Raycast(transform.position, connection.Value, out hit, raycastDistance, layerMask)){
-    //             connectedTo.Remove(connection.Key);
-    //         }
-    //     }
-    // }
+    
 }

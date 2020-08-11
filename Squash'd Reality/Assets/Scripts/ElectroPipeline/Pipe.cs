@@ -14,7 +14,7 @@ public class Pipe : NetworkBehaviour
 
     [SerializeField] private float snapValue = 1.0f;
 
-    [SyncVar] public bool firstOrEnd;
+    [SyncVar] public bool isFirst;
 
     [SyncVar] public bool isEnd;
     
@@ -43,7 +43,7 @@ public class Pipe : NetworkBehaviour
 
         if (isServer)
         {
-            firstOrEnd = false;
+            isFirst = false;
         }
     }
 
@@ -60,20 +60,6 @@ public class Pipe : NetworkBehaviour
 
     public void setPipeConnected(bool connected){
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
-        /*if(considerHoleAnswers){
-            if(connected) {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
-                considerHoleAnswers = false;
-            }
-        } else {
-            holesAnswers.Add(connected);
-            if(holesAnswers.Count == holesOnMe){
-                // all hits go to false
-                considerHoleAnswers = true;
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, false);
-                holesAnswers = new List<bool>();
-            } 
-        }*/
     }
 
     public void ensureConnection(){
@@ -108,17 +94,15 @@ public class Pipe : NetworkBehaviour
                 }
             }
 
-            Debug.LogError("START: " + start);
             if (start == 0)
             {
-                setFirstOrEnd(false);
+                setFirst(false);
             }
             if (start == 1)
             {
-                setFirstOrEnd(true);
+                setFirst(true);
             }
 
-            Debug.LogError("END: " + end);
             if (end == 0)
             {
                 setEnd(false);
@@ -153,17 +137,15 @@ public class Pipe : NetworkBehaviour
             }
         }
 
-        Debug.LogError("START: " + start);
         if (start == 0)
         {
-            setFirstOrEnd(false);
+            setFirst(false);
         }
         if (start == 1)
         {
-            setFirstOrEnd(true);
+            setFirst(true);
         }
 
-        Debug.LogError("END: " + end);
         if (end == 0)
         {
             setEnd(false);
@@ -185,17 +167,15 @@ public class Pipe : NetworkBehaviour
             }
         }
 
-        Debug.LogError("START: " + start);
         if (start == 0)
         {
-            setFirstOrEnd(false);
+            setFirst(false);
         }
         if (start == 1)
         {
-            setFirstOrEnd(true);
+            setFirst(true);
         }
 
-        Debug.LogError("END: " + end);
         if (end == 0)
         {
             setEnd(false);
@@ -243,41 +223,11 @@ public class Pipe : NetworkBehaviour
             setPipeConnected(true);
         }
     }
-
-    public void checkLine(){
-        pipelineChallengeScript.checkLine();
-    }
-
-    public void checkNextStep(){
-        foreach(Transform child in transform){
-            if(child.gameObject.tag == "Hole") {
-                RaycastHit nextHit = child.gameObject.GetComponent<Hole>().fireHoleRaycast();
-                if(nextHit.collider != null){ // if != null, then it is a Raycast
-                    GameObject nextGO = nextHit.collider.gameObject;
-                    if(!pipelineChallengeScript.alreadyChecked(nextGO.transform.parent.gameObject)){
-                        if(nextGO != null){
-                            pipelineChallengeScript.addToFinalPath(gameObject);
-
-                            if(nextGO.tag == "HoleEnd") {
-                                pipelineChallengeScript.lightUpPath();
-                            } else if(nextGO.tag != "HoleEnd") {
-                                nextHit.collider.gameObject.GetComponentInParent<Pipe>().checkNextStep();
-                            }
-                        }
-                    }
-                } else {
-                    // the raycast did not hit anything, it is failing. 
-                    // TODO: handle the case where all raycasts fail (?)
-
-                }
-            }
-        }
-    }
-
-    public void setFirstOrEnd(bool value)
+    
+    public void setFirst(bool value)
     {
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
-            .CmdSetFirstOrEndElectroPipeline(gameObject,value);
+            .CmdSetFirstElectroPipeline(gameObject,value);
     }
 
     public void setEnd(bool value)

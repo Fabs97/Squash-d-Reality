@@ -185,9 +185,9 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetFirstOrEndElectroPipeline(GameObject go, bool value)
+    public void CmdSetFirstElectroPipeline(GameObject go, bool value)
     {
-        go.GetComponent<Pipe>().firstOrEnd = value;
+        go.GetComponent<Pipe>().isFirst = value;
         if (!value)
         {
             GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
