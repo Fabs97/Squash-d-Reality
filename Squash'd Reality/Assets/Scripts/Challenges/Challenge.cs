@@ -21,6 +21,7 @@ public class Challenge : MonoBehaviour {
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if(successful){
             uiManager.setInfoBoxText("YOU WIN!");
+            uiManager.setTimerActive(false);
             StartCoroutine(waitToSpawnDoors());
         } else {
             uiManager.setInfoBoxText("YOU LOSE!");
