@@ -183,4 +183,29 @@ public class PlayerController : NetworkBehaviour
     {
         go.GetComponent<GrabbableMovement>().cubeMovement = value;
     }
+
+    [Command]
+    public void CmdSetFirstElectroPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().isFirst = value;
+        if (!value)
+        {
+            GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    CmdSetPipeConnected(pipe.gameObject, false);
+
+                }
+       
+            }
+        }
+    }
+
+    [Command]
+    public void CmdSetEndPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().isEnd = value;
+    }
 }

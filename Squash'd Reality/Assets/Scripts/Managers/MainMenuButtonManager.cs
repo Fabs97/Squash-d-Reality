@@ -34,5 +34,7 @@ public class MainMenuButtonManager : MonoBehaviour
         SceneManager.LoadScene("CollectiblesMenu", LoadSceneMode.Single);
     }
     
-
+    public void exitGame() {
+        Application.Quit();
+    }
 }
