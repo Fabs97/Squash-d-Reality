@@ -96,9 +96,45 @@ public class Pipe : NetworkBehaviour
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z));
 
+        if (isServer)
+        {
+            int start = 0;
+            int end = 0;
+            foreach (Transform child in transform) {
+                if(child.gameObject.tag == "Hole") {
+                    child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                    start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                    end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
+                }
+            }
 
-        StartCoroutine(pipeStartEnd());
+            Debug.LogError("START: " + start);
+            if (start == 0)
+            {
+                setFirstOrEnd(false);
+            }
+            if (start == 1)
+            {
+                setFirstOrEnd(true);
+            }
+
+            Debug.LogError("END: " + end);
+            if (end == 0)
+            {
+                setEnd(false);
+            }
+            if (end == 1)
+            {
+                setEnd(true);
+            }
+        }
+        else
+        {
+            StartCoroutine(pipeStartEnd());
+
+        }
         StartCoroutine(pipeReleasedCoroutine());
+
 
     }
 
