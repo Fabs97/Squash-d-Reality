@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
@@ -106,8 +107,19 @@ namespace NetworkingManager {
             }
             FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
             Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
+
+            StartCoroutine(waitMinNumberPlayersConnected());
         }
 
+        IEnumerator waitMinNumberPlayersConnected()
+        {
+            yield return new WaitForSeconds(4f);
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length == 1)
+            {
+                FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+            }
+        }
         public void addSelectedPlayer(string name){
             if(_playersNames == null) _playersNames = new List<string>();
             _playersNames.Add(name);
