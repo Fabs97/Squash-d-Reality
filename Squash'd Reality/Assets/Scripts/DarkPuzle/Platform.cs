@@ -8,7 +8,7 @@ public class Platform : MonoBehaviour
     bool hitDetect;
     int layerMask = 1 << 31;
     float maxDist = 0.5f;
-    [HideInInspector]
+   // [HideInInspector]
     public bool isPressed = false;
 
 
