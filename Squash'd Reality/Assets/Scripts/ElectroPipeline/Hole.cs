@@ -11,13 +11,64 @@ public class Hole : MonoBehaviour {
         parent = GetComponentInParent<Pipe>();
     }
 
+    public int checkIntStart()
+    {
+        RaycastHit raycastHit;
+        if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
+            GameObject otherHole = raycastHit.collider.gameObject;
+            Hole otherHoleScript = otherHole.GetComponent<Hole>();
+            if (otherHole.tag == "HoleStart")
+            {
+                return 1;
+
+            }
+            else
+            {
+                return 0;
+            }
+        } 
+        else{
+            
+            return 0;
+        }
+    }
+    public int checkIntEnd()
+    {
+        RaycastHit raycastHit;
+        if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
+            GameObject otherHole = raycastHit.collider.gameObject;
+            Hole otherHoleScript = otherHole.GetComponent<Hole>();
+            if (otherHole.tag == "HoleEnd")
+            {
+                return 1;
+
+            }
+            else
+            {
+                return 0;
+            }
+        } 
+        else{
+            
+            return 0;
+        }
+    }
     public int checkIntHoleConnection(){
         RaycastHit raycastHit;
         if(Physics.Raycast(transform.position, transform.right, out raycastHit, raycastDistance, layerMask)){
             GameObject otherHole = raycastHit.collider.gameObject;
             Hole otherHoleScript = otherHole.GetComponent<Hole>();
             if(otherHole.tag == "HoleStart" || otherHole.tag =="HoleEnd"){
-                return 1;
+                if (otherHole.tag == "HoleStart")
+                {
+                    return 1;
+
+                }
+                else
+                {
+                    return 0;
+                }
+                
             }
             else{
                 if(otherHoleScript.isPipeConnected())
@@ -42,9 +93,18 @@ public class Hole : MonoBehaviour {
             if(otherHole.tag == "HoleStart" || otherHole.tag =="HoleEnd"){
                 // Connected to the starting hole, defaults to true
                 // Connected to the ending hole, defaults to true
-                parent.setPipeConnected(true);
-                
-                parent.setFirstOrEnd(true);
+
+                if (otherHole.tag == "HoleStart")
+                {
+                    parent.setPipeConnected(true);
+                    parent.setFirstOrEnd(true);
+                    parent.setEnd(false);
+
+                }else if (otherHole.tag == "HoleEnd")
+                {
+                    parent.setEnd(true);
+                    parent.setFirstOrEnd(false);
+                }
             }
             // else if(otherHole.tag == "HoleEnd"){
             //     parent.setPipeConnected(true);
@@ -55,15 +115,16 @@ public class Hole : MonoBehaviour {
                // Debug.LogError("Hole::checkHoleConnection -- otherHoleScript.isPipeConnected? " + otherHoleScript.isPipeConnected());
                 if(otherHoleScript.isPipeConnected()){
                     parent.setPipeConnected(true);
+                    
                 } else {
                     // TODO: something to do???
+                  
                 }
             }
         } 
         else{
             // released and did not hit anything, so this dies.
             parent.setPipeConnected(false);
-            parent.setFirstOrEnd(false);
         }
     }
 

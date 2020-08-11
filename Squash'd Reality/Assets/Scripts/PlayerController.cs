@@ -187,7 +187,6 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdSetFirstOrEndElectroPipeline(GameObject go, bool value)
     {
-        Debug.LogError("VALUE: " + value);
         go.GetComponent<Pipe>().firstOrEnd = value;
         if (!value)
         {
@@ -202,5 +201,11 @@ public class PlayerController : NetworkBehaviour
        
             }
         }
+    }
+
+    [Command]
+    public void CmdSetEndPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().isEnd = value;
     }
 }

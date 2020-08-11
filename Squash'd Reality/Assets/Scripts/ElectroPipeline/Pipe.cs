@@ -15,6 +15,9 @@ public class Pipe : NetworkBehaviour
     [SerializeField] private float snapValue = 1.0f;
 
     [SyncVar] public bool firstOrEnd;
+
+    [SyncVar] public bool isEnd;
+    
     //[HideInInspector]
     [SyncVar(hook="_isConnectedChanged")] public bool isConnected;
 
@@ -92,13 +95,29 @@ public class Pipe : NetworkBehaviour
         float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z));
+        int start = 0;
+        int end = 0;
         foreach (Transform child in transform) {
             if(child.gameObject.tag == "Hole") {
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
             }
         }
-        
 
+        Debug.LogError("START: " + start);
+        if (start == 0)
+        {
+            setFirstOrEnd(false);
+        }
+
+        Debug.LogError("END: " + end);
+        if (end == 0)
+        {
+            setEnd(false);
+        }
+
+        
         StartCoroutine(pipeReleasedCoroutine());
 
     }
@@ -134,15 +153,12 @@ public class Pipe : NetworkBehaviour
             }
         }
 
-        Debug.LogError("PIPE: " + gameObject.transform.name);
         if (holes == 0)
         {
-            Debug.LogError("HOLES: " + holes);
             setPipeConnected(false);
         }
         else
         {
-            Debug.LogError("HOLES: " + holes);
             setPipeConnected(true);
         }
     }
@@ -181,5 +197,11 @@ public class Pipe : NetworkBehaviour
     {
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
             .CmdSetFirstOrEndElectroPipeline(gameObject,value);
+    }
+
+    public void setEnd(bool value)
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdSetEndPipeline(gameObject,value);
     }
 }

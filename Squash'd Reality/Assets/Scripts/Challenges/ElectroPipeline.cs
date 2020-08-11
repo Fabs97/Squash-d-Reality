@@ -35,26 +35,26 @@ public class ElectroPipeline : Challenge {
     public void checkWin()
     {
         GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
-        int startEnd = 0;
-        int connected = 0;
+        int start = 0;
+        int connectedEnd = 0;
         foreach (GameObject pipe in pipes)
         {
             if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
             {
                 if (pipe.GetComponent<Pipe>().firstOrEnd)
                 {
-                    startEnd++;
+                    start++;
                 }
 
-                if (pipe.GetComponent<Pipe>().isConnected)
+                if (pipe.GetComponent<Pipe>().isEnd && pipe.GetComponent<Pipe>().isConnected)
                 {
-                    connected++;
+                    connectedEnd++;
                 }
             }
             
         }
 
-        if (startEnd == 2 && connected == 3)
+        if (start == 1 && connectedEnd == 1)
         {
             matchWon = true;
             endChallenge(true);
