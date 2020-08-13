@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2035877394740876410}
   - component: {fileID: 8411776392401041303}
   - component: {fileID: 8715497710999082059}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: OrangeIngredient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 9039794201184825011}
   - component: {fileID: 9039794201188216467}
   - component: {fileID: 9039794201187118163}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

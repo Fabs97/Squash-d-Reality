@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1239454652897592194}
   - component: {fileID: 2333578941481600279}
   - component: {fileID: 2766024628740956207}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: BananaIngredient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7027826899113028451}
   - component: {fileID: 7027826899114355521}
   - component: {fileID: 7027826899115321729}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
