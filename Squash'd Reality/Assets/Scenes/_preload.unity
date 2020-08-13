@@ -119,41 +119,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[13]
-      value: 
-      objectReference: {fileID: 5895599644858448643, guid: b44046ef959f4c94da160d86c4bef8eb,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[14]
-      value: 
-      objectReference: {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[15]
-      value: 
-      objectReference: {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[16]
-      value: 
-      objectReference: {fileID: 1716523833992150381, guid: cb1cf5ed68c080e45a5dfaaf3c65d826,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[17]
-      value: 
-      objectReference: {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[18]
-      value: 
-      objectReference: {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a,
-        type: 3}
-    - target: {fileID: 406453635, guid: 036f13cf165798d4cba098ce0ef79d33, type: 3}
-      propertyPath: m_SpawnPrefabs.Array.data[19]
-      value: 
-      objectReference: {fileID: 5050887906779148764, guid: 1d0c36813c2dd944ba7dc82fa06d0fd6,
-        type: 3}
     - target: {fileID: 2299359058814777245, guid: 036f13cf165798d4cba098ce0ef79d33,
         type: 3}
       propertyPath: m_Name

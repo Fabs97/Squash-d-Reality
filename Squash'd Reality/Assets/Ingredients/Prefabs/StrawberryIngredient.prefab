@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 6862710684706846439}
   - component: {fileID: 2391576442205988935}
   - component: {fileID: 3644746253459736961}
-  - component: {fileID: 6491767804042630519}
   - component: {fileID: 497500784476715069}
   - component: {fileID: 2188933139994329245}
   - component: {fileID: 392913776965425723}
@@ -253,22 +252,6 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!54 &6491767804042630519
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541413295935205062}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &497500784476715069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
+  m_TransformSyncMode: 4
   m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
@@ -303,7 +286,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 6.03
-  m_Radius: 2.49
+  m_Radius: 0
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
