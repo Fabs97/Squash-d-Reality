@@ -67,9 +67,9 @@ public class CookingTime : Challenge {
             List<string> playersNames = _networkingManager.getPlayersNames();
             
             if(!playersNames.Contains("Raphael Nosun")) _spawner.removeZone(3);
-            else if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
-            else if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
-            else if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
+            if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
+            if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
+            if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
             _spawner.CmdStartSpawning();
             
         } catch (Exception e) {
