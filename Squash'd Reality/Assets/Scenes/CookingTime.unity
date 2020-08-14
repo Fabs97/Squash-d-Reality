@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 654606001}
   m_Layer: 0
   m_Name: MatchManager
-  m_TagString: Untagged
+  m_TagString: MatchManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -682,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingString: Cook the elements in order!
   challengeTimer: 90
+  matchFailed: 0
 --- !u!114 &654606002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,7 +1140,7 @@ MonoBehaviour:
   - {fileID: 4087613361096800040, guid: 38907bc5b6d4cf14091967388007933c, type: 3}
   - {fileID: 541413295935205062, guid: 582ce4284bacc3242a60d0f7c77b4b2c, type: 3}
   randomizeSpawn: 1
-  deleteFromListAfterSpawn: 0
+  deleteFromListAfterSpawn: 1
   startSpawningFromTheBeginning: 0
   spawnDoubleObject: 1
   firstSpawnDelay: 8.3

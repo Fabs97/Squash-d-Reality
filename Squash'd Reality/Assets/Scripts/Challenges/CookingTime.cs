@@ -33,8 +33,10 @@ public class CookingTime : Challenge {
     }
 
     public void insertedIngredientInCauldron(Ingredient ingredient) {
-        if(!ingredient.name.Equals(activeIngredients[0].name)) {
-            endChallenge(false);
+        if(!ingredient.name.Equals(activeIngredients[0].name))
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+                .CmdSetMatchFailedCookingTime(GameObject.FindGameObjectWithTag("MatchManager"), true);
         }
         changeActiveIngredientList(ingredient);
         insertedIngredients++;

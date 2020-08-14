@@ -208,4 +208,10 @@ public class PlayerController : NetworkBehaviour
     {
         go.GetComponent<Pipe>().isEnd = value;
     }
+
+    [Command]
+    public void CmdSetMatchFailedCookingTime(GameObject go, bool value)
+    {
+        go.GetComponent<CookingTimeMatchManager>().matchFailed = value;
+    }
 }

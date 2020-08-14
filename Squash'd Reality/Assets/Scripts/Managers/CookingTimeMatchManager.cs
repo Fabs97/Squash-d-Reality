@@ -1,17 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class CookingTimeMatchManager : MatchManager
 {
+    [SyncVar] public bool matchFailed;
+    
     protected override void Start()
     {
         base.Start();
+        if (isServer)
+        {
+            matchFailed = false;
+        }
     }
 
     protected override void Update()
     {
         base.Update();
+        if (matchFailed)
+        {
+            timeEnded();
+        }
     }
 
     protected override IEnumerator matchStart()
