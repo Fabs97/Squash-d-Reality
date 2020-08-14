@@ -19,24 +19,27 @@ public class Collectibles : MonoBehaviour
          firstEntered = other;
          if (other.GetComponent<PlayerMoveset>().hasAuthority)
          {
+
             GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(true);
 
          }
          intelAcquisition = StartCoroutine(waitIntel(other));
+    
       }
       
    }
 
+   private void OnTriggerExit(Collider other)
+   {
+      StopCoroutine(intelAcquisition);
+      triggerActivated = false;
+      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
+      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
+   }
+
    private void Update()
    {
-      if (triggerActivated && Vector3.Distance(gameObject.transform.position, firstEntered.transform.position)>=2f)
-      {
-         StopCoroutine(intelAcquisition);
-         triggerActivated = false;
-         
-         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
-         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
-      }
+      
    }
 
    IEnumerator waitIntel(Collider other)
