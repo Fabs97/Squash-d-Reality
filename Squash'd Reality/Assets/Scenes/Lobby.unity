@@ -343,6 +343,11 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 227
       objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: doorName
+      value: Electropipeline
+      objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -402,6 +407,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorElectroPipeline
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
@@ -561,6 +591,11 @@ PrefabInstance:
       propertyPath: difficulty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: doorName
+      value: Trench Time
+      objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,6 +665,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
@@ -961,6 +1021,11 @@ PrefabInstance:
       propertyPath: difficulty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: doorName
+      value: Dark Puzzle
+      objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1030,6 +1095,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
@@ -1124,6 +1214,11 @@ PrefabInstance:
         type: 3}
       propertyPath: difficulty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: doorName
+      value: Cooking Time
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
