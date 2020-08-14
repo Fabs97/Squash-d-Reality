@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class CookingTimeMatchManager : MatchManager
 {
     [SyncVar] public bool matchFailed;
-    
+    private bool isFailed = false; 
     protected override void Start()
     {
         base.Start();
@@ -14,14 +14,17 @@ public class CookingTimeMatchManager : MatchManager
         {
             matchFailed = false;
         }
+        isFailed = false;
+
     }
 
     protected override void Update()
     {
         base.Update();
-        if (matchFailed)
+        if (!isFailed && matchFailed)
         {
-            timeEnded();
+            isFailed = true;
+            wrongFood(); 
         }
     }
 
@@ -35,6 +38,16 @@ public class CookingTimeMatchManager : MatchManager
         base.showPlayerUI();
     }
 
+    public void wrongFood()
+    {
+        base.timeEnded();
+        _uiManager.setInfoBoxText("WRONG FOOD: YOU DIED");
+        _uiManager.setInfoBoxActive(true);
+        if (isServer)
+        {
+            StartCoroutine(resetChallenge());
+        }
+    }
     public override void timeEnded()
     {
         base.timeEnded();

@@ -25,6 +25,7 @@ TagManager:
   - UILeaderboard
   - HoleStart
   - HoleEnd
+  - MatchManager
   layers:
   - Default
   - TransparentFX
