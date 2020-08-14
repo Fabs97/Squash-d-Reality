@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,11 @@ public class ElectroPipeline : Challenge {
     private bool matchEnded = false;
 
     private bool matchWon = false;
-    
+
+    [SerializeField] private GameObject CollectiblePlatform;
+    [SerializeField] private GameObject InvisibleWallCollectible;
+    [SerializeField] private GameObject InvisibleWallCollectible2;
+
     protected override void Start(){
         base.Start();
         start = GameObject.Find("PipeLineStart");
@@ -72,5 +77,16 @@ public class ElectroPipeline : Challenge {
     }
     public override void endChallenge(bool successful){
         base.endChallenge(successful);
+        StartCoroutine(waitToSpawnCollectible());
+    }
+
+    IEnumerator waitToSpawnCollectible()
+    {        
+        yield return new WaitForSeconds(2f);
+        InvisibleWallCollectible.SetActive(false);
+        InvisibleWallCollectible2.SetActive(false);
+
+        CollectiblePlatform.SetActive(true);
+        
     }
 }
