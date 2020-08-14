@@ -43,10 +43,8 @@ public class CookingTimeMatchManager : MatchManager
         base.timeEnded();
         _uiManager.setInfoBoxText("WRONG FOOD: YOU DIED");
         _uiManager.setInfoBoxActive(true);
-        if (isServer)
-        {
-            StartCoroutine(resetChallenge());
-        }
+        StartCoroutine(resetChallenge());
+        
     }
     public override void timeEnded()
     {
@@ -62,6 +60,14 @@ public class CookingTimeMatchManager : MatchManager
     protected override IEnumerator resetChallenge()
     {
         yield return new WaitForSeconds(2f);
-        GameObject.FindObjectOfType<CookingTime>().endChallenge(false);
+        if (isServer)
+        {
+            FindObjectOfType<CookingTime>().endChallenge(false);
+        }
+        else
+        {
+            _uiManager.setInfoBoxText("YOU LOSE!");
+        }
+        
     }
 }

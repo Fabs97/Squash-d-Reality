@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DeathZone : MonoBehaviour
+public class DeathZone : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag.Equals("Player"))
@@ -14,8 +15,18 @@ public class DeathZone : MonoBehaviour
     }
 
     IEnumerator resetChallenge()
-    {
+    {        
+        UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         yield return new WaitForSeconds(2f);
-        FindObjectOfType<Challenge>().endChallenge(false);
+        if (isServer)
+        {
+            FindObjectOfType<Challenge>().endChallenge(false);
+
+        }
+        else
+        {
+            uiManager.setInfoBoxText("YOU LOSE!");
+
+        }
     }
 }
