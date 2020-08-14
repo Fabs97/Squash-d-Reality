@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Ingredient : MonoBehaviour {
+public class Ingredient : NetworkBehaviour {
 
     [SerializeField] public string name;
     private CookingTime _cookingTimeManager;
