@@ -38,7 +38,7 @@ public class CookingTime : Challenge {
         }
         changeActiveIngredientList(ingredient);
         insertedIngredients++;
-        if(insertedIngredients == difficulty * difficultyMultiplier) endChallenge(true);
+       // if(insertedIngredients == difficulty * difficultyMultiplier) endChallenge(true);
     }
 
     private void changeActiveIngredientList(Ingredient ingredient){
@@ -49,6 +49,7 @@ public class CookingTime : Challenge {
         } else {
             addToActiveList(ingredient);
         }
+        if(activeIngredients.Count == 0) endChallenge(true);
         GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
     }
 
@@ -85,14 +86,15 @@ public class CookingTime : Challenge {
     }
 
     private void setMatch(){
-        int objectsToSpawn = difficulty * difficultyMultiplier;
+        int objectsToSpawn = difficulty * difficultyMultiplier * 2;
         float totalTime = minTotalTime/difficulty;
         float moreTime = minMoreTime/difficulty;
 
         _spawner.objectsToSpawnCount = objectsToSpawn;
-        _spawner.setSpawningDelay(totalTime / objectsToSpawn); 
+        _spawner.setSpawningDelay(((totalTime + moreTime ) / objectsToSpawn) ); 
 
         base._matchManager.setTimer(totalTime + moreTime);
+        _spawner.setTimeStopSpawning(6f);
     }
 
     public override void endChallenge(bool successful){

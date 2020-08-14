@@ -91,6 +91,10 @@ public class UIManager : MonoBehaviour
         Clock.gameObject.SetActive(value);
     }
 
+    public float getTimeLeft()
+    {
+        return timeLeft;
+    }
     
     //---------------------------------------PLAYER-----------------------------------------------
     //SET player name

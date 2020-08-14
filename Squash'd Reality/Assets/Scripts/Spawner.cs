@@ -19,11 +19,17 @@ public class Spawner : NetworkBehaviour
     private int _spawningIndex = -1;
     private int objectsSpawnedCount = 0;
 
+    private float timeStopSpawn = 0;
+    protected MatchManager _matchManager;
+
+
 
     private Coroutine spawnRoutine;
 
     void Start() {
         if(startSpawningFromTheBeginning) CmdStartSpawning();
+        _matchManager = FindObjectOfType<MatchManager>();
+
     }
 
     [Command]
@@ -42,11 +48,12 @@ public class Spawner : NetworkBehaviour
     IEnumerator spawningCoroutine(){
         yield return new WaitForSeconds(firstSpawnDelay);
         while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
+            if(_matchManager.getTimeLeft() <= timeStopSpawn) break;
             if(_spawningIndex == prefabsToSpawn.Count) break;
 
-            spawnObject();
+            spawnObject(false);
             yield return new WaitForSeconds(.5f);
-            if(spawnDoubleObject) spawnObject();            
+            if(spawnDoubleObject) spawnObject(true);            
             
             if(objectsSpawnedCount == objectsToSpawnCount) break;
             yield return new WaitForSeconds(spawningDelay);
@@ -56,7 +63,7 @@ public class Spawner : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    private void spawnObject(){
+    private void spawnObject(bool isDouble){
         if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
         else _spawningIndex++; 
 
@@ -73,7 +80,10 @@ public class Spawner : NetworkBehaviour
 
         NetworkServer.Spawn(go);
         if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
-        objectsSpawnedCount ++;
+        if (!isDouble)
+        {
+            objectsSpawnedCount ++;
+        }
     }
 
     public void StopSpawning() {
@@ -87,5 +97,10 @@ public class Spawner : NetworkBehaviour
 
     public void setSpawningDelay(float delay){
         spawningDelay = delay;
+    }
+
+    public void setTimeStopSpawning(float timeStopSpawning)
+    {
+        timeStopSpawn = timeStopSpawning;
     }
 }

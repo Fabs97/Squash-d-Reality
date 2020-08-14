@@ -75,4 +75,9 @@ public class MatchManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
     }
+
+    public float getTimeLeft()
+    {
+        return _uiManager.getTimeLeft();
+    }
 }
