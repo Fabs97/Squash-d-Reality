@@ -67,6 +67,8 @@ public class UILeaderboard : NetworkBehaviour
             }
         }
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        playerStats.setTotalPoints();
+        playerStats.setBonusPrize();
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {

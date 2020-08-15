@@ -55,12 +55,13 @@ public class PlayerStats : MonoBehaviour
       bonusPrize = "default";
    }
 
-   private void setTotalPoints()
+   public void setTotalPoints()
    {
       //TODO: aggiungere conti total points
+      totalPoints = collectible;
    }
 
-   private void setBonusPrize()
+   public void setBonusPrize()
    {
       //TODO: aggiungere conti bonus prize
    }

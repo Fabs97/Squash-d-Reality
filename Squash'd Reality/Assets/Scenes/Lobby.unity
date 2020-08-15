@@ -1147,6 +1147,115 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+--- !u!1001 &1370968149
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: nextSceneName
+      value: LeaderboardScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: difficulty
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: doorName
+      value: Leaderboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorLeaderboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
 --- !u!1 &1407139014
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class Collectibles : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-      if (!triggerActivated)
+      if (other.tag=="Player" && !triggerActivated)
       {
          triggerActivated = true;
          firstEntered = other;
