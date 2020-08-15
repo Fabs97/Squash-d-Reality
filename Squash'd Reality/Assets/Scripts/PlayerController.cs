@@ -9,7 +9,11 @@ using UnityEngine.UI;
 public class PlayerController : NetworkBehaviour
 {
     // Start is called before the first frame update
-    private GameObject dummyPrefab;
+    private GameObject character1;
+    private GameObject character2;
+    private GameObject character3;
+    private GameObject character4;
+
     private NetworkingManager.NetworkingManager _networkingManager;
     private LevelManager.LevelManager _levelManager;
     private GameObject bulletPrefab;
@@ -24,7 +28,11 @@ public class PlayerController : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         if (isServer) {
-            dummyPrefab = _networkingManager.spawnPrefabs[0];
+            character1 = _networkingManager.spawnPrefabs[0];
+            character2 = _networkingManager.spawnPrefabs[1];
+            character3 = _networkingManager.spawnPrefabs[2];
+            character4 = _networkingManager.spawnPrefabs[3];
+
         }
         
         if (isClient && isLocalPlayer)
@@ -61,10 +69,34 @@ public class PlayerController : NetworkBehaviour
     }
     
     [Command]
-    public void CmdSpawnPlayer(String playerName) {
-        GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
-        go.GetComponent<PlayerMoveset>().playerName = playerName;
-        NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+    public void CmdSpawnPlayer(String playerName)
+    {
+        GameObject go = null;
+        if (playerName == "Markus Nobel")
+        {
+            
+            go = Instantiate(character1, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+        else if (playerName == "Ken Nolo")
+        {
+            go = Instantiate(character2, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+
+        }
+        else if (playerName == "Kam Brylla")
+        {
+            go = Instantiate(character3, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+        else if (playerName == "Raphael Nosun")
+        {
+            go = Instantiate(character4, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+
+        if (go != null)
+        {
+            go.GetComponent<PlayerMoveset>().playerName = playerName;
+            NetworkServer.SpawnWithClientAuthority(go, connectionToClient);   
+        }
+        
     }
 
     [Command]
