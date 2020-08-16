@@ -123,33 +123,25 @@ public class UILeaderboard : NetworkBehaviour
             playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }
 
+        StartCoroutine(wait3(playerStats, playerController));
+
+
+
+    }
+
+    IEnumerator wait3(PlayerStats playerStats, PlayerController playerController)
+    {
+        yield return new WaitForSeconds(2f);
         int playerNumber = 0;
-        if (MarkusNobelEnabled)
-        {
-            playerNumber++;
-        }
-        if(KenNoloEnabled)
-        {
-            playerNumber++;
-        }
+        playerNumber = GameObject.FindGameObjectsWithTag("Player").Length;
 
-        if (KamBryllaEnabled)
-        {
-            playerNumber++;
-        }
-
-        if (RaphaelNosunEnabled)
-        {
-            playerNumber++;
-        }
-        
         if (calcDeathPrize(playerNumber))
         {
             playerStats.setBonusPrize("CAN YOU NOT DIE?");
         }else if (calcFriendlyKill(playerNumber))
         {
             playerStats.setBonusPrize("CAN YOU NOT KILL YOUR FRIENDS?");
-        }/*else if (calcPowerUp(playerNumber))
+        }else if (calcPowerUp(playerNumber))
         {
             playerStats.setBonusPrize("UNDER POWER-UP STEROIDS");
         }else if (calcCollectible(playerNumber))
@@ -159,7 +151,7 @@ public class UILeaderboard : NetworkBehaviour
         else
         {
             playerStats.setBonusPrize("WIN SOMETHING PLS");
-        }*/
+        }
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
@@ -174,14 +166,10 @@ public class UILeaderboard : NetworkBehaviour
         {
             playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }
-        
-        
-      
-
         StartCoroutine(wait2());
-    }
 
-    
+        
+    }
     IEnumerator wait2()
     {
         yield return new WaitForSeconds(2f);
@@ -301,13 +289,6 @@ public class UILeaderboard : NetworkBehaviour
     }
     private bool calcFriendlyKill(int playerNumber)
     {
-        Debug.LogError("PLAYER NUMBER: " + playerNumber);
-        Debug.LogError("MARKUS NOBEL STATS: " + MarkusNobelStats[0]);
-        Debug.LogError("KEN NOLO STATS: " + KenNoloStats[0]);
-        Debug.LogError("KAM BRYLLA STATS: " + KamBryllalStats[0]);
-        Debug.LogError("RAPHAEL NOSUN STATS: " + RapahelNosunStats[0]);
-        
-        
         if (playerMoveset.playerName == "Markus Nobel")
         {
             if (MarkusNobelStats[0] != 0 && MarkusNobelStats[0] >=
