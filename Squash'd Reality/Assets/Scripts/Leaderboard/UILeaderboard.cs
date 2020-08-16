@@ -13,6 +13,12 @@ public class UILeaderboard : NetworkBehaviour
     [SerializeField] private GameObject Player3;
     [SerializeField] private GameObject Player4;
     
+    [SerializeField] private GameObject Player1MVP;
+    [SerializeField] private GameObject Player2MVP;
+    [SerializeField] private GameObject Player3MVP;
+    [SerializeField] private GameObject Player4MVP;
+
+    [SerializeField] private GameObject backButton;
     
     PlayerMoveset playerMoveset;
 
@@ -38,6 +44,7 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public bool KenNoloEnabled;
     [SyncVar] public bool KamBryllaEnabled;
     [SyncVar] public bool RaphaelNosunEnabled;
+    
     
     private void Start()
     {
@@ -87,14 +94,66 @@ public class UILeaderboard : NetworkBehaviour
         StartCoroutine(wait2());
     }
 
+    
     IEnumerator wait2()
     {
         yield return new WaitForSeconds(2f);
         showPlayers();
+        calcMVP();
+
     }
     
+    private void calcMVP()
+    {
+        //CALC MVP
+        int maxPoints = 0;
+        
+
+        if (MarkusNobelEnabled && MarkusNoblePoints >= maxPoints)
+        {
+            maxPoints = MarkusNoblePoints;
+        }
+
+        if (KenNoloEnabled && KenNoloPoints >= maxPoints)
+        {
+            maxPoints = KenNoloPoints;
+        }
+
+        if (KamBryllaEnabled && KamBryllaPoints >= maxPoints)
+        {
+            maxPoints = KamBryllaPoints;
+        }
+
+        if (RaphaelNosunEnabled && RaphaelNosunPoints >= maxPoints)
+        {
+            maxPoints = RaphaelNosunPoints;
+        }
+
+        
+        //SET MVP
+        if (maxPoints == MarkusNoblePoints)
+        {
+            Player1MVP.SetActive(true);
+        } 
+        if (maxPoints == KenNoloPoints)
+        {
+            Player2MVP.SetActive(true);
+        }
+        
+        if (maxPoints == KamBryllaPoints)
+        {
+            Player3MVP.SetActive(true);
+        }
+        
+        if (maxPoints == RaphaelNosunPoints)
+        {
+            Player4MVP.SetActive(true);
+        }
+        
+    }
      private void showPlayers()
     {
+        backButton.SetActive(true);
         if (MarkusNobelEnabled)
         {
             for (int i = 0; i < Player1.transform.childCount; i++)
@@ -171,5 +230,12 @@ public class UILeaderboard : NetworkBehaviour
         }
         Player4.SetActive(RaphaelNosunEnabled);
     }
+
+
+     public void backToLobby()
+     {
+         NetworkingManager.NetworkingManager _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+         _networkingManager.serverChangeScene("Lobby", 0);
+     }
 }
 

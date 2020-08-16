@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2281007421581306454}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &689774419
@@ -336,6 +336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 604284369, guid: 25f506438fcfdbe498a00384b83e7824, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2281007422415347954, guid: 25f506438fcfdbe498a00384b83e7824,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,5 +530,16 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 2281007422415347965, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 2281007421581306454}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f506438fcfdbe498a00384b83e7824, type: 3}
+--- !u!1 &2281007421581306454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 604284369, guid: 25f506438fcfdbe498a00384b83e7824,
+    type: 3}
+  m_PrefabInstance: {fileID: 2281007421581306453}
+  m_PrefabAsset: {fileID: 0}
