@@ -160,10 +160,10 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.MarkusNobelEnabled = true;
         uiLeaderboard.MarkusNoblePoints = points;
         uiLeaderboard.MarkusNobleDeaths = deaths;
-        uiLeaderboard.MarkusNobelFriendlyKill = friendlyKill;
-        uiLeaderboard.MarkusNobelPowerUp = powerUp;
-        uiLeaderboard.MarkusNobelCollectible = collectible;
-        //uiLeaderboard.MarkusNobelAntivirusKilled = antivirusKilled;
+        uiLeaderboard.MarkusNobelStats.Insert(0,friendlyKill);
+        uiLeaderboard.MarkusNobelStats.Insert(1, powerUp);
+        uiLeaderboard.MarkusNobelStats.Insert(2, collectible);
+        uiLeaderboard.MarkusNobelStats.Insert(3, antivirusKilled);
         uiLeaderboard.MarkusNobleBonusPrize = bonusPrize;
     }
     
@@ -174,10 +174,10 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.KenNoloEnabled = true;
         uiLeaderboard.KenNoloPoints = points;
         uiLeaderboard.KenNoloDeaths = deaths;
-        uiLeaderboard.KenNoloFriendlyKill = friendlyKill;
-        uiLeaderboard.KenNoloPowerUp = powerUp;
-        uiLeaderboard.KenNoloCollectible = collectible;
-      //  uiLeaderboard.KenNoloAntivirusKilled = antivirusKilled;
+        uiLeaderboard.KenNoloStats.Insert(0,friendlyKill);
+        uiLeaderboard.KenNoloStats.Insert(1, powerUp);
+        uiLeaderboard.KenNoloStats.Insert(2, collectible);
+        uiLeaderboard.KenNoloStats.Insert(3, antivirusKilled);
         uiLeaderboard.KenNoloBonusPrize = bonusPrize;
     }
     
@@ -188,10 +188,10 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.KamBryllaEnabled = true;
         uiLeaderboard.KamBryllaPoints = points;
         uiLeaderboard.KamBryllaDeaths = deaths;
-        uiLeaderboard.KamBryllaFriendlyKill = friendlyKill;
-        uiLeaderboard.KamBryllaPowerUp = powerUp;
-        uiLeaderboard.KamBryllaCollectible = collectible;
-       // uiLeaderboard.KamBryllaAntivirusKilled = antivirusKilled;
+        uiLeaderboard.KamBryllalStats.Insert(0,friendlyKill);
+        uiLeaderboard.KamBryllalStats.Insert(1, powerUp);
+        uiLeaderboard.KamBryllalStats.Insert(2, collectible);
+        uiLeaderboard.KamBryllalStats.Insert(3, antivirusKilled);
         uiLeaderboard.KamBryllaBonusPrize = bonusPrize;
     }
     
@@ -202,10 +202,10 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.RaphaelNosunEnabled = true;
         uiLeaderboard.RaphaelNosunPoints = points;
         uiLeaderboard.RaphaelNosunDeaths = deaths;
-        uiLeaderboard.RaphaelNosunFriendlyKill = friendlyKill;
-        uiLeaderboard.RaphaelNosunPowerUp = powerUp;
-        uiLeaderboard.RaphaelNosunCollectible = collectible;
-       // uiLeaderboard.RaphaelNosunAntivirusKilled = antivirusKilled;
+        uiLeaderboard.RapahelNosunStats.Insert(0,friendlyKill);
+        uiLeaderboard.RapahelNosunStats.Insert(1, powerUp);
+        uiLeaderboard.RapahelNosunStats.Insert(2, collectible);
+        uiLeaderboard.RapahelNosunStats.Insert(3, antivirusKilled);
         uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
     }
 

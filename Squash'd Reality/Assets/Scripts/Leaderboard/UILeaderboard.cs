@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+
 public class UILeaderboard : NetworkBehaviour
 {
     //UI OBJECTS
@@ -22,38 +24,21 @@ public class UILeaderboard : NetworkBehaviour
     
     PlayerMoveset playerMoveset;
 
-    
     //SYNCVAR
     [SyncVar] public int MarkusNoblePoints;
     [SyncVar] public int MarkusNobleDeaths;
-    [SyncVar] public int MarkusNobelFriendlyKill;
-    [SyncVar] public int MarkusNobelPowerUp;
-    [SyncVar] public int MarkusNobelCollectible;
-    //[SyncVar] public int MarkusNobelAntivirusKilled;
     [SyncVar] public string MarkusNobleBonusPrize;
     
     [SyncVar] public int KenNoloPoints;
     [SyncVar] public int KenNoloDeaths;
-    [SyncVar] public int KenNoloFriendlyKill;
-    [SyncVar] public int KenNoloPowerUp;
-    [SyncVar] public int KenNoloCollectible;
-    //[SyncVar] public int KenNoloAntivirusKilled;
     [SyncVar] public string KenNoloBonusPrize;
     
     [SyncVar] public int KamBryllaPoints;
     [SyncVar] public int KamBryllaDeaths;
-    [SyncVar] public int KamBryllaFriendlyKill;
-    [SyncVar] public int KamBryllaPowerUp;
-    [SyncVar] public int KamBryllaCollectible;
-   // [SyncVar] public int KamBryllaAntivirusKilled;
     [SyncVar] public string KamBryllaBonusPrize;
     
     [SyncVar] public int RaphaelNosunPoints;
     [SyncVar] public int RaphaelNosunDeaths;
-    [SyncVar] public int RaphaelNosunFriendlyKill;
-    [SyncVar] public int RaphaelNosunPowerUp;
-    [SyncVar] public int RaphaelNosunCollectible;
-   // [SyncVar] public int RaphaelNosunAntivirusKilled;
     [SyncVar] public string RaphaelNosunBonusPrize;
     
     [SyncVar] public bool MarkusNobelEnabled;
@@ -61,9 +46,41 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public bool KamBryllaEnabled;
     [SyncVar] public bool RaphaelNosunEnabled;
     
-    
+    public SyncListInt MarkusNobelStats = new SyncListInt();
+    public SyncListInt KenNoloStats = new SyncListInt();
+    public SyncListInt KamBryllalStats = new SyncListInt();
+    public SyncListInt RapahelNosunStats = new SyncListInt();
+
     private void Start()
     {
+        if (isServer)
+        {
+            MarkusNobelStats.Insert(0,0);
+            MarkusNobelStats.Insert(1,0);
+            MarkusNobelStats.Insert(2,0);
+            MarkusNobelStats.Insert(3,0);
+            MarkusNobelStats.Insert(4,0);
+            
+            KenNoloStats.Insert(0,0);
+            KenNoloStats.Insert(1,0);
+            KenNoloStats.Insert(2,0);
+            KenNoloStats.Insert(3,0);
+            KenNoloStats.Insert(4,0);
+            
+            KamBryllalStats.Insert(0,0);
+            KamBryllalStats.Insert(1,0);
+            KamBryllalStats.Insert(2,0);
+            KamBryllalStats.Insert(3,0);
+            KamBryllalStats.Insert(4,0);
+            
+            RapahelNosunStats.Insert(0,0);
+            RapahelNosunStats.Insert(1,0);
+            RapahelNosunStats.Insert(2,0);
+            RapahelNosunStats.Insert(3,0);
+            RapahelNosunStats.Insert(4,0);
+
+
+        }
         StartCoroutine(wait());
     }
     
@@ -71,7 +88,7 @@ public class UILeaderboard : NetworkBehaviour
     IEnumerator wait()
     {
         yield return new WaitForSeconds(2f);
-
+        
         if (isServer)
         {
             MarkusNobelEnabled = false;
@@ -132,7 +149,7 @@ public class UILeaderboard : NetworkBehaviour
         }else if (calcFriendlyKill(playerNumber))
         {
             playerStats.setBonusPrize("CAN YOU NOT KILL YOUR FRIENDS?");
-        }else if (calcPowerUp(playerNumber))
+        }/*else if (calcPowerUp(playerNumber))
         {
             playerStats.setBonusPrize("UNDER POWER-UP STEROIDS");
         }else if (calcCollectible(playerNumber))
@@ -142,7 +159,7 @@ public class UILeaderboard : NetworkBehaviour
         else
         {
             playerStats.setBonusPrize("WIN SOMETHING PLS");
-        }
+        }*/
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
@@ -173,12 +190,45 @@ public class UILeaderboard : NetworkBehaviour
 
     }
 
+    private bool calcAntivirusKilled(int playerNumber)
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            if(MarkusNobelStats[3]!=0 && MarkusNobelStats[3]>= (MarkusNobelStats[3] + KenNoloStats[3] + KamBryllalStats[3] + RapahelNosunStats[3]) /playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            if(MarkusNobelStats[3]!=0 && MarkusNobelStats[3]>= (MarkusNobelStats[3] + KenNoloStats[3] + KamBryllalStats[3] + RapahelNosunStats[3]) /playerNumber)
+            {
+                return true;
+            }
+            
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            
+            if(MarkusNobelStats[3]!=0 && MarkusNobelStats[3]>= (MarkusNobelStats[3] + KenNoloStats[3] + KamBryllalStats[3] + RapahelNosunStats[3]) /playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            
+            if(MarkusNobelStats[3]!=0 && MarkusNobelStats[3]>= (MarkusNobelStats[3] + KenNoloStats[3] + KamBryllalStats[3] + RapahelNosunStats[3]) /playerNumber)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private bool calcCollectible(int playerNumber)
     {
         if (playerMoveset.playerName == "Markus Nobel")
         {
-            if (MarkusNobelCollectible != 0 && MarkusNobelCollectible >=
-                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+            if (MarkusNobelStats[2] != 0 && MarkusNobelStats[2] >=
+                (MarkusNobelStats[2] + KenNoloStats[2] + KamBryllalStats[2] + RapahelNosunStats[2]) /
                 playerNumber)
             {
                 return true;
@@ -186,16 +236,16 @@ public class UILeaderboard : NetworkBehaviour
             
         }else if (playerMoveset.playerName == "Ken Nolo")
         {
-            if (KenNoloCollectible != 0 && KenNoloCollectible >=
-                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+            if (KenNoloStats[2] != 0 && KenNoloStats[2] >=
+                (MarkusNobelStats[2] + KenNoloStats[2] + KamBryllalStats[2] + RapahelNosunStats[2]) /
                 playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Kam Brylla")
         {
-            if (KamBryllaCollectible != 0 && KamBryllaCollectible >=
-                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+            if (KamBryllalStats[2] != 0 && KamBryllalStats[2] >=
+                (MarkusNobelStats[2] + KenNoloStats[2] + KamBryllalStats[2] + RapahelNosunStats[2]) /
                 playerNumber)
             {
                 return true;
@@ -203,8 +253,8 @@ public class UILeaderboard : NetworkBehaviour
             
         }else if (playerMoveset.playerName == "Raphael Nosun")
         {
-            if (RaphaelNosunCollectible != 0 && RaphaelNosunCollectible >=
-                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+            if (RapahelNosunStats[2] != 0 && RapahelNosunStats[2] >=
+                (MarkusNobelStats[2] + KenNoloStats[2] + KamBryllalStats[2] + RapahelNosunStats[2]) /
                 playerNumber)
             {
                 return true;
@@ -217,29 +267,29 @@ public class UILeaderboard : NetworkBehaviour
     {
         if (playerMoveset.playerName == "Markus Nobel")
         {
-            if (MarkusNobelPowerUp != 0 && MarkusNobelPowerUp >=
-                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            if (MarkusNobelStats[1] != 0 && MarkusNobelStats[1] >=
+                (MarkusNobelStats[1] + KenNoloStats[1] + KamBryllalStats[1] + RapahelNosunStats[1]) / playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Ken Nolo")
         {
-            if (KenNoloPowerUp != 0 && KenNoloPowerUp >=
-                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            if (KenNoloStats[1] != 0 && KenNoloStats[1] >=
+                (MarkusNobelStats[1] + KenNoloStats[1] + KamBryllalStats[1] + RapahelNosunStats[1]) / playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Kam Brylla")
         {
-            if (KamBryllaPowerUp != 0 && KamBryllaPowerUp >=
-                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            if (KamBryllalStats[1] != 0 && KamBryllalStats[1] >=
+                (MarkusNobelStats[1] + KenNoloStats[1] + KamBryllalStats[1] + RapahelNosunStats[1]) / playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Raphael Nosun")
         {
-            if (RaphaelNosunPowerUp != 0 && RaphaelNosunPowerUp >=
-                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            if (RapahelNosunStats[1] != 0 && RapahelNosunStats[1] >=
+                (MarkusNobelStats[1] + KenNoloStats[1] + KamBryllalStats[1] + RapahelNosunStats[1]) / playerNumber)
             {
                 return true;
             }
@@ -251,18 +301,25 @@ public class UILeaderboard : NetworkBehaviour
     }
     private bool calcFriendlyKill(int playerNumber)
     {
+        Debug.LogError("PLAYER NUMBER: " + playerNumber);
+        Debug.LogError("MARKUS NOBEL STATS: " + MarkusNobelStats[0]);
+        Debug.LogError("KEN NOLO STATS: " + KenNoloStats[0]);
+        Debug.LogError("KAM BRYLLA STATS: " + KamBryllalStats[0]);
+        Debug.LogError("RAPHAEL NOSUN STATS: " + RapahelNosunStats[0]);
+        
+        
         if (playerMoveset.playerName == "Markus Nobel")
         {
-            if (MarkusNobelFriendlyKill != 0 && MarkusNobelFriendlyKill >=
-                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+            if (MarkusNobelStats[0] != 0 && MarkusNobelStats[0] >=
+                (MarkusNobelStats[0] + KenNoloStats[0] + KamBryllalStats[0] + RapahelNosunStats[0]) /
                 playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Ken Nolo")
         {
-            if (KenNoloFriendlyKill != 0 && KenNoloFriendlyKill >=
-                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+            if (KenNoloStats[0] != 0 && KenNoloStats[0] >=
+                (MarkusNobelStats[0] + KenNoloStats[0] + KamBryllalStats[0] + RapahelNosunStats[0])  /
                 playerNumber)
             {
                 return true;
@@ -270,16 +327,16 @@ public class UILeaderboard : NetworkBehaviour
             
         }else if (playerMoveset.playerName == "Kam Brylla")
         {
-            if (KamBryllaFriendlyKill != 0 && KamBryllaFriendlyKill >=
-                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+            if (KamBryllalStats[0] != 0 && KamBryllalStats[0] >=
+                (MarkusNobelStats[0] + KenNoloStats[0] + KamBryllalStats[0] + RapahelNosunStats[0]) /
                 playerNumber)
             {
                 return true;
             }
         }else if (playerMoveset.playerName == "Raphael Nosun")
         {
-            if (RaphaelNosunFriendlyKill != 0 && RaphaelNosunFriendlyKill >=
-                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+            if (RapahelNosunStats[0] != 0 && RapahelNosunStats[0] >=
+                (MarkusNobelStats[0] + KenNoloStats[0] + KamBryllalStats[0] + RapahelNosunStats[0]) /
                 playerNumber)
             {
                 return true;
