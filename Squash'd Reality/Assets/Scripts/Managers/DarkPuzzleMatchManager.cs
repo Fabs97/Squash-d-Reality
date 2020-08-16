@@ -45,7 +45,10 @@ public class DarkPuzzleMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
+        if (!matchWon)
+        {
+            base.timeEnded();
+        }
     }
 
     protected override IEnumerator resetChallenge()

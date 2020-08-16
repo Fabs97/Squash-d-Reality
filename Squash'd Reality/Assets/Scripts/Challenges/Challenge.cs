@@ -20,6 +20,7 @@ public class Challenge : MonoBehaviour {
     public virtual void endChallenge(bool successful){ 
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if(successful){
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMatchWon();
             uiManager.setInfoBoxText("YOU WIN!");
             uiManager.setTimerActive(false);
             StartCoroutine(waitToSpawnDoors());

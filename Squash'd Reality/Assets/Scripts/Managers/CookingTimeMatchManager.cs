@@ -48,13 +48,17 @@ public class CookingTimeMatchManager : MatchManager
     }
     public override void timeEnded()
     {
-        base.timeEnded();
-        _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
-        _uiManager.setInfoBoxActive(true);
-        if (isServer)
+        if (!matchWon)
         {
-            StartCoroutine(resetChallenge());
+            base.timeEnded();
+            _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
+            _uiManager.setInfoBoxActive(true);
+            if (isServer)
+            {
+                StartCoroutine(resetChallenge());
+            }   
         }
+        
     }
 
     protected override IEnumerator resetChallenge()
@@ -68,6 +72,6 @@ public class CookingTimeMatchManager : MatchManager
         {
             _uiManager.setInfoBoxText("YOU LOSE!");
         }
-        
     }
+    
 }

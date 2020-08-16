@@ -278,4 +278,10 @@ public class PlayerController : NetworkBehaviour
     {
         go.GetComponent<CookingTimeMatchManager>().matchFailed = value;
     }
+
+    [Command]
+    public void CmdSetMatchWon()
+    {
+        FindObjectOfType<MatchManager>().setMatchWon();
+    }
 }

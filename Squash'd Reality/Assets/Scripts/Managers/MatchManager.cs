@@ -13,10 +13,15 @@ public class MatchManager : NetworkBehaviour
     protected UIManager _uiManager;
     [SerializeField] private string openingString;
     [SerializeField] private float challengeTimer = 90f;
+    [SyncVar] protected bool matchWon;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        if (isServer)
+        {
+            matchWon = false;
+        }
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         _uiManager.setInfoBoxText(openingString);
@@ -79,5 +84,10 @@ public class MatchManager : NetworkBehaviour
     public float getTimeLeft()
     {
         return _uiManager.getTimeLeft();
+    }
+
+    public void setMatchWon()
+    {
+        matchWon = true;
     }
 }
