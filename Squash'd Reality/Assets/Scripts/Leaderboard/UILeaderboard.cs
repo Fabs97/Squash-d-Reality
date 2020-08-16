@@ -29,7 +29,7 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public int MarkusNobelFriendlyKill;
     [SyncVar] public int MarkusNobelPowerUp;
     [SyncVar] public int MarkusNobelCollectible;
-    [SyncVar] public int MarkusNobelAntivirusKilled;
+    //[SyncVar] public int MarkusNobelAntivirusKilled;
     [SyncVar] public string MarkusNobleBonusPrize;
     
     [SyncVar] public int KenNoloPoints;
@@ -37,7 +37,7 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public int KenNoloFriendlyKill;
     [SyncVar] public int KenNoloPowerUp;
     [SyncVar] public int KenNoloCollectible;
-    [SyncVar] public int KenNoloAntivirusKilled;
+    //[SyncVar] public int KenNoloAntivirusKilled;
     [SyncVar] public string KenNoloBonusPrize;
     
     [SyncVar] public int KamBryllaPoints;
@@ -45,7 +45,7 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public int KamBryllaFriendlyKill;
     [SyncVar] public int KamBryllaPowerUp;
     [SyncVar] public int KamBryllaCollectible;
-    [SyncVar] public int KamBryllaAntivirusKilled;
+   // [SyncVar] public int KamBryllaAntivirusKilled;
     [SyncVar] public string KamBryllaBonusPrize;
     
     [SyncVar] public int RaphaelNosunPoints;
@@ -53,7 +53,7 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public int RaphaelNosunFriendlyKill;
     [SyncVar] public int RaphaelNosunPowerUp;
     [SyncVar] public int RaphaelNosunCollectible;
-    [SyncVar] public int RaphaelNosunAntivirusKilled;
+   // [SyncVar] public int RaphaelNosunAntivirusKilled;
     [SyncVar] public string RaphaelNosunBonusPrize;
     
     [SyncVar] public bool MarkusNobelEnabled;
@@ -134,7 +134,14 @@ public class UILeaderboard : NetworkBehaviour
             playerStats.setBonusPrize("CAN YOU NOT KILL YOUR FRIENDS?");
         }else if (calcPowerUp(playerNumber))
         {
-            playerStats.setBonusPrize("UNDER POWER UP STEROIDS");
+            playerStats.setBonusPrize("UNDER POWER-UP STEROIDS");
+        }else if (calcCollectible(playerNumber))
+        {
+            playerStats.setBonusPrize("COLLECTIBLE DUDE");
+        }
+        else
+        {
+            playerStats.setBonusPrize("WIN SOMETHING PLS");
         }
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
@@ -166,6 +173,46 @@ public class UILeaderboard : NetworkBehaviour
 
     }
 
+    private bool calcCollectible(int playerNumber)
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            if (MarkusNobelCollectible != 0 && MarkusNobelCollectible >=
+                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+                playerNumber)
+            {
+                return true;
+            }
+            
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            if (KenNoloCollectible != 0 && KenNoloCollectible >=
+                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+                playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            if (KamBryllaCollectible != 0 && KamBryllaCollectible >=
+                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+                playerNumber)
+            {
+                return true;
+            }
+            
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            if (RaphaelNosunCollectible != 0 && RaphaelNosunCollectible >=
+                (MarkusNobelCollectible + KenNoloCollectible + KamBryllaCollectible + RaphaelNosunCollectible) /
+                playerNumber)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private bool calcPowerUp(int playerNumber)
     {
         if (playerMoveset.playerName == "Markus Nobel")
