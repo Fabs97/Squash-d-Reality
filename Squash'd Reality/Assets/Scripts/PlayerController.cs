@@ -154,7 +154,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetMarkusNobleStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, string bonusPrize)
+    public void CmdSetMarkusNobleStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.MarkusNobelEnabled = true;
@@ -166,12 +166,13 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.MarkusNobelStats.Insert(3, antivirusKilled);
         uiLeaderboard.MarkusNobelStats.Insert(4, notOrdered);
         uiLeaderboard.MarkusNobelStats.Insert(5, greetChef);
+        uiLeaderboard.MarkusNobelStats.Insert(6, cableManagement);
 
         uiLeaderboard.MarkusNobleBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKenNoloStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, string bonusPrize)
+    public void CmdSetKenNoloStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KenNoloEnabled = true;
@@ -183,11 +184,13 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.KenNoloStats.Insert(3, antivirusKilled);
         uiLeaderboard.KenNoloStats.Insert(4, notOrdered);
         uiLeaderboard.KenNoloStats.Insert(5, greetChef);
+        uiLeaderboard.KenNoloStats.Insert(6, cableManagement);
+        
         uiLeaderboard.KenNoloBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKamBryllaStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, string bonusPrize)
+    public void CmdSetKamBryllaStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KamBryllaEnabled = true;
@@ -199,11 +202,13 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.KamBryllalStats.Insert(3, antivirusKilled);
         uiLeaderboard.KamBryllalStats.Insert(4, notOrdered);
         uiLeaderboard.KamBryllalStats.Insert(5, greetChef);
+        uiLeaderboard.KamBryllalStats.Insert(6, cableManagement);
+        
         uiLeaderboard.KamBryllaBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetRaphaelNosunStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, string bonusPrize)
+    public void CmdSetRaphaelNosunStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement,  string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.RaphaelNosunEnabled = true;
@@ -215,6 +220,8 @@ public class PlayerController : NetworkBehaviour
         uiLeaderboard.RapahelNosunStats.Insert(3, antivirusKilled);
         uiLeaderboard.RapahelNosunStats.Insert(4, notOrdered);
         uiLeaderboard.RapahelNosunStats.Insert(5, greetChef);
+        uiLeaderboard.RapahelNosunStats.Insert(6, cableManagement);
+        
         uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
     }
 

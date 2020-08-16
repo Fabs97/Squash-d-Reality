@@ -112,7 +112,7 @@ public class Grabber : NetworkBehaviour
         }
         else {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, true);
-            //toGrab.GetComponent<GrabbableMovement>().cubeMovement = true;
+            toGrab.GetComponent<GrabbableMovement>().grabbedBy = playerName;
         }
         isGrabbing = true;
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdAssignAuthority(toGrab);

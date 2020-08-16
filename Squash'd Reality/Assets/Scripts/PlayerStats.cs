@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
    
    //PIPELINE
    public int electrocution;
-   public int cableManagement;
+   public int cableManagement; //OK
    
    //COOKING TIME
    public int notOrdered; //OK
@@ -32,8 +32,8 @@ public class PlayerStats : MonoBehaviour
 
    
    //TOTAL
-   public int totalPoints;
-   public string bonusPrize;
+   public int totalPoints; //OK
+   public string bonusPrize; //OK
    
    private void Start()
    {

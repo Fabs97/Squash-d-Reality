@@ -57,6 +57,12 @@ public class Pipe : NetworkBehaviour
     {
         GameObject localPlayer;
         localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        if (connected && gameObject.GetComponent<GrabbableMovement>().grabbedBy == playerStats.playerName)
+        {
+            gameObject.GetComponent<GrabbableMovement>().grabbedBy = "default";
+            playerStats.cableManagement++;
+        }
         if (localPlayer != null)
         {
             localPlayer.GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);

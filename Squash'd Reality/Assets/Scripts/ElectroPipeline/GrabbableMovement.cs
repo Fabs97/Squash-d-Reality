@@ -20,15 +20,17 @@ public class GrabbableMovement :  NetworkBehaviour
     private Scene scene;
     private bool darkPuzzle = false;
 
-  
 
+    public string grabbedBy;
 
     [SyncVar] public bool cubeMovement = false;
     
     [SerializeField] private float snapValue = 1.0f;
 
     private void Start()
+    
     {
+        grabbedBy = "default";
         controller = gameObject.GetComponent<CharacterController>();
         if (isServer)
         {
