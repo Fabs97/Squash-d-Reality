@@ -67,10 +67,5 @@ public class PlayerStats : MonoBehaviour
 
       bonusPrize = value;
    }
-
-   private void Update()
-   {
-     
-
-   }
+   
 }

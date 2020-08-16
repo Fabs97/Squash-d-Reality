@@ -21,10 +21,12 @@ public class UILeaderboard : NetworkBehaviour
     [SerializeField] private GameObject Player4MVP;
 
     [SerializeField] private GameObject backButton;
+
+    [SerializeField] private GameObject CheckValuesBox;
     
     PlayerMoveset playerMoveset;
 
-    //SYNCVAR
+    //SYNCVAR & SYNCLIST
     [SyncVar] public int MarkusNoblePoints;
     [SyncVar] public int MarkusNobleDeaths;
     [SyncVar] public string MarkusNobleBonusPrize;
@@ -46,11 +48,18 @@ public class UILeaderboard : NetworkBehaviour
     [SyncVar] public bool KamBryllaEnabled;
     [SyncVar] public bool RaphaelNosunEnabled;
     
-    public SyncListInt MarkusNobelStats = new SyncListInt();
-    public SyncListInt KenNoloStats = new SyncListInt();
-    public SyncListInt KamBryllalStats = new SyncListInt();
-    public SyncListInt RapahelNosunStats = new SyncListInt();
+    public SyncListFloat MarkusNobelStats = new SyncListFloat();
+    public SyncListFloat KenNoloStats = new SyncListFloat();
+    public SyncListFloat KamBryllalStats = new SyncListFloat();
+    public SyncListFloat RapahelNosunStats = new SyncListFloat();
 
+    //SYNCLIST VARIABLE ORDER INDEX
+    /*
+     * 0 --> friendlyKill
+     * 1 --> powerUp
+     * 2 --> collectible
+     * 3 --> antivirusKilled
+     */
     private void Start()
     {
         if (isServer)
@@ -70,7 +79,7 @@ public class UILeaderboard : NetworkBehaviour
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
         if (isServer)
         {
@@ -91,6 +100,7 @@ public class UILeaderboard : NetworkBehaviour
         }
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         playerStats.setTotalPoints();
+        playerStats.setBonusPrize("");
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
@@ -107,8 +117,7 @@ public class UILeaderboard : NetworkBehaviour
         }
 
         StartCoroutine(wait3(playerStats, playerController));
-
-
+        
 
     }
 
@@ -159,7 +168,7 @@ public class UILeaderboard : NetworkBehaviour
     }
     IEnumerator wait2()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         showPlayers();
         calcMVP();
 
@@ -167,7 +176,7 @@ public class UILeaderboard : NetworkBehaviour
 
     private bool calcPrizeByIndex(int index, int playerNumber)
     {
-        if (playerMoveset.playerName == "Markus Nobel")
+        if (playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
             if (MarkusNobelStats[index] != 0 && MarkusNobelStats[index] >=
                 (MarkusNobelStats[index] + KenNoloStats[index] + KamBryllalStats[index] + RapahelNosunStats[index]) /playerNumber
@@ -176,7 +185,7 @@ public class UILeaderboard : NetworkBehaviour
                 return true;
             }
             
-        }else if (playerMoveset.playerName == "Ken Nolo")
+        }else if (playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
         {
             if (KenNoloStats[index] != 0 && KenNoloStats[index] >=
                 (MarkusNobelStats[index] + KenNoloStats[index] + KamBryllalStats[index] + RapahelNosunStats[index]) /playerNumber
@@ -184,7 +193,7 @@ public class UILeaderboard : NetworkBehaviour
             {
                 return true;
             }
-        }else if (playerMoveset.playerName == "Kam Brylla")
+        }else if (playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
         {
             if (KamBryllalStats[index] != 0 && KamBryllalStats[index] >=
                 (MarkusNobelStats[index] + KenNoloStats[index] + KamBryllalStats[index] + RapahelNosunStats[index]) /playerNumber
@@ -193,7 +202,7 @@ public class UILeaderboard : NetworkBehaviour
                 return true;
             }
             
-        }else if (playerMoveset.playerName == "Raphael Nosun")
+        }else if (playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
         {
             if (RapahelNosunStats[index] != 0 && RapahelNosunStats[index] >=
                 (MarkusNobelStats[index] + KenNoloStats[index] + KamBryllalStats[index] + RapahelNosunStats[index]) /playerNumber
@@ -241,7 +250,6 @@ public class UILeaderboard : NetworkBehaviour
         //CALC MVP
         int maxPoints = 0;
         
-
         if (MarkusNobelEnabled && MarkusNoblePoints >= maxPoints)
         {
             maxPoints = MarkusNoblePoints;
@@ -286,6 +294,7 @@ public class UILeaderboard : NetworkBehaviour
     }
      private void showPlayers()
     {
+        CheckValuesBox.SetActive(false);
         backButton.SetActive(true);
         if (MarkusNobelEnabled)
         {
