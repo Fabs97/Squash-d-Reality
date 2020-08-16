@@ -59,6 +59,8 @@ public class UILeaderboard : NetworkBehaviour
      * 1 --> powerUp
      * 2 --> collectible
      * 3 --> antivirusKilled
+     * 4 --> notOrdered;
+     * 5 --> greetChef
      */
     private void Start()
     {
@@ -104,16 +106,16 @@ public class UILeaderboard : NetworkBehaviour
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef,playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }
 
         StartCoroutine(wait3(playerStats, playerController));
@@ -143,6 +145,12 @@ public class UILeaderboard : NetworkBehaviour
         else if (calcPrizeByIndex(3, playerNumber))
         {
             playerStats.setBonusPrize("ANTIVIRUS PROFESSIONAL CLEANER");
+        }else if (calcPrizeByIndex(4, playerNumber))
+        {
+            playerStats.setBonusPrize("COOKING IS NOT YOUR WORK");
+        }else if (calcPrizeByIndex(5, playerNumber))
+        {
+            playerStats.setBonusPrize("MASTER CHEF IN THE UNIVERSE");
         }
         else
         {
@@ -151,17 +159,18 @@ public class UILeaderboard : NetworkBehaviour
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef,playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.notOrdered, playerStats.greetChef, playerStats.bonusPrize);
         }
+        
         StartCoroutine(wait2());
 
         

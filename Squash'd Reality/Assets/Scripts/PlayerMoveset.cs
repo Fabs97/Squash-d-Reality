@@ -39,6 +39,11 @@ public class PlayerMoveset : NetworkBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
         life = 100000;
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        if (hasAuthority && playerStats.playerName == "default")
+        {
+            playerStats.playerName = playerName;
+        }
     }
 
     void FixedUpdate() {

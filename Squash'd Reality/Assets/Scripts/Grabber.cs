@@ -21,9 +21,12 @@ public class Grabber : NetworkBehaviour
     [SerializeField] private float maxDist = 0.5f;
     int layerMask = 1 << 31;
     private Scene scene;
+
+    private string playerName;
     
     void Start()
     {
+        playerName = transform.gameObject.GetComponent<PlayerMoveset>().playerName;
         scene = SceneManager.GetActiveScene();
         _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -58,9 +61,9 @@ public class Grabber : NetworkBehaviour
             hitDetect1 = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, out hit1, maxDist, layerMask);
             hitDetect2 = Physics.Raycast(transform.position + new Vector3(0, -0.5f, 0), transform.forward, out hit2, maxDist, layerMask);
 
-            if (hitDetect) setToGrab(hit.collider.gameObject);
-            else if (hitDetect1) setToGrab(hit1.collider.gameObject);
-            else if (hitDetect2) setToGrab(hit2.collider.gameObject);
+            if (hitDetect) setToGrab(hit.collider.gameObject, playerName);
+            else if (hitDetect1) setToGrab(hit1.collider.gameObject, playerName);
+            else if (hitDetect2) setToGrab(hit2.collider.gameObject, playerName);
         }
 
         if (!interacting && toGrab != null) {
@@ -97,7 +100,7 @@ public class Grabber : NetworkBehaviour
         }
     }
 
-    private void setToGrab(GameObject go) {
+    private void setToGrab(GameObject go, string playerName) {
         toGrab = go;
         if (toGrab.tag == "Pipe") {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, false);
@@ -105,6 +108,7 @@ public class Grabber : NetworkBehaviour
 
         if (scene.name == "CookingTime") {
             toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = true;
+            toGrab.GetComponent<GrabbableMovementCookingTime>().grabbedBy = playerName;
         }
         else {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, true);

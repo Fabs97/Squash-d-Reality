@@ -19,9 +19,12 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
 
     public bool cubeMovement = false;
     private bool dropped = false;
+
+    public string grabbedBy;
   
     private void Start()
     {
+        grabbedBy = "default";
         controller = gameObject.GetComponent<CharacterController>();
         cubeMovement = false;
         GetComponent<Collider>().isTrigger = false;

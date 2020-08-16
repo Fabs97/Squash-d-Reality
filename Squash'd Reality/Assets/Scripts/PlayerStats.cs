@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+   //
+   public string playerName = "default";
+   
    //GENERAL MALUSES
    public int death; //OK
    public int timeOut; //OK
@@ -19,8 +22,8 @@ public class PlayerStats : MonoBehaviour
    public int cableManagement;
    
    //COOKING TIME
-   public int notOrdered;
-   public int greetChef;
+   public int notOrdered; //OK
+   public int greetChef; //Ok
 
    //TRENCH TIME
    public int trenchTimeFriendlyKill;
@@ -57,7 +60,6 @@ public class PlayerStats : MonoBehaviour
 
    public void setTotalPoints()
    {
-      //TODO: aggiungere conti total points
       totalPoints = powerUp + collectible + cableManagement + greetChef + antivirusKilled + professionalSniper - friendlyKill - timeOut - electrocution -notOrdered -trenchTimeFriendlyKill;
    }
 

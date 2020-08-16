@@ -32,11 +32,30 @@ public class CookingTime : Challenge {
         changeActiveIngredientList(ingredient);
     }
 
-    public void insertedIngredientInCauldron(Ingredient ingredient) {
+    public void insertedIngredientInCauldron(Ingredient ingredient, string playerName)
+    {
+        GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         if(!ingredient.name.Equals(activeIngredients[0].name) && ingredient.isServer)
         {
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            localPlayer.GetComponent<PlayerController>()
                 .CmdSetMatchFailedCookingTime(GameObject.FindGameObjectWithTag("MatchManager"), true);
+        }
+        else if (!ingredient.name.Equals(activeIngredients[0].name))
+        {
+            Debug.LogError("NOT ORDERED");
+            if (playerStats.playerName == playerName)
+            {
+                Debug.LogError("NOT ORDERED BY");
+                playerStats.notOrdered++;
+            }
+            
+        }else
+        {
+            if (playerStats.playerName == playerName)
+            {
+                playerStats.greetChef++;
+            }  
         }
         changeActiveIngredientList(ingredient);
         insertedIngredients++;

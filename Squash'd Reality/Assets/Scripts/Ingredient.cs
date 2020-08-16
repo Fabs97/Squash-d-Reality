@@ -13,7 +13,7 @@ public class Ingredient : NetworkBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Cauldron") {
-            _cookingTimeManager.insertedIngredientInCauldron(this);
+            _cookingTimeManager.insertedIngredientInCauldron(this, transform.gameObject.GetComponent<GrabbableMovementCookingTime>().grabbedBy);
             Destroy(gameObject, 3f);
         }
     }
