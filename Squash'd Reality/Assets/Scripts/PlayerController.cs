@@ -154,42 +154,58 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetMarkusNobleStats(int points, int deaths, string bonusPrize)
+    public void CmdSetMarkusNobleStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.MarkusNobelEnabled = true;
         uiLeaderboard.MarkusNoblePoints = points;
         uiLeaderboard.MarkusNobleDeaths = deaths;
+        uiLeaderboard.MarkusNobelFriendlyKill = friendlyKill;
+        uiLeaderboard.MarkusNobelPowerUp = powerUp;
+        uiLeaderboard.MarkusNobelCollectible = collectible;
+        uiLeaderboard.MarkusNobelAntivirusKilled = antivirusKilled;
         uiLeaderboard.MarkusNobleBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKenNoloStats(int points, int deaths, string bonusPrize)
+    public void CmdSetKenNoloStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KenNoloEnabled = true;
         uiLeaderboard.KenNoloPoints = points;
         uiLeaderboard.KenNoloDeaths = deaths;
+        uiLeaderboard.KenNoloFriendlyKill = friendlyKill;
+        uiLeaderboard.KenNoloPowerUp = powerUp;
+        uiLeaderboard.KenNoloCollectible = collectible;
+        uiLeaderboard.KenNoloAntivirusKilled = antivirusKilled;
         uiLeaderboard.KenNoloBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKamBryllaStats(int points, int deaths, string bonusPrize)
+    public void CmdSetKamBryllaStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KamBryllaEnabled = true;
         uiLeaderboard.KamBryllaPoints = points;
         uiLeaderboard.KamBryllaDeaths = deaths;
+        uiLeaderboard.KamBryllaFriendlyKill = friendlyKill;
+        uiLeaderboard.KamBryllaPowerUp = powerUp;
+        uiLeaderboard.KamBryllaCollectible = collectible;
+        uiLeaderboard.KamBryllaAntivirusKilled = antivirusKilled;
         uiLeaderboard.KamBryllaBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetRaphaelNosunStats(int points, int deaths, string bonusPrize)
+    public void CmdSetRaphaelNosunStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.RaphaelNosunEnabled = true;
         uiLeaderboard.RaphaelNosunPoints = points;
         uiLeaderboard.RaphaelNosunDeaths = deaths;
+        uiLeaderboard.RaphaelNosunFriendlyKill = friendlyKill;
+        uiLeaderboard.RaphaelNosunPowerUp = powerUp;
+        uiLeaderboard.RaphaelNosunCollectible = collectible;
+        uiLeaderboard.RaphaelNosunAntivirusKilled = antivirusKilled;
         uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
     }
 

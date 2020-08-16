@@ -58,12 +58,14 @@ public class PlayerStats : MonoBehaviour
    public void setTotalPoints()
    {
       //TODO: aggiungere conti total points
-      totalPoints = collectible;
+      totalPoints = powerUp + collectible + cableManagement + greetChef + antivirusKilled + professionalSniper - friendlyKill - timeOut - electrocution -notOrdered -trenchTimeFriendlyKill;
    }
 
-   public void setBonusPrize()
+   public void setBonusPrize(string value)
    {
       //TODO: aggiungere conti bonus prize
+
+      bonusPrize = value;
    }
 
    private void Update()

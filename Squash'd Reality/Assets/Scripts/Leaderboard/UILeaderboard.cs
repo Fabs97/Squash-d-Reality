@@ -26,18 +26,34 @@ public class UILeaderboard : NetworkBehaviour
     //SYNCVAR
     [SyncVar] public int MarkusNoblePoints;
     [SyncVar] public int MarkusNobleDeaths;
+    [SyncVar] public int MarkusNobelFriendlyKill;
+    [SyncVar] public int MarkusNobelPowerUp;
+    [SyncVar] public int MarkusNobelCollectible;
+    [SyncVar] public int MarkusNobelAntivirusKilled;
     [SyncVar] public string MarkusNobleBonusPrize;
     
     [SyncVar] public int KenNoloPoints;
     [SyncVar] public int KenNoloDeaths;
+    [SyncVar] public int KenNoloFriendlyKill;
+    [SyncVar] public int KenNoloPowerUp;
+    [SyncVar] public int KenNoloCollectible;
+    [SyncVar] public int KenNoloAntivirusKilled;
     [SyncVar] public string KenNoloBonusPrize;
     
     [SyncVar] public int KamBryllaPoints;
     [SyncVar] public int KamBryllaDeaths;
+    [SyncVar] public int KamBryllaFriendlyKill;
+    [SyncVar] public int KamBryllaPowerUp;
+    [SyncVar] public int KamBryllaCollectible;
+    [SyncVar] public int KamBryllaAntivirusKilled;
     [SyncVar] public string KamBryllaBonusPrize;
     
     [SyncVar] public int RaphaelNosunPoints;
     [SyncVar] public int RaphaelNosunDeaths;
+    [SyncVar] public int RaphaelNosunFriendlyKill;
+    [SyncVar] public int RaphaelNosunPowerUp;
+    [SyncVar] public int RaphaelNosunCollectible;
+    [SyncVar] public int RaphaelNosunAntivirusKilled;
     [SyncVar] public string RaphaelNosunBonusPrize;
     
     [SyncVar] public bool MarkusNobelEnabled;
@@ -75,21 +91,68 @@ public class UILeaderboard : NetworkBehaviour
         }
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         playerStats.setTotalPoints();
-        playerStats.setBonusPrize();
         
         if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
+            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
+            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
+            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }else if (isClient && playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
         {
-            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.bonusPrize);
+            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
         }
+
+        int playerNumber = 0;
+        if (MarkusNobelEnabled)
+        {
+            playerNumber++;
+        }
+        if(KenNoloEnabled)
+        {
+            playerNumber++;
+        }
+
+        if (KamBryllaEnabled)
+        {
+            playerNumber++;
+        }
+
+        if (RaphaelNosunEnabled)
+        {
+            playerNumber++;
+        }
+        
+        if (calcDeathPrize(playerNumber))
+        {
+            playerStats.setBonusPrize("CAN YOU NOT DIE?");
+        }else if (calcFriendlyKill(playerNumber))
+        {
+            playerStats.setBonusPrize("CAN YOU NOT KILL YOUR FRIENDS?");
+        }else if (calcPowerUp(playerNumber))
+        {
+            playerStats.setBonusPrize("UNDER POWER UP STEROIDS");
+        }
+        
+        if (isClient && playerMoveset.playerName == "Markus Nobel" && playerMoveset.hasAuthority)
+        {
+            playerController.CmdSetMarkusNobleStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+        }else if (isClient && playerMoveset.playerName == "Ken Nolo" && playerMoveset.hasAuthority)
+        {
+            playerController.CmdSetKenNoloStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+        }else if (isClient && playerMoveset.playerName == "Kam Brylla" && playerMoveset.hasAuthority)
+        {
+            playerController.CmdSetKamBryllaStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+        }else if (isClient && playerMoveset.playerName == "Raphael Nosun" && playerMoveset.hasAuthority)
+        {
+            playerController.CmdSetRaphaelNosunStats(playerStats.totalPoints, playerStats.death, playerStats.friendlyKill, playerStats.powerUp, playerStats.collectible, playerStats.antivirusKilled, playerStats.bonusPrize);
+        }
+        
+        
+      
 
         StartCoroutine(wait2());
     }
@@ -102,7 +165,131 @@ public class UILeaderboard : NetworkBehaviour
         calcMVP();
 
     }
-    
+
+    private bool calcPowerUp(int playerNumber)
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            if (MarkusNobelPowerUp != 0 && MarkusNobelPowerUp >=
+                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            if (KenNoloPowerUp != 0 && KenNoloPowerUp >=
+                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            if (KamBryllaPowerUp != 0 && KamBryllaPowerUp >=
+                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            if (RaphaelNosunPowerUp != 0 && RaphaelNosunPowerUp >=
+                (MarkusNobelPowerUp + KenNoloPowerUp + KamBryllaPowerUp + RaphaelNosunPowerUp) / playerNumber)
+            {
+                return true;
+            }
+            
+        }
+
+        return false;
+        
+    }
+    private bool calcFriendlyKill(int playerNumber)
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            if (MarkusNobelFriendlyKill != 0 && MarkusNobelFriendlyKill >=
+                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+                playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            if (KenNoloFriendlyKill != 0 && KenNoloFriendlyKill >=
+                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+                playerNumber)
+            {
+                return true;
+            }
+            
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            if (KamBryllaFriendlyKill != 0 && KamBryllaFriendlyKill >=
+                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+                playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            if (RaphaelNosunFriendlyKill != 0 && RaphaelNosunFriendlyKill >=
+                (MarkusNobelFriendlyKill + KenNoloFriendlyKill + KamBryllaFriendlyKill + RaphaelNosunFriendlyKill) /
+                playerNumber)
+            {
+                return true;
+            }
+        }
+
+        return false;  
+    }
+
+    private bool vuoto()
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            
+        }
+
+        return false;
+    }
+    private bool calcDeathPrize(int playerNumber)
+    {
+        if (playerMoveset.playerName == "Markus Nobel")
+        {
+            if (MarkusNobleDeaths!=0 && MarkusNobleDeaths >= (MarkusNobleDeaths + KenNoloDeaths + KamBryllaDeaths + RaphaelNosunDeaths) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Ken Nolo")
+        {
+            if (KenNoloDeaths!=0 && KenNoloDeaths >= (MarkusNobleDeaths + KenNoloDeaths + KamBryllaDeaths + RaphaelNosunDeaths) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Kam Brylla")
+        {
+            if (KamBryllaDeaths!= 0 && KamBryllaDeaths >= (MarkusNobleDeaths + KenNoloDeaths + KamBryllaDeaths + RaphaelNosunDeaths) / playerNumber)
+            {
+                return true;
+            }
+        }else if (playerMoveset.playerName == "Raphael Nosun")
+        {
+            if (RaphaelNosunDeaths!=0 && RaphaelNosunDeaths >= (MarkusNobleDeaths + KenNoloDeaths + KamBryllaDeaths + RaphaelNosunDeaths) / playerNumber)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private void calcMVP()
     {
         //CALC MVP
