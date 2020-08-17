@@ -41,7 +41,7 @@ public class CookingTimeMatchManager : MatchManager
     public void wrongFood()
     {
         base.timeEnded();
-        _uiManager.setInfoBoxText("WRONG FOOD: YOU DIED");
+        _uiManager.setInfoBoxText("WRONG FOOD: YOU LOSE");
         _uiManager.setInfoBoxActive(true);
         StartCoroutine(resetChallenge());
         
@@ -51,7 +51,7 @@ public class CookingTimeMatchManager : MatchManager
         if (!matchWon)
         {
             base.timeEnded();
-            _uiManager.setInfoBoxText("TIME ENDED: YOU DIED");
+            _uiManager.setInfoBoxText("TIME ENDED: YOU LOSE");
             _uiManager.setInfoBoxActive(true);
             if (isServer)
             {

@@ -43,10 +43,8 @@ public class CookingTime : Challenge {
         }
         else if (!ingredient.name.Equals(activeIngredients[0].name))
         {
-            Debug.LogError("NOT ORDERED");
             if (playerStats.playerName == playerName)
             {
-                Debug.LogError("NOT ORDERED BY");
                 playerStats.notOrdered++;
             }
             
@@ -56,10 +54,16 @@ public class CookingTime : Challenge {
             {
                 playerStats.greetChef++;
             }  
+            
+            removeIngredient(ingredient);
+            int count = spawnedIngredients.Count < maxActiveIngredients ? spawnedIngredients.Count : maxActiveIngredients;
+            activeIngredients = spawnedIngredients.GetRange(0, count);
+            GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
         }
-        changeActiveIngredientList(ingredient);
+
+        if(activeIngredients.Count == 0) endChallenge(true);
+
         insertedIngredients++;
-       // if(insertedIngredients == difficulty * difficultyMultiplier) endChallenge(true);
     }
 
     private void changeActiveIngredientList(Ingredient ingredient){
@@ -78,9 +82,10 @@ public class CookingTime : Challenge {
         if(activeIngredients.Count < maxActiveIngredients) activeIngredients.Add(ingredient);
     }
 
-    private void removeIngredient(Ingredient ingredient){
-        activeIngredients.Remove(ingredient);
-        spawnedIngredients.Remove(ingredient);
+    private void removeIngredient(Ingredient ingredient)
+    {
+        activeIngredients.RemoveAt(0);
+        spawnedIngredients.RemoveAt(0);
     }
 
     protected override void setDifficulty() {
