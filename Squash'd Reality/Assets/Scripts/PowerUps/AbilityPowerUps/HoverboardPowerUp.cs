@@ -14,6 +14,7 @@ public class HoverboardPowerUp : PowerUP
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if (other.tag == "Player")
         {
+            other.GetComponent<AudioManager>().playPowerUpSound();
             PlayerMoveset dm =  other.gameObject.GetComponent<PlayerMoveset>();
             dm.setHoverboardActive();
             if (dm.hasAuthority)

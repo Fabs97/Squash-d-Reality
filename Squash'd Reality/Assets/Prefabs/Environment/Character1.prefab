@@ -426,6 +426,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 552861d388ac6634eb89f6004bb66aa6, type: 3}
   gunReload:
   - {fileID: 8300000, guid: 88579056c4423dd4a8809cf64df92534, type: 3}
+  powerUp:
+  - {fileID: 8300000, guid: b90a4eb1bd2ece049812243d955b3a10, type: 3}
 --- !u!114 &8551100009668554743
 MonoBehaviour:
   m_ObjectHideFlags: 0
