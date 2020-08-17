@@ -13,7 +13,7 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] gunshot;
     [SerializeField] private AudioClip[] release;
     [SerializeField] private AudioClip[] winDie;
-    
+    [SerializeField] private AudioClip[] musicLevel;
 
     void Start()
     {
@@ -163,6 +163,28 @@ public class AudioManager : NetworkBehaviour
     public void RpcSendSoundIDToClientGun(int id)
     {
         mainSource.PlayOneShot(gunReload[id]);
+    }
+    
+    public void playMusicLevel()
+    {
+        CmdSendServerMusicLevel(0);
+            
+    }
+
+    [Command]
+    public void CmdSendServerMusicLevel(int id)
+    {
+        RpcSendSoundIDToClientMusicLevel(id);
+    }
+
+    [ClientRpc]
+    public void RpcSendSoundIDToClientMusicLevel(int id)
+    {
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(musicLevel[id]);
+            mainSource.volume = 0.1f;
+        }
     }
 
 }
