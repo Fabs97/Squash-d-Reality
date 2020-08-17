@@ -430,6 +430,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b90a4eb1bd2ece049812243d955b3a10, type: 3}
   jump:
   - {fileID: 8300000, guid: fb0452e98cab6834789531a7c62b1405, type: 3}
+  gunshot:
+  - {fileID: 8300000, guid: f64b3ecd65ef1b1438781b5d908dcdc1, type: 3}
 --- !u!114 &8551100009668554743
 MonoBehaviour:
   m_ObjectHideFlags: 0

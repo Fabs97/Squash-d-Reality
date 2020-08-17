@@ -10,6 +10,7 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] gunReload;
     [SerializeField] private AudioClip[] powerUp;
     [SerializeField] private AudioClip[] jump;
+    [SerializeField] private AudioClip[] gunshot;
     
 
     void Start()
@@ -51,11 +52,22 @@ public class AudioManager : NetworkBehaviour
         CmdSendServerSoundIDJump(0);
     }
 
+    public void playGunshotSound()
+    {
+        CmdSendServerSoundIDGunshot(0);
+    }
+
     public bool isPlayingClip()
     {
         return mainSource.isPlaying;
     }
 
+    [Command]
+    public void CmdSendServerSoundIDGunshot(int id)
+    {
+        RpcSendSoundIDToClientGunshot(id);
+    }
+    
     [Command]
     public void CmdSendServerSoundIDJump(int id)
     {
@@ -80,6 +92,12 @@ public class AudioManager : NetworkBehaviour
         RpcSendSoundIDToClientPowerUp(id);
     }
 
+    [ClientRpc]
+    public void RpcSendSoundIDToClientGunshot(int id)
+    {
+        mainSource.PlayOneShot(gunshot[id]);
+
+    }
     [ClientRpc]
     public void RpcSendSoundIDToClientJump(int id)
     {

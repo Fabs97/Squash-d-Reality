@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour {
     
     public virtual void shoot()
     {
+        transform.parent.gameObject.GetComponent<AudioManager>().playGunshotSound();
         PlayerMoveset parentMoveset = GetComponentInParent<PlayerMoveset>();
         if (parentMoveset.hasAuthority && canShoot)
         {
