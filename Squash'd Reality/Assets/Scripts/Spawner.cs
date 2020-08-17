@@ -26,6 +26,8 @@ public class Spawner : NetworkBehaviour
 
     private Coroutine spawnRoutine;
 
+    [SerializeField] private bool isCookingTime;
+
     void Start() {
         if(startSpawningFromTheBeginning) CmdStartSpawning();
         _matchManager = FindObjectOfType<MatchManager>();
@@ -76,14 +78,39 @@ public class Spawner : NetworkBehaviour
 
         Vector3 tr = new Vector3(randomX, randomY, randomZ);
         Quaternion q = Quaternion.identity;
-        GameObject go = Instantiate(prefabToSpawn, tr, q);
-
-        NetworkServer.Spawn(go);
-        if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
-        if (!isDouble)
+        if (isCookingTime)
         {
-            objectsSpawnedCount ++;
+            if (!isDouble)
+            {
+                prefabToSpawn.GetComponent<Ingredient>().isDouble = false;
+                GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+                NetworkServer.Spawn(go);
+                if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+                objectsSpawnedCount ++;
+            }else if (isDouble && randomBool())
+            {
+                prefabToSpawn.GetComponent<Ingredient>().isDouble = true;
+                GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+                NetworkServer.Spawn(go);
+                if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            }  
         }
+        else
+        {
+            GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+            NetworkServer.Spawn(go);
+            if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            if (!isDouble)
+            {
+                objectsSpawnedCount ++;
+            }
+        }
+       
+        
+      
     }
 
     public void StopSpawning() {
@@ -102,5 +129,10 @@ public class Spawner : NetworkBehaviour
     public void setTimeStopSpawning(float timeStopSpawning)
     {
         timeStopSpawn = timeStopSpawning;
+    }
+
+    public bool randomBool()
+    {
+        return (Random.value > 0.5f);
     }
 }

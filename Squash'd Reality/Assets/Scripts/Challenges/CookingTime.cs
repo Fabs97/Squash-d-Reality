@@ -59,6 +59,7 @@ public class CookingTime : Challenge {
             int count = spawnedIngredients.Count < maxActiveIngredients ? spawnedIngredients.Count : maxActiveIngredients;
             activeIngredients = spawnedIngredients.GetRange(0, count);
             GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
+
         }
 
         if(activeIngredients.Count == 0) endChallenge(true);
@@ -118,7 +119,7 @@ public class CookingTime : Challenge {
 
         _spawner.objectsToSpawnCount = objectsToSpawn;
         _spawner.setSpawningDelay(((totalTime + moreTime ) / objectsToSpawn) ); 
-
+        
         base._matchManager.setTimer(totalTime + moreTime);
         _spawner.setTimeStopSpawning(6f);
     }

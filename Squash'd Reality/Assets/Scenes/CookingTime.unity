@@ -1383,6 +1383,7 @@ MonoBehaviour:
   - {x: 10, y: 10, z: -6}
   - {x: 10, y: 10, z: -14}
   objectsToSpawnCount: 999
+  isCookingTime: 1
 --- !u!114 &1243081632
 MonoBehaviour:
   m_ObjectHideFlags: 0
