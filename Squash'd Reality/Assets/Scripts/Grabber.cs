@@ -77,6 +77,7 @@ public class Grabber : NetworkBehaviour
     }
 
     public void removeGrab() {
+        gameObject.GetComponent<AudioManager>().playReleaseSound();
         if (scene.name == "CookingTime") {
             toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = false;
         }
