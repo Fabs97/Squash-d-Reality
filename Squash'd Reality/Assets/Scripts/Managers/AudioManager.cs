@@ -1,32 +1,34 @@
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AudioManager : MonoBehaviour {
+[RequireComponent(typeof(AudioSource))]
+public class AudioManager : NetworkBehaviour {
+    private AudioSource mainSource;
 
-    public static AudioManager Instance{ get; private set; }
-
-    void Awake() {
-        if(Instance == null) Instance = this;
-        else Destroy(this);
+    [SerializeField] private AudioClip[] clips;
+    
+    void Start() {
+        mainSource = GetComponent<AudioSource>();
     }
-    [SerializeField] private AudioSource mainSource;
-    [SerializeField] private AudioSource backgroundMusicSource;
 
-    #region Audio Clips
 
-    [SerializeField] private AudioClip[] playerSteps;
-
-    #endregion
-
-    private void playMainSourceSound(AudioClip clip){
-        mainSource.PlayOneShot(clip);
+    public void playSound(int id){
+        if( id >= 0 && id <= clips.Length){
+            CmdSendServerSoundID(id);
+        }
     }
 
     public void playSteps(){
-        AudioClip playerStepsRandomClip = playerSteps[Random.Range(0, playerSteps.Length)];
-        playMainSourceSound(playerStepsRandomClip);
+        playSound(Random.Range(0, clips.Length));
     }
 
-    public bool mainSourceIsPlaying(){
-        return mainSource.isPlaying;
+    [Command]
+    public void CmdSendServerSoundID(int id){
+        RpcSendSoundIDToClient(id);
+    }
+
+    [ClientRpc]
+    public void RpcSendSoundIDToClient(int id){
+        mainSource.PlayOneShot(clips[id]);
     }
 }
