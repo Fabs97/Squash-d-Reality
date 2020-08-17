@@ -86,11 +86,13 @@ public class PlayerMoveset : NetworkBehaviour
 
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer && !pogoStickActive) {
+            audioManager.playJumpSound();
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
 
         if (pogoStickActive && groundedPlayer)
         {
+            audioManager.playJumpSound();
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
 
         }
