@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioManager))]
 public class WeaponPowerUP : PowerUP {
     protected Type weaponType;
-
+    private AudioManager audioManager;
     protected override void Start()
     {
         base.Start();
+        audioManager = GetComponent<AudioManager>();
     }
 
     public override void triggerEnter(Collider other)
@@ -26,6 +28,7 @@ public class WeaponPowerUP : PowerUP {
                     {
                         uiManager.setWeaponImage(weaponType.ToString());
                         uiManager.setWeaponActive(true);
+                        audioManager.playOnlyClip();
                     }
                     Destroy(gameObject);
                     break;

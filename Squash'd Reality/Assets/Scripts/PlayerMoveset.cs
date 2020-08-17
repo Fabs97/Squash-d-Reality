@@ -74,7 +74,7 @@ public class PlayerMoveset : NetworkBehaviour
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 moveRightStick = new Vector3(Input.GetAxis("Horizontal-Direction"), 0, -Input.GetAxis("Vertical-Direction"));
-        if(move != Vector3.zero) audioManager.playSteps();
+        if(move != Vector3.zero && !audioManager.isPlayingClip()) audioManager.playSteps();
         controller.Move(move * Time.deltaTime * playerSpeed*playerSpeedMultiplier);
 
         if(moveRightStick != Vector3.zero){
