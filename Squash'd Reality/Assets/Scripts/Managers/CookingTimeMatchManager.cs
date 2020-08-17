@@ -6,12 +6,15 @@ using UnityEngine.Networking;
 public class CookingTimeMatchManager : MatchManager
 {
     [SyncVar] public bool matchFailed;
+    [SyncVar] public int numPlayers;
     private bool isFailed = false; 
     protected override void Start()
     {
         base.Start();
+        NetworkingManager.NetworkingManager _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         if (isServer)
         {
+            numPlayers = _networkingManager.getPlayersNames().Count;
             matchFailed = false;
         }
         isFailed = false;

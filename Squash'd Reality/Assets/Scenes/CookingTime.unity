@@ -852,6 +852,7 @@ MonoBehaviour:
   openingString: Cook the elements in order!
   challengeTimer: 90
   matchFailed: 0
+  numPlayers: 0
 --- !u!114 &654606002
 MonoBehaviour:
   m_ObjectHideFlags: 0

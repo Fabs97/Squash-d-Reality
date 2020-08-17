@@ -34,6 +34,8 @@ public class CookingTime : Challenge {
 
     public void insertedIngredientInCauldron(Ingredient ingredient, string playerName)
     {
+        int numPlayers = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<CookingTimeMatchManager>().numPlayers;
+        int objectToCook = ((difficulty * difficultyMultiplier)/2)*numPlayers;
         GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         if(!ingredient.name.Equals(activeIngredients[0].name) && ingredient.isServer)
@@ -59,12 +61,11 @@ public class CookingTime : Challenge {
             int count = spawnedIngredients.Count < maxActiveIngredients ? spawnedIngredients.Count : maxActiveIngredients;
             activeIngredients = spawnedIngredients.GetRange(0, count);
             GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
-
+            insertedIngredients++;
         }
 
-        if(activeIngredients.Count == 0) endChallenge(true);
+        if(objectToCook == insertedIngredients) endChallenge(true);
 
-        insertedIngredients++;
     }
 
     private void changeActiveIngredientList(Ingredient ingredient){
