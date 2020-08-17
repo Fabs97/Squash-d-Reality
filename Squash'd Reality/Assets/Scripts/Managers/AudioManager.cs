@@ -2,41 +2,71 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(AudioSource))]
-public class AudioManager : NetworkBehaviour {
+public class AudioManager : NetworkBehaviour
+{
     private AudioSource mainSource;
 
-    [SerializeField] private AudioClip[] clips;
-    
-    void Start() {
+    [SerializeField] private AudioClip[] footStep;
+    [SerializeField] private AudioClip[] gunReload;
+
+
+    void Start()
+    {
         mainSource = GetComponent<AudioSource>();
     }
 
 
-    public void playSound(int id){
-        if( id >= 0 && id <= clips.Length){
-            CmdSendServerSoundID(id);
+    public void playSound(int id)
+    {
+        if (id >= 0 && id <= footStep.Length)
+        {
+            CmdSendServerSoundIDFootstep(id);
         }
     }
 
-    public void playSteps(){
-        playSound(Random.Range(0, clips.Length));
+    public void playSteps()
+    {
+        playSound(Random.Range(0, footStep.Length));
     }
 
-    public void playOnlyClip(){
+    public void playOnlyClip()
+    {
         playSound(0);
     }
 
-    public bool isPlayingClip(){
+    public void playGunSound()
+    {
+        CmdSendServerSoundIDGun(0);
+    }
+
+    public bool isPlayingClip()
+    {
         return mainSource.isPlaying;
     }
 
     [Command]
-    public void CmdSendServerSoundID(int id){
-        RpcSendSoundIDToClient(id);
+    public void CmdSendServerSoundIDFootstep(int id)
+    {
+        RpcSendSoundIDToClientFootstep(id);
+    }
+    
+    [Command]
+    public void CmdSendServerSoundIDGun(int id)
+    {
+        RpcSendSoundIDToClientGun(id);
     }
 
+
+
     [ClientRpc]
-    public void RpcSendSoundIDToClient(int id){
-        mainSource.PlayOneShot(clips[id]);
+    public void RpcSendSoundIDToClientFootstep(int id)
+    {
+        mainSource.PlayOneShot(footStep[id]);
     }
+    [ClientRpc]
+    public void RpcSendSoundIDToClientGun(int id)
+    {
+        mainSource.PlayOneShot(gunReload[id]);
+    }
+
 }

@@ -313,13 +313,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27723b4cb98ea54898ebe1e14c4a03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
+  footStep:
   - {fileID: 8300000, guid: 39eb474ae8791ef4caee0089f616e40b, type: 3}
   - {fileID: 8300000, guid: bc0401ba75eba354c99f4453068f3b2a, type: 3}
   - {fileID: 8300000, guid: 490a11456f0814846bc478acbf1997f5, type: 3}
   - {fileID: 8300000, guid: 51dfa70dc8b481848a39b5e14865baf0, type: 3}
   - {fileID: 8300000, guid: 36c2a0fa279da9a488975933ddbeedb6, type: 3}
   - {fileID: 8300000, guid: 552861d388ac6634eb89f6004bb66aa6, type: 3}
+  gunReload:
+  - {fileID: 8300000, guid: 88579056c4423dd4a8809cf64df92534, type: 3}
 --- !u!114 &114323712192375736
 MonoBehaviour:
   m_ObjectHideFlags: 0

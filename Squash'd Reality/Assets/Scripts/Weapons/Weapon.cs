@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Start() {
         _firePoint = transform.GetChild(0).transform;
+        transform.parent.GetComponent<AudioManager>().playGunSound();
     }
     
     public virtual void shoot()
