@@ -19,6 +19,23 @@ public class Challenge : MonoBehaviour {
 
     public virtual void endChallenge(bool successful){ 
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerMoveset>().hasAuthority)
+            {
+                if (successful)
+                {
+                    player.GetComponent<AudioManager>().playWinSound();
+
+                }
+                else
+                {
+                    player.GetComponent<AudioManager>().playDieSound();
+
+                }
+            }
+        }
         if(successful){
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMatchWon();
             uiManager.setInfoBoxText("YOU WIN!");

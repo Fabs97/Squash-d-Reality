@@ -429,6 +429,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f64b3ecd65ef1b1438781b5d908dcdc1, type: 3}
   release:
   - {fileID: 8300000, guid: 5bc13e426e1a17245ba1e0db473a17b6, type: 3}
+  winDie:
+  - {fileID: 8300000, guid: e302f94246e3cbd49b9fc8f2e51bdb6a, type: 3}
+  - {fileID: 8300000, guid: 2b7be9d81e3216f41b5ed9c7724d53ac, type: 3}
 --- !u!114 &4255156335801621320
 MonoBehaviour:
   m_ObjectHideFlags: 0

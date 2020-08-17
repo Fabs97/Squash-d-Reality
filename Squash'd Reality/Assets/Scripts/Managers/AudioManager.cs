@@ -12,6 +12,7 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] jump;
     [SerializeField] private AudioClip[] gunshot;
     [SerializeField] private AudioClip[] release;
+    [SerializeField] private AudioClip[] winDie;
     
 
     void Start()
@@ -68,6 +69,22 @@ public class AudioManager : NetworkBehaviour
         return mainSource.isPlaying;
     }
 
+    public void playWinSound()
+    {
+        CmdSendServerSoundIDWinDie(0);
+    }
+
+    public void playDieSound()
+    {
+        CmdSendServerSoundIDWinDie(1);
+    }
+
+    [Command]
+    public void CmdSendServerSoundIDWinDie(int id)
+    {
+        RpcSendSoundIDToClientWinDie(id);
+    }
+
     [Command]
     public void CmdSendServerSoundIDRelease(int id)
     {
@@ -104,6 +121,13 @@ public class AudioManager : NetworkBehaviour
         RpcSendSoundIDToClientPowerUp(id);
     }
 
+    [ClientRpc]
+    public void RpcSendSoundIDToClientWinDie(int id)
+    {
+        mainSource.PlayOneShot(winDie[id]);
+
+    }
+    
     [ClientRpc]
     public void RpcSendSoundIDToClientRelease(int id)
     {
