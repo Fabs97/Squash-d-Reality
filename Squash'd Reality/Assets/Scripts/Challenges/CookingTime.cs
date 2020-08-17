@@ -112,16 +112,22 @@ public class CookingTime : Challenge {
         }
     }
 
-    private void setMatch(){
-        int objectsToSpawn = difficulty * difficultyMultiplier * 2;
+    private void setMatch()
+    {
+
         float totalTime = minTotalTime/difficulty;
         float moreTime = minMoreTime/difficulty;
+        base._matchManager.setTimer(totalTime + moreTime);
+
+        
+        int numPlayer = _networkingManager.getPlayersNames().Count;
+        int objectsToSpawn = ((difficulty * difficultyMultiplier)/2)*numPlayer;
+        Debug.LogError("OBJECTS TO SPAWN: " + objectsToSpawn);
 
         _spawner.objectsToSpawnCount = objectsToSpawn;
-        _spawner.setSpawningDelay(((totalTime + moreTime ) / objectsToSpawn) ); 
+        _spawner.setSpawningDelay(((totalTime + moreTime - 14f) / objectsToSpawn) ); 
         
-        base._matchManager.setTimer(totalTime + moreTime);
-        _spawner.setTimeStopSpawning(6f);
+        _spawner.setTimeStopSpawning(7f);
     }
 
     public override void endChallenge(bool successful){
