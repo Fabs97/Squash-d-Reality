@@ -22,6 +22,14 @@ public class AudioManager : NetworkBehaviour {
         playSound(Random.Range(0, clips.Length));
     }
 
+    public void playOnlyClip(){
+        playSound(0);
+    }
+
+    public bool isPlayingClip(){
+        return mainSource.isPlaying;
+    }
+
     [Command]
     public void CmdSendServerSoundID(int id){
         RpcSendSoundIDToClient(id);
