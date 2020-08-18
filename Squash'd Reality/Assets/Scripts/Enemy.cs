@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour
     private float distanceToKill = 1f;
     private bool isExploding = false;
     private bool canFollowPlayer = false;
-    
+
+    [SerializeField] private bool enemyFromRoom;
     
     // Start is called before the first frame update
     void Start()
