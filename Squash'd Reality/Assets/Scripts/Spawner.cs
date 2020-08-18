@@ -51,7 +51,7 @@ public class Spawner : NetworkBehaviour
         yield return new WaitForSeconds(firstSpawnDelay);
         while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
             if(_matchManager.getTimeLeft() <= timeStopSpawn) break;
-            if(_spawningIndex == prefabsToSpawn.Count) break;
+            if(_spawningIndex == prefabsToSpawn.Count && !randomizeSpawn && !deleteFromListAfterSpawn) break;
 
             spawnObject(false);
             yield return new WaitForSeconds(.5f);
