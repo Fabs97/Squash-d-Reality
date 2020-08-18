@@ -58,7 +58,11 @@ public class AudioManager : NetworkBehaviour
 
     public void playGunshotSound()
     {
-        CmdSendServerSoundIDGunshot(0);
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(gunshot[0]);
+
+        }
     }
 
     public void playReleaseSound()
@@ -179,8 +183,10 @@ public class AudioManager : NetworkBehaviour
     [ClientRpc]
     public void RpcSendSoundIDToClientGunshot(int id)
     {
-        mainSource.PlayOneShot(gunshot[id]);
-
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(gunshot[id]);
+        }
     }
     [ClientRpc]
     public void RpcSendSoundIDToClientJump(int id)
@@ -191,7 +197,10 @@ public class AudioManager : NetworkBehaviour
     [ClientRpc]
     public void RpcSendSoundIDToClientPowerUp(int id)
     {
-        mainSource.PlayOneShot(powerUp[id]);
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(powerUp[id]);
+        }
     }
 
 
@@ -203,7 +212,10 @@ public class AudioManager : NetworkBehaviour
     [ClientRpc]
     public void RpcSendSoundIDToClientGun(int id)
     {
-        mainSource.PlayOneShot(gunReload[id]);
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(gunReload[id]);
+        }
     }
     
     public void playMusicLevel()
