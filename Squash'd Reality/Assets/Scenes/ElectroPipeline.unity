@@ -257,7 +257,7 @@ MonoBehaviour:
   deleteFromListAfterSpawn: 1
   startSpawningFromTheBeginning: 1
   spawnDoubleObject: 0
-  firstSpawnDelay: 0
+  firstSpawnDelay: 6
   spawningDelay: 0
   maxCoordinates:
   - {x: 1, y: 0.55, z: -1}
@@ -277,7 +277,7 @@ MonoBehaviour:
   - {x: 6, y: 0.55, z: 0}
   - {x: 1, y: 0.55, z: -1}
   - {x: -5, y: 0.55, z: -2}
-  objectsToSpawnCount: 35
+  objectsToSpawnCount: 999
   isCookingTime: 0
 --- !u!114 &195753488
 MonoBehaviour:
