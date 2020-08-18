@@ -14,7 +14,9 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] release;
     [SerializeField] private AudioClip[] winDie;
     [SerializeField] private AudioClip[] musicLevel;
-
+    [SerializeField] private AudioClip[] enemyKilledSound;
+    
+    
     void Start()
     {
         mainSource = GetComponent<AudioSource>();
@@ -79,10 +81,21 @@ public class AudioManager : NetworkBehaviour
         CmdSendServerSoundIDWinDie(1);
     }
 
+    public void playEnemyKilled()
+    {
+        CmdSendServerSoundEnemyKilled(0);
+    }
+    
     [Command]
     public void CmdSendServerSoundIDWinDie(int id)
     {
         RpcSendSoundIDToClientWinDie(id);
+    }
+
+    [Command]
+    public void CmdSendServerSoundEnemyKilled(int id)
+    {
+        RpcSendSoundIDToClientEnemyKilled(id);
     }
 
     [Command]
@@ -121,6 +134,15 @@ public class AudioManager : NetworkBehaviour
         RpcSendSoundIDToClientPowerUp(id);
     }
 
+    [ClientRpc]
+    public void RpcSendSoundIDToClientEnemyKilled(int id)
+    {
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(enemyKilledSound[id]);
+        }
+    }
+    
     [ClientRpc]
     public void RpcSendSoundIDToClientWinDie(int id)
     {

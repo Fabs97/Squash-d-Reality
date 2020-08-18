@@ -333,6 +333,10 @@ MonoBehaviour:
   winDie:
   - {fileID: 8300000, guid: e302f94246e3cbd49b9fc8f2e51bdb6a, type: 3}
   - {fileID: 8300000, guid: 2b7be9d81e3216f41b5ed9c7724d53ac, type: 3}
+  musicLevel:
+  - {fileID: 8300000, guid: 1c6cf594d80d84f4684bafe17d0f4b46, type: 3}
+  enemyKilledSound:
+  - {fileID: 8300000, guid: 77ecfb25d58c4854995737a3c07fbf82, type: 3}
 --- !u!114 &114323712192375736
 MonoBehaviour:
   m_ObjectHideFlags: 0
