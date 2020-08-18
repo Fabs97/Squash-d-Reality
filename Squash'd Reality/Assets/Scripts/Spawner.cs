@@ -108,9 +108,6 @@ public class Spawner : NetworkBehaviour
                 objectsSpawnedCount ++;
             }
         }
-       
-        
-      
     }
 
     public void StopSpawning() {
