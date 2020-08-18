@@ -11,11 +11,13 @@ public class Platform : MonoBehaviour
    // [HideInInspector]
     public bool isPressed = false;
 
+    private GameObject PressedBox;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PressedBox = transform.GetChild(0).gameObject;
+        PressedBox.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,8 +27,13 @@ public class Platform : MonoBehaviour
         if (hitDetect)
         {
             isPressed = true;
+            PressedBox.SetActive(true);
         }
-        else isPressed = false;
+        else
+        {
+            isPressed = false;
+            PressedBox.SetActive(false);
+        }
 
     }
 

@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0088d6967de318c449dfdcbe68c64836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: default
   death: 0
   timeOut: 0
   friendlyKill: 0

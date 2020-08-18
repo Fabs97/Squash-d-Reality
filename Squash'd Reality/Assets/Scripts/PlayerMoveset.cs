@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioManager))]
@@ -49,7 +50,20 @@ public class PlayerMoveset : NetworkBehaviour
         }
 
         audioManager = GetComponent<AudioManager>();
-       // audioManager.playMusicLevel();
+        if (SceneManager.GetActiveScene().name == "CookingTime")
+        {
+            audioManager.playMusicLevel(0);
+        }else if (SceneManager.GetActiveScene().name == "DarkPuzzle")
+        {
+            audioManager.playMusicLevel(1);
+        }else if (SceneManager.GetActiveScene().name == "TrenchTime")
+        {
+            audioManager.playMusicLevel(2);
+        }else if (SceneManager.GetActiveScene().name == "ElectroPipeline")
+        {
+            audioManager.playMusicLevel(3);
+        }
+        
     }
 
     void FixedUpdate() {
