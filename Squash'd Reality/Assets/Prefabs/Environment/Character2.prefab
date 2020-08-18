@@ -432,6 +432,8 @@ MonoBehaviour:
   winDie:
   - {fileID: 8300000, guid: e302f94246e3cbd49b9fc8f2e51bdb6a, type: 3}
   - {fileID: 8300000, guid: 2b7be9d81e3216f41b5ed9c7724d53ac, type: 3}
+  enemyExploded:
+  - {fileID: 8300000, guid: 099929fe98cf1d44c8134b651b3f1317, type: 3}
   musicLevel:
   - {fileID: 8300000, guid: 1c6cf594d80d84f4684bafe17d0f4b46, type: 3}
   - {fileID: 8300000, guid: d75e93fdcba69bc4d8ac61d37a3899c2, type: 3}

@@ -15,6 +15,7 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] gunshot;
     [SerializeField] private AudioClip[] release;
     [SerializeField] private AudioClip[] winDie;
+    [SerializeField] private AudioClip[] enemyExploded;
     [SerializeField] private AudioClip[] musicLevel;
     //MUSIC LEVEL INDEX
     /*
@@ -104,7 +105,17 @@ public class AudioManager : NetworkBehaviour
         CmdSendServerCollectible(0);
     }
 
+    public void playEnemyExploded()
+    {
+        CmdSendServerEnemyExploded(0);
+    }
 
+    [Command]
+    public void CmdSendServerEnemyExploded(int id)
+    {
+        RpcSendSoundIDToClientEnemyExploded(id);
+    }
+    
     [Command]
     public void CmdSendServerCollectible(int id)
     {
@@ -159,6 +170,14 @@ public class AudioManager : NetworkBehaviour
         RpcSendSoundIDToClientPowerUp(id);
     }
 
+
+    [ClientRpc]
+    public void RpcSendSoundIDToClientEnemyExploded(int id)
+    {
+        mainSource.PlayOneShot(enemyExploded[id]);
+        
+    }
+    
     [ClientRpc]
     public void RpcSendSoundIDToClientCollectible(int id)
     {

@@ -123,7 +123,13 @@ public class Enemy : MonoBehaviour
         stopMovement = true;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;    
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        players[0].GetComponent<AudioManager>().playEnemyExploded();
+        /*foreach (var player in players)
+        {
+            player.GetComponent<AudioManager>().playEnemyExploded();
+        }*/
         explosion.SetActive(true);
 
         for (int i = 0; i < players.Length; i++)
