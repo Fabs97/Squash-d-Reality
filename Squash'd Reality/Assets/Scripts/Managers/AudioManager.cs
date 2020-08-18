@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : NetworkBehaviour
@@ -14,14 +16,18 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] release;
     [SerializeField] private AudioClip[] winDie;
     [SerializeField] private AudioClip[] musicLevel;
+    //MUSIC LEVEL INDEX
+    /*
+     * 0 --> cookingTime;
+     */
     [SerializeField] private AudioClip[] enemyKilledSound;
     [SerializeField] private AudioClip[] collectibleSound;
-    
-    void Start()
+
+    private void Awake()
     {
         mainSource = GetComponent<AudioSource>();
-    }
 
+    }
 
     public void playSound(int id)
     {
@@ -218,7 +224,7 @@ public class AudioManager : NetworkBehaviour
         }
     }
     
-    public void playMusicLevel()
+    public void playMusicLevel(int id)
     {
         CmdSendServerMusicLevel(0);
             

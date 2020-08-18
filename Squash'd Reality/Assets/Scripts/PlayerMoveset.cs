@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(AudioManager))]
@@ -49,7 +50,11 @@ public class PlayerMoveset : NetworkBehaviour
         }
 
         audioManager = GetComponent<AudioManager>();
-       // audioManager.playMusicLevel();
+        if (SceneManager.GetActiveScene().name == "CookingTime")
+        {
+            audioManager.playMusicLevel(0);
+        }
+        
     }
 
     void FixedUpdate() {

@@ -16,16 +16,6 @@ public class AudioMenu : MonoBehaviour
 
     }
 
-    void Start()
-    {
-    }
-
-    private void Update()
-    {
-      
-        
-    }
-    
     void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

@@ -2298,6 +2298,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 4941147264515018753, guid: e020aeaf6dcddbe4e83a497ae1546af4,
+        type: 3}
+      propertyPath: mainMenuAudio.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4941147264515018753, guid: e020aeaf6dcddbe4e83a497ae1546af4,
+        type: 3}
+      propertyPath: mainMenuAudio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 81ba7811afbbf144982579b3974d451e, type: 3}
     - target: {fileID: 4941147264515018755, guid: e020aeaf6dcddbe4e83a497ae1546af4,
         type: 3}
       propertyPath: m_LocalPosition.x
