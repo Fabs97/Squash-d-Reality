@@ -27,6 +27,7 @@ public class Spawner : NetworkBehaviour
     private Coroutine spawnRoutine;
 
     [SerializeField] private bool isCookingTime;
+    [SerializeField] private bool isElectroPipeline = false;
 
     void Start() {
         if(startSpawningFromTheBeginning) CmdStartSpawning();
@@ -75,6 +76,11 @@ public class Spawner : NetworkBehaviour
         float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
         float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
         float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
+        if(isElectroPipeline){
+            maxCoordinates.RemoveAt(randomZoneIndex);
+            minCoordinates.RemoveAt(randomZoneIndex);
+        }
+
 
         Vector3 tr = new Vector3(randomX, randomY, randomZ);
         Quaternion q = Quaternion.identity;
