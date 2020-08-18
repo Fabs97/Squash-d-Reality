@@ -15,7 +15,7 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] winDie;
     [SerializeField] private AudioClip[] musicLevel;
     [SerializeField] private AudioClip[] enemyKilledSound;
-    
+    [SerializeField] private AudioClip[] collectibleSound;
     
     void Start()
     {
@@ -85,6 +85,18 @@ public class AudioManager : NetworkBehaviour
     {
         CmdSendServerSoundEnemyKilled(0);
     }
+
+    public void playCollectibleSound()
+    {
+        CmdSendServerCollectible(0);
+    }
+
+
+    [Command]
+    public void CmdSendServerCollectible(int id)
+    {
+        RpcSendSoundIDToClientCollectible(id);
+    }
     
     [Command]
     public void CmdSendServerSoundIDWinDie(int id)
@@ -133,6 +145,13 @@ public class AudioManager : NetworkBehaviour
     {
         RpcSendSoundIDToClientPowerUp(id);
     }
+
+    [ClientRpc]
+    public void RpcSendSoundIDToClientCollectible(int id)
+    {
+        mainSource.PlayOneShot(collectibleSound[id]);
+    }
+
 
     [ClientRpc]
     public void RpcSendSoundIDToClientEnemyKilled(int id)

@@ -436,6 +436,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1c6cf594d80d84f4684bafe17d0f4b46, type: 3}
   enemyKilledSound:
   - {fileID: 8300000, guid: 77ecfb25d58c4854995737a3c07fbf82, type: 3}
+  collectibleSound:
+  - {fileID: 8300000, guid: c6327c80d15f9634a878e05148e2936a, type: 3}
 --- !u!114 &4255156335801621320
 MonoBehaviour:
   m_ObjectHideFlags: 0
