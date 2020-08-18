@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour
     private GameObject[] spawnPositions;
 
     private float rotationSpeed = 3f;
-    private float moveSpeed = 0.5f;
-
+    private float moveSpeed = 0.8f;
+    private float moveSpeedMultiplier = 1f;
     private float life;
 
     private float BasicDamage = 6.7f;
@@ -24,50 +24,61 @@ public class Enemy : MonoBehaviour
     private bool canFollowPlayer = false;
 
     [SerializeField] private bool enemyFromRoom;
-    
+
+    [SerializeField] private GameObject explosion;
+
+    private bool stopMovement = false;
     // Start is called before the first frame update
     void Start()
     {
         life = 20f;
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
-
+        if (enemyFromRoom)
+        {
+            canFollowPlayer = true;
+            moveSpeedMultiplier = 1.3f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canFollowPlayer)
+        if (!stopMovement)
         {
-            players = GameObject.FindGameObjectsWithTag("Player");
-            if (players.Length!= 0)
+            if (canFollowPlayer)
             {
-                int playerIndex = nearbyPlayerIndex();
-                float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
-                if (!isExploding && distance <= distanceToKill)
+                players = GameObject.FindGameObjectsWithTag("Player");
+                if (players.Length!= 0)
                 {
-                    isExploding = true;
-                    StartCoroutine(killNearbyPlayers(1f));
-                }
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;   
-            }   
-        }
-        else
-        {
-            int spawnIndex = nearbySpawnIndex();
-            if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;    
+                    int playerIndex = nearbyPlayerIndex();
+                    float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
+                    if (!isExploding && distance <= distanceToKill)
+                    {
+                        isExploding = true;
+                        StartCoroutine(killNearbyPlayers(1f));
+                    }
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * Time.deltaTime;   
+                }   
             }
             else
             {
-                canFollowPlayer = true;
-            }
+                int spawnIndex = nearbySpawnIndex();
+                if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier* Time.deltaTime;    
+                }
+                else
+                {
+                    canFollowPlayer = true;
+                }
             
 
+            }
         }
+        
     }
     
     private int nearbyPlayerIndex()
@@ -109,6 +120,12 @@ public class Enemy : MonoBehaviour
     IEnumerator killNearbyPlayers(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        stopMovement = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;    
+        explosion.SetActive(true);
+
         for (int i = 0; i < players.Length; i++)
         {
             float distance = Vector3.Distance(transform.position, players[i].transform.position);
@@ -117,7 +134,7 @@ public class Enemy : MonoBehaviour
                 players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
             }
         }
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 1.5f);
 
     }
 
