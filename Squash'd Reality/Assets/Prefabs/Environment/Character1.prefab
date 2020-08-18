@@ -439,6 +439,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2b7be9d81e3216f41b5ed9c7724d53ac, type: 3}
   musicLevel:
   - {fileID: 8300000, guid: 1c6cf594d80d84f4684bafe17d0f4b46, type: 3}
+  - {fileID: 8300000, guid: d75e93fdcba69bc4d8ac61d37a3899c2, type: 3}
+  - {fileID: 8300000, guid: f9604bbf5b54aff46a731dfe98f85a60, type: 3}
+  - {fileID: 8300000, guid: 26c9cc467eefa0c4fa36340e96c3e442, type: 3}
   enemyKilledSound:
   - {fileID: 8300000, guid: 77ecfb25d58c4854995737a3c07fbf82, type: 3}
   collectibleSound:

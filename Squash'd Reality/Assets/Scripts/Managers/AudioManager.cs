@@ -19,6 +19,9 @@ public class AudioManager : NetworkBehaviour
     //MUSIC LEVEL INDEX
     /*
      * 0 --> cookingTime;
+     * 1 --> darkPuzzle;
+     * 2 --> trenchTime;
+     * 3 --> electroPipeline;
      */
     [SerializeField] private AudioClip[] enemyKilledSound;
     [SerializeField] private AudioClip[] collectibleSound;
@@ -226,7 +229,7 @@ public class AudioManager : NetworkBehaviour
     
     public void playMusicLevel(int id)
     {
-        CmdSendServerMusicLevel(0);
+        CmdSendServerMusicLevel(id);
             
     }
 
@@ -242,6 +245,7 @@ public class AudioManager : NetworkBehaviour
         if (hasAuthority)
         {
             mainSource.PlayOneShot(musicLevel[id]);
+            mainSource.loop = true;
             mainSource.volume = 0.1f;
         }
     }

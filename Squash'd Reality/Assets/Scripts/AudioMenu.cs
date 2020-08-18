@@ -25,6 +25,7 @@ public class AudioMenu : MonoBehaviour
         if (scene.name == "MainMenu")
         {
             mainSource.PlayOneShot(mainMenuAudio[0]);
+            mainSource.loop = true;
 
         }
 
