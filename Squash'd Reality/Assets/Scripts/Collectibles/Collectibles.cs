@@ -45,6 +45,7 @@ public class Collectibles : MonoBehaviour
    IEnumerator waitIntel(Collider other)
    {
       yield return new WaitForSeconds(3f);
+      other.GetComponent<AudioManager>().playCollectibleSound();
       PlayerMoveset playerMoveset = other.GetComponent<PlayerMoveset>();
       if (playerMoveset.hasAuthority)
       {

@@ -49,7 +49,7 @@ public class PlayerMoveset : NetworkBehaviour
         }
 
         audioManager = GetComponent<AudioManager>();
-        audioManager.playMusicLevel();
+       // audioManager.playMusicLevel();
     }
 
     void FixedUpdate() {

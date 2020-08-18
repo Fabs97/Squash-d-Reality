@@ -148,6 +148,7 @@ public class Enemy : MonoBehaviour
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                 foreach (var player in players)
                 {
+                    player.GetComponent<AudioManager>().playEnemyKilled();
                     PlayerMoveset playerMoveset = player.GetComponent<PlayerMoveset>();
                     if (playerMoveset.playerName ==
                         other.gameObject.GetComponent<Bullet>().shooterName)
