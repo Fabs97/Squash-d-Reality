@@ -44,6 +44,12 @@ public class GrabbableMovement :  NetworkBehaviour
             darkPuzzle = true;
         }
 
+        if (scene.name == "ElectroPipeline")
+        {
+            jumpHeightMultiplier = 0f;
+            controller.slopeLimit = 0f;
+        }
+
     }
     
     void FixedUpdate()
