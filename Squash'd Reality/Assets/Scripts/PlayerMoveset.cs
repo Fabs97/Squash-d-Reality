@@ -48,20 +48,24 @@ public class PlayerMoveset : NetworkBehaviour
         {
             playerStats.playerName = playerName;
         }
-
+        
         audioManager = GetComponent<AudioManager>();
-        if (SceneManager.GetActiveScene().name == "CookingTime")
+
+        if (playerName == GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName)
         {
-            audioManager.playMusicLevel(0);
-        }else if (SceneManager.GetActiveScene().name == "DarkPuzzle")
-        {
-            audioManager.playMusicLevel(1);
-        }else if (SceneManager.GetActiveScene().name == "TrenchTime")
-        {
-            audioManager.playMusicLevel(2);
-        }else if (SceneManager.GetActiveScene().name == "ElectroPipeline")
-        {
-            audioManager.playMusicLevel(3);
+            if (SceneManager.GetActiveScene().name == "CookingTime")
+            {
+                audioManager.playMusicLevel(0);
+            }else if (SceneManager.GetActiveScene().name == "DarkPuzzle")
+            {
+                audioManager.playMusicLevel(1);
+            }else if (SceneManager.GetActiveScene().name == "TrenchTime")
+            {
+                audioManager.playMusicLevel(2);
+            }else if (SceneManager.GetActiveScene().name == "ElectroPipeline")
+            {
+                audioManager.playMusicLevel(3);
+            }  
         }
         
     }

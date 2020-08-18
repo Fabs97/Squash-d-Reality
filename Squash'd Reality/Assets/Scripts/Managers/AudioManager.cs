@@ -53,12 +53,21 @@ public class AudioManager : NetworkBehaviour
 
     public void playGunSound()
     {
-        CmdSendServerSoundIDGun(0);
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(gunReload[0]);
+        }
+        //CmdSendServerSoundIDGun(0);
     }
 
     public void playPowerUpSound()
     {
-        CmdSendServerSoundIDPowerUp(0);
+        if (hasAuthority)
+        {
+            mainSource.PlayOneShot(powerUp[0]);
+
+        }
+        //CmdSendServerSoundIDPowerUp(0);
     }
 
     public void playJumpSound()
@@ -248,7 +257,10 @@ public class AudioManager : NetworkBehaviour
     
     public void playMusicLevel(int id)
     {
-        CmdSendServerMusicLevel(id);
+        mainSource.PlayOneShot(musicLevel[id]);
+        mainSource.loop = true;
+        //mainSource.volume = 0.1f;
+        //CmdSendServerMusicLevel(id);
             
     }
 
