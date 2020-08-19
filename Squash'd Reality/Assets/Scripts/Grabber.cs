@@ -103,10 +103,13 @@ public class Grabber : NetworkBehaviour
 
     IEnumerator waitReleaseGrab()
     {
-        yield return new WaitForSeconds(1f);
-        toGrab.GetComponent<Pipe>().releasedPipe();
+        yield return new WaitForSeconds(0.6f);
+        if (toGrab != null)
+        {
+            toGrab.GetComponent<Pipe>().releasedPipe();
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+        }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         toGrab = null;
         isGrabbing = false;
     }
