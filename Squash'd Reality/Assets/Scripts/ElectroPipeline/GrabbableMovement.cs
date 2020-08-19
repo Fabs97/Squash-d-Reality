@@ -73,10 +73,10 @@ public class GrabbableMovement :  NetworkBehaviour
 
             } else if (!cubeMovement && !darkPuzzle)
             {
-                float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+             /*   float x = Mathf.Round(gameObject.transform.position.x / snapValue);
                 float y = 0.55f;
                 float z = Mathf.Round(gameObject.transform.position.z / snapValue);
-                this.transform.position = new Vector3(x,y,z);
+                this.transform.position = new Vector3(x,y,z);*/
                 StartCoroutine(wait3());
             }else if (!cubeMovement && darkPuzzle)
             {
