@@ -9,6 +9,7 @@ public class Shotgun : Weapon {
         bulletName = "BulletShotgun";
         fireRatioTime = 1.5f;
         magazine = 10;
+        spread = 5f;
     }
     
     

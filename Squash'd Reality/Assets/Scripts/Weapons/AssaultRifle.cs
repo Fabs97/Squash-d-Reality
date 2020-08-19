@@ -8,7 +8,7 @@ public class AssaultRifle : Weapon
         base.Start();
         bulletName = "BulletAssaultRifle";
         spread = 3f;
-        fireRatioTime = 0.6f;
+        fireRatioTime = 0.3f;
         magazine = 40;
     }
 }
