@@ -48,6 +48,8 @@ public class GrabbableMovement :  NetworkBehaviour
         {
             jumpHeightMultiplier = 0f;
             controller.slopeLimit = 0f;
+            controller.enabled = false;
+            GetComponent<BoxCollider>().enabled = true;
         }
 
     }
@@ -56,9 +58,11 @@ public class GrabbableMovement :  NetworkBehaviour
     {
         if (hasAuthority && cubeMovement)
         {
+            controller.enabled = true;
             Move();
         }else if (!cubeMovement && !darkPuzzle)
         {
+            controller.enabled = false;
             float x = Mathf.Round(gameObject.transform.position.x / snapValue);
             float y = 0.55f;
             float z = Mathf.Round(gameObject.transform.position.z / snapValue);
