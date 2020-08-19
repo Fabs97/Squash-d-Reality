@@ -60,39 +60,57 @@ public class GrabbableMovement :  NetworkBehaviour
     
     void FixedUpdate()
     {
-        
-        if (hasAuthority && cubeMovement && !canMove)
+        if (!darkPuzzle)
         {
-            StartCoroutine(wait2());
-            GetComponent<NetworkTransform>().enabled = true;
-            controller.enabled = true;
-        }else if (hasAuthority && cubeMovement && canMove)
-        {
-            Debug.LogError("MOVE");
-            Move();
+            if (hasAuthority && cubeMovement && !canMove)
+            {
+                StartCoroutine(wait2());
+                GetComponent<NetworkTransform>().enabled = true;
+                controller.enabled = true;
+            }else if (hasAuthority && cubeMovement && canMove)
+            {
+                Move();
 
-        } else if (!cubeMovement && !darkPuzzle)
-        {
-            float x = Mathf.Round(gameObject.transform.position.x / snapValue);
-            float y = 0.55f;
-            float z = Mathf.Round(gameObject.transform.position.z / snapValue);
-            this.transform.position = new Vector3(x,y,z);
-            StartCoroutine(wait3());
-        }else if (!cubeMovement && darkPuzzle)
-        {
-            Fall();
-        }
+            } else if (!cubeMovement && !darkPuzzle)
+            {
+                float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+                float y = 0.55f;
+                float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+                this.transform.position = new Vector3(x,y,z);
+                StartCoroutine(wait3());
+            }else if (!cubeMovement && darkPuzzle)
+            {
+                Fall();
+            }
 
-        if (cubeMovement)
-        {
-            GetComponent<NetworkTransform>().enabled = true;
-            controller.enabled = true;
-            StartCoroutine(wait2());
+            if (cubeMovement)
+            {
+                GetComponent<NetworkTransform>().enabled = true;
+                controller.enabled = true;
+                StartCoroutine(wait2());
+            }
+            else
+            {
+                StartCoroutine(wait());
+            }   
         }
         else
         {
-            StartCoroutine(wait());
+            if (hasAuthority && cubeMovement)
+            {
+                Move();
+            }else if (!cubeMovement && !darkPuzzle)
+            {
+                float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+                float y = 0.55f;
+                float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+                this.transform.position = new Vector3(x,y,z);
+            }else if (!cubeMovement && darkPuzzle)
+            {
+                Fall();
+            }
         }
+        
 
     }
 
@@ -110,7 +128,6 @@ public class GrabbableMovement :  NetworkBehaviour
     {
         yield return new WaitForSeconds(1f);
         canMove = true;
-        Debug.LogError("CAN MOVE");
     }
     
     IEnumerator wait()
