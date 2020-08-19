@@ -125,7 +125,8 @@ public class Pipe : NetworkBehaviour
             StartCoroutine(pipeStartEnd());
 
         }
-        StartCoroutine(pipeReleasedCoroutine());
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdPipeReleased();
 
 
     }
@@ -215,21 +216,25 @@ public class Pipe : NetworkBehaviour
 
     public void allPipeReleased()
     {
-        int holes = 0;
-        foreach (Transform child in transform) {
-            if(child.gameObject.tag == "Hole") {
-                holes = holes + child.gameObject.GetComponent<Hole>().checkIntHoleConnection();
+        if (isServer)
+        {
+            int holes = 0;
+            foreach (Transform child in transform) {
+                if(child.gameObject.tag == "Hole") {
+                    holes = holes + child.gameObject.GetComponent<Hole>().checkIntHoleConnection();
+                }
             }
-        }
 
-        if (holes == 0)
-        {
-            setPipeConnected(false);
+            if (holes == 0)
+            {
+                setPipeConnected(false);
+            }
+            else
+            {
+                setPipeConnected(true);
+            }  
         }
-        else
-        {
-            setPipeConnected(true);
-        }
+        
     }
     
     public void setFirst(bool value)

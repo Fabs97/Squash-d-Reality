@@ -291,4 +291,30 @@ public class PlayerController : NetworkBehaviour
         NetworkingManager.NetworkingManager _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _networkingManager.serverChangeScene("Lobby", 0);
     }
+
+    [Command]
+    public void CmdPipeReleased()
+    {
+        StartCoroutine(pipeReleasedCoroutine());
+    }
+    
+    IEnumerator pipeReleasedCoroutine()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    pipe.GetComponent<Pipe>().allPipeReleased();  
+                }
+           
+            }  
+        }
+        
+        
+
+    }
 }

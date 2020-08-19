@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -85,16 +86,30 @@ public class Grabber : NetworkBehaviour
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetGrabebd(toGrab, false);
             //toGrab.GetComponent<GrabbableMovement>().cubeMovement = false;
         }
-        if(toGrab.tag == "Pipe") {
-            toGrab.GetComponent<Pipe>().releasedPipe();
-            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
+        if(toGrab.tag == "Pipe")
+        {
+            StartCoroutine(waitReleaseGrab());
         }
-        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
-        toGrab = null;
-        isGrabbing = false;
+        else
+        {
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+            toGrab = null;
+            isGrabbing = false;
+        }
+        
         if(needToToggleLight) askToggleLight(true);
     }
 
+
+    IEnumerator waitReleaseGrab()
+    {
+        yield return new WaitForSeconds(1f);
+        toGrab.GetComponent<Pipe>().releasedPipe();
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, true);
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
+        toGrab = null;
+        isGrabbing = false;
+    }
     public void toggleLight(bool val) {
         if(_levelManager.getCurrentLevel().isDark) {
             light.intensity = val ? luminosity : 0;
