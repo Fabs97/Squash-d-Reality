@@ -27,6 +27,9 @@ public class GrabbableMovement :  NetworkBehaviour
     
     [SerializeField] private float snapValue = 1.0f;
 
+    private bool canMove = false;
+    
+    
     private void Start()
     
     {
@@ -50,16 +53,23 @@ public class GrabbableMovement :  NetworkBehaviour
             controller.slopeLimit = 0f;
             controller.enabled = false;
             GetComponent<BoxCollider>().enabled = true;
+            GetComponent<NetworkTransform>().enabled = false;
         }
 
     }
     
     void FixedUpdate()
     {
-        if (hasAuthority && cubeMovement)
+        if (hasAuthority && cubeMovement && canMove)
         {
-            controller.enabled = true;
             Move();
+
+        }
+        if (hasAuthority && cubeMovement && !canMove)
+        {
+            StartCoroutine(wait2());
+            GetComponent<NetworkTransform>().enabled = true;
+            controller.enabled = true;
         }else if (!cubeMovement && !darkPuzzle)
         {
             controller.enabled = false;
@@ -74,9 +84,27 @@ public class GrabbableMovement :  NetworkBehaviour
 
         if (cubeMovement)
         {
+            GetComponent<NetworkTransform>().enabled = true;
             controller.enabled = true;
+            canMove = true;
+        }
+        else
+        {
+            StartCoroutine(wait());
         }
 
+    }
+    IEnumerator wait2()
+    {
+        yield return new WaitForSeconds(1f);
+        canMove = true;
+    }
+    
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1f);
+        canMove = false;
+        GetComponent<NetworkTransform>().enabled = false;
     }
 
     void Move(){
