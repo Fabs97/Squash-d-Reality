@@ -230,9 +230,8 @@ MonoBehaviour:
   - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
   - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
   - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
-  - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
-  - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
-  - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
+  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
+  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
   - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
   - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
   - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
@@ -244,15 +243,6 @@ MonoBehaviour:
   - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
   - {fileID: 5895599644858448643, guid: b44046ef959f4c94da160d86c4bef8eb, type: 3}
   - {fileID: 5895599644858448643, guid: b44046ef959f4c94da160d86c4bef8eb, type: 3}
-  - {fileID: 5895599644858448643, guid: b44046ef959f4c94da160d86c4bef8eb, type: 3}
-  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
-  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
-  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
-  - {fileID: 1716523833992150381, guid: cb1cf5ed68c080e45a5dfaaf3c65d826, type: 3}
-  - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
-  - {fileID: 1716523833992150381, guid: cb1cf5ed68c080e45a5dfaaf3c65d826, type: 3}
-  - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
-  - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 1
   startSpawningFromTheBeginning: 1
