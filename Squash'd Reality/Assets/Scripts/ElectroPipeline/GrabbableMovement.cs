@@ -71,6 +71,12 @@ public class GrabbableMovement :  NetworkBehaviour
         {
             Fall();
         }
+
+        if (cubeMovement)
+        {
+            controller.enabled = true;
+        }
+
     }
 
     void Move(){
