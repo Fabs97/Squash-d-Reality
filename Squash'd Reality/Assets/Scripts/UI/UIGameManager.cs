@@ -1,14 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class UIGameManager : MonoBehaviour
 {
     //Gameobjects elements in UI
     [SerializeField] private GameObject alertBox;
     [SerializeField] private GameObject backgroundPanelPause;
+    [SerializeField] private GameObject mainMenuButton;
+    [SerializeField] private GameObject lobbyButton;
+    
+    private bool pauseActive = false;
     
     //Scene management
     private SceneLoader.SceneLoader _sceneLoader;  
@@ -25,7 +33,38 @@ public class UIGameManager : MonoBehaviour
         _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
         
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Start") && !pauseActive)
+        {
+            pauseActive = true;
+            backgroundPanelPause.SetActive(true);
+            GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(mainMenuButton);
+            if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                lobbyButton.SetActive(false);
+            }
+            else
+            {
+                lobbyButton.SetActive(true);
+            }
+        }else if (Input.GetButtonDown("Start") && pauseActive)
+        {
+            pauseActive = false;
+            backgroundPanelPause.SetActive(false);
+        }
+    }
+
+    public void MainMenuPressed()
+    {
+        _sceneLoader.loadNextScene("MainMenu");
+    }
+
+    public void LobbyMenuPressed()
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdLobby();
+    }
     
     //-----------------------------------------------DISCONNECTION UI-------------------------------------------------------------------
     //Call this function to notify the clients that a player disconnected

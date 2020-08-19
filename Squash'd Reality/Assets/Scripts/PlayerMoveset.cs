@@ -30,6 +30,7 @@ public class PlayerMoveset : NetworkBehaviour
 
     private bool pogoStickActive;
 
+    private bool pauseActive = false;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
@@ -70,8 +71,19 @@ public class PlayerMoveset : NetworkBehaviour
         
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Start") && !pauseActive)
+        {
+            pauseActive = true;
+        }else if (Input.GetButtonDown("Start") && pauseActive)
+        {
+            pauseActive = false;
+        }
+    }
+
     void FixedUpdate() {
-        if (hasAuthority) {
+        if (hasAuthority && !pauseActive) {
             Move();
         }
     }

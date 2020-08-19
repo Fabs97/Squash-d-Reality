@@ -284,4 +284,11 @@ public class PlayerController : NetworkBehaviour
     {
         FindObjectOfType<MatchManager>().setMatchWon();
     }
+
+    [Command]
+    public void CmdLobby()
+    {
+        NetworkingManager.NetworkingManager _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+        _networkingManager.serverChangeScene("Lobby", 0);
+    }
 }
