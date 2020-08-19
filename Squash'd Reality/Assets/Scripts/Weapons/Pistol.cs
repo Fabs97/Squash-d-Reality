@@ -5,8 +5,8 @@ public class Pistol : Weapon {
         base.Start();
         bulletName = "BulletPistol";
         spread = 0.2f;
-        fireRatioTime = 0.5f;
-        magazine = 100;
+        fireRatioTime = 0.55f;
+        magazine = 999;
 
     }
 }
