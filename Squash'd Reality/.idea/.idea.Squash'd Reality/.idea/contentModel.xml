@@ -6,26 +6,136 @@
     <e p="C:\Users\marco\Desktop\Git\Squash-d-Reality\Squash'd Reality" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Fx Explosion Pack" t="Include">
+          <e p="Script" t="Include">
+            <e p="csDemoScenceControl.cs" t="Include" />
+            <e p="csLightControl.cs" t="Include" />
+            <e p="csMouseOrbit.cs" t="Include" />
+            <e p="DestroyEffect.cs" t="Include" />
+          </e>
+        </e>
+        <e p="PowerUp" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="CustomizablePowerUp.cs" t="Include" />
+            <e p="PowerUpManager.cs" t="Include" />
+            <e p="PowerUpRotation.cs" t="Include" />
+            <e p="ScaleParticles.cs" t="Include" />
+            <e p="TakeablePowerUp.cs" t="Include" />
+            <e p="Utility" t="Include">
+              <e p="Singleton.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="Collectibles" t="Include">
+            <e p="Collectibles.xml" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
+          <e p="AudioMenu.cs" t="Include" />
+          <e p="Challenges" t="Include">
+            <e p="Challenge.cs" t="Include" />
+            <e p="CookingTime.cs" t="Include" />
+            <e p="DarkPuzzle.cs" t="Include" />
+            <e p="ElectroPipeline.cs" t="Include" />
+            <e p="TrenchTime.cs" t="Include" />
+          </e>
+          <e p="Collectibles" t="Include">
+            <e p="CollectibleManager.cs" t="Include" />
+            <e p="Collectibles.cs" t="Include" />
+            <e p="UICollectibleManager.cs" t="Include" />
+          </e>
+          <e p="CookingTime" t="Include">
+            <e p="GrabbableMovementCookingTime.cs" t="Include" />
+          </e>
+          <e p="DarkPuzle" t="Include">
+            <e p="DarkFall.cs" t="Include" />
+            <e p="Platform.cs" t="Include" />
+          </e>
           <e p="DDOL.cs" t="Include" />
+          <e p="DeathZone.cs" t="Include" />
           <e p="DevPreload.cs" t="Include" />
-          <e p="DummyMoveset.cs" t="Include" />
-          <e p="Managers" t="Include">
+          <e p="ElectroPipeline" t="Include">
+            <e p="ElectroPipelineMatchManager.cs" t="Include" />
+            <e p="GrabbableMovement.cs" t="Include" />
+            <e p="Hole.cs" t="Include" />
+            <e p="Pipe.cs" t="Include" />
+            <e p="PipeExtremity.cs" t="Include" />
+          </e>
+          <e p="Enemy.cs" t="Include" />
+          <e p="Environment" t="Include">
+            <e p="Door.cs" t="Include" />
+            <e p="Grabbable.cs" t="Include" />
+            <e p="Wall.cs" t="Include" />
+          </e>
+          <e p="Grabber.cs" t="Include" />
+          <e p="Ingredient.cs" t="Include" />
+          <e p="Leaderboard" t="Include">
+            <e p="UILeaderboard.cs" t="Include" />
+          </e>
+          <e p="Lobby" t="Include">
             <e p="LobbyManager.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
+            <e p="AudioManager.cs" t="Include" />
+            <e p="CookingTimeMatchManager.cs" t="Include" />
+            <e p="DarkPuzzleMatchManager.cs" t="Include" />
+            <e p="GameLobbyManager.cs" t="Include" />
+            <e p="LevelManager.cs" t="Include" />
             <e p="MainMenuButtonManager.cs" t="Include" />
+            <e p="MatchManager.cs" t="Include" />
+            <e p="NetworkGameManager.cs" t="Include" />
             <e p="NetworkingManager.cs" t="Include" />
             <e p="SceneLoader.cs" t="Include" />
-            <e p="SpawnManager.cs" t="Include" />
+            <e p="TrenchTimeMatchManager.cs" t="Include" />
           </e>
           <e p="PlayerConnectionObject.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="PlayerMoveset.cs" t="Include" />
+          <e p="PlayerStats.cs" t="Include" />
           <e p="PlayerUnit.cs" t="Include" />
+          <e p="PowerUps" t="Include">
+            <e p="AbilityPowerUps" t="Include">
+              <e p="HoverboardPowerUp.cs" t="Include" />
+              <e p="PogoStickPowerUp.cs" t="Include" />
+              <e p="SpartanArmorPowerUp.cs" t="Include" />
+            </e>
+            <e p="PopwerUpModelRotation.cs" t="Include" />
+            <e p="PowerUP.cs" t="Include" />
+            <e p="WeaponPowerUp" t="Include">
+              <e p="AssaultRiflePowerUP.cs" t="Include" />
+              <e p="PistolPowerUp.cs" t="Include" />
+              <e p="ShotgunPowerUP.cs" t="Include" />
+              <e p="SMGPowerUP.cs" t="Include" />
+              <e p="SniperRiflePowerUP.cs" t="Include" />
+              <e p="WeaponPowerUP.cs" t="Include" />
+            </e>
+          </e>
           <e p="Preloader.cs" t="Include" />
+          <e p="ScriptableObjects" t="Include">
+            <e p="LevelScriptableObject.cs" t="Include" />
+          </e>
+          <e p="Shoot.cs" t="Include" />
+          <e p="Spawner.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="JoinButton.cs" t="Include" />
             <e p="MatchListPanel.cs" t="Include" />
             <e p="SwitchCanvas.cs" t="Include" />
             <e p="UICharacterSelectionManager.cs" t="Include" />
+            <e p="UICookingTime.cs" t="Include" />
+            <e p="UIGameManager.cs" t="Include" />
+            <e p="UILobby.cs" t="Include" />
+            <e p="UIManager.cs" t="Include" />
+          </e>
+          <e p="Vista.cs" t="Include" />
+          <e p="Weapons" t="Include">
+            <e p="AssaultRifle.cs" t="Include" />
+            <e p="Bullet.cs" t="Include" />
+            <e p="Pistol.cs" t="Include" />
+            <e p="Shotgun.cs" t="Include" />
+            <e p="SMG.cs" t="Include" />
+            <e p="SniperRifle.cs" t="Include" />
+            <e p="Weapon.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
