@@ -252,7 +252,7 @@ MonoBehaviour:
   - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
   - {fileID: 1716523833992150381, guid: cb1cf5ed68c080e45a5dfaaf3c65d826, type: 3}
   - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
-  - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
+  - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 1
   startSpawningFromTheBeginning: 1
