@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067597015138308305}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.67, y: -1.27, z: -10.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -48,8 +48,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.7, y: 1.56, z: 0.64}
+  m_Size: {x: 0.85783195, y: 0.9260371, z: 1.0199308}
+  m_Center: {x: -0.009326935, y: -0.03334886, z: 0.022259235}
 --- !u!114 &5248962748234023630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Apricot
   image: {fileID: 2800000, guid: 5450ac183ccfad24b9f754b623d37bcb, type: 3}
+  isDouble: 0
 --- !u!114 &8864322073312164348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,13 +131,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.43
+  m_Height: 1
   m_Radius: 0
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: -0.75, y: 1.46, z: 0.54}
+  m_Center: {x: 0.02, y: -0.11, z: 0}
 --- !u!114 &1805967688024752624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 0.5
   cubeMovement: 0
+  grabbedBy: 
 --- !u!1 &2067597015138308307
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067597015138308307}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.722, y: 1, z: 0.63}
+  m_LocalPosition: {x: 0.027, y: -0.629, z: 0}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_Children: []
   m_Father: {fileID: 2067597015138536689}
