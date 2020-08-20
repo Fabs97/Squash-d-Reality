@@ -17,7 +17,7 @@ public class Pipe : NetworkBehaviour
     [SyncVar] public bool isFirst;
 
     [SyncVar] public bool isEnd;
-    
+
     //[HideInInspector]
     [SyncVar(hook="_isConnectedChanged")] public bool isConnected;
 
@@ -127,8 +127,7 @@ public class Pipe : NetworkBehaviour
         }
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
             .CmdPipeReleased();
-
-
+        
     }
 
 

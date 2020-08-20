@@ -30,6 +30,8 @@ public class GrabbableMovement :  NetworkBehaviour
     private bool canMove = false;
     
     
+    [SerializeField] private GameObject moveBox;
+    
     private void Start()
     
     {
@@ -49,6 +51,11 @@ public class GrabbableMovement :  NetworkBehaviour
 
         if (scene.name == "ElectroPipeline")
         {
+            if (moveBox != null)
+            {
+                moveBox.SetActive(false);
+    
+            }
             jumpHeightMultiplier = 0f;
             controller.slopeLimit = 0f;
             controller.enabled = false;
@@ -73,10 +80,6 @@ public class GrabbableMovement :  NetworkBehaviour
 
             } else if (!cubeMovement && !darkPuzzle)
             {
-             /*   float x = Mathf.Round(gameObject.transform.position.x / snapValue);
-                float y = 0.55f;
-                float z = Mathf.Round(gameObject.transform.position.z / snapValue);
-                this.transform.position = new Vector3(x,y,z);*/
                 StartCoroutine(wait3());
             }else if (!cubeMovement && darkPuzzle)
             {
@@ -116,18 +119,31 @@ public class GrabbableMovement :  NetworkBehaviour
 
     IEnumerator wait3()
     {
+        if (moveBox != null)
+        {
+            moveBox.SetActive(false);
+    
+        }
         yield return new WaitForSeconds(1f);
         if (!cubeMovement)
         {
             controller.enabled = false;
-
+            float x = Mathf.Round(gameObject.transform.position.x / snapValue);
+            float y = 0.55f;
+            float z = Mathf.Round(gameObject.transform.position.z / snapValue);
+            this.transform.position = new Vector3(x,y,z);
         }
+        
     }
     
     IEnumerator wait2()
     {
         yield return new WaitForSeconds(1f);
         canMove = true;
+        if (cubeMovement && moveBox!=null)
+        {
+            moveBox.SetActive(true);
+        }
     }
     
     IEnumerator wait()
