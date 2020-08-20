@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-public class UIGameManager : MonoBehaviour
+public class UIGameManager : NetworkBehaviour
 {
     //Gameobjects elements in UI
     [SerializeField] private GameObject alertBox;
@@ -59,6 +60,16 @@ public class UIGameManager : MonoBehaviour
     public void MainMenuPressed()
     {
         _sceneLoader.loadNextScene("MainMenu");
+        if (isServer)
+        {
+            Object.FindObjectOfType<NetworkingManager.NetworkingManager>().StopHost();
+
+        }
+        else if(isClient)
+        {
+            Object.FindObjectOfType<NetworkingManager.NetworkingManager>().StopClient();
+ 
+        }
     }
 
     public void LobbyMenuPressed()
