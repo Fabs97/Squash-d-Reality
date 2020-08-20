@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +26,7 @@ public class ElectroPipelineMatchManager : MatchManager
 
     protected override IEnumerator matchStart()
     {
+        FindObjectOfType<Spawner>().CmdStartSpawning();
         return base.matchStart();
     }
 
