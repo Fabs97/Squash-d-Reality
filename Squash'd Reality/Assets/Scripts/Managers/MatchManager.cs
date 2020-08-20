@@ -49,10 +49,6 @@ public class MatchManager : NetworkBehaviour
         yield return new WaitForSeconds(5f);
         _uiManager.setInfoBoxActive(false);
         _uiManager.UIpanel.GetComponent<Image>().enabled = false;
-        if (isServer)
-        {
-            //START ROOM LOGIC
-        }
         showPlayerUI();
         _uiManager.StartCountdown(challengeTimer);
         

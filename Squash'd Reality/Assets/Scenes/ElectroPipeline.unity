@@ -247,7 +247,7 @@ MonoBehaviour:
   - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
   randomizeSpawn: 1
   deleteFromListAfterSpawn: 1
-  startSpawningFromTheBeginning: 1
+  startSpawningFromTheBeginning: 0
   spawnDoubleObject: 0
   firstSpawnDelay: 6
   spawningDelay: 0
