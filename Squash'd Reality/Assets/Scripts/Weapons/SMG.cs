@@ -8,7 +8,7 @@ public class SMG : Weapon
         base.Start();
         bulletName = "BulletSMG";
         spread = 25f;
-        fireRatioTime = 0.4f;
+        fireRatioTime = 0.1f;
         magazine = 50;
 
     }
