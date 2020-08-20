@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private GameObject[] spawnPositions;
 
     private float rotationSpeed = 3f;
-    private float moveSpeed = 1.2f;
+    private float moveSpeed = 2f;
     private float moveSpeedMultiplier = 1f;
     private float life = 20f;
 
