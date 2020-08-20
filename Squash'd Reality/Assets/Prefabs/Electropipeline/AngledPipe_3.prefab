@@ -603,7 +603,7 @@ MonoBehaviour:
   grabbedBy: 
   cubeMovement: 0
   snapValue: 1
-  moveBox: {fileID: 0}
+  moveBox: {fileID: 521364808}
 --- !u!114 &7937916443183973754
 MonoBehaviour:
   m_ObjectHideFlags: 0
