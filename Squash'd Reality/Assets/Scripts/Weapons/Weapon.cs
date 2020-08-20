@@ -23,17 +23,18 @@ public class Weapon : MonoBehaviour {
     {
         transform.parent.gameObject.GetComponent<AudioManager>().playGunshotSound();
         PlayerMoveset parentMoveset = GetComponentInParent<PlayerMoveset>();
+        UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         if (parentMoveset.hasAuthority && canShoot)
         {
             canShoot = false;
             BulletInstantiation(parentMoveset.playerName);
             magazine--;
+            uiManager.setMagazineValue(magazine.ToString());
             StartCoroutine(fireRatio());   
         }
         if(magazine == 0)
         {
             //instantiate pistol
-            UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
             GameObject oldWeapon = this.gameObject;
             Destroy(oldWeapon.GetComponent<Weapon>());
             Weapon newWeapon = gameObject.AddComponent<Pistol>();

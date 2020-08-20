@@ -122,6 +122,9 @@ public class CookingTime : Challenge {
 
         
         int numPlayer = _networkingManager.getPlayersNames().Count;
+        Debug.LogError("DIFFICULTY: " + difficulty);
+        Debug.LogError("DIFFICULTY MULTIPLIER: " + difficultyMultiplier);
+        Debug.LogError("NUM PLAYERS: " + numPlayer);
         int objectsToSpawn = ((difficulty * difficultyMultiplier)/2)*numPlayer;
         Debug.LogError("OBJECTS TO SPAWN: " + objectsToSpawn);
 

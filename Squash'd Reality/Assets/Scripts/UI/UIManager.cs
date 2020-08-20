@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     public Button MatchStartingBox;
     public TextMeshProUGUI MatchStartingBox_Text;
     public GameObject UIpanel;
+    public GameObject WeaponMagazineButton;
+    public TextMeshProUGUI WeaponMagazineText;
 
     //-----------------------------------TIMER VARIABLES----------------------------------------------
     public float seconds, minutes;
@@ -150,6 +152,17 @@ public class UIManager : MonoBehaviour
     public void setWeaponActive(bool value)
     {
         Weapon_Image.gameObject.SetActive(value);
+        WeaponMagazineButton.SetActive(value);
+    }
+
+    public void setMagazineActive(bool value)
+    {
+        WeaponMagazineButton.SetActive(value);
+    }
+
+    public void setMagazineValue(string value)
+    {
+        WeaponMagazineText.text = "Magazine: " + value;
     }
     
     //---------------------------------------INFO BOX-----------------------------------------------
@@ -206,6 +219,7 @@ public class UIManager : MonoBehaviour
         setWeaponActive(value);
         setInfoBoxActive(value);
         setMatchStartingButtonActive(value);
+        setMagazineActive(value);
     }
 
     public void showUIPlayer(bool value)
