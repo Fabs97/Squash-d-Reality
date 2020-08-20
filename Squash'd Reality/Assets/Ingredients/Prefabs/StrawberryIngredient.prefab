@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541413295935205056}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 541413295935173350}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!33 &541413295934403264
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -102,13 +102,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541413295935205058}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 541413295935173350}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!33 &541413295934403266
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541413295935205062}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.147766, y: 0.906, z: -9.966}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
@@ -191,7 +191,7 @@ Transform:
   - {fileID: 541413295935173344}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6862710684706846439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -203,8 +203,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.5, y: 6.5, z: 6.5}
-  m_Center: {x: 0, y: 0.28, z: 3.53}
+  m_Size: {x: 5.216596, y: 6.5102105, z: 4.204003}
+  m_Center: {x: -0.07683623, y: 2.8753004, z: 0.12538682}
 --- !u!114 &2391576442205988935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Strawberry
   image: {fileID: 2800000, guid: a6db9a45d54d51c48bf2d7f2f5795a32, type: 3}
+  isDouble: 0
 --- !u!114 &3644746253459736961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,13 +286,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 6.03
+  m_Height: 6.48
   m_Radius: 0
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 2.6}
+  m_Center: {x: 0, y: 2.95, z: 0.13}
 --- !u!114 &392913776965425723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +307,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 0.5
   cubeMovement: 0
+  grabbedBy: 
