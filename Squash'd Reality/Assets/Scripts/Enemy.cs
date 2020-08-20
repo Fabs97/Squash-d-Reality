@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private float rotationSpeed = 3f;
     private float moveSpeed = 0.8f;
     private float moveSpeedMultiplier = 1f;
-    private float life;
+    private float life = 20f;
 
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        life = 20f;
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
         if (enemyFromRoom)

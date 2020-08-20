@@ -24,7 +24,7 @@ public class PlayerMoveset : NetworkBehaviour
 
     [SyncVar] public string playerName;
     [SyncVar(hook="_meshActiveChanged")] public bool meshActive;
-    public int life;
+    public int life = 1;
 
     private Coroutine durationPowerup;
 
@@ -43,7 +43,6 @@ public class PlayerMoveset : NetworkBehaviour
         }
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
-        life = 100000;
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         if (hasAuthority && playerStats.playerName == "default")
         {
