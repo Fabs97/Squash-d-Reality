@@ -25,6 +25,7 @@ public class Grabber : NetworkBehaviour
 
     private string playerName;
     
+    
     void Start()
     {
         playerName = transform.gameObject.GetComponent<PlayerMoveset>().playerName;
@@ -88,6 +89,7 @@ public class Grabber : NetworkBehaviour
         }
         if(toGrab.tag == "Pipe")
         {
+            transform.GetComponent<PlayerMoveset>().playerCanMove = true;
             StartCoroutine(waitReleaseGrab());
         }
         else
@@ -123,6 +125,7 @@ public class Grabber : NetworkBehaviour
         toGrab = go;
         if (toGrab.tag == "Pipe") {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(gameObject, false);
+            transform.GetComponent<PlayerMoveset>().playerCanMove = false;
         }
 
         if (scene.name == "CookingTime") {

@@ -31,6 +31,8 @@ public class PlayerMoveset : NetworkBehaviour
     private bool pogoStickActive;
 
     private bool pauseActive = false;
+
+    public bool playerCanMove = true;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
@@ -41,6 +43,8 @@ public class PlayerMoveset : NetworkBehaviour
         if (isServer) {
             meshActive = true;
         }
+
+        playerCanMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
         life = 100000;
@@ -83,8 +87,16 @@ public class PlayerMoveset : NetworkBehaviour
     }
 
     void FixedUpdate() {
-        if (hasAuthority && !pauseActive) {
+        if (hasAuthority && !pauseActive && playerCanMove) {
             Move();
+        }
+
+        if (!playerCanMove)
+        {
+            float x =gameObject.transform.position.x;
+            float y = 1.9f;
+            float z = gameObject.transform.position.z;
+            gameObject.transform.position = new Vector3(x,y,z);
         }
     }
 
