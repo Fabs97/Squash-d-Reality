@@ -36,16 +36,17 @@ public class PlayerMoveset : NetworkBehaviour
 
     private bool nameSetted = false;
     private PlayerStats playerStats;
-    
+
+    private bool isDead = false;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
     private float allyLife = 20f;
-    private void Start() {
-
-
+    private void Start()
+    {
+        isDead = false;
         if (isServer) {
             meshActive = true;
         }
@@ -188,18 +189,18 @@ public class PlayerMoveset : NetworkBehaviour
             _uiManager.setPowerUpButtonActive(false);
         }
 
-        if (isServer)
+        if (isServer && !isDead)
         {
             life = life - damage;
             if (life <= 0)
             {
                 if (hasAuthority)
                 {
+                    isDead = true;
                     playerStats.death++;
                     _uiManager.setInfoBoxText("YOU DIED");        
                     _uiManager.setInfoBoxActive(true);   
                 }
-                
                 GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
                 Destroy(this.gameObject);
             }   

@@ -74,7 +74,11 @@ public class Enemy : NetworkBehaviour
                 transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                players[0].GetComponent<AudioManager>().playEnemyExploded();
+                if (players[0] != null)
+                {
+                    players[0].GetComponent<AudioManager>().playEnemyExploded();
+
+                }
                 /*foreach (var player in players)
                 {
                     player.GetComponent<AudioManager>().playEnemyExploded();
