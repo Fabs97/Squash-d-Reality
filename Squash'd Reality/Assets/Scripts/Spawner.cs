@@ -50,7 +50,10 @@ public class Spawner : NetworkBehaviour
 
     IEnumerator spawningCoroutine(){
         yield return new WaitForSeconds(firstSpawnDelay);
-        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
+        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
+            Debug.LogError("SPAWNER NAME: " + gameObject.name);
+            Debug.LogError("SPAWNING DELAY: " + spawningDelay);
+            Debug.LogError("SPAWNED: " +objectsSpawnedCount);
             if(_matchManager.getTimeLeft() <= timeStopSpawn) break;
             if(_spawningIndex == prefabsToSpawn.Count && !randomizeSpawn && !deleteFromListAfterSpawn) break;
 
