@@ -8,7 +8,7 @@ public class Door : NetworkBehaviour {
     private SceneLoader.SceneLoader _sceneLoader;
     private NetworkGameManager _networkGameManager;
     
-    [SerializeField] private string nextSceneName;
+    [SerializeField] public string nextSceneName;
     [SerializeField] private string doorName;
     [Range(1, 3)] [SerializeField] private int difficulty = 1; 
     private int playersInMe;

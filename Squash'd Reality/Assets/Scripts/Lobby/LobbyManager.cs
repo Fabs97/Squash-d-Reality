@@ -15,7 +15,9 @@ public class LobbyManager : MonoBehaviour
         List<string> playedRooms = _networkingManager.getPlayedRooms();
         foreach (var door in challengeDoors)
         {
-            door.SetActive(playedRooms.Contains(door.name));
+            Debug.LogError("DOOR: " + door.GetComponent<Door>().nextSceneName);
+            Debug.LogError("ACTIVE: " + playedRooms.Contains(door.GetComponent<Door>().nextSceneName));
+            door.SetActive(playedRooms.Contains(door.GetComponent<Door>().nextSceneName));
         }
     }
 }
