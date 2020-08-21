@@ -18,6 +18,7 @@ namespace NetworkingManager {
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
+            _playedRoomsNames = new List<string>();
         }
         public void createLobby(){
             base.StartHost();
@@ -135,7 +136,6 @@ namespace NetworkingManager {
         }
 
         public void addPlayedRoom(string room){
-            if(_playedRoomsNames == null) _playedRoomsNames = new List<string>();
             if(!_playedRoomsNames.Contains(room)) _playedRoomsNames.Add(room);
         }
 
