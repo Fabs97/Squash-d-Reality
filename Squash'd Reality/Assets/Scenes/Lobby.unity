@@ -1102,7 +1102,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: doorName
-      value: ElectroPipeline
+      value: Electropipeline
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
@@ -2187,7 +2187,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: doorName
-      value: TrenchTime
+      value: Trench Time
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
@@ -4069,7 +4069,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: doorName
-      value: DarkPuzzle
+      value: Dark Puzzle
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
@@ -4968,7 +4968,7 @@ PrefabInstance:
     - target: {fileID: 317236065249196896, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: doorName
-      value: CookingTime
+      value: Cooking Time
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196898, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
