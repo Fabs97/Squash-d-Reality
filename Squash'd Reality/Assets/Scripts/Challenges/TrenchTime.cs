@@ -17,6 +17,7 @@ public class TrenchTime : Challenge
     {
         base.Start();
         playersAlive = 100;
+        
     }
 
     // Update is called once per frame
@@ -32,8 +33,7 @@ public class TrenchTime : Challenge
             endChallenge(true);
             matchEnded = true;
         }
-        
-        
+
     }
 
     public void setPlayersConnected(int num)

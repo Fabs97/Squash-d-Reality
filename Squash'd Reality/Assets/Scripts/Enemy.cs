@@ -34,11 +34,17 @@ public class Enemy : NetworkBehaviour
     private bool isDead = false;
 
     private bool canExplode = true;
+    
+    [SyncVar] private bool serverExplode = false;
+    private bool exploded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isServer)
+        {
+            serverExplode = false;
+        }
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
         if (enemyFromRoom)
@@ -58,6 +64,35 @@ public class Enemy : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (serverExplode && !exploded)
+        {
+            exploded = true;
+            if (!isDead)
+            {
+                stopMovement = true;
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                players[0].GetComponent<AudioManager>().playEnemyExploded();
+                /*foreach (var player in players)
+                {
+                    player.GetComponent<AudioManager>().playEnemyExploded();
+                }*/
+                explosion.SetActive(true);
+
+                for (int i = 0; i < players.Length; i++)
+                {
+                    float distance = Vector3.Distance(transform.position, players[i].transform.position);
+                    if (distance <= distanceToKill)
+                    {
+                        players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
+                    }
+                }  
+            }
+        
+            Destroy(this.gameObject, 1.5f);   
+        }
         if (!stopMovement)
         {
             if (canFollowPlayer)
@@ -134,31 +169,10 @@ public class Enemy : NetworkBehaviour
     IEnumerator killNearbyPlayers(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        if (!isDead)
+        if (isServer)
         {
-            stopMovement = true;
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            players[0].GetComponent<AudioManager>().playEnemyExploded();
-            /*foreach (var player in players)
-            {
-                player.GetComponent<AudioManager>().playEnemyExploded();
-            }*/
-            explosion.SetActive(true);
-
-            for (int i = 0; i < players.Length; i++)
-            {
-                float distance = Vector3.Distance(transform.position, players[i].transform.position);
-                if (distance <= distanceToKill)
-                {
-                    players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
-                }
-            }  
+            serverExplode = true;
         }
-        
-        Destroy(this.gameObject, 1.5f);
 
     }
 

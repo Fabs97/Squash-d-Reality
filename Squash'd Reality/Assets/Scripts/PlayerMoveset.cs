@@ -24,7 +24,7 @@ public class PlayerMoveset : NetworkBehaviour
 
     [SyncVar] public string playerName;
     [SyncVar(hook="_meshActiveChanged")] public bool meshActive;
-    public int life = 1;
+    [SyncVar] public int life = 1;
 
     private Coroutine durationPowerup;
 
@@ -37,12 +37,15 @@ public class PlayerMoveset : NetworkBehaviour
     private bool nameSetted = false;
     private PlayerStats playerStats;
     
+    
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
     private float allyLife = 20f;
     private void Start() {
+
+
         if (isServer) {
             meshActive = true;
         }
@@ -54,6 +57,7 @@ public class PlayerMoveset : NetworkBehaviour
         
         
         audioManager = GetComponent<AudioManager>();
+        
 
         if (playerName == GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName)
         {
@@ -183,21 +187,27 @@ public class PlayerMoveset : NetworkBehaviour
         {
             _uiManager.setPowerUpButtonActive(false);
         }
-        life = life - damage;
-        if (life <= 0)
+
+        if (isServer)
         {
-            if (hasAuthority)
+            life = life - damage;
+            if (life <= 0)
             {
-                PlayerStats playerStats = GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>();
-                playerStats.death++;
-                _uiManager.setInfoBoxText("YOU DIED");        
-                _uiManager.setInfoBoxActive(true);   
-            }
-            GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
-            Destroy(this.gameObject);
-        }   
+                if (hasAuthority)
+                {
+                    playerStats.death++;
+                    _uiManager.setInfoBoxText("YOU DIED");        
+                    _uiManager.setInfoBoxActive(true);   
+                }
+                
+                GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
+                Destroy(this.gameObject);
+            }   
+        }
+        
         
     }
+    
     //-------------------------------------------POWER UPs SETTINGS---------------------------------------
     public void setSpartanArmorActive()
     {
