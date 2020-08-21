@@ -15,9 +15,9 @@ MonoBehaviour:
   sceneName: Lobby
   spawnPlayers: 1
   playersPositions:
-  - {x: 2, y: 0.7, z: -6}
-  - {x: 8, y: 0.7, z: -10}
-  - {x: 8, y: 0.7, z: -6}
-  - {x: 2, y: 0.7, z: -10}
+  - {x: 3.5, y: 0.7, z: -12}
+  - {x: 5.5, y: 0.7, z: -12}
+  - {x: 7.5, y: 0.7, z: -12}
+  - {x: 9.5, y: 0.7, z: -12}
   isDark: 0
   isChallenge: 0
