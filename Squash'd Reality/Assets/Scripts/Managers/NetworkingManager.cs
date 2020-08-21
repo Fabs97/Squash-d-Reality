@@ -50,6 +50,11 @@ namespace NetworkingManager {
             if (sceneName=="LobbySelection" && Time.time >= nextRefreshTime) {
                 RefreshMatches();
             }
+
+            if (sceneName == "MainMenu")
+            {
+                _playersNames.Clear();
+            }
         }
 
         private void RefreshMatches() {
