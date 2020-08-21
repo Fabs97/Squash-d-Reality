@@ -90,11 +90,13 @@ public class TrenchTime : Challenge
             
             if (_spawner.name == "EnemySpawnerRoom")
             {
-                _spawner.GetComponent<Spawner>().setSpawningDelay(numPlayer*1.75f);
+                int objectsToSpawn = 11 * numPlayer;
+                _spawner.GetComponent<Spawner>().setSpawningDelay(76f/objectsToSpawn);
 
             }else if (_spawner.name == "EnemySpawnerFromBoxes")
             {
-                _spawner.GetComponent<Spawner>().setSpawningDelay(numPlayer*1.2f);
+                int objectsToSpawn = 15 * numPlayer;
+                _spawner.GetComponent<Spawner>().setSpawningDelay(72f/objectsToSpawn);
             }
         }
     }
