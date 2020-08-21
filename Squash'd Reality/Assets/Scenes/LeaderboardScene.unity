@@ -455,6 +455,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2281007422318494540, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 79eb1eff65c9c73418e63f9565ad78f0, type: 3}
     - target: {fileID: 2281007422415347954, guid: 25f506438fcfdbe498a00384b83e7824,
         type: 3}
       propertyPath: m_LocalPosition.x
