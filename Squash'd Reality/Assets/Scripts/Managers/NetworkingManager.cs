@@ -51,7 +51,7 @@ namespace NetworkingManager {
                 RefreshMatches();
             }
 
-            if (sceneName == "MainMenu")
+            if (sceneName == "MainMenu" && _playersNames!=null)
             {
                 _playersNames.Clear();
             }
