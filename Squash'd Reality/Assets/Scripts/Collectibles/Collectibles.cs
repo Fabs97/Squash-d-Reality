@@ -31,10 +31,14 @@ public class Collectibles : MonoBehaviour
 
    private void OnTriggerExit(Collider other)
    {
-      StopCoroutine(intelAcquisition);
-      triggerActivated = false;
-      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
-      GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
+      if (other.tag == "Player")
+      {
+         StopCoroutine(intelAcquisition);
+         triggerActivated = false;
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
+      }
+      
    }
 
    private void Update()
