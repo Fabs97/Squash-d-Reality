@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class Challenge : MonoBehaviour {
@@ -40,6 +41,7 @@ public class Challenge : MonoBehaviour {
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMatchWon();
             uiManager.setInfoBoxText("YOU WIN!");
             uiManager.setTimerActive(false);
+            FindObjectOfType<NetworkingManager.NetworkingManager>().addPlayedRoom(SceneManager.GetActiveScene().name);
             StartCoroutine(waitToSpawnDoors());
         } else {
             uiManager.setInfoBoxText("YOU LOSE!");
