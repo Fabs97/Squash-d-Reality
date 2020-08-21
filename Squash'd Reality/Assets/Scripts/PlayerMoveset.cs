@@ -33,6 +33,9 @@ public class PlayerMoveset : NetworkBehaviour
     private bool pauseActive = false;
 
     public bool playerCanMove = true;
+
+    private bool nameSetted = false;
+    private PlayerStats playerStats;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
@@ -47,11 +50,8 @@ public class PlayerMoveset : NetworkBehaviour
         playerCanMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
-        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
-        if (hasAuthority && playerStats.playerName == "default")
-        {
-            playerStats.playerName = playerName;
-        }
+        playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        
         
         audioManager = GetComponent<AudioManager>();
 
@@ -82,6 +82,11 @@ public class PlayerMoveset : NetworkBehaviour
         }else if (Input.GetButtonDown("Start") && pauseActive)
         {
             pauseActive = false;
+        }
+        if (!nameSetted && hasAuthority)
+        {
+            nameSetted = true;
+            playerStats.playerName = playerName;
         }
     }
 

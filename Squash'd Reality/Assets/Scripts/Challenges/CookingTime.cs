@@ -43,6 +43,8 @@ public class CookingTime : Challenge {
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         if(!ingredient.name.Equals(activeIngredients[0].name))
         { 
+            Debug.LogError("PLAYER STATS NAME: " + playerStats.playerName);
+            Debug.LogError("PLAYER NAME: " + playerName);
             if (playerStats.playerName == playerName)
             {
                 Debug.LogError("NON ORDINATO");
@@ -58,6 +60,8 @@ public class CookingTime : Challenge {
         }else
         
         {
+            Debug.LogError("PLAYER STATS NAME: " + playerStats.playerName);
+            Debug.LogError("PLAYER NAME: " + playerName);
             if (playerStats.playerName == playerName)
             {
                 Debug.LogError("ORDINATO");
