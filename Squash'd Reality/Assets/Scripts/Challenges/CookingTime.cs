@@ -34,20 +34,14 @@ public class CookingTime : Challenge {
 
     public void insertedIngredientInCauldron(Ingredient ingredient, string playerName)
     {
-        Debug.LogError("INSERTED: " + ingredient);
-        Debug.LogError("FIRST IN LIST: " + activeIngredients[0].name);
-        Debug.LogError("INSERTED By: " + playerName);
         int numPlayers = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<CookingTimeMatchManager>().numPlayers;
         int objectToCook = ((difficulty * difficultyMultiplier)/2)*numPlayers;
         GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
         if(!ingredient.name.Equals(activeIngredients[0].name))
-        { 
-            Debug.LogError("PLAYER STATS NAME: " + playerStats.playerName);
-            Debug.LogError("PLAYER NAME: " + playerName);
+        {
             if (playerStats.playerName == playerName)
             {
-                Debug.LogError("NON ORDINATO");
                 playerStats.notOrdered++;
             }
 
@@ -60,11 +54,8 @@ public class CookingTime : Challenge {
         }else
         
         {
-            Debug.LogError("PLAYER STATS NAME: " + playerStats.playerName);
-            Debug.LogError("PLAYER NAME: " + playerName);
             if (playerStats.playerName == playerName)
             {
-                Debug.LogError("ORDINATO");
                 playerStats.greetChef++;
             }  
             
