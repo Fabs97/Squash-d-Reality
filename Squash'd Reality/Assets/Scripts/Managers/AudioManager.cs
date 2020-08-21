@@ -116,7 +116,10 @@ public class AudioManager : NetworkBehaviour
 
     public void playEnemyExploded()
     {
-        CmdSendServerEnemyExploded(0);
+        if (hasAuthority)
+        {
+            CmdSendServerEnemyExploded(0);
+        }
     }
 
     [Command]
