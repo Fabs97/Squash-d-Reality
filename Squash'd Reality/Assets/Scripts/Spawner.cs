@@ -30,7 +30,7 @@ public class Spawner : NetworkBehaviour
     [SerializeField] private bool isElectroPipeline = false;
 
     void Start() {
-        if(startSpawningFromTheBeginning) CmdStartSpawning();
+        if(hasAuthority && startSpawningFromTheBeginning) CmdStartSpawning();
         _matchManager = FindObjectOfType<MatchManager>();
 
     }
