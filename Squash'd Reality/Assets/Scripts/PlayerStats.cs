@@ -60,6 +60,16 @@ public class PlayerStats : MonoBehaviour
 
    public void setTotalPoints()
    {
+      Debug.LogError("POWERUP: " +powerUp );
+      Debug.LogError("COLLECTIBLE: " + collectible);
+      Debug.LogError("CABLE MANAGEMENT: " + cableManagement);
+      Debug.LogError("GREET CHEF: " + greetChef);
+      Debug.LogError("ANTIVIRUS KILLED: " + antivirusKilled);
+      Debug.LogError("PROFESSIONAL SNIPER: " + professionalSniper);
+      Debug.LogError("FRIENDLY KILL: " + friendlyKill);
+      Debug.LogError("TIMEOUT: " + timeOut);
+      Debug.LogError("ELECTROCUTION: " + electrocution);
+      Debug.LogError("NOT ORDERED: " + notOrdered);
       totalPoints = powerUp + collectible + cableManagement + greetChef + antivirusKilled + professionalSniper - friendlyKill - timeOut - electrocution -notOrdered -trenchTimeFriendlyKill;
    }
 
