@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Vista : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Vista : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Player")
+        if (other.tag=="Player" && other.GetComponent<PlayerMoveset>().hasAuthority)
         {
             Canvas.SetActive(true);
         }
@@ -22,7 +23,7 @@ public class Vista : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.GetComponent<PlayerMoveset>().hasAuthority)
         {
             Canvas.SetActive(true);
         }
@@ -30,7 +31,7 @@ public class Vista : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.GetComponent<PlayerMoveset>().hasAuthority)
         {
             Canvas.SetActive(false);
         }
