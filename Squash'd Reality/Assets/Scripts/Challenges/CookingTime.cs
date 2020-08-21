@@ -45,6 +45,7 @@ public class CookingTime : Challenge {
         { 
             if (playerStats.playerName == playerName)
             {
+                Debug.LogError("NON ORDINATO");
                 playerStats.notOrdered++;
             }
 
@@ -59,6 +60,7 @@ public class CookingTime : Challenge {
         {
             if (playerStats.playerName == playerName)
             {
+                Debug.LogError("ORDINATO");
                 playerStats.greetChef++;
             }  
             
