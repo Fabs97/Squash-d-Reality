@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
 
 
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
 
-    private float distanceToKill = 1f;
+    private float distanceToKill = 1.5f;
     private bool isExploding = false;
     private bool canFollowPlayer = false;
 
@@ -31,14 +32,19 @@ public class Enemy : MonoBehaviour
     private bool stopMovement = false;
 
     private bool isDead = false;
-    
+
+    private bool canExplode = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
         if (enemyFromRoom)
         {
+            canExplode = false;
+            StartCoroutine(waitToExplode());
             canFollowPlayer = true;
             moveSpeedMultiplier = 1.3f;
         }
@@ -61,7 +67,7 @@ public class Enemy : MonoBehaviour
                 {
                     int playerIndex = nearbyPlayerIndex();
                     float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
-                    if (!isExploding && distance <= distanceToKill)
+                    if (!isExploding && distance <= distanceToKill && canExplode)
                     {
                         isExploding = true;
                         StartCoroutine(killNearbyPlayers(1f));
@@ -156,6 +162,11 @@ public class Enemy : MonoBehaviour
 
     }
 
+    IEnumerator waitToExplode()
+    {
+        yield return new WaitForSeconds(1f);
+        canExplode = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
