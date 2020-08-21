@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private float rotationSpeed = 3f;
     private float moveSpeed = 2f;
     private float moveSpeedMultiplier = 1f;
+    public float timeSpeedMultiplier = 1f;
     private float life = 20f;
 
     private float BasicDamage = 6.7f;
@@ -41,6 +42,11 @@ public class Enemy : MonoBehaviour
             canFollowPlayer = true;
             moveSpeedMultiplier = 1.3f;
         }
+
+        if (GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().timeLeft <= 20f)
+        {
+            timeSpeedMultiplier = 1.4f;
+        }
     }
 
     // Update is called once per frame
@@ -61,7 +67,7 @@ public class Enemy : MonoBehaviour
                         StartCoroutine(killNearbyPlayers(1f));
                     }
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * Time.deltaTime;   
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * timeSpeedMultiplier * Time.deltaTime;   
                 }   
             }
             else
@@ -70,7 +76,7 @@ public class Enemy : MonoBehaviour
                 if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
                 {
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier* Time.deltaTime;    
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * timeSpeedMultiplier * Time.deltaTime;    
                 }
                 else
                 {

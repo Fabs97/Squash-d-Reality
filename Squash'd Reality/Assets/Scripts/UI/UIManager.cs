@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -28,10 +29,11 @@ public class UIManager : MonoBehaviour
 
     //-----------------------------------TIMER VARIABLES----------------------------------------------
     public float seconds, minutes;
-    [SerializeField] private float timeLeft;
+    [SerializeField] public float timeLeft;
     [SerializeField] private bool startTimer = false;
     private bool matchStarting = false;
     private float timeStarting = 5f;
+    private bool speedSetted = false;
     private void Awake()
     {
         setAllElementsActive(false);
@@ -41,7 +43,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {        
         setAllElementsActive(false);
-
+        speedSetted = false;
     }
 
     void Update()
@@ -77,6 +79,15 @@ public class UIManager : MonoBehaviour
             minutes = (int) (timeLeft/ 60f); 
             seconds = (int) (timeLeft % 60f); 
             timerCounter.text = minutes.ToString("00") + ":" + seconds.ToString("00");   
+            if (!speedSetted && SceneManager.GetActiveScene().name == "TrenchTime" && timeLeft <= 20f)
+            {
+                speedSetted = true;
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (var enemy in enemies)
+                {
+                    enemy.GetComponent<Enemy>().timeSpeedMultiplier = 1.4f;
+                }
+            }
         }
         else
         {
@@ -193,7 +204,7 @@ public class UIManager : MonoBehaviour
             timeStarting -= Time.deltaTime; 
             minutes = (int) (timeStarting/ 60f); 
             seconds = (int) (timeStarting % 60f); 
-            MatchStartingBox_Text.text = "Match starting in: " + minutes.ToString("00") + ":" + seconds.ToString("00");   
+            MatchStartingBox_Text.text = "Match starting in: " + minutes.ToString("00") + ":" + seconds.ToString("00");
         }
         else
         {
