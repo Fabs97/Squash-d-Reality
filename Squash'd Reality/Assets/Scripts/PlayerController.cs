@@ -119,7 +119,7 @@ public class PlayerController : NetworkBehaviour
         GameObject spawnedGameObject = Instantiate(bulletPrefab, position, rotation);
         spawnedGameObject.transform.Rotate(randomNumberX, 0f, randomNumberZ);
         spawnedGameObject.GetComponent<Rigidbody>().AddForce(spawnedGameObject.transform.forward * bulletForce, ForceMode.Impulse);
-        spawnedGameObject.name = bulletName;
+        spawnedGameObject.GetComponent<Bullet>().bulletName = bulletName;
         spawnedGameObject.GetComponent<Bullet>().shooterName = shooterName;
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);

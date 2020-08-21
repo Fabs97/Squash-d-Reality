@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -147,21 +147,21 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.LogError(other.gameObject.GetComponent<Bullet>().shooterName);
+            string bulletName = other.gameObject.GetComponent<Bullet>().bulletName;
             //TODO: insert animation kill
-            if (other.gameObject.name == "BulletPistol")
+            if ( bulletName== "BulletPistol")
             {
                 life -= BasicDamage;
-            }else if (other.gameObject.name == "BulletShotgun")
+            }else if (bulletName == "BulletShotgun")
             {
                 life -= BasicDamage;
-            } else if (other.gameObject.name == "BulletAssaultRifle")
+            } else if (bulletName == "BulletAssaultRifle")
             {
                 life -= MediumDamage;
-            }else if (other.gameObject.name == "BulletSniperRifle")
+            }else if (bulletName == "BulletSniperRifle")
             {
                 life -= HighDamage;
-            }else if (other.gameObject.name == "BulletSMG")
+            }else if (bulletName == "BulletSMG")
             {
                 life -= BasicDamage;
             }
