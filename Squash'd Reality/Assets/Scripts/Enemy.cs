@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject explosion;
 
     private bool stopMovement = false;
+
+    private bool isDead = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -119,26 +122,30 @@ public class Enemy : MonoBehaviour
     IEnumerator killNearbyPlayers(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        stopMovement = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        players[0].GetComponent<AudioManager>().playEnemyExploded();
-        /*foreach (var player in players)
+        if (!isDead)
         {
-            player.GetComponent<AudioManager>().playEnemyExploded();
-        }*/
-        explosion.SetActive(true);
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            float distance = Vector3.Distance(transform.position, players[i].transform.position);
-            if (distance <= distanceToKill)
+            stopMovement = true;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            players[0].GetComponent<AudioManager>().playEnemyExploded();
+            /*foreach (var player in players)
             {
-                players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
-            }
+                player.GetComponent<AudioManager>().playEnemyExploded();
+            }*/
+            explosion.SetActive(true);
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                float distance = Vector3.Distance(transform.position, players[i].transform.position);
+                if (distance <= distanceToKill)
+                {
+                    players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
+                }
+            }  
         }
+        
         Destroy(this.gameObject, 1.5f);
 
     }
@@ -148,7 +155,6 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             string bulletName = other.gameObject.GetComponent<Bullet>().bulletName;
-            //TODO: insert animation kill
             if ( bulletName== "BulletPistol")
             {
                 life -= BasicDamage;
@@ -174,14 +180,23 @@ public class Enemy : MonoBehaviour
                     player.GetComponent<AudioManager>().playEnemyKilled();
                     PlayerMoveset playerMoveset = player.GetComponent<PlayerMoveset>();
                     if (playerMoveset.playerName ==
-                        other.gameObject.GetComponent<Bullet>().shooterName)
+                        other.gameObject.GetComponent<Bullet>().shooterName && !isDead)
                     {
                         playerMoveset.enemyKilled(); 
                     }
                 }
-                Destroy(this.gameObject);
+                disableEnemy();
+                Destroy(this.gameObject,0.2f);
             }
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, 0.2f);
         }
+    }
+
+    private void disableEnemy()
+    {
+        isDead = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        stopMovement = true;
     }
 }
