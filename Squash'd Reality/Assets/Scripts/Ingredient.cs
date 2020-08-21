@@ -8,6 +8,7 @@ public class Ingredient : NetworkBehaviour {
     private CookingTime _cookingTimeManager;
     public Texture2D image;
     [SyncVar] public bool isDouble;
+    private bool inserted = false;
     private void Start() {
         _cookingTimeManager = Object.FindObjectOfType<CookingTime>();
         StartCoroutine(wait());
@@ -15,9 +16,9 @@ public class Ingredient : NetworkBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Cauldron")
+        if(!inserted && other.gameObject.tag == "Cauldron")
         {
-            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            inserted = true;
             _cookingTimeManager.insertedIngredientInCauldron(this, transform.gameObject.GetComponent<GrabbableMovementCookingTime>().grabbedBy);
             Destroy(gameObject, 3f);
         }
