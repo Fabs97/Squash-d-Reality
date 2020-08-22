@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087613361096800040}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.2, y: 0.683, z: -9.902}
   m_LocalScale: {x: 9.5, y: 9.5, z: 9.5}
   m_Children:
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: RedPepper
   image: {fileID: 2800000, guid: 1177331efcd105940aa17060fac2b30c, type: 3}
+  isDouble: 0
 --- !u!114 &3983745472862680375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 0.5
   cubeMovement: 0
+  grabbedBy: 
 --- !u!1 &4087613361096800042
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 4087613361096800042}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5753736, y: 1, z: 1.5303776}
   m_Children: []
   m_Father: {fileID: 4087613361097222920}
   m_RootOrder: 0
