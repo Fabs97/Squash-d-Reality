@@ -74,6 +74,9 @@ public class PlayerMoveset : NetworkBehaviour
             }else if (SceneManager.GetActiveScene().name == "ElectroPipeline")
             {
                 audioManager.playMusicLevel(3);
+            }else if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                audioManager.playMusicLevel(4);
             }  
         }
         

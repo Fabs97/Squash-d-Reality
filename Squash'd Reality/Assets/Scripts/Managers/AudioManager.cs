@@ -22,6 +22,7 @@ public class AudioManager : NetworkBehaviour
      * 1 --> darkPuzzle;
      * 2 --> trenchTime;
      * 3 --> electroPipeline;
+     * 4 --> lobby
      */
     [SerializeField] private AudioClip[] enemyKilledSound;
     [SerializeField] private AudioClip[] collectibleSound;
@@ -275,6 +276,10 @@ public class AudioManager : NetworkBehaviour
     {
         musicLevelSource.PlayOneShot(musicLevel[id]);
         musicLevelSource.loop = true;
+        if (id == 4)
+        {
+            musicLevelSource.volume = 0.1f;
+        }
         //musicLevelSource.volume = 0.1f;
         //CmdSendServerMusicLevel(id);
             

@@ -439,10 +439,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d75e93fdcba69bc4d8ac61d37a3899c2, type: 3}
   - {fileID: 8300000, guid: f9604bbf5b54aff46a731dfe98f85a60, type: 3}
   - {fileID: 8300000, guid: 26c9cc467eefa0c4fa36340e96c3e442, type: 3}
+  - {fileID: 8300000, guid: b46339d0cf8519442b8aac148e3df731, type: 3}
   enemyKilledSound:
   - {fileID: 8300000, guid: 77ecfb25d58c4854995737a3c07fbf82, type: 3}
   collectibleSound:
   - {fileID: 8300000, guid: c6327c80d15f9634a878e05148e2936a, type: 3}
+  enemyKilledSoundSource: {fileID: 0}
+  collectibleSoundSource: {fileID: 0}
+  footStepSource: {fileID: 0}
+  gunReloadSource: {fileID: 0}
+  powerUpSource: {fileID: 0}
+  jumpSource: {fileID: 0}
+  gunshotSource: {fileID: 0}
+  releaseSource: {fileID: 0}
+  winDieSource: {fileID: 0}
+  enemyExplodedSource: {fileID: 0}
+  musicLevelSource: {fileID: 0}
 --- !u!114 &4255156335801621320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +471,7 @@ MonoBehaviour:
   playerName: 
   meshActive: 0
   life: 0
+  playerCanMove: 1
 --- !u!1 &7241278126833745248
 GameObject:
   m_ObjectHideFlags: 0

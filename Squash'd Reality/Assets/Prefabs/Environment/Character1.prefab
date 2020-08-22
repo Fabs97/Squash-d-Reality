@@ -122,6 +122,8 @@ GameObject:
   - component: {fileID: 8182213492003291620}
   - component: {fileID: 4136423452775151001}
   - component: {fileID: 8551100009668554743}
+  - component: {fileID: 23913846543100952}
+  - component: {fileID: 33926136567602216}
   m_Layer: 0
   m_Name: Character1
   m_TagString: Player
@@ -178,51 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDist: 0.5
---- !u!33 &33926136567602216
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305371141220752972}
-  m_Mesh: {fileID: 4300000, guid: 97e78827b63fa0b45a1e6843c149c417, type: 3}
---- !u!23 &23913846543100952
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305371141220752972}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a3b3b8d4ae3045b43b71301b48d4796f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!114 &114666953628259632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,10 +399,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d75e93fdcba69bc4d8ac61d37a3899c2, type: 3}
   - {fileID: 8300000, guid: f9604bbf5b54aff46a731dfe98f85a60, type: 3}
   - {fileID: 8300000, guid: 26c9cc467eefa0c4fa36340e96c3e442, type: 3}
+  - {fileID: 8300000, guid: b46339d0cf8519442b8aac148e3df731, type: 3}
   enemyKilledSound:
   - {fileID: 8300000, guid: 77ecfb25d58c4854995737a3c07fbf82, type: 3}
   collectibleSound:
   - {fileID: 8300000, guid: c6327c80d15f9634a878e05148e2936a, type: 3}
+  enemyKilledSoundSource: {fileID: 0}
+  collectibleSoundSource: {fileID: 0}
+  footStepSource: {fileID: 0}
+  gunReloadSource: {fileID: 0}
+  powerUpSource: {fileID: 0}
+  jumpSource: {fileID: 0}
+  gunshotSource: {fileID: 0}
+  releaseSource: {fileID: 0}
+  winDieSource: {fileID: 0}
+  enemyExplodedSource: {fileID: 0}
+  musicLevelSource: {fileID: 0}
 --- !u!114 &8551100009668554743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +431,52 @@ MonoBehaviour:
   playerName: 
   meshActive: 0
   life: 0
+  playerCanMove: 1
+--- !u!23 &23913846543100952
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305371141220752972}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a3b3b8d4ae3045b43b71301b48d4796f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33926136567602216
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305371141220752972}
+  m_Mesh: {fileID: 4300000, guid: 97e78827b63fa0b45a1e6843c149c417, type: 3}
 --- !u!1 &8020158290582580426
 GameObject:
   m_ObjectHideFlags: 0
