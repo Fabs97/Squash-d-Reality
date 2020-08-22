@@ -148,7 +148,10 @@ public class AudioManager : NetworkBehaviour
     [Command]
     public void CmdSendServerSoundIDRelease(int id)
     {
-        RpcSendSoundIDToClientRelease(id);
+        if (hasAuthority)
+        {
+            RpcSendSoundIDToClientRelease(id);
+        }
     }
     
     [Command]

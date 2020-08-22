@@ -142,6 +142,11 @@ namespace NetworkingManager {
         public List<string> getPlayedRooms(){
             return _playedRoomsNames;
         }
+
+        public void clearPlayedRooms()
+        {
+            _playedRoomsNames.Clear();
+        }
     }
 
 	public static class AvailableMatchesList {

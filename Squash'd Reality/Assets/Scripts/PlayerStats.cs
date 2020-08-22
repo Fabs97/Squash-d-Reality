@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
       resetValues();
    }
 
-   private void resetValues()
+   public void resetValues()
    {
       death = 0;
       timeOut = 0;
