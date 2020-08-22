@@ -7,7 +7,8 @@ public class CookingTimeMatchManager : MatchManager
 {
     [SyncVar] public bool matchFailed;
     [SyncVar] public int numPlayers;
-    private bool isFailed = false; 
+    private bool isFailed = false;
+    private bool stop = false;
     protected override void Start()
     {
         base.Start();
@@ -18,6 +19,7 @@ public class CookingTimeMatchManager : MatchManager
             matchFailed = false;
         }
         isFailed = false;
+        stop = false;
 
     }
 
@@ -28,6 +30,12 @@ public class CookingTimeMatchManager : MatchManager
         {
             isFailed = true;
             wrongFood(); 
+        }
+
+        if (!stop && matchWon && !FindObjectOfType<CookingTime>().matchIsWon)
+        {
+            stop = true;
+            FindObjectOfType<CookingTime>().endChallenge(true);
         }
     }
 
