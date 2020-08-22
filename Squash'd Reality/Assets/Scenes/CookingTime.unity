@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1374,17 +1374,18 @@ MonoBehaviour:
   firstSpawnDelay: 6
   spawningDelay: 10
   maxCoordinates:
-  - {x: 5, y: 10, z: -9}
-  - {x: 6, y: 10, z: 0}
-  - {x: 19, y: 10, z: 0}
-  - {x: 19, y: 10, z: -9}
+  - {x: 6, y: 10, z: -9}
+  - {x: 6.9, y: 10, z: 0}
+  - {x: 18.72, y: 10, z: -0.43}
+  - {x: 18.72, y: 10, z: -8.06}
   minCoordinates:
-  - {x: -4, y: 10, z: -14}
-  - {x: -4, y: 10, z: -6}
-  - {x: 10, y: 10, z: -6}
-  - {x: 10, y: 10, z: -14}
+  - {x: -4, y: 10, z: -13}
+  - {x: -3.9, y: 10, z: -4.8}
+  - {x: 10, y: 10, z: -4.83}
+  - {x: 10.32, y: 10, z: -13.63}
   objectsToSpawnCount: 999
   isCookingTime: 1
+  isElectroPipeline: 0
 --- !u!114 &1243081632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2021,7 +2022,7 @@ PrefabInstance:
     - target: {fileID: 1175341265545091634, guid: 1e9f059244f7dd54081d40134b9d7be1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1175341265545091638, guid: 1e9f059244f7dd54081d40134b9d7be1,
         type: 3}
@@ -2606,6 +2607,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UICookingTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371623394350497932, guid: c83c9b9666a383a45a3fc3c95414f606,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4371623394350497936, guid: c83c9b9666a383a45a3fc3c95414f606,
         type: 3}
