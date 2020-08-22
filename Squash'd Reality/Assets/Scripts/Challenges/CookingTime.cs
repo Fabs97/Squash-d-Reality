@@ -15,7 +15,7 @@ public class CookingTime : Challenge {
     [SerializeField] private GameObject deathzone;
     [SerializeField] private GameObject cauldron;
     [SerializeField] private GameObject DoorPlatform;
-    
+    [SerializeField] private GameObject wall;
     
     protected override void Start()
     {
@@ -144,6 +144,7 @@ public class CookingTime : Challenge {
             deathzone.SetActive(false);
             cauldron.SetActive(false);
             DoorPlatform.SetActive(true);
+            wall.SetActive(false);
         }
     }
 }
