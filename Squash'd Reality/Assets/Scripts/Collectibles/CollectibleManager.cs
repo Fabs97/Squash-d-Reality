@@ -57,7 +57,11 @@ public class CollectibleManager : MonoBehaviour
             return null;
         }
     }
-    
+
+    public void clear()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     //------------------------------------------------------XML E PARSER----------------------------------------------------------------------
     private XmlDocument getXMLFile(string name) {
         XmlDocument toReturn = new XmlDocument(); 
