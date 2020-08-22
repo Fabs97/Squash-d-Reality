@@ -30,12 +30,11 @@ public class AudioManager : NetworkBehaviour
     private void Awake()
     {
         mainSource = GetComponent<AudioSource>();
-
     }
 
     public void playSound(int id)
     {
-        if (id >= 0 && id <= footStep.Length)
+        if (id >= 0 && id <= footStep.Length && !mainSource.isPlaying)
         {
             CmdSendServerSoundIDFootstep(id);
         }
