@@ -58,6 +58,6 @@ public class Collectibles : MonoBehaviour
       }
       playerMoveset.setCollectibleStats();
       PlayerPrefs.SetString(gameObject.name, "true");
-      Destroy(this.gameObject);
+      Destroy(this.gameObject, 1f);
    }
 }
