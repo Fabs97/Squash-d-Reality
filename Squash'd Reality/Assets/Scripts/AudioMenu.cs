@@ -41,6 +41,7 @@ public class AudioMenu : MonoBehaviour
     {
         if (scene.name == "MainMenu")
         {
+            mainSource.Stop();
             mainSource.volume = 0.15f;
             mainSource.PlayOneShot(mainMenuAudio[0]);
             mainSource.loop = true;

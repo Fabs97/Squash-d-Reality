@@ -42,7 +42,7 @@ public class UIGameManager : NetworkBehaviour
             pauseActive = true;
             backgroundPanelPause.SetActive(true);
             GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(mainMenuButton);
-            if (SceneManager.GetActiveScene().name == "Lobby")
+            if (SceneManager.GetActiveScene().name == "Lobby" || SceneManager.GetActiveScene().name == "CharactersSelection")
             {
                 lobbyButton.SetActive(false);
             }
