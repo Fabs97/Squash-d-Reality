@@ -79,7 +79,6 @@ public class Grabber : NetworkBehaviour
     }
 
     public void removeGrab() {
-        gameObject.GetComponent<AudioManager>().playReleaseSound();
         if (scene.name == "CookingTime") {
             toGrab.GetComponent<GrabbableMovementCookingTime>().cubeMovement = false;
         }
@@ -94,6 +93,7 @@ public class Grabber : NetworkBehaviour
         }
         else
         {
+            gameObject.GetComponent<AudioManager>().playReleaseSound();
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
             toGrab = null;
             isGrabbing = false;
@@ -108,6 +108,7 @@ public class Grabber : NetworkBehaviour
         yield return new WaitForSeconds(0.3f);
         if (toGrab != null)
         {
+            gameObject.GetComponent<AudioManager>().playReleaseSound();
             toGrab.GetComponent<Pipe>().releasedPipe();
             GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdRemoveAuthority(toGrab);
         }
