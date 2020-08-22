@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : NetworkBehaviour
 {
-    private AudioSource mainSource;
 
     [SerializeField] private AudioClip[] footStep;
     [SerializeField] private AudioClip[] gunReload;
@@ -26,15 +25,36 @@ public class AudioManager : NetworkBehaviour
      */
     [SerializeField] private AudioClip[] enemyKilledSound;
     [SerializeField] private AudioClip[] collectibleSound;
+    [SerializeField] private AudioSource enemyKilledSoundSource;
+    [SerializeField] private AudioSource collectibleSoundSource;
+    [SerializeField] private AudioSource footStepSource;
+    [SerializeField] private AudioSource gunReloadSource;
+    [SerializeField] private AudioSource powerUpSource;
+    [SerializeField] private AudioSource jumpSource;
+    [SerializeField] private AudioSource gunshotSource;
+    [SerializeField] private AudioSource releaseSource;
+    [SerializeField] private AudioSource winDieSource;
+    [SerializeField] private AudioSource enemyExplodedSource;
+    [SerializeField] private AudioSource musicLevelSource;
 
     private void Awake()
     {
-        mainSource = GetComponent<AudioSource>();
+        footStepSource = gameObject.AddComponent<AudioSource>();
+        gunReloadSource = gameObject.AddComponent<AudioSource>();
+        powerUpSource = gameObject.AddComponent<AudioSource>();
+        jumpSource = gameObject.AddComponent<AudioSource>();
+        gunshotSource = gameObject.AddComponent<AudioSource>();
+        releaseSource = gameObject.AddComponent<AudioSource>();
+        winDieSource = gameObject.AddComponent<AudioSource>();
+        enemyExplodedSource = gameObject.AddComponent<AudioSource>();
+        musicLevelSource = gameObject.AddComponent<AudioSource>();
+        enemyKilledSoundSource = gameObject.AddComponent<AudioSource>();
+        collectibleSoundSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void playSound(int id)
     {
-        if (id >= 0 && id <= footStep.Length && !mainSource.isPlaying)
+        if (id >= 0 && id <= footStep.Length && !footStepSource.isPlaying)
         {
             CmdSendServerSoundIDFootstep(id);
         }
@@ -54,7 +74,7 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(gunReload[0]);
+            gunReloadSource.PlayOneShot(gunReload[0]);
         }
         //CmdSendServerSoundIDGun(0);
     }
@@ -63,7 +83,7 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(powerUp[0]);
+            powerUpSource.PlayOneShot(powerUp[0]);
 
         }
         //CmdSendServerSoundIDPowerUp(0);
@@ -78,19 +98,13 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(gunshot[0]);
-
+            gunshotSource.PlayOneShot(gunshot[0]);
         }
     }
 
     public void playReleaseSound()
     {
         CmdSendServerSoundIDRelease(0);
-    }
-
-    public bool isPlayingClip()
-    {
-        return mainSource.isPlaying;
     }
 
     public void playWinSound()
@@ -188,14 +202,14 @@ public class AudioManager : NetworkBehaviour
     [ClientRpc]
     public void RpcSendSoundIDToClientEnemyExploded(int id)
     {
-        mainSource.PlayOneShot(enemyExploded[id]);
+        enemyExplodedSource.PlayOneShot(enemyExploded[id]);
         
     }
     
     [ClientRpc]
     public void RpcSendSoundIDToClientCollectible(int id)
     {
-        mainSource.PlayOneShot(collectibleSound[id]);
+        collectibleSoundSource.PlayOneShot(collectibleSound[id]);
     }
 
 
@@ -204,21 +218,21 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(enemyKilledSound[id]);
+            enemyKilledSoundSource.PlayOneShot(enemyKilledSound[id]);
         }
     }
     
     [ClientRpc]
     public void RpcSendSoundIDToClientWinDie(int id)
     {
-        mainSource.PlayOneShot(winDie[id]);
+        winDieSource.PlayOneShot(winDie[id]);
 
     }
     
     [ClientRpc]
     public void RpcSendSoundIDToClientRelease(int id)
     {
-        mainSource.PlayOneShot(release[id]);
+        releaseSource.PlayOneShot(release[id]);
 
     }
     
@@ -227,13 +241,13 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(gunshot[id]);
+            gunshotSource.PlayOneShot(gunshot[id]);
         }
     }
     [ClientRpc]
     public void RpcSendSoundIDToClientJump(int id)
     {
-        mainSource.PlayOneShot(jump[id]);
+        jumpSource.PlayOneShot(jump[id]);
     }
     
     [ClientRpc]
@@ -241,7 +255,7 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(powerUp[id]);
+            powerUpSource.PlayOneShot(powerUp[id]);
         }
     }
 
@@ -249,22 +263,22 @@ public class AudioManager : NetworkBehaviour
     [ClientRpc]
     public void RpcSendSoundIDToClientFootstep(int id)
     {
-        mainSource.PlayOneShot(footStep[id]);
+        footStepSource.PlayOneShot(footStep[id]);
     }
     [ClientRpc]
     public void RpcSendSoundIDToClientGun(int id)
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(gunReload[id]);
+            gunReloadSource.PlayOneShot(gunReload[id]);
         }
     }
     
     public void playMusicLevel(int id)
     {
-        mainSource.PlayOneShot(musicLevel[id]);
-        mainSource.loop = true;
-        //mainSource.volume = 0.1f;
+        musicLevelSource.PlayOneShot(musicLevel[id]);
+        musicLevelSource.loop = true;
+        //musicLevelSource.volume = 0.1f;
         //CmdSendServerMusicLevel(id);
             
     }
@@ -280,9 +294,9 @@ public class AudioManager : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            mainSource.PlayOneShot(musicLevel[id]);
-            mainSource.loop = true;
-            mainSource.volume = 0.1f;
+            musicLevelSource.PlayOneShot(musicLevel[id]);
+            musicLevelSource.loop = true;
+            musicLevelSource.volume = 0.1f;
         }
     }
 
