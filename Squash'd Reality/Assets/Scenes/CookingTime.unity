@@ -1592,7 +1592,7 @@ MonoBehaviour:
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 0
   spawnDoubleObject: 1
-  firstSpawnDelay: 7
+  firstSpawnDelay: 6
   spawningDelay: 10
   maxCoordinates:
   - {x: 6, y: 10, z: -9}
