@@ -32,25 +32,28 @@ public class Door : NetworkBehaviour {
 
     private void Update()
     {
-        if (!stop && people.Count == 2)
+        if (!stop && people.Count == GameObject.FindGameObjectsWithTag("Player").Length)
         {
             stop = true;
-            if (!GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().isServer)
+            if (nextSceneName == "Lobby")
             {
-                Debug.LogError("CAMBIO SCENA");
                 _networkingManager.serverChangeScene(nextSceneName, difficulty);
             }
             else
             {
-                Debug.LogError("CAMBIO SCENA 2");
-                StartCoroutine(waitDelay());
+                if (!GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().isServer)
+                {
+                    _networkingManager.serverChangeScene(nextSceneName, difficulty);
+                }
+                else
+                {
+                    StartCoroutine(waitDelay());
+                }   
             }
-            
         }
     }
-    
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Player"){
             if (!people.Contains(other.gameObject.name))
             {
