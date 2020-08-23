@@ -104,6 +104,7 @@ namespace NetworkingManager {
         public override void OnClientDisconnect(NetworkConnection conn) {
             Debug.Log("NetworkingManager::OnClientDisconnect - I'm the client and I've been disconnected from server: " + conn.connectionId);
             FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+           
         }
 
         public override void OnServerDisconnect(NetworkConnection conn) {
@@ -124,6 +125,15 @@ namespace NetworkingManager {
             if (players.Length == 1)
             {
                 FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+            }
+            else
+            {
+                _playersNames.Clear();
+                foreach (GameObject player in players)
+                {
+                    _playersNames.Add(player.GetComponent<PlayerMoveset>().playerName);    
+                    Debug.LogError("ADDED: " +player.GetComponent<PlayerMoveset>().playerName);
+                }
             }
         }
         public void addSelectedPlayer(string name){
