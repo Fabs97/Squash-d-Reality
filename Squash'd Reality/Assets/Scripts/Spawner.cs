@@ -51,7 +51,11 @@ public class Spawner : NetworkBehaviour
     IEnumerator spawningCoroutine(){
         yield return new WaitForSeconds(firstSpawnDelay);
         while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
-            if(_matchManager.getTimeLeft() <= timeStopSpawn) break;
+            if (_matchManager.getTimeLeft() <= timeStopSpawn)
+            {
+                Debug.LogError("DISTRUGGO");
+                break;
+            }
             if(_spawningIndex == prefabsToSpawn.Count && !randomizeSpawn && !deleteFromListAfterSpawn) break;
 
             spawnObject(false);

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MatchManager : NetworkBehaviour
 {
     [SyncVar] protected bool gameReady;
-    protected bool matchStarting = false;
+    public bool matchStarting = false;
     protected NetworkingManager.NetworkingManager _networkingManager;
     protected UIManager _uiManager;
     [SerializeField] private string openingString;

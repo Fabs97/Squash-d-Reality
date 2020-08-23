@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5416e46494c7441adccd47ba82a809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchStarting: 0
   openingString: Cook the elements in order!
   challengeTimer: 90
   matchFailed: 0
@@ -1591,7 +1592,7 @@ MonoBehaviour:
   deleteFromListAfterSpawn: 0
   startSpawningFromTheBeginning: 0
   spawnDoubleObject: 1
-  firstSpawnDelay: 6
+  firstSpawnDelay: 7
   spawningDelay: 10
   maxCoordinates:
   - {x: 6, y: 10, z: -9}

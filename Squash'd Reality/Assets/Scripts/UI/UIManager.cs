@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     //-----------------------------------TIMER VARIABLES----------------------------------------------
     public float seconds, minutes;
-    [SerializeField] public float timeLeft;
+    [SerializeField] public float timeLeft = 100000f;
     [SerializeField] private bool startTimer = false;
     private bool matchStarting = false;
     private float timeStarting = 5f;
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     {        
         setAllElementsActive(false);
         speedSetted = false;
+        timeLeft = 100000f;
     }
 
     void Update()
