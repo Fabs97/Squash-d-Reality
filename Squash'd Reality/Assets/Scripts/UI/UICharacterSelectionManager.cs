@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -48,6 +49,25 @@ public class UICharacterSelectionManager : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
 
         matchNameText.text = _networkingManager.currentMatchName;
+        if (Character1Taken)
+        {
+            if (!Character2Taken)
+            {
+                GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character2.gameObject);
+            }
+            else
+            {
+                if (!Character3Taken)
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character3.gameObject);
+                }
+                else
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character4.gameObject);
+                }
+                
+            }   
+        }
     }
     private void Update()
     {
