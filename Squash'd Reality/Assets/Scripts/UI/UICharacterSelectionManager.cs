@@ -39,6 +39,12 @@ public class UICharacterSelectionManager : NetworkBehaviour
     //Scene management
     private SceneLoader.SceneLoader _sceneLoader;
     private NetworkingManager.NetworkingManager _networkingManager;
+
+
+    [SerializeField] private GameObject pgDescription1;
+    [SerializeField] private GameObject pgDescription2;
+    [SerializeField] private GameObject pgDescription3;
+    [SerializeField] private GameObject pgDescription4;
     
     private void Start() {
         //UI SETTINGS
@@ -95,7 +101,7 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private void setCharacterActive(Button button, bool value){
         button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
         button.enabled = value ? !value : value;
-        if (!MessageBox.activeInHierarchy)
+        if (!pgDescription1.activeInHierarchy &&  !pgDescription2.activeInHierarchy && !pgDescription3.activeInHierarchy && !pgDescription4.activeInHierarchy)
         {
             if (Character1Taken)
             {

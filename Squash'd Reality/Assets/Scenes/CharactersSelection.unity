@@ -119,6 +119,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i0
+      value: 188
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i1
+      value: 141
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i2
+      value: 199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i3
+      value: 223
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i4
+      value: 92
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i5
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i7
+      value: 244
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i8
+      value: 217
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i9
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i10
+      value: 235
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i11
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i12
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i13
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i14
+      value: 114
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127206363, guid: bc8dc7df5c6805f4d93ceb0e231a72cb, type: 3}
+      propertyPath: m_AssetId.i15
+      value: 203
+      objectReference: {fileID: 0}
     - target: {fileID: 6627489695016615594, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
         type: 3}
       propertyPath: m_Name
@@ -227,11 +291,6 @@ PrefabInstance:
     - target: {fileID: 6627489695016615598, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6627489696991373236, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -922,7 +981,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.1
+  m_fontSize: 23.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1326,7 +1385,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28.2
+  m_fontSize: 28
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1481,7 +1540,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.15
+  m_fontSize: 37.55
   m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1638,7 +1697,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.1
+  m_fontSize: 23.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2293,7 +2352,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 19.1
+  m_fontSize: 18.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3029,7 +3088,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.5
+  m_fontSize: 20.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3299,6 +3358,10 @@ MonoBehaviour:
   Character3Taken: 0
   Character4Taken: 0
   numCharactersChoosen: 0
+  pgDescription1: {fileID: 2000153029}
+  pgDescription2: {fileID: 1274630118}
+  pgDescription3: {fileID: 167002909}
+  pgDescription4: {fileID: 220847498}
 --- !u!4 &1515830560
 Transform:
   m_ObjectHideFlags: 0
@@ -3965,7 +4028,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.35
+  m_fontSize: 37.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4637,7 +4700,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12.4
+  m_fontSize: 12.9
   m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 1
