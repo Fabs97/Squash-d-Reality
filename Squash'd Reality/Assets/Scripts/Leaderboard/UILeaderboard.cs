@@ -129,13 +129,10 @@ public class UILeaderboard : NetworkBehaviour
         yield return new WaitForSeconds(2f);
         int playerNumber = 0;
         playerNumber = GameObject.FindGameObjectsWithTag("Player").Length;
-
-        if (calcDeathPrize(playerNumber))
+        
+        if (calcPrizeByIndex(0, playerNumber))
         {
-            playerStats.setBonusPrize("CAN YOU NOT DIE?");
-        }else if (calcPrizeByIndex(0, playerNumber))
-        {
-            playerStats.setBonusPrize("CAN YOU NOT KILL YOUR FRIENDS?");
+            playerStats.setBonusPrize("COULD YOU NOT KILL YOUR FRIENDS?");
         }else if (calcPrizeByIndex(1, playerNumber))
         {
             playerStats.setBonusPrize("UNDER POWER-UP STEROIDS");
@@ -148,13 +145,16 @@ public class UILeaderboard : NetworkBehaviour
             playerStats.setBonusPrize("ANTIVIRUS PROFESSIONAL CLEANER");
         }else if (calcPrizeByIndex(4, playerNumber))
         {
-            playerStats.setBonusPrize("COOKING IS NOT YOUR WORK");
+            playerStats.setBonusPrize("COOKING IS NOT YOUR JOB");
         }else if (calcPrizeByIndex(5, playerNumber))
         {
-            playerStats.setBonusPrize("MASTER CHEF IN THE UNIVERSE");
+            playerStats.setBonusPrize("MASTER CHEF OF THE UNIVERSE");
         }else if (calcPrizeByIndex(6, playerNumber))
         {
             playerStats.setBonusPrize("ELECTRICIAN");
+        }else if (calcDeathPrize(playerNumber))
+        {
+            playerStats.setBonusPrize("COULD YOU NOT DIE?");
         }
         else
         {
