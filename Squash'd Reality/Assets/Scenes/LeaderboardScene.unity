@@ -341,6 +341,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIGameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6627489695016615594, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6627489695016615598, guid: bc8dc7df5c6805f4d93ceb0e231a72cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -455,11 +460,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2281007422318494540, guid: 25f506438fcfdbe498a00384b83e7824,
+    - target: {fileID: 1128390816, guid: 25f506438fcfdbe498a00384b83e7824, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110259733223785539, guid: 25f506438fcfdbe498a00384b83e7824,
         type: 3}
-      propertyPath: m_Texture
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281007422255020546, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2800000, guid: 79eb1eff65c9c73418e63f9565ad78f0, type: 3}
+      objectReference: {fileID: 21300000, guid: 83eb866ac39cc574eab69a32e14c4039,
+        type: 3}
+    - target: {fileID: 2281007422255020546, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281007422255020546, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281007422255020546, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2281007422415347954, guid: 25f506438fcfdbe498a00384b83e7824,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -649,6 +679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AssetId.i15
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281007422486648778, guid: 25f506438fcfdbe498a00384b83e7824,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f506438fcfdbe498a00384b83e7824, type: 3}

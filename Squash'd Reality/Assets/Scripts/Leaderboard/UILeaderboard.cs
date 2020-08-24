@@ -23,6 +23,8 @@ public class UILeaderboard : NetworkBehaviour
     [SerializeField] private GameObject backButton;
 
     [SerializeField] private GameObject CheckValuesBox;
+
+    [SerializeField] private GameObject backImage;
     
     PlayerMoveset playerMoveset;
 
@@ -308,6 +310,7 @@ public class UILeaderboard : NetworkBehaviour
      private void showPlayers()
     {
         CheckValuesBox.SetActive(false);
+        backImage.SetActive(true);
         backButton.SetActive(true);
         if (MarkusNobelEnabled)
         {
