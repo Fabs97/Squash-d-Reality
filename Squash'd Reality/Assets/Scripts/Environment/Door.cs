@@ -35,13 +35,14 @@ public class Door : NetworkBehaviour {
         if (!stop && people.Count == GameObject.FindGameObjectsWithTag("Player").Length)
         {
             stop = true;
+            GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
             if (nextSceneName == "Lobby")
             {
                 _networkingManager.serverChangeScene(nextSceneName, difficulty);
             }
             else
             {
-                if (!GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().isServer)
+                if (localPlayer!=null && !localPlayer.GetComponent<PlayerController>().isServer)
                 {
                     _networkingManager.serverChangeScene(nextSceneName, difficulty);
                 }
