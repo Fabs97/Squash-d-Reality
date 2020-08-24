@@ -7046,5 +7046,49 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hello my name is V.I.S.T.A.
+
+        I''m here to test you -- (evil laugh)
+
+        Use sticks to move.
+
+        Press A to Jump.
+
+        Press RB to grab.
+
+        Press RT to shoot.
+
+        In the levels stay close to me 3 seconds and you''ll acquire intel.
+
+        Get inside one door to start, all of you!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 247
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 38.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188998399080883, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0e1a99b34d816040a67b070bf152ff6, type: 3}
