@@ -95,6 +95,29 @@ public class UICharacterSelectionManager : NetworkBehaviour
     private void setCharacterActive(Button button, bool value){
         button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
         button.interactable = value ? !value : value;
+        if (Character1Taken)
+        {
+            if (!Character2Taken)
+            {
+                GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character2.gameObject);
+            }
+            else
+            {
+                if (!Character3Taken)
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character3.gameObject);
+                }
+                else
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character4.gameObject);
+                }
+                
+            }   
+        }
+        else
+        {
+            GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character1.gameObject);
+        }
     }
     
     //SHOW UI box "Character already choosen"
@@ -143,6 +166,8 @@ public class UICharacterSelectionManager : NetworkBehaviour
             Character4TakenLocal = Character4Taken;            
             setCharacterActive(Character4, Character4TakenLocal);
         }
+        
+       
         
     }
     //SET character selected on server, called from UI buttons on "ACCEPT" character
