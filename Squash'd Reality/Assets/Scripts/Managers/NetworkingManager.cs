@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
@@ -11,11 +12,13 @@ namespace NetworkingManager {
         private SceneLoader.SceneLoader _sceneLoader;
         private LevelManager.LevelManager _levelManager;
         private List<string> _playersNames;
+        private List<string> _playedRoomsNames;
         public List<MatchInfoSnapshot> matches;
         public string currentMatchName;
         void Awake() {
             _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
             _levelManager = Object.FindObjectOfType<LevelManager.LevelManager>();
+            _playedRoomsNames = new List<string>();
         }
         public void createLobby(){
             base.StartHost();
@@ -47,6 +50,11 @@ namespace NetworkingManager {
             string sceneName = SceneManager.GetActiveScene().name;
             if (sceneName=="LobbySelection" && Time.time >= nextRefreshTime) {
                 RefreshMatches();
+            }
+
+            if (sceneName == "MainMenu" && _playersNames!=null)
+            {
+                _playersNames.Clear();
             }
         }
 
@@ -96,6 +104,7 @@ namespace NetworkingManager {
         public override void OnClientDisconnect(NetworkConnection conn) {
             Debug.Log("NetworkingManager::OnClientDisconnect - I'm the client and I've been disconnected from server: " + conn.connectionId);
             FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+           
         }
 
         public override void OnServerDisconnect(NetworkConnection conn) {
@@ -105,8 +114,28 @@ namespace NetworkingManager {
             }
             FindObjectOfType<UIGameManager>().CharacterDisconnected("A player");
             Debug.Log("NetworkingManager::OnServerDisconnect - A client disconnected from the server: " + conn);
+
+            StartCoroutine(waitMinNumberPlayersConnected());
         }
 
+        IEnumerator waitMinNumberPlayersConnected()
+        {
+            yield return new WaitForSeconds(4f);
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length == 1)
+            {
+                FindObjectOfType<UIGameManager>().ShowAlertBoxPlayerDisconnected();
+            }
+            else
+            {
+                _playersNames.Clear();
+                foreach (GameObject player in players)
+                {
+                    _playersNames.Add(player.GetComponent<PlayerMoveset>().playerName);    
+                    Debug.LogError("ADDED: " +player.GetComponent<PlayerMoveset>().playerName);
+                }
+            }
+        }
         public void addSelectedPlayer(string name){
             if(_playersNames == null) _playersNames = new List<string>();
             _playersNames.Add(name);
@@ -114,6 +143,19 @@ namespace NetworkingManager {
 
         public List<string> getPlayersNames(){
             return this._playersNames;
+        }
+
+        public void addPlayedRoom(string room){
+            if(!_playedRoomsNames.Contains(room)) _playedRoomsNames.Add(room);
+        }
+
+        public List<string> getPlayedRooms(){
+            return _playedRoomsNames;
+        }
+
+        public void clearPlayedRooms()
+        {
+            _playedRoomsNames.Clear();
         }
     }
 

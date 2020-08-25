@@ -90,19 +90,35 @@ MonoBehaviour:
   m_OnlineScene: CharactersSelection
   m_SpawnPrefabs:
   - {fileID: 7305371141220752972, guid: 295c21d6742c8654a8f00b4eb3309152, type: 3}
-  - {fileID: 3442541650306356147, guid: ca92dcf41134e3e4b8ebb70fad6ba7fb, type: 3}
+  - {fileID: 5956886114563324096, guid: 4a9270e61de36b047a8811183c9e0aa9, type: 3}
+  - {fileID: 7942859655395878262, guid: 97e4c3aa6ee96094fb33275e16bd7bd0, type: 3}
+  - {fileID: 3794883947322747878, guid: d0cf8057759bf2844a14b0e8dcf56ba9, type: 3}
   - {fileID: 4675018085472048048, guid: 5706254f6ca7b5547880bf8f24e582df, type: 3}
-  - {fileID: 5989013081210674111, guid: 6a6d08e755c336644b6f24fdfe7c2eff, type: 3}
-  - {fileID: 7525169537711163744, guid: 3d197e73a09e1514a9e7a33a097a8c6e, type: 3}
   - {fileID: 7654812327059685579, guid: a43fdfc03aa029e49b64c59dda45a41f, type: 3}
-  - {fileID: 8228183232051715108, guid: 1e3676ccf1ea21b4c8c475e46a65ed32, type: 3}
-  - {fileID: 1687170864414574681, guid: 6452dbd69f69533469f257af1ed7bef9, type: 3}
-  - {fileID: 4776446343470284764, guid: cf277a7e169b8914f873fa1a1f568708, type: 3}
-  - {fileID: 3091254071494591038, guid: 4cfd51a35726e984eb1d74fcc3a31b7d, type: 3}
-  - {fileID: 43995494078055252, guid: c0d6fd1c8400d34408bcc83eb80e8692, type: 3}
-  - {fileID: 703715901408156865, guid: 3763c07f8eb72d54e859c97423167a91, type: 3}
-  - {fileID: 7094928543578004485, guid: 547e994365edb5e4e8b52652613c0475, type: 3}
-  - {fileID: 6369489923620507366, guid: 7c68063352147f84e8c3ada722c76453, type: 3}
+  - {fileID: 703715901408156865, guid: be4435f0a8598af4281f7e5026395ef8, type: 3}
+  - {fileID: 7094928543578004485, guid: 12188f0f96b9dc04fb3a7f8f30272cab, type: 3}
+  - {fileID: 6369489923620507366, guid: 5fc134b589e533643b1db9ffc4fca0b0, type: 3}
+  - {fileID: 8228183232051715108, guid: 4b4c18382b27f1449b65d2078921089a, type: 3}
+  - {fileID: 1687170864414574681, guid: ac2b38f08d8938a4eb1428320d893663, type: 3}
+  - {fileID: 4776446343470284764, guid: 6dfa7a1f1ded7f8498125379bbf0a847, type: 3}
+  - {fileID: 3091254071494591038, guid: fd5d72a4d3fb4ba468d7cab7fd7d89b5, type: 3}
+  - {fileID: 43995494078055252, guid: 82d378b976c0f514290eec04476d067e, type: 3}
+  - {fileID: 5895599644858448643, guid: b44046ef959f4c94da160d86c4bef8eb, type: 3}
+  - {fileID: 1819960591697537550, guid: 23b87dd86fb0db54c9a1b48a6d50f01b, type: 3}
+  - {fileID: 3373123959034513379, guid: 95a15317d13b9c246acb0f34094bca6d, type: 3}
+  - {fileID: 1716523833992150381, guid: cb1cf5ed68c080e45a5dfaaf3c65d826, type: 3}
+  - {fileID: 5956423040410268216, guid: 4be3dc721e716c045bb3db25ab02e65e, type: 3}
+  - {fileID: 6360388637714772420, guid: 93736f33a1b8f4243913f78d0cbecf9a, type: 3}
+  - {fileID: 5050887906779148764, guid: 1d0c36813c2dd944ba7dc82fa06d0fd6, type: 3}
+  - {fileID: 4598044825761345806, guid: aa2ca64b3fdccc349aae93656bcb2a92, type: 3}
+  - {fileID: 2067597015138308305, guid: cf563ed41d4569440b789de57678e0a1, type: 3}
+  - {fileID: 7027826899113391937, guid: c17b6835a24cbb54bb17145d5fd9442f, type: 3}
+  - {fileID: 9039794201185120913, guid: 74eec046eeb045b4486076506ad767c3, type: 3}
+  - {fileID: 6442163802294405640, guid: 6d793cdfcf60e494eb5a96d45db088d1, type: 3}
+  - {fileID: 4293548280039161767, guid: 65775dc9903a91549a24473abda0211b, type: 3}
+  - {fileID: 4087613361096800040, guid: 38907bc5b6d4cf14091967388007933c, type: 3}
+  - {fileID: 541413295935205062, guid: 582ce4284bacc3242a60d0f7c77b4b2c, type: 3}
+  - {fileID: 5565237750366875197, guid: 390987e234652de499cd9a9066b4d63c, type: 3}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -195,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0088d6967de318c449dfdcbe68c64836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: default
   death: 0
   timeOut: 0
   friendlyKill: 0

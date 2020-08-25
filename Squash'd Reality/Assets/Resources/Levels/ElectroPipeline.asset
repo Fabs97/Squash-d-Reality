@@ -15,9 +15,9 @@ MonoBehaviour:
   sceneName: ElectroPipeline
   spawnPlayers: 1
   playersPositions:
-  - {x: -4, y: 0.74, z: -3}
-  - {x: 0, y: 0.74, z: -3}
-  - {x: -4, y: 0.74, z: -6}
-  - {x: 0, y: 0.74, z: -6}
+  - {x: -2, y: 0.74, z: -9}
+  - {x: 1, y: 0.74, z: -9}
+  - {x: 4, y: 0.74, z: -9}
+  - {x: 7, y: 0.74, z: -9}
   isDark: 0
   isChallenge: 1

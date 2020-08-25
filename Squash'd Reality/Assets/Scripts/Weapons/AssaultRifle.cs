@@ -6,8 +6,11 @@ public class AssaultRifle : Weapon
 {
     public override void Start(){
         base.Start();
+        UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         bulletName = "BulletAssaultRifle";
         spread = 3f;
-        fireRatioTime = 0.6f;
+        fireRatioTime = 0.3f;
+        magazine = 40;
+        uiManager.setMagazineValue(magazine.ToString());
     }
 }

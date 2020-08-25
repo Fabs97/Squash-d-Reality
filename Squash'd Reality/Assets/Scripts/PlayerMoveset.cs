@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
+
+[RequireComponent(typeof(AudioManager))]
 public class PlayerMoveset : NetworkBehaviour
 {
     private CharacterController controller;
+    private AudioManager audioManager;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private static float initSpeed= 3.0f;
@@ -20,30 +24,91 @@ public class PlayerMoveset : NetworkBehaviour
 
     [SyncVar] public string playerName;
     [SyncVar(hook="_meshActiveChanged")] public bool meshActive;
-    public int life;
+    [SyncVar] public int life = 1;
 
     private Coroutine durationPowerup;
 
     private bool pogoStickActive;
 
+    private bool pauseActive = false;
+
+    public bool playerCanMove = true;
+
+    private bool nameSetted = false;
+    private PlayerStats playerStats;
+
+    private bool isDead = false;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
     private float allyLife = 20f;
-    private void Start() {
+    private void Start()
+    {
+        isDead = false;
         if (isServer) {
             meshActive = true;
         }
+
+        playerCanMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
-        life = 100000;
+        playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        
+        
+        audioManager = GetComponent<AudioManager>();
+        
+
+        if (playerName == GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName)
+        {
+            if (SceneManager.GetActiveScene().name == "CookingTime")
+            {
+                audioManager.playMusicLevel(0);
+            }else if (SceneManager.GetActiveScene().name == "DarkPuzzle")
+            {
+                audioManager.playMusicLevel(1);
+            }else if (SceneManager.GetActiveScene().name == "TrenchTime")
+            {
+                audioManager.playMusicLevel(2);
+            }else if (SceneManager.GetActiveScene().name == "ElectroPipeline")
+            {
+                audioManager.playMusicLevel(3);
+            }else if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                audioManager.playMusicLevel(4);
+            }  
+        }
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Start") && !pauseActive)
+        {
+            pauseActive = true;
+        }else if (Input.GetButtonDown("Start") && pauseActive)
+        {
+            pauseActive = false;
+        }
+        if (!nameSetted && hasAuthority)
+        {
+            nameSetted = true;
+            playerStats.playerName = playerName;
+        }
     }
 
     void FixedUpdate() {
-        if (hasAuthority) {
+        if (hasAuthority && !pauseActive && playerCanMove) {
             Move();
+        }
+
+        if (!playerCanMove)
+        {
+            float x =gameObject.transform.position.x;
+            float y = 1.9f;
+            float z = gameObject.transform.position.z;
+            gameObject.transform.position = new Vector3(x,y,z);
         }
     }
 
@@ -64,6 +129,7 @@ public class PlayerMoveset : NetworkBehaviour
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 moveRightStick = new Vector3(Input.GetAxis("Horizontal-Direction"), 0, -Input.GetAxis("Vertical-Direction"));
+        if(move != Vector3.zero && groundedPlayer) audioManager.playSteps();
         controller.Move(move * Time.deltaTime * playerSpeed*playerSpeedMultiplier);
 
         if(moveRightStick != Vector3.zero){
@@ -75,11 +141,13 @@ public class PlayerMoveset : NetworkBehaviour
 
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer && !pogoStickActive) {
+            audioManager.playJumpSound();
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
 
         if (pogoStickActive && groundedPlayer)
         {
+            audioManager.playJumpSound();
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
 
         }
@@ -123,21 +191,27 @@ public class PlayerMoveset : NetworkBehaviour
         {
             _uiManager.setPowerUpButtonActive(false);
         }
-        life = life - damage;
-        if (life <= 0)
+
+        if (isServer && !isDead)
         {
-            if (hasAuthority)
+            life = life - damage;
+            if (life <= 0)
             {
-                PlayerStats playerStats = GameObject.FindWithTag("DDOL").GetComponent<PlayerStats>();
-                playerStats.death++;
-                _uiManager.setInfoBoxText("YOU DIED");        
-                _uiManager.setInfoBoxActive(true);   
-            }
-            GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
-            Destroy(this.gameObject);
-        }   
+                if (hasAuthority)
+                {
+                    isDead = true;
+                    playerStats.death++;
+                    _uiManager.setInfoBoxText("YOU DIED");        
+                    _uiManager.setInfoBoxActive(true);   
+                }
+                GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
+                Destroy(this.gameObject);
+            }   
+        }
+        
         
     }
+    
     //-------------------------------------------POWER UPs SETTINGS---------------------------------------
     public void setSpartanArmorActive()
     {

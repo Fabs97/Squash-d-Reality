@@ -3,9 +3,12 @@
     <collectible id = "1">
         <collectibleSentence>"Markus Nobel collection"</collectibleSentence>
     </collectible>
-    <collectible id = "2"> <collectibleSentence></collectibleSentence>
+    <collectible id = "2"> <collectibleSentence>"Ken Nolo collection"</collectibleSentence>
     </collectible>
     <collectible id = "3">
-        <collectibleSentence></collectibleSentence>
+        <collectibleSentence>"Kam Brylla collection"</collectibleSentence>
+    </collectible>
+    <collectible id = "4">
+        <collectibleSentence>"Raphael Nosun collection"</collectibleSentence>
     </collectible>
 </collctibles>

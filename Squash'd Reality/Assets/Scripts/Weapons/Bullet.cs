@@ -6,5 +6,5 @@ using UnityEngine.Networking;
 public class Bullet : NetworkBehaviour
 {
     [SyncVar] public string shooterName;
-    
+    [SyncVar] public string bulletName;
 }

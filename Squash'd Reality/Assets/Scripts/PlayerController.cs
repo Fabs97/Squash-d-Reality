@@ -9,7 +9,11 @@ using UnityEngine.UI;
 public class PlayerController : NetworkBehaviour
 {
     // Start is called before the first frame update
-    private GameObject dummyPrefab;
+    private GameObject character1;
+    private GameObject character2;
+    private GameObject character3;
+    private GameObject character4;
+
     private NetworkingManager.NetworkingManager _networkingManager;
     private LevelManager.LevelManager _levelManager;
     private GameObject bulletPrefab;
@@ -24,7 +28,11 @@ public class PlayerController : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         if (isServer) {
-            dummyPrefab = _networkingManager.spawnPrefabs[0];
+            character1 = _networkingManager.spawnPrefabs[0];
+            character2 = _networkingManager.spawnPrefabs[1];
+            character3 = _networkingManager.spawnPrefabs[2];
+            character4 = _networkingManager.spawnPrefabs[3];
+
         }
         
         if (isClient && isLocalPlayer)
@@ -61,10 +69,34 @@ public class PlayerController : NetworkBehaviour
     }
     
     [Command]
-    public void CmdSpawnPlayer(String playerName) {
-        GameObject go = Instantiate(dummyPrefab, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
-        go.GetComponent<PlayerMoveset>().playerName = playerName;
-        NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+    public void CmdSpawnPlayer(String playerName)
+    {
+        GameObject go = null;
+        if (playerName == "Markus Nobel")
+        {
+            
+            go = Instantiate(character1, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+        else if (playerName == "Ken Nolo")
+        {
+            go = Instantiate(character2, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+
+        }
+        else if (playerName == "Kam Brylla")
+        {
+            go = Instantiate(character3, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+        else if (playerName == "Raphael Nosun")
+        {
+            go = Instantiate(character4, _levelManager.getCurrentLevel().getPlayerPosition(playerName), Quaternion.identity);
+        }
+
+        if (go != null)
+        {
+            go.GetComponent<PlayerMoveset>().playerName = playerName;
+            NetworkServer.SpawnWithClientAuthority(go, connectionToClient);   
+        }
+        
     }
 
     [Command]
@@ -87,7 +119,7 @@ public class PlayerController : NetworkBehaviour
         GameObject spawnedGameObject = Instantiate(bulletPrefab, position, rotation);
         spawnedGameObject.transform.Rotate(randomNumberX, 0f, randomNumberZ);
         spawnedGameObject.GetComponent<Rigidbody>().AddForce(spawnedGameObject.transform.forward * bulletForce, ForceMode.Impulse);
-        spawnedGameObject.name = bulletName;
+        spawnedGameObject.GetComponent<Bullet>().bulletName = bulletName;
         spawnedGameObject.GetComponent<Bullet>().shooterName = shooterName;
         NetworkServer.Spawn(spawnedGameObject);
         Destroy(spawnedGameObject, 3f);
@@ -122,42 +154,74 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void CmdSetMarkusNobleStats(int points, int deaths, string bonusPrize)
+    public void CmdSetMarkusNobleStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.MarkusNobelEnabled = true;
         uiLeaderboard.MarkusNoblePoints = points;
         uiLeaderboard.MarkusNobleDeaths = deaths;
+        uiLeaderboard.MarkusNobelStats.Insert(0,friendlyKill);
+        uiLeaderboard.MarkusNobelStats.Insert(1, powerUp);
+        uiLeaderboard.MarkusNobelStats.Insert(2, collectible);
+        uiLeaderboard.MarkusNobelStats.Insert(3, antivirusKilled);
+        uiLeaderboard.MarkusNobelStats.Insert(4, notOrdered);
+        uiLeaderboard.MarkusNobelStats.Insert(5, greetChef);
+        uiLeaderboard.MarkusNobelStats.Insert(6, cableManagement);
+
         uiLeaderboard.MarkusNobleBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKenNoloStats(int points, int deaths, string bonusPrize)
+    public void CmdSetKenNoloStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KenNoloEnabled = true;
         uiLeaderboard.KenNoloPoints = points;
         uiLeaderboard.KenNoloDeaths = deaths;
+        uiLeaderboard.KenNoloStats.Insert(0,friendlyKill);
+        uiLeaderboard.KenNoloStats.Insert(1, powerUp);
+        uiLeaderboard.KenNoloStats.Insert(2, collectible);
+        uiLeaderboard.KenNoloStats.Insert(3, antivirusKilled);
+        uiLeaderboard.KenNoloStats.Insert(4, notOrdered);
+        uiLeaderboard.KenNoloStats.Insert(5, greetChef);
+        uiLeaderboard.KenNoloStats.Insert(6, cableManagement);
+        
         uiLeaderboard.KenNoloBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetKamBryllaStats(int points, int deaths, string bonusPrize)
+    public void CmdSetKamBryllaStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement, string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.KamBryllaEnabled = true;
         uiLeaderboard.KamBryllaPoints = points;
         uiLeaderboard.KamBryllaDeaths = deaths;
+        uiLeaderboard.KamBryllalStats.Insert(0,friendlyKill);
+        uiLeaderboard.KamBryllalStats.Insert(1, powerUp);
+        uiLeaderboard.KamBryllalStats.Insert(2, collectible);
+        uiLeaderboard.KamBryllalStats.Insert(3, antivirusKilled);
+        uiLeaderboard.KamBryllalStats.Insert(4, notOrdered);
+        uiLeaderboard.KamBryllalStats.Insert(5, greetChef);
+        uiLeaderboard.KamBryllalStats.Insert(6, cableManagement);
+        
         uiLeaderboard.KamBryllaBonusPrize = bonusPrize;
     }
     
     [Command]
-    public void CmdSetRaphaelNosunStats(int points, int deaths, string bonusPrize)
+    public void CmdSetRaphaelNosunStats(int points, int deaths, int friendlyKill, int powerUp, int collectible, int antivirusKilled, int notOrdered, int greetChef, int cableManagement,  string bonusPrize)
     {
         UILeaderboard uiLeaderboard = GameObject.FindGameObjectWithTag("UILeaderboard").GetComponent<UILeaderboard>();
         uiLeaderboard.RaphaelNosunEnabled = true;
         uiLeaderboard.RaphaelNosunPoints = points;
         uiLeaderboard.RaphaelNosunDeaths = deaths;
+        uiLeaderboard.RapahelNosunStats.Insert(0,friendlyKill);
+        uiLeaderboard.RapahelNosunStats.Insert(1, powerUp);
+        uiLeaderboard.RapahelNosunStats.Insert(2, collectible);
+        uiLeaderboard.RapahelNosunStats.Insert(3, antivirusKilled);
+        uiLeaderboard.RapahelNosunStats.Insert(4, notOrdered);
+        uiLeaderboard.RapahelNosunStats.Insert(5, greetChef);
+        uiLeaderboard.RapahelNosunStats.Insert(6, cableManagement);
+        
         uiLeaderboard.RaphaelNosunBonusPrize = bonusPrize;
     }
 
@@ -182,5 +246,75 @@ public class PlayerController : NetworkBehaviour
     public void CmdSetGrabebd(GameObject go, bool value)
     {
         go.GetComponent<GrabbableMovement>().cubeMovement = value;
+    }
+
+    [Command]
+    public void CmdSetFirstElectroPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().isFirst = value;
+        if (!value)
+        {
+            GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    CmdSetPipeConnected(pipe.gameObject, false);
+
+                }
+       
+            }
+        }
+    }
+
+    [Command]
+    public void CmdSetEndPipeline(GameObject go, bool value)
+    {
+        go.GetComponent<Pipe>().isEnd = value;
+    }
+
+    [Command]
+    public void CmdSetMatchFailedCookingTime(GameObject go, bool value)
+    {
+        go.GetComponent<CookingTimeMatchManager>().matchFailed = value;
+    }
+
+    [Command]
+    public void CmdSetMatchWon()
+    {
+        FindObjectOfType<MatchManager>().setMatchWon();
+    }
+
+    [Command]
+    public void CmdLobby()
+    {
+        NetworkingManager.NetworkingManager _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
+        _networkingManager.serverChangeScene("Lobby", 0);
+    }
+
+    [Command]
+    public void CmdPipeReleased()
+    {
+        StartCoroutine(pipeReleasedCoroutine());
+    }
+    
+    IEnumerator pipeReleasedCoroutine()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    pipe.GetComponent<Pipe>().allPipeReleased();  
+                }
+           
+            }  
+        }
+        
+        
+
     }
 }

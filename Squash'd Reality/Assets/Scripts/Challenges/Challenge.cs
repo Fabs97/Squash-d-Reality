@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class Challenge : MonoBehaviour {
@@ -8,8 +9,10 @@ public class Challenge : MonoBehaviour {
     protected LevelManager.LevelManager _levelManager;
     protected MatchManager _matchManager;
     [SerializeField] private GameObject[] doors;
-
-    protected virtual void Start() {
+    public bool matchIsWon;
+    protected virtual void Start()
+    {
+        matchIsWon = false;
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _levelManager = FindObjectOfType<LevelManager.LevelManager>();
         _matchManager = FindObjectOfType<MatchManager>();
@@ -17,10 +20,38 @@ public class Challenge : MonoBehaviour {
 
     protected virtual void setDifficulty() { }
 
-    public virtual void endChallenge(bool successful){ 
+    public virtual void endChallenge(bool successful){
+        if (successful)
+        {
+            matchIsWon = true;
+        }
+        else
+        {
+            matchIsWon = false;
+        }
         UIManager uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerMoveset>().hasAuthority)
+            {
+                if (successful)
+                {
+                    player.GetComponent<AudioManager>().playWinSound();
+
+                }
+                else
+                {
+                    player.GetComponent<AudioManager>().playDieSound();
+
+                }
+            }
+        }
         if(successful){
+            GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMatchWon();
             uiManager.setInfoBoxText("YOU WIN!");
+            uiManager.setTimerActive(false);
+            FindObjectOfType<NetworkingManager.NetworkingManager>().addPlayedRoom(SceneManager.GetActiveScene().name);
             StartCoroutine(waitToSpawnDoors());
         } else {
             uiManager.setInfoBoxText("YOU LOSE!");

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -38,6 +39,12 @@ public class UICharacterSelectionManager : NetworkBehaviour
     //Scene management
     private SceneLoader.SceneLoader _sceneLoader;
     private NetworkingManager.NetworkingManager _networkingManager;
+
+
+    [SerializeField] private GameObject pgDescription1;
+    [SerializeField] private GameObject pgDescription2;
+    [SerializeField] private GameObject pgDescription3;
+    [SerializeField] private GameObject pgDescription4;
     
     private void Start() {
         //UI SETTINGS
@@ -48,11 +55,30 @@ public class UICharacterSelectionManager : NetworkBehaviour
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
 
         matchNameText.text = _networkingManager.currentMatchName;
+        if (Character1Taken)
+        {
+            if (!Character2Taken)
+            {
+                GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character2.gameObject);
+            }
+            else
+            {
+                if (!Character3Taken)
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character3.gameObject);
+                }
+                else
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character4.gameObject);
+                }
+                
+            }   
+        }
     }
     private void Update()
     {
         UpdateNetworkVariables();
-        if (isServer && _networkingManager.numPlayers == numCharactersChoosen)
+        if (isServer && _networkingManager.numPlayers == numCharactersChoosen && _networkingManager.numPlayers >=2)
         {
             StartCoroutine(countdownStart());
             matchIsStarting = true;
@@ -74,7 +100,34 @@ public class UICharacterSelectionManager : NetworkBehaviour
     //Make character name not selectable
     private void setCharacterActive(Button button, bool value){
         button.GetComponent<Image>().color = !value ? Color.red : Color.clear;
-        button.interactable = value ? !value : value;
+        button.enabled = value ? !value : value;
+        if (!pgDescription1.activeInHierarchy &&  !pgDescription2.activeInHierarchy && !pgDescription3.activeInHierarchy && !pgDescription4.activeInHierarchy)
+        {
+            if (Character1Taken)
+            {
+                if (!Character2Taken)
+                {
+                    GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character2.gameObject);
+                }
+                else
+                {
+                    if (!Character3Taken)
+                    {
+                        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character3.gameObject);
+                    }
+                    else
+                    {
+                        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character4.gameObject);
+                    }
+                
+                }   
+            }
+            else
+            {
+                GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(Character1.gameObject);
+            } 
+        }
+       
     }
     
     //SHOW UI box "Character already choosen"
@@ -123,6 +176,8 @@ public class UICharacterSelectionManager : NetworkBehaviour
             Character4TakenLocal = Character4Taken;            
             setCharacterActive(Character4, Character4TakenLocal);
         }
+        
+       
         
     }
     //SET character selected on server, called from UI buttons on "ACCEPT" character

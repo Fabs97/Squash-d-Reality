@@ -7,9 +7,15 @@ using UnityEngine.Networking;
 public class TrenchTimeMatchManager : MatchManager
 {
     public bool matchTimeEnded = false;
+    private GameObject[] players;
+    private PlayerStats playerStats;
+    private bool playerDead;
     protected override void Start()
     {
         base.Start();
+        playerDead = false;
+        playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+
     }
 
     protected override void Update()
@@ -32,6 +38,29 @@ public class TrenchTimeMatchManager : MatchManager
             if (isServer) {
                 matchTimeEnded = false;
             }
+        }
+
+        if (matchStarting && !playerDead && isClient && !isServer)
+        {
+            int authorityPlayer = 0;
+            players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                if (player.GetComponent<PlayerMoveset>().hasAuthority)
+                {
+                    authorityPlayer++;
+                }
+            }
+
+            if (authorityPlayer == 0)
+            {
+                playerDead = true;
+                UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+                playerStats.death++;
+                _uiManager.setInfoBoxText("YOU DIED");        
+                _uiManager.setInfoBoxActive(true);   
+            }
+
         }
         
     }
@@ -68,16 +97,20 @@ public class TrenchTimeMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
-        if (isServer)
+        if (!matchWon)
         {
-            GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
-            for (int i = 0; i < spawners.Length; i++)
+            base.timeEnded();
+            if (isServer)
             {
-                spawners[i].GetComponent<Spawner>().StopSpawning();
+                GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+                for (int i = 0; i < spawners.Length; i++)
+                {
+                    spawners[i].GetComponent<Spawner>().StopSpawning();
+                }
             }
+            matchTimeEnded = true;
         }
-        matchTimeEnded = true;
+        
 
     }
 

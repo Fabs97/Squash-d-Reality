@@ -19,12 +19,19 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
 
     public bool cubeMovement = false;
     private bool dropped = false;
+
+    public string grabbedBy;
   
     private void Start()
     {
+        grabbedBy = "default";
         controller = gameObject.GetComponent<CharacterController>();
         cubeMovement = false;
-        controller.enabled = false;
+        GetComponent<Collider>().isTrigger = false;
+        controller.enabled = true;
+
+        
+
     }
     
     void FixedUpdate()
@@ -32,23 +39,16 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
         if (hasAuthority && cubeMovement)
         {
             Move();
+        }else if (!cubeMovement)
+        {
+            Fall();
         }
         
-        if (!dropped && transform.position.y<=0.56f)
-        {
-            dropped = true;
-            controller.enabled = true;
-            GetComponent<Collider>().isTrigger = false;
-            GetComponent<Rigidbody>().useGravity = false;
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-
     }
 
     
     void Move()
     {
-        Debug.Log("PLAYER VELOCITY:" + playerVelocity);
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -63,6 +63,17 @@ public class GrabbableMovementCookingTime :  NetworkBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
         
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
+    
+    void Fall()
+    {
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }

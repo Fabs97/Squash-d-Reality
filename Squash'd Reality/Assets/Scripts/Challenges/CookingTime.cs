@@ -11,6 +11,11 @@ public class CookingTime : Challenge {
     private List<Ingredient> activeIngredients;
     private Spawner _spawner;
     private int insertedIngredients = 0;
+
+    [SerializeField] private GameObject deathzone;
+    [SerializeField] private GameObject cauldron;
+    [SerializeField] private GameObject DoorPlatform;
+    [SerializeField] private GameObject wall;
     
     protected override void Start()
     {
@@ -27,13 +32,42 @@ public class CookingTime : Challenge {
         changeActiveIngredientList(ingredient);
     }
 
-    public void insertedIngredientInCauldron(Ingredient ingredient) {
-        if(!ingredient.name.Equals(activeIngredients[0].name)) {
-            endChallenge(false);
+    public void insertedIngredientInCauldron(Ingredient ingredient, string playerName)
+    {
+        int numPlayers = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<CookingTimeMatchManager>().numPlayers;
+        int objectToCook = ((difficulty * difficultyMultiplier)/2)*numPlayers;
+        GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        if(!ingredient.name.Equals(activeIngredients[0].name))
+        {
+            if (playerStats.playerName == playerName)
+            {
+                playerStats.notOrdered++;
+            }
+
+            if (ingredient.isServer)
+            {
+                localPlayer.GetComponent<PlayerController>()
+                    .CmdSetMatchFailedCookingTime(GameObject.FindGameObjectWithTag("MatchManager"), true);  
+            }
+            
+        }else
+        
+        {
+            if (playerStats.playerName == playerName)
+            {
+                playerStats.greetChef++;
+            }  
+            
+            removeIngredient(ingredient);
+            int count = spawnedIngredients.Count < maxActiveIngredients ? spawnedIngredients.Count : maxActiveIngredients;
+            activeIngredients = spawnedIngredients.GetRange(0, count);
+            GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
+            insertedIngredients++;
         }
-        changeActiveIngredientList(ingredient);
-        insertedIngredients++;
-        if(insertedIngredients == difficulty * difficultyMultiplier) endChallenge(true);
+
+        if(objectToCook == insertedIngredients) endChallenge(true);
+
     }
 
     private void changeActiveIngredientList(Ingredient ingredient){
@@ -44,6 +78,7 @@ public class CookingTime : Challenge {
         } else {
             addToActiveList(ingredient);
         }
+        if(activeIngredients.Count == 0) endChallenge(true);
         GameObject.FindGameObjectWithTag("UICookingTime").gameObject.GetComponent<UICookingTime>().setImages(activeIngredients);
     }
 
@@ -51,9 +86,10 @@ public class CookingTime : Challenge {
         if(activeIngredients.Count < maxActiveIngredients) activeIngredients.Add(ingredient);
     }
 
-    private void removeIngredient(Ingredient ingredient){
-        activeIngredients.Remove(ingredient);
-        spawnedIngredients.Remove(ingredient);
+    private void removeIngredient(Ingredient ingredient)
+    {
+        activeIngredients.RemoveAt(0);
+        spawnedIngredients.RemoveAt(0);
     }
 
     protected override void setDifficulty() {
@@ -62,9 +98,9 @@ public class CookingTime : Challenge {
             List<string> playersNames = _networkingManager.getPlayersNames();
             
             if(!playersNames.Contains("Raphael Nosun")) _spawner.removeZone(3);
-            else if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
-            else if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
-            else if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
+            if(!playersNames.Contains("Kam Brylla")) _spawner.removeZone(2);
+            if(!playersNames.Contains("Ken Nolo")) _spawner.removeZone(1);
+            if(!playersNames.Contains("Markus Nobel")) _spawner.removeZone(0);
             _spawner.CmdStartSpawning();
             
         } catch (Exception e) {
@@ -79,19 +115,36 @@ public class CookingTime : Challenge {
         }
     }
 
-    private void setMatch(){
-        int objectsToSpawn = difficulty * difficultyMultiplier;
+    private void setMatch()
+    {
+
         float totalTime = minTotalTime/difficulty;
         float moreTime = minMoreTime/difficulty;
+        base._matchManager.setTimer(totalTime + moreTime);
+
+        
+        int numPlayer = _networkingManager.getPlayersNames().Count;
+        Debug.LogError("DIFFICULTY: " + difficulty);
+        Debug.LogError("DIFFICULTY MULTIPLIER: " + difficultyMultiplier);
+        Debug.LogError("NUM PLAYERS: " + numPlayer);
+        int objectsToSpawn = ((difficulty * difficultyMultiplier)/2)*numPlayer;
+        Debug.LogError("OBJECTS TO SPAWN: " + objectsToSpawn);
 
         _spawner.objectsToSpawnCount = objectsToSpawn;
-        _spawner.setSpawningDelay(totalTime / objectsToSpawn); 
-
-        base._matchManager.setTimer(totalTime + moreTime);
+        _spawner.setSpawningDelay(((totalTime + moreTime - 14f) / objectsToSpawn) ); 
+        
+        _spawner.setTimeStopSpawning(7f);
     }
 
     public override void endChallenge(bool successful){
         _spawner.StopSpawning();
         base.endChallenge(successful);
+        if (successful)
+        {
+            deathzone.SetActive(false);
+            cauldron.SetActive(false);
+            DoorPlatform.SetActive(true);
+            wall.SetActive(false);
+        }
     }
 }

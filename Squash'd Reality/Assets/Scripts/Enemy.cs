@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
 
 
@@ -11,62 +12,126 @@ public class Enemy : MonoBehaviour
     private GameObject[] spawnPositions;
 
     private float rotationSpeed = 3f;
-    private float moveSpeed = 0.5f;
-
-    private float life;
+    private float moveSpeed = 2f;
+    private float moveSpeedMultiplier = 1f;
+    public float timeSpeedMultiplier = 1f;
+    private float life = 20f;
 
     private float BasicDamage = 6.7f;
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
 
-    private float distanceToKill = 1f;
+    private float distanceToKill = 1.5f;
     private bool isExploding = false;
     private bool canFollowPlayer = false;
+
+    [SerializeField] private bool enemyFromRoom;
+
+    [SerializeField] private GameObject explosion;
+
+    private bool stopMovement = false;
+
+    private bool isDead = false;
+
+    private bool canExplode = true;
     
-    
+    [SyncVar] private bool serverExplode = false;
+    private bool exploded = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        life = 20f;
+        if (isServer)
+        {
+            serverExplode = false;
+        }
         players = GameObject.FindGameObjectsWithTag("Player");
         spawnPositions = GameObject.FindGameObjectsWithTag("SpawnDirection");
+        if (enemyFromRoom)
+        {
+            canExplode = false;
+            StartCoroutine(waitToExplode());
+            canFollowPlayer = true;
+            moveSpeedMultiplier = 1.3f;
+        }
 
+        if (GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().timeLeft <= 20f)
+        {
+            timeSpeedMultiplier = 1.4f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canFollowPlayer)
+        if (serverExplode && !exploded)
         {
-            players = GameObject.FindGameObjectsWithTag("Player");
-            if (players.Length!= 0)
+            exploded = true;
+            if (!isDead)
             {
-                int playerIndex = nearbyPlayerIndex();
-                float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
-                if (!isExploding && distance <= distanceToKill)
+                stopMovement = true;
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                gameObject.GetComponent<CapsuleCollider>().enabled = false;
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                if (players!=null && players.Length !=0)
                 {
-                    isExploding = true;
-                    StartCoroutine(killNearbyPlayers(1f));
+                    players[0].GetComponent<AudioManager>().playEnemyExploded();
+
                 }
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;   
-            }   
+                /*foreach (var player in players)
+                {
+                    player.GetComponent<AudioManager>().playEnemyExploded();
+                }*/
+                explosion.SetActive(true);
+
+                for (int i = 0; i < players.Length; i++)
+                {
+                    float distance = Vector3.Distance(transform.position, players[i].transform.position);
+                    if (distance <= distanceToKill)
+                    {
+                        players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
+                    }
+                }  
+            }
+        
+            Destroy(this.gameObject, 1.5f);   
         }
-        else
+        if (!stopMovement)
         {
-            int spawnIndex = nearbySpawnIndex();
-            if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
+            if (canFollowPlayer)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;    
+                players = GameObject.FindGameObjectsWithTag("Player");
+                if (players.Length!= 0)
+                {
+                    int playerIndex = nearbyPlayerIndex();
+                    float distance = Vector3.Distance(transform.position, players[playerIndex].transform.position);
+                    if (!isExploding && distance <= distanceToKill && canExplode)
+                    {
+                        isExploding = true;
+                        StartCoroutine(killNearbyPlayers(1f));
+                    }
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(players[playerIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * timeSpeedMultiplier * Time.deltaTime;   
+                }   
             }
             else
             {
-                canFollowPlayer = true;
-            }
+                int spawnIndex = nearbySpawnIndex();
+                if (Vector3.Distance(transform.position,spawnPositions[spawnIndex].transform.position)>=0.3f)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(spawnPositions[spawnIndex].transform.position-transform.position),rotationSpeed * Time.deltaTime );
+                    transform.position += transform.forward * moveSpeed * moveSpeedMultiplier * timeSpeedMultiplier * Time.deltaTime;    
+                }
+                else
+                {
+                    canFollowPlayer = true;
+                }
             
 
+            }
         }
+        
     }
     
     private int nearbyPlayerIndex()
@@ -108,37 +173,36 @@ public class Enemy : MonoBehaviour
     IEnumerator killNearbyPlayers(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        for (int i = 0; i < players.Length; i++)
+        if (isServer)
         {
-            float distance = Vector3.Distance(transform.position, players[i].transform.position);
-            if (distance <= distanceToKill)
-            {
-                players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
-            }
+            serverExplode = true;
         }
-        Destroy(this.gameObject);
 
     }
 
+    IEnumerator waitToExplode()
+    {
+        yield return new WaitForSeconds(1f);
+        canExplode = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Debug.LogError(other.gameObject.GetComponent<Bullet>().shooterName);
-            //TODO: insert animation kill
-            if (other.gameObject.name == "BulletPistol")
+            string bulletName = other.gameObject.GetComponent<Bullet>().bulletName;
+            if ( bulletName== "BulletPistol")
             {
                 life -= BasicDamage;
-            }else if (other.gameObject.name == "BulletShotgun")
+            }else if (bulletName == "BulletShotgun")
             {
                 life -= BasicDamage;
-            } else if (other.gameObject.name == "BulletAssaultRifle")
+            } else if (bulletName == "BulletAssaultRifle")
             {
                 life -= MediumDamage;
-            }else if (other.gameObject.name == "BulletSniperRifle")
+            }else if (bulletName == "BulletSniperRifle")
             {
                 life -= HighDamage;
-            }else if (other.gameObject.name == "BulletSMG")
+            }else if (bulletName == "BulletSMG")
             {
                 life -= BasicDamage;
             }
@@ -148,16 +212,26 @@ public class Enemy : MonoBehaviour
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                 foreach (var player in players)
                 {
+                    player.GetComponent<AudioManager>().playEnemyKilled();
                     PlayerMoveset playerMoveset = player.GetComponent<PlayerMoveset>();
                     if (playerMoveset.playerName ==
-                        other.gameObject.GetComponent<Bullet>().shooterName)
+                        other.gameObject.GetComponent<Bullet>().shooterName && !isDead)
                     {
                         playerMoveset.enemyKilled(); 
                     }
                 }
-                Destroy(this.gameObject);
+                disableEnemy();
+                Destroy(this.gameObject,0.2f);
             }
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, 0.2f);
         }
+    }
+
+    private void disableEnemy()
+    {
+        isDead = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        stopMovement = true;
     }
 }

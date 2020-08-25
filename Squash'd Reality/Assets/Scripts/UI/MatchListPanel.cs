@@ -33,4 +33,7 @@ public class MatchListPanel : MonoBehaviour
 		}
 	}
 	
+	private void OnDestroy() {
+		AvailableMatchesList.OnAvailableMatchesChanged -= AvailableMatchesList_OnAvailableMatchesChanged;
+	}
 }

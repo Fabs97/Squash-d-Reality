@@ -19,11 +19,20 @@ public class Spawner : NetworkBehaviour
     private int _spawningIndex = -1;
     private int objectsSpawnedCount = 0;
 
+    private float timeStopSpawn = 0;
+    protected MatchManager _matchManager;
+
+
 
     private Coroutine spawnRoutine;
 
+    [SerializeField] private bool isCookingTime;
+    [SerializeField] private bool isElectroPipeline = false;
+
     void Start() {
-        if(startSpawningFromTheBeginning) CmdStartSpawning();
+        if(hasAuthority && startSpawningFromTheBeginning) CmdStartSpawning();
+        _matchManager = FindObjectOfType<MatchManager>();
+
     }
 
     [Command]
@@ -41,12 +50,17 @@ public class Spawner : NetworkBehaviour
 
     IEnumerator spawningCoroutine(){
         yield return new WaitForSeconds(firstSpawnDelay);
-        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){   
-            if(_spawningIndex == prefabsToSpawn.Count) break;
+        while(!deleteFromListAfterSpawn || prefabsToSpawn.Count > 0){
+            if (_matchManager.getTimeLeft() <= timeStopSpawn)
+            {
+                Debug.LogError("DISTRUGGO");
+                break;
+            }
+            if(_spawningIndex == prefabsToSpawn.Count && !randomizeSpawn && !deleteFromListAfterSpawn) break;
 
-            spawnObject();
+            spawnObject(false);
             yield return new WaitForSeconds(.5f);
-            if(spawnDoubleObject) spawnObject();            
+            if(spawnDoubleObject) spawnObject(true);            
             
             if(objectsSpawnedCount == objectsToSpawnCount) break;
             yield return new WaitForSeconds(spawningDelay);
@@ -56,7 +70,7 @@ public class Spawner : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    private void spawnObject(){
+    private void spawnObject(bool isDouble){
         if(randomizeSpawn) _spawningIndex = Random.Range(0, prefabsToSpawn.Count);
         else _spawningIndex++; 
 
@@ -66,14 +80,44 @@ public class Spawner : NetworkBehaviour
         float randomX = Random.Range(minCoordinates[randomZoneIndex].x, maxCoordinates[randomZoneIndex].x);
         float randomY = Random.Range(minCoordinates[randomZoneIndex].y, maxCoordinates[randomZoneIndex].y);
         float randomZ = Random.Range(minCoordinates[randomZoneIndex].z, maxCoordinates[randomZoneIndex].z);
+        if(isElectroPipeline){
+            maxCoordinates.RemoveAt(randomZoneIndex);
+            minCoordinates.RemoveAt(randomZoneIndex);
+        }
+
 
         Vector3 tr = new Vector3(randomX, randomY, randomZ);
         Quaternion q = Quaternion.identity;
-        GameObject go = Instantiate(prefabToSpawn, tr, q);
-
-        NetworkServer.Spawn(go);
-        if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
-        objectsSpawnedCount ++;
+        if (isCookingTime)
+        {
+            if (!isDouble)
+            {
+                prefabToSpawn.GetComponent<Ingredient>().isDouble = false;
+                GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+                NetworkServer.Spawn(go);
+                if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+                objectsSpawnedCount ++;
+            }else if (isDouble && randomBool())
+            {
+                prefabToSpawn.GetComponent<Ingredient>().isDouble = true;
+                GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+                NetworkServer.Spawn(go);
+                if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            }  
+        }
+        else
+        {
+            GameObject go = Instantiate(prefabToSpawn, tr, q);
+       
+            NetworkServer.Spawn(go);
+            if(deleteFromListAfterSpawn) prefabsToSpawn.Remove(prefabToSpawn);
+            if (!isDouble)
+            {
+                objectsSpawnedCount ++;
+            }
+        }
     }
 
     public void StopSpawning() {
@@ -87,5 +131,15 @@ public class Spawner : NetworkBehaviour
 
     public void setSpawningDelay(float delay){
         spawningDelay = delay;
+    }
+
+    public void setTimeStopSpawning(float timeStopSpawning)
+    {
+        timeStopSpawn = timeStopSpawning;
+    }
+
+    public bool randomBool()
+    {
+        return (Random.value > 0.5f);
     }
 }

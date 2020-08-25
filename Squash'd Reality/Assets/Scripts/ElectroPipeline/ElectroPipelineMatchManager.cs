@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +26,7 @@ public class ElectroPipelineMatchManager : MatchManager
 
     protected override IEnumerator matchStart()
     {
+        FindObjectOfType<Spawner>().CmdStartSpawning();
         return base.matchStart();
     }
 
@@ -36,16 +37,20 @@ public class ElectroPipelineMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
-        if (isServer)
+        if (!matchWon)
         {
-            GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
-            for (int i = 0; i < spawners.Length; i++)
+            base.timeEnded();
+            if (isServer)
             {
-                spawners[i].GetComponent<Spawner>().StopSpawning();
+                GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+                for (int i = 0; i < spawners.Length; i++)
+                {
+                    spawners[i].GetComponent<Spawner>().StopSpawning();
+                }
             }
+            matchTimeEnded = true; 
         }
-        matchTimeEnded = true;
+        
     }
 
     protected override IEnumerator resetChallenge()

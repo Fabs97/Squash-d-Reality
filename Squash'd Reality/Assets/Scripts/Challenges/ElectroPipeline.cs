@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +10,28 @@ public class ElectroPipeline : Challenge {
     
     public bool timeEnded = false;
     private bool matchEnded = false;
-    
+
+    private bool matchWon = false;
+
+    [SerializeField] private GameObject CollectiblePlatform;
+    [SerializeField] private GameObject InvisibleWallCollectible;
+    [SerializeField] private GameObject InvisibleWallCollectible2;
+
     protected override void Start(){
         base.Start();
         start = GameObject.Find("PipeLineStart");
         pathToTheEnd = new List<GameObject>();
         pathToTheEnd.Add(start);
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        foreach (GameObject pipe in pipes)
+        {
+            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            {
+                pipe.GetComponent<Pipe>().releasedPipe();
+            }
+            
+        }
+
     }
 
     private void Update()
@@ -23,32 +40,53 @@ public class ElectroPipeline : Challenge {
         {
             endChallenge(false);
         }
-    }
 
-    public void checkLine(){
-        RaycastHit firstStepHit = start.transform.GetComponentInChildren<Hole>().fireHoleRaycast();
-        //colpisco il figlio
-        firstStepHit.collider.gameObject.transform.parent.gameObject.GetComponent<Pipe>().checkNextStep();
-    }
-
-    public void addToFinalPath(GameObject node){
-        Debug.Log("ElectroPipeline::addToFinalPath -- added node to the list!");
-        pathToTheEnd.Add(node);
-    }
-
-    public bool alreadyChecked(GameObject node){
-        return pathToTheEnd.Contains(node);
-    }
-
-    public void lightUpPath(){
-        // If I'm here, it means that the whole path is correct (?)
-        Debug.Log("ElectroPipeline::lightUpPath -- I've hit the end by following the chain. This is the chain:");
-        foreach(var obj in pathToTheEnd){
-            Debug.Log("ElectroPipeline::lightUpPath -- " + obj.name);
+        if (!matchWon)
+        {
+            checkWin();
         }
-        Debug.Log("ElectroPipeline::lightUpPath -- I've completed to print the chain");
+    }
+
+    public void checkWin()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        bool start = false;
+        bool connectedEnd = false;
+        foreach (GameObject pipe in pipes)
+        {
+            if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+            {
+                if (pipe.GetComponent<Pipe>().isFirst)
+                {
+                    start = true;
+                }
+
+                if (pipe.GetComponent<Pipe>().isEnd && pipe.GetComponent<Pipe>().isConnected)
+                {
+                    connectedEnd = true;
+                }
+            }
+            
+        }
+
+        if (start && connectedEnd)
+        {
+            matchWon = true;
+            endChallenge(true);
+        }
     }
     public override void endChallenge(bool successful){
         base.endChallenge(successful);
+        StartCoroutine(waitToSpawnCollectible());
+    }
+
+    IEnumerator waitToSpawnCollectible()
+    {        
+        yield return new WaitForSeconds(2f);
+        InvisibleWallCollectible.SetActive(false);
+        InvisibleWallCollectible2.SetActive(false);
+
+        CollectiblePlatform.SetActive(true);
+        
     }
 }

@@ -8,15 +8,20 @@ using UnityEngine.UI;
 public class MatchManager : NetworkBehaviour
 {
     [SyncVar] protected bool gameReady;
-    protected bool matchStarting = false;
+    public bool matchStarting = false;
     protected NetworkingManager.NetworkingManager _networkingManager;
     protected UIManager _uiManager;
     [SerializeField] private string openingString;
     [SerializeField] private float challengeTimer = 90f;
+    [SyncVar] protected bool matchWon;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        if (isServer)
+        {
+            matchWon = false;
+        }
         _networkingManager = FindObjectOfType<NetworkingManager.NetworkingManager>();
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         _uiManager.setInfoBoxText(openingString);
@@ -44,10 +49,6 @@ public class MatchManager : NetworkBehaviour
         yield return new WaitForSeconds(5f);
         _uiManager.setInfoBoxActive(false);
         _uiManager.UIpanel.GetComponent<Image>().enabled = false;
-        if (isServer)
-        {
-            //START ROOM LOGIC
-        }
         showPlayerUI();
         _uiManager.StartCountdown(challengeTimer);
         
@@ -74,5 +75,15 @@ public class MatchManager : NetworkBehaviour
     protected virtual IEnumerator resetChallenge()
     {
         yield return new WaitForSeconds(2f);
+    }
+
+    public float getTimeLeft()
+    {
+        return _uiManager.getTimeLeft();
+    }
+
+    public void setMatchWon()
+    {
+        matchWon = true;
     }
 }

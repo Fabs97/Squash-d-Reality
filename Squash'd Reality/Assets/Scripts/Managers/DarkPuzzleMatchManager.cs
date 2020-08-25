@@ -45,11 +45,28 @@ public class DarkPuzzleMatchManager : MatchManager
 
     public override void timeEnded()
     {
-        base.timeEnded();
+        if (!matchWon)
+        {
+            base.timeEnded();
+            _uiManager.setInfoBoxText("TIME ENDED: YOU LOSE");
+            _uiManager.setInfoBoxActive(true);
+            if (isServer)
+            {
+                StartCoroutine(resetChallenge());
+            }  
+        }
     }
 
     protected override IEnumerator resetChallenge()
     {
-        return base.resetChallenge();
+        yield return new WaitForSeconds(2f);
+        if (isServer)
+        {
+            FindObjectOfType<DarkPuzzle>().endChallenge(false);
+        }
+        else
+        {
+            _uiManager.setInfoBoxText("YOU LOSE!");
+        }
     }
 }

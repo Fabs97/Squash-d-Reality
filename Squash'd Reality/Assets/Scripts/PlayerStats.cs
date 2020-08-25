@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+   //
+   public string playerName = "default";
+   
    //GENERAL MALUSES
    public int death; //OK
    public int timeOut; //OK
@@ -16,11 +19,11 @@ public class PlayerStats : MonoBehaviour
    
    //PIPELINE
    public int electrocution;
-   public int cableManagement;
+   public int cableManagement; //OK
    
    //COOKING TIME
-   public int notOrdered;
-   public int greetChef;
+   public int notOrdered; //OK
+   public int greetChef; //Ok
 
    //TRENCH TIME
    public int trenchTimeFriendlyKill;
@@ -29,15 +32,15 @@ public class PlayerStats : MonoBehaviour
 
    
    //TOTAL
-   public int totalPoints;
-   public string bonusPrize;
+   public int totalPoints; //OK
+   public string bonusPrize; //OK
    
    private void Start()
    {
       resetValues();
    }
 
-   private void resetValues()
+   public void resetValues()
    {
       death = 0;
       timeOut = 0;
@@ -55,19 +58,26 @@ public class PlayerStats : MonoBehaviour
       bonusPrize = "default";
    }
 
-   private void setTotalPoints()
+   public void setTotalPoints()
    {
-      //TODO: aggiungere conti total points
+      Debug.LogError("POWERUP: " +powerUp );
+      Debug.LogError("COLLECTIBLE: " + collectible);
+      Debug.LogError("CABLE MANAGEMENT: " + cableManagement);
+      Debug.LogError("GREET CHEF: " + greetChef);
+      Debug.LogError("ANTIVIRUS KILLED: " + antivirusKilled);
+      Debug.LogError("PROFESSIONAL SNIPER: " + professionalSniper);
+      Debug.LogError("FRIENDLY KILL: " + friendlyKill);
+      Debug.LogError("TIMEOUT: " + timeOut);
+      Debug.LogError("ELECTROCUTION: " + electrocution);
+      Debug.LogError("NOT ORDERED: " + notOrdered);
+      totalPoints = powerUp + collectible + cableManagement + greetChef + antivirusKilled + professionalSniper - friendlyKill - timeOut - electrocution -notOrdered -trenchTimeFriendlyKill;
    }
 
-   private void setBonusPrize()
+   public void setBonusPrize(string value)
    {
       //TODO: aggiungere conti bonus prize
-   }
 
-   private void Update()
-   {
-     
-
+      bonusPrize = value;
    }
+   
 }

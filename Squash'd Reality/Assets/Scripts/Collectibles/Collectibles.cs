@@ -13,35 +13,43 @@ public class Collectibles : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-      if (!triggerActivated)
+      if (other.tag=="Player" && !triggerActivated)
       {
          triggerActivated = true;
          firstEntered = other;
          if (other.GetComponent<PlayerMoveset>().hasAuthority)
          {
+
             GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(true);
 
          }
          intelAcquisition = StartCoroutine(waitIntel(other));
+    
+      }
+      
+   }
+
+   private void OnTriggerExit(Collider other)
+   {
+      if (other.tag == "Player")
+      {
+         StopCoroutine(intelAcquisition);
+         triggerActivated = false;
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
+         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
       }
       
    }
 
    private void Update()
    {
-      if (triggerActivated && Vector3.Distance(gameObject.transform.position, firstEntered.transform.position)>=2f)
-      {
-         StopCoroutine(intelAcquisition);
-         triggerActivated = false;
-         
-         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setWaitIntel(false);
-         GameObject.FindGameObjectWithTag("UICollectibleManager").GetComponent<UICollectibleManager>().setIntelAcquired(false);
-      }
+      
    }
 
    IEnumerator waitIntel(Collider other)
    {
       yield return new WaitForSeconds(3f);
+      other.GetComponent<AudioManager>().playCollectibleSound();
       PlayerMoveset playerMoveset = other.GetComponent<PlayerMoveset>();
       if (playerMoveset.hasAuthority)
       {
@@ -50,6 +58,6 @@ public class Collectibles : MonoBehaviour
       }
       playerMoveset.setCollectibleStats();
       PlayerPrefs.SetString(gameObject.name, "true");
-      Destroy(this.gameObject);
+      Destroy(this.gameObject, 1f);
    }
 }

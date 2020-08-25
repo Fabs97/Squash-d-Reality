@@ -14,7 +14,11 @@ public class Pipe : NetworkBehaviour
 
     [SerializeField] private float snapValue = 1.0f;
 
-    [HideInInspector]
+    [SyncVar] public bool isFirst;
+
+    [SyncVar] public bool isEnd;
+
+    //[HideInInspector]
     [SyncVar(hook="_isConnectedChanged")] public bool isConnected;
 
     [SerializeField] private Material connectedMaterial;
@@ -28,7 +32,7 @@ public class Pipe : NetworkBehaviour
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        pipelineChallengeScript = Object.FindObjectOfType<ElectroPipeline>();
+        pipelineChallengeScript = FindObjectOfType<ElectroPipeline>();
         unconnectedMaterial = meshRenderer.material;
         setPipeConnected(false);
         
@@ -36,32 +40,33 @@ public class Pipe : NetworkBehaviour
         foreach(Transform child in transform){
             if(child.gameObject.tag == "Hole") holesOnMe ++;
         }
-    }
 
-    void Update()
+        if (isServer)
+        {
+            isFirst = false;
+        }
+    }
+    
+    public void _isConnectedChanged(bool connected)
     {
-        
-    }
-
-    public void _isConnectedChanged(bool connected){
         isConnected = connected;
         this.meshRenderer.material = connected ? connectedMaterial : unconnectedMaterial;
     }
 
-    public void setPipeConnected(bool connected){
-        if(considerHoleAnswers){
-            if(connected) {
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
-                considerHoleAnswers = false;
-            }
-        } else {
-            holesAnswers.Add(connected);
-            if(holesAnswers.Count == holesOnMe){
-                // all hits go to false
-                considerHoleAnswers = true;
-                GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, false);
-                holesAnswers = new List<bool>();
-            } 
+    public void setPipeConnected(bool connected)
+    {
+        GameObject localPlayer;
+        localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>();
+        if (connected && gameObject.GetComponent<GrabbableMovement>().grabbedBy == playerStats.playerName)
+        {
+            gameObject.GetComponent<GrabbableMovement>().grabbedBy = "default";
+            playerStats.cableManagement++;
+        }
+        if (localPlayer != null)
+        {
+            localPlayer.GetComponent<PlayerController>().CmdSetPipeConnected(gameObject, connected);
+
         }
     }
 
@@ -76,7 +81,7 @@ public class Pipe : NetworkBehaviour
                 }
             }
         }
-        setPipeConnected(atLeastOneConnection);
+        setPipeConnected(atLeastOneConnection);  
     }
 
     public void releasedPipe(){
@@ -84,40 +89,162 @@ public class Pipe : NetworkBehaviour
         float y = 0.55f;
         float z = Mathf.Round(gameObject.transform.position.z / snapValue);
         GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetTransformTo(gameObject, new Vector3(x,y,z));
+
+        if (isServer)
+        {
+            int start = 0;
+            int end = 0;
+            foreach (Transform child in transform) {
+                if(child.gameObject.tag == "Hole") {
+                    child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                    start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                    end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
+                }
+            }
+
+            if (start == 0)
+            {
+                setFirst(false);
+            }
+            if (start == 1)
+            {
+                setFirst(true);
+            }
+
+            if (end == 0)
+            {
+                setEnd(false);
+            }
+            if (end == 1)
+            {
+                setEnd(true);
+            }
+        }
+        else
+        {
+            StartCoroutine(pipeStartEnd());
+
+        }
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdPipeReleased();
+        
+    }
+
+
+
+    IEnumerator pipeStartEnd()
+    {
+        yield return new WaitForSeconds(0.2f);
+        int start = 0;
+        int end = 0;
         foreach (Transform child in transform) {
             if(child.gameObject.tag == "Hole") {
                 child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
             }
         }
-    }
 
-    public void checkLine(){
-        pipelineChallengeScript.checkLine();
-    }
+        if (start == 0)
+        {
+            setFirst(false);
+        }
+        if (start == 1)
+        {
+            setFirst(true);
+        }
 
-    public void checkNextStep(){
-        foreach(Transform child in transform){
+        if (end == 0)
+        {
+            setEnd(false);
+        }
+        if (end == 1)
+        {
+            setEnd(true);
+        }
+        
+        //-------------
+        yield return new WaitForSeconds(0.2f);
+         start = 0;
+         end = 0;
+        foreach (Transform child in transform) {
             if(child.gameObject.tag == "Hole") {
-                RaycastHit nextHit = child.gameObject.GetComponent<Hole>().fireHoleRaycast();
-                if(nextHit.collider != null){ // if != null, then it is a Raycast
-                    GameObject nextGO = nextHit.collider.gameObject;
-                    if(!pipelineChallengeScript.alreadyChecked(nextGO.transform.parent.gameObject)){
-                        if(nextGO != null){
-                            pipelineChallengeScript.addToFinalPath(gameObject);
+                child.gameObject.GetComponent<Hole>().checkHoleConnection();
+                start = start + child.gameObject.GetComponent<Hole>().checkIntStart();
+                end = end + child.gameObject.GetComponent<Hole>().checkIntEnd();
+            }
+        }
 
-                            if(nextGO.tag == "HoleEnd") {
-                                pipelineChallengeScript.lightUpPath();
-                            } else if(nextGO.tag != "HoleEnd") {
-                                nextHit.collider.gameObject.GetComponentInParent<Pipe>().checkNextStep();
-                            }
-                        }
-                    }
-                } else {
-                    // the raycast did not hit anything, it is failing. 
-                    // TODO: handle the case where all raycasts fail (?)
+        if (start == 0)
+        {
+            setFirst(false);
+        }
+        if (start == 1)
+        {
+            setFirst(true);
+        }
 
+        if (end == 0)
+        {
+            setEnd(false);
+        }
+        if (end == 1)
+        {
+            setEnd(true);
+        }
+    }
+    IEnumerator pipeReleasedCoroutine()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("Pipe");
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            foreach (GameObject pipe in pipes)
+            {
+                if (pipe.transform.name != "PipeLineStart" && pipe.transform.name != "PipeLineEnd")
+                {
+                    pipe.GetComponent<Pipe>().allPipeReleased();  
+                }
+           
+            }  
+        }
+        
+        
+
+    }
+
+    public void allPipeReleased()
+    {
+        if (isServer)
+        {
+            int holes = 0;
+            foreach (Transform child in transform) {
+                if(child.gameObject.tag == "Hole") {
+                    holes = holes + child.gameObject.GetComponent<Hole>().checkIntHoleConnection();
                 }
             }
+
+            if (holes == 0)
+            {
+                setPipeConnected(false);
+            }
+            else
+            {
+                setPipeConnected(true);
+            }  
         }
+        
+    }
+    
+    public void setFirst(bool value)
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdSetFirstElectroPipeline(gameObject,value);
+    }
+
+    public void setEnd(bool value)
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>()
+            .CmdSetEndPipeline(gameObject,value);
     }
 }

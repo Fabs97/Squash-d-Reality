@@ -10,6 +10,8 @@ public class MainMenuButtonManager : MonoBehaviour
     void Start() {
         _networkingManager = Object.FindObjectOfType<NetworkingManager.NetworkingManager>();
         _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
+        GameObject.FindGameObjectWithTag("DDOL").GetComponent<PlayerStats>().resetValues();
+        _networkingManager.clearPlayedRooms();
     }
  
     public void playButtonClicked(){
@@ -34,5 +36,7 @@ public class MainMenuButtonManager : MonoBehaviour
         SceneManager.LoadScene("CollectiblesMenu", LoadSceneMode.Single);
     }
     
-
+    public void exitGame() {
+        Application.Quit();
+    }
 }
