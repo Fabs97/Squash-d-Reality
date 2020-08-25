@@ -26,6 +26,7 @@ public class PlayerMoveset : NetworkBehaviour
 
     private bool pogoStickActive;
 
+    private NetworkAnimator _animator;
     
     //ALLY DAMAMGE
     private float BasicDamage = 6.7f;
@@ -39,12 +40,14 @@ public class PlayerMoveset : NetworkBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
         life = 100000;
+        _animator = gameObject.GetComponent<NetworkAnimator>();
     }
 
     void FixedUpdate() {
         if (hasAuthority) {
             Move();
         }
+
     }
 
     private void _meshActiveChanged(bool meshActive){
@@ -75,6 +78,7 @@ public class PlayerMoveset : NetworkBehaviour
 
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer && !pogoStickActive) {
+            _animator.SetTrigger("jump");
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
 
