@@ -44,6 +44,9 @@ public class PlayerMoveset : NetworkBehaviour
     private float MediumDamage = 13.4f;
     private float HighDamage = 20f;
     private float allyLife = 20f;
+
+
+    private NetworkAnimator _networkAnimator;
     private void Start()
     {
         isDead = false;
@@ -58,7 +61,7 @@ public class PlayerMoveset : NetworkBehaviour
         
         
         audioManager = GetComponent<AudioManager>();
-        
+        _networkAnimator = GetComponent<NetworkAnimator>();
 
         if (playerName == GameObject.FindGameObjectWithTag("DDOL").GetComponent<DDOL>().playerName)
         {
@@ -142,6 +145,8 @@ public class PlayerMoveset : NetworkBehaviour
         // Changes the height position of the player..
         if (Input.GetButton("Jump") && groundedPlayer && !pogoStickActive) {
             audioManager.playJumpSound();
+            _networkAnimator.SetTrigger("jump");
+            _networkAnimator.animator.ResetTrigger("jump");
             playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpHeightMultiplier * -4.0f * gravityValue);
         }
 
