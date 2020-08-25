@@ -116,8 +116,8 @@ public class PlayerMoveset : NetworkBehaviour
     }
 
     private void _meshActiveChanged(bool meshActive){
-        gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
-        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = meshActive;
+        //gameObject.GetComponent<MeshRenderer>().enabled = meshActive;
+        gameObject.transform.GetChild(4).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = meshActive;
     }
     void Move(){
         groundedPlayer = controller.isGrounded;
