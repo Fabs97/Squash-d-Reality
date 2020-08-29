@@ -487,7 +487,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bc2d1382a8729041ba35bb59b7cbdf6, type: 2}
+  - {fileID: 2100000, guid: adb46790f1eaf02448cadcec72208ba9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -731,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.3
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -751,11 +751,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 177.6
+      value: 182.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0127
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0806
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.111
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -807,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.013
+      value: 0.012793691
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 88206fc28fa3b9f45a8da7e5d5f0228d, type: 3}
       propertyPath: m_Materials.Array.data[0]
