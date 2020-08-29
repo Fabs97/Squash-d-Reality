@@ -32,7 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 1614956956}
   m_Father: {fileID: 6360388637714772424}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -358,7 +358,7 @@ Transform:
   m_LocalScale: {x: 0.10000005, y: 0.099999994, z: 0.9900004}
   m_Children: []
   m_Father: {fileID: 6360388637714772424}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &924462305137345133
 MeshFilter:
@@ -453,11 +453,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1404402720}
   - {fileID: 8382134090930065891}
   - {fileID: 7019922573732448370}
   - {fileID: 9200169400662514142}
   - {fileID: 62019982}
-  - {fileID: 1404402720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -635,7 +635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_Name
-      value: dritto (1)
+      value: connection
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_LocalScale.z
@@ -679,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -758,7 +758,7 @@ PrefabInstance:
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
@@ -833,7 +833,7 @@ PrefabInstance:
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}

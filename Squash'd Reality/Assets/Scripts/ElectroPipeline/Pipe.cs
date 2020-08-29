@@ -31,7 +31,7 @@ public class Pipe : NetworkBehaviour
 
     private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = transform.GetChild(0).transform.GetChild(0).GetComponent<MeshRenderer>();
         pipelineChallengeScript = FindObjectOfType<ElectroPipeline>();
         unconnectedMaterial = meshRenderer.material;
         setPipeConnected(false);

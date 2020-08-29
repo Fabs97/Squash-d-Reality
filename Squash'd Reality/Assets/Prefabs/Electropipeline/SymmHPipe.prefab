@@ -32,7 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 353963698}
   m_Father: {fileID: 5956423040410268212}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -362,11 +362,11 @@ Transform:
   m_LocalPosition: {x: -9, y: 0, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1499135669}
   - {fileID: 9132884968507462175}
   - {fileID: 7747900640262736782}
   - {fileID: 3091680129527507575}
   - {fileID: 44558620}
-  - {fileID: 1499135669}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -566,7 +566,7 @@ Transform:
   m_LocalScale: {x: 0.10000005, y: 0.099999994, z: 0.99}
   m_Children: []
   m_Father: {fileID: 5956423040410268212}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1739702406333581391
 MeshFilter:
@@ -635,7 +635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_Name
-      value: dritto
+      value: connection
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -687,7 +687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 31c0bbd6bfd701642bd9f98ed47843bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -766,7 +766,7 @@ PrefabInstance:
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
@@ -841,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4788573780704889947, guid: c4594f718db757a45bdb9f5b93dddb73,
         type: 3}
