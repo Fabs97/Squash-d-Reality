@@ -46,6 +46,8 @@ public class PlayerMoveset : NetworkBehaviour
     private float allyLife = 20f;
 
 
+    private bool isWalking = false;
+
     private NetworkAnimator _networkAnimator;
     private void Start()
     {
@@ -54,6 +56,7 @@ public class PlayerMoveset : NetworkBehaviour
             meshActive = true;
         }
 
+        isWalking = false;
         playerCanMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         controller.detectCollisions = false;
@@ -131,8 +134,28 @@ public class PlayerMoveset : NetworkBehaviour
         }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (!isWalking)
+            {
+                _networkAnimator.animator.SetFloat("walkMultiplier",1.0f);
+            }
+            isWalking = true;
+            //_networkAnimator.SetTrigger("walk");
+           // _networkAnimator.animator.ResetTrigger("walk");
+        }
+        else if(isWalking)
+        {
+            isWalking = false;
+            _networkAnimator.animator.SetFloat("walkMultiplier",0.0f);
+            //deactivate
+        }
+       
         Vector3 moveRightStick = new Vector3(Input.GetAxis("Horizontal-Direction"), 0, -Input.GetAxis("Vertical-Direction"));
-        if(move != Vector3.zero && groundedPlayer) audioManager.playSteps();
+        if (move != Vector3.zero && groundedPlayer)
+        {
+            audioManager.playSteps();
+        }
         controller.Move(move * Time.deltaTime * playerSpeed*playerSpeedMultiplier);
 
         if(moveRightStick != Vector3.zero){
