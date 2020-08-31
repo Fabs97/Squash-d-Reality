@@ -448,6 +448,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1175341264164642636, guid: 1e9f059244f7dd54081d40134b9d7be1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1175341264852080257, guid: 1e9f059244f7dd54081d40134b9d7be1,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -541,6 +546,11 @@ PrefabInstance:
     - target: {fileID: 1175341264852080269, guid: 1e9f059244f7dd54081d40134b9d7be1,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175341265162960532, guid: 1e9f059244f7dd54081d40134b9d7be1,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1175341265545091634, guid: 1e9f059244f7dd54081d40134b9d7be1,
@@ -1165,6 +1175,11 @@ PrefabInstance:
       value: DoorElectroPipeline
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714712826808337775, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2091,7 +2106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &951875858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,6 +2275,11 @@ PrefabInstance:
       value: DoorTrenchTime
       objectReference: {fileID: 0}
     - target: {fileID: 317236065249196910, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714712826808337775, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3531,6 +3551,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 60.092003
       objectReference: {fileID: 0}
+    - target: {fileID: 4714712826808337775, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4151,6 +4176,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4714712826808337775, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5113055754871664617, guid: 72bd77f98adde794483c4c7e2f0690e3,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4438,7 +4468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1661437751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5050,6 +5080,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4714712826808337775, guid: 72bd77f98adde794483c4c7e2f0690e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72bd77f98adde794483c4c7e2f0690e3, type: 3}
 --- !u!1 &1919873729 stripped
@@ -5166,7 +5201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1932360642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6484,7 +6519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2302753265097687413
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7089,6 +7124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.lineCount
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826188999957681176, guid: d0e1a99b34d816040a67b070bf152ff6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0e1a99b34d816040a67b070bf152ff6, type: 3}

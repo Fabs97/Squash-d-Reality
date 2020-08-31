@@ -21,9 +21,9 @@ public class Door : NetworkBehaviour {
     private void Start()
     {
         stop = false;
-        TextMeshProUGUI nameDoor = transform.GetComponentInChildren<Canvas>().GetComponentInChildren<Button>()
+/*        TextMeshProUGUI nameDoor = transform.GetComponentInChildren<Canvas>().GetComponentInChildren<Button>()
             .GetComponentInChildren<TextMeshProUGUI>();
-        nameDoor.text = doorName;
+        nameDoor.text = doorName;*/
         _sceneLoader = Object.FindObjectOfType<SceneLoader.SceneLoader>();
         _networkGameManager = Object.FindObjectOfType<NetworkGameManager>();
         _networkingManager = Object.FindObjectOfType<NetworkingManager.NetworkingManager>();
@@ -38,61 +38,21 @@ public class Door : NetworkBehaviour {
             GameObject localPlayer = GameObject.FindGameObjectWithTag("LocalPlayer");
             if (nextSceneName == "Lobby")
             {
-                _networkingManager.serverChangeScene(nextSceneName, difficulty);
+                
             }
             else
             {
                 if (localPlayer!=null && !localPlayer.GetComponent<PlayerController>().isServer)
                 {
-                    _networkingManager.serverChangeScene(nextSceneName, difficulty);
+                   
                 }
                 else
                 {
-                    StartCoroutine(waitDelay());
+                    
                 }   
             }
         }
     }
 
-    private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Player"){
-            if (!people.Contains(other.gameObject.name))
-            {
-                people.Add(other.gameObject.name);
-            }
-
-            playersInMe = people.Count;
-            //updatePeopleInDoor(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "Player"){
-            if (people.Contains(other.gameObject.name))
-            {
-                people.Remove(other.gameObject.name);
-            }
-            playersInMe = people.Count;
-          //  updatePeopleInDoor(false);
-        }
-    }
-
-    private void updatePeopleInDoor(bool entered){
-
-        if (GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().isServer)
-        {
-            StartCoroutine(waitDelay());
-        }
-        else
-        {
-            _networkGameManager.calcNextDoor(playersInMe, nextSceneName, difficulty);
-        }
-    }
-
-    IEnumerator waitDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        _networkGameManager.calcNextDoor(playersInMe, nextSceneName, difficulty);
-
-    }
+    
 }

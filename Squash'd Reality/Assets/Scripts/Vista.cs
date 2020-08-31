@@ -17,7 +17,7 @@ public class Vista : MonoBehaviour
     {
         if (other.tag=="Player" && other.GetComponent<PlayerMoveset>().hasAuthority)
         {
-            Canvas.SetActive(true);
+            Canvas.SetActive(false);
         }
     }
 
@@ -25,7 +25,7 @@ public class Vista : MonoBehaviour
     {
         if (other.tag == "Player" && other.GetComponent<PlayerMoveset>().hasAuthority)
         {
-            Canvas.SetActive(true);
+            Canvas.SetActive(false);
         }
     }
 

@@ -127,8 +127,8 @@ public class UIManager : MonoBehaviour
     //SET gameobject active or not
     public void setPlayerElementsActive(bool value)
     {
-       PlayerName_Button.gameObject.SetActive(value);
-       PG_Image.gameObject.SetActive(value);
+       PlayerName_Button.gameObject.SetActive(false);
+       PG_Image.gameObject.SetActive(false);
     }
     
     //---------------------------------------POWER-UP-----------------------------------------------

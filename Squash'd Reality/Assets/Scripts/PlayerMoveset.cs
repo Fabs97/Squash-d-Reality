@@ -85,9 +85,26 @@ public class PlayerMoveset : NetworkBehaviour
                 audioManager.playMusicLevel(4);
             }  
         }
+
+        if (playerName == "Ken Nolo")
+        {
+            StartCoroutine(waitSpawn(10f));
+        }else if (playerName == "Kam Brylla")
+        {
+            StartCoroutine(waitSpawn(20f));
+        }else if (playerName == "Raphael Nosun")
+        {
+            StartCoroutine(waitSpawn(30f));
+        }
         
     }
 
+    IEnumerator waitSpawn(float time)
+    {
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(this.gameObject, false);
+        yield return new WaitForSeconds(time);
+        GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<PlayerController>().CmdSetMesh(this.gameObject, true);
+    }
     private void Update()
     {
         if (Input.GetButtonDown("Start") && !pauseActive)
