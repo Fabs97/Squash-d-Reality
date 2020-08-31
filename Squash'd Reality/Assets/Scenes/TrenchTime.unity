@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc400495a9513c469b43e3f0d4e168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchStarting: 0
   openingString: Survive the enemies!
   challengeTimer: 90
   matchTimeEnded: 0
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doors:
   - {fileID: 943762918}
+  matchIsWon: 0
   timeEnded: 0
 --- !u!1 &1991652680
 GameObject:

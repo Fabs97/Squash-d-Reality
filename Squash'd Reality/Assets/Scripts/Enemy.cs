@@ -71,7 +71,7 @@ public class Enemy : NetworkBehaviour
             {
                 stopMovement = true;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
-                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
                 gameObject.GetComponent<CapsuleCollider>().enabled = false;
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                 if (players!=null && players.Length !=0)
@@ -231,7 +231,7 @@ public class Enemy : NetworkBehaviour
     {
         isDead = true;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(0).transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
         stopMovement = true;
     }
 }
