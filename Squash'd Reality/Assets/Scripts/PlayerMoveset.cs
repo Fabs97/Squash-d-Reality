@@ -286,25 +286,27 @@ public class PlayerMoveset : NetworkBehaviour
     //----------------------------------------------------TRIGGER BULLET------------------------------------------------------------------------
     private void OnTriggerEnter(Collider other)
     {
+      
         if (other.tag == "Bullet" && other.GetComponent<Bullet>().shooterName!=playerName)
         {
-            if (other.gameObject.name == "BulletPistol")
+            string bulletName = other.GetComponent<Bullet>().bulletName;
+            if (bulletName == "BulletPistol")
             {
                 allyLife -= BasicDamage;
-            }else if (other.gameObject.name == "BulletShotgun")
+            }else if (bulletName == "BulletShotgun")
             {
                 allyLife -= BasicDamage;
-            } else if (other.gameObject.name == "BulletAssaultRifle")
+            } else if (bulletName == "BulletAssaultRifle")
             {
                 allyLife -= MediumDamage;
-            }else if (other.gameObject.name == "BulletSniperRifle")
+            }else if (bulletName== "BulletSniperRifle")
             {
                 allyLife -= HighDamage;
-            }else if (other.gameObject.name == "BulletSMG")
+            }else if (bulletName == "BulletSMG")
             {
                 allyLife -= BasicDamage;
             }
-
+            
             if (allyLife <= 0f)
             {
                 TakeDamage(1);
