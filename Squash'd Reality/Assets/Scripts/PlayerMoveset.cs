@@ -207,7 +207,7 @@ public class PlayerMoveset : NetworkBehaviour
     }
 
     //Use this for trench time
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, string shooterName)
     {
         UIManager _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         //disable Spartan Armor
@@ -221,6 +221,15 @@ public class PlayerMoveset : NetworkBehaviour
             life = life - damage;
             if (life <= 0)
             {
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in players)
+                {
+                    PlayerMoveset pMoveset = player.GetComponent<PlayerMoveset>();
+                    if (pMoveset.playerName == shooterName)
+                    {
+                        pMoveset.friendlyKilled(); 
+                    }
+                }     
                 if (hasAuthority)
                 {
                     isDead = true;
@@ -229,8 +238,30 @@ public class PlayerMoveset : NetworkBehaviour
                     _uiManager.setInfoBoxActive(true);   
                 }
                 GameObject.FindObjectOfType<TrenchTime>().setPlayerDead();
-                Destroy(this.gameObject);
+                if (shooterName != "enemy")
+                {
+                    Destroy(this.gameObject, 0.5f);
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                }
             }   
+        }else if (isClient && !isServer && shooterName!="enemy")
+        {
+            life = life - damage;
+            if (life <= 0)
+            {
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var player in players)
+                {
+                    PlayerMoveset pMoveset = player.GetComponent<PlayerMoveset>();
+                    if (pMoveset.playerName == shooterName)
+                    {
+                        pMoveset.friendlyKilled(); 
+                    }
+                }     
+            }
         }
         
         
@@ -309,22 +340,8 @@ public class PlayerMoveset : NetworkBehaviour
             
             if (allyLife <= 0f)
             {
-                TakeDamage(1);
+                TakeDamage(1, other.GetComponent<Bullet>().shooterName);
                 allyLife = 20f;
-                if (life == 0)
-                {
-                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                    foreach (var player in players)
-                    {
-                        PlayerMoveset pMoveset = player.GetComponent<PlayerMoveset>();
-                        if (pMoveset.playerName ==
-                            other.gameObject.GetComponent<Bullet>().shooterName)
-                        {
-                            pMoveset.friendlyKilled(); 
-                        }
-                    }                  
-
-                }
             }
         }
         

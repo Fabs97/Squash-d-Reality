@@ -90,7 +90,7 @@ public class Enemy : NetworkBehaviour
                     float distance = Vector3.Distance(transform.position, players[i].transform.position);
                     if (distance <= distanceToKill)
                     {
-                        players[i].GetComponent<PlayerMoveset>().TakeDamage(1);
+                        players[i].GetComponent<PlayerMoveset>().TakeDamage(1,"enemy");
                     }
                 }  
             }
