@@ -17,7 +17,7 @@ MonoBehaviour:
   playersPositions:
   - {x: 1, y: 0.7, z: -11}
   - {x: 1, y: 0.7, z: -3}
-  - {x: 13, y: 0.7, z: -3}
-  - {x: 13, y: 0.7, z: -11}
+  - {x: 13, y: 3, z: -3}
+  - {x: 13, y: 3, z: -11}
   isDark: 0
   isChallenge: 1
